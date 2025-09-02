@@ -1,0 +1,102 @@
+{
+  "code": 200,
+  "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
+  "data": {
+    "date": "8-19",
+    "month": 8,
+    "day": 19,
+    "items": [
+      {
+        "title": "罗马帝国开国皇帝奥古斯都逝世",
+        "year": "14",
+        "description": "奥古斯都（拉丁文 Augustus的中译，复数型 Augusti）的原意为“神圣的”、“高贵的”，带有宗教与神学式的意味。",
+        "event_type": "death",
+        "link": "https://baike.baidu.com/item/%E5%A5%A5%E5%8F%A4%E6%96%AF%E9%83%BD/14291"
+      },
+      {
+        "title": "近代概率论的奠基者帕斯卡逝世",
+        "year": "1662",
+        "description": "布莱士·帕斯卡（Blaise Pascal ，1623－1662）是法国数学家、物理学家、哲学家、散文家。",
+        "event_type": "death",
+        "link": "https://baike.baidu.com/item/%E5%B8%83%E8%8E%B1%E5%A3%AB%C2%B7%E5%B8%95%E6%96%AF%E5%8D%A1"
+      },
+      {
+        "title": "瑞典国王古斯塔夫三世发动政变夺取权力",
+        "year": "1772",
+        "description": "古斯塔夫三世（Gustavus III，1746－1792）是瑞典历史上褒贬最多的国王（1771－1792）。阿道夫·弗里德里克国王的儿子和继承者。",
+        "event_type": "event",
+        "link": "https://baike.baidu.com/item/%E5%8F%A4%E6%96%AF%E5%A1%94%E5%A4%AB%E4%B8%89%E4%B8%96"
+      },
+      {
+        "title": "美国飞机设计师奥维尔·莱特诞生",
+        "year": "1871",
+        "description": "奥威尔莱特（公元1871～公元1948）。 奥维尔·莱特1871年生于美国俄亥俄州代顿市。上过中学，但实际上未获得毕业文凭。",
+        "event_type": "birth",
+        "link": "https://baike.baidu.com/item/%E5%A5%A5%E7%BB%B4%E5%B0%94%C2%B7%E8%8E%B1%E7%89%B9"
+      },
+      {
+        "title": "法国著名时装设计师、香奈儿品牌创始人加布里埃·香奈儿出生",
+        "year": "1883",
+        "description": "香奈儿儿时入读修女院学校学得一手针线活。后来她与许多上流社会男士有过交往。1910年，毅然放弃嫁入豪门做阔太太的她在巴黎开设了一家女装帽子店，从此开创了香奈儿时尚帝国。",
+        "event_type": "birth",
+        "link": "https://baike.baidu.com/item/%E5%8A%A0%E5%B8%83%E9%87%8C%E5%9F%83%C2%B7%E9%A6%99%E5%A5%88%E5%84%BF/9480318"
+      },
+      {
+        "title": "美国宇航员斯托里·马斯格雷夫出生",
+        "year": "1935",
+        "description": "斯托里·马斯格雷夫（Franklin Story Musgrave，1935年8月19日－），美国宇航员，拥有医学、数学、文学等六个学位，入选美国国家航空航天局（NASA）科学家宇航员。",
+        "event_type": "birth",
+        "link": "https://baike.baidu.com/item/%E6%96%AF%E6%89%98%E9%87%8C%C2%B7%E9%A9%AC%E6%96%AF%E6%A0%BC%E9%9B%B7%E5%A4%AB"
+      },
+      {
+        "title": "纳粹德国陆军元帅京特·冯·克鲁格畏罪自杀",
+        "year": "1944",
+        "description": "汉斯·京特·冯·克卢格（Günther·von·Kluge， 1882年10月30日－1944年8月19日），纳粹德国陆军元帅（1940.7.19），著名军事家、统帅。",
+        "event_type": "death",
+        "link": "https://baike.baidu.com/item/%E4%BA%AC%E7%89%B9%C2%B7%E5%86%AF%C2%B7%E5%85%8B%E9%B2%81%E6%A0%BC"
+      },
+      {
+        "title": "美国第42任总统克林顿出生",
+        "year": "1946",
+        "description": "威廉·杰斐逊·克林顿，美国律师、政治家，美国民主党成员，曾任阿肯色州州长和第42任美国总统。克林顿基金会主席 。",
+        "event_type": "birth",
+        "link": "https://baike.baidu.com/item/%E5%A8%81%E5%BB%89%C2%B7%E6%9D%B0%E6%96%90%E9%80%8A%C2%B7%E5%85%8B%E6%9E%97%E9%A1%BF"
+      },
+      {
+        "title": "美国演员马修·派瑞出生",
+        "year": "1969",
+        "description": "马修·派瑞（Matthew Perry，1969年8月19日—2023年10月28日），出生于美国马萨诸塞州普利茅斯，美国、加拿大籍男演员、编剧。",
+        "event_type": "birth",
+        "link": "https://baike.baidu.com/item/%E9%A9%AC%E4%BF%AE%C2%B7%E6%B4%BE%E7%91%9E"
+      },
+      {
+        "title": "北回归线标志塔在广州落成",
+        "year": "1985",
+        "description": "北回归线标志塔，是标志地理学上北回归线经过地方的建筑物。",
+        "event_type": "event",
+        "link": "https://baike.baidu.com/item/%E5%8C%97%E5%9B%9E%E5%BD%92%E7%BA%BF%E6%A0%87%E5%BF%97%E5%A1%94"
+      },
+      {
+        "title": "“八一九事件”，苏联八月政变",
+        "year": "1991",
+        "description": "八一九事件，又称“苏联政变”、“八月政变”，指1991年8月19日-8月21日在苏联发生的一次政变。",
+        "event_type": "event",
+        "link": "https://baike.baidu.com/item/%E5%85%AB%E4%B8%80%E4%B9%9D%E4%BA%8B%E4%BB%B6"
+      },
+      {
+        "title": "量子化学家莱纳斯·卡尔·鲍林逝世",
+        "year": "1994",
+        "description": "莱纳斯·卡尔·鲍林（Linus Carl Pauling，1901年2月28日—1994年8月19日），出生于美国俄勒冈州波特兰，化学家、美国国家科学院院士、美国艺术与科学院院士，1954年诺贝尔化学奖获得者。",
+        "event_type": "death",
+        "link": "https://baike.baidu.com/item/%E8%8E%B1%E7%BA%B3%E6%96%AF%C2%B7%E5%8D%A1%E5%B0%94%C2%B7%E9%B2%8D%E6%9E%97"
+      },
+      {
+        "title": "中国三江源自然保护区成立",
+        "year": "2000",
+        "description": "青海三江源国家级自然保护区位于青藏高原腹地，青海省南部，地理位置介于东经89°24′～102°23′，北纬31°39′～36°16′之间，青海三江源国家级自然保护区属湿地类型的自然保护区。",
+        "event_type": "event",
+        "link": "https://baike.baidu.com/item/%E4%B8%89%E6%B1%9F%E6%BA%90%E8%87%AA%E7%84%B6%E4%BF%9D%E6%8A%A4%E5%8C%BA"
+      }
+    ]
+  }
+}

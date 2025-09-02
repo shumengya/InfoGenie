@@ -1,0 +1,87 @@
+{
+  "code": 200,
+  "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
+  "data": [
+    {
+      "id": 45087396,
+      "title": "We should have the ability to run any code we want on hardware we own",
+      "link": "https://hugotunius.se/2025/08/31/what-every-argument-about-sideloading-gets-wrong.html",
+      "score": 995,
+      "author": "K0nserv",
+      "created": "2025-08-31 21:46:26",
+      "created_at": 1756676786000
+    },
+    {
+      "id": 45053029,
+      "title": "Why countries trade with each other while fighting",
+      "link": "https://news.mit.edu/2025/why-countries-trade-each-other-while-fighting-mariya-grinberg-book-0828",
+      "score": 32,
+      "author": "LorenDB",
+      "created": "2025-08-28 14:58:28",
+      "created_at": 1756393108000
+    },
+    {
+      "id": 45086020,
+      "title": "Eternal Struggle",
+      "link": "https://yoavg.github.io/eternal/",
+      "score": 481,
+      "author": "yurivish",
+      "created": "2025-08-31 19:04:03",
+      "created_at": 1756667043000
+    },
+    {
+      "id": 45052960,
+      "title": "C++: Strongly Happens Before?",
+      "link": "https://nekrozqliphort.github.io/posts/happens-b4/",
+      "score": 16,
+      "author": "signa11",
+      "created": "2025-08-28 14:54:37",
+      "created_at": 1756392877000
+    },
+    {
+      "id": 45087971,
+      "title": "Nintendo Switch 2 Dock USB-C Compatibility",
+      "link": "https://www.lttlabs.com/blog/2025/08/30/nintendo-switch-2-dock",
+      "score": 192,
+      "author": "croes",
+      "created": "2025-08-31 23:21:46",
+      "created_at": 1756682506000
+    },
+    {
+      "id": 45082731,
+      "title": "“This telegram must be closely paraphrased before being communicated to anyone”",
+      "link": "https://history.stackexchange.com/questions/79371/this-telegram-must-be-closely-paraphrased-before-being-communicated-to-anyone",
+      "score": 645,
+      "author": "azeemba",
+      "created": "2025-08-31 12:39:47",
+      "created_at": 1756643987000
+    },
+    {
+      "id": 45089256,
+      "title": "What Is Complexity in Chess?",
+      "link": "https://lichess.org/@/Toadofsky/blog/what-is-complexity/pKo1swFh",
+      "score": 41,
+      "author": "fzliu",
+      "created": "2025-09-01 03:45:33",
+      "created_at": 1756698333000
+    },
+    {
+      "id": 45087815,
+      "title": "Lewis and Clark marked their trail with laxatives",
+      "link": "https://offbeatoregon.com/2501d1006d_biliousPills-686.077.html",
+      "score": 141,
+      "author": "toomuchtodo",
+      "created": "2025-08-31 22:54:26",
+      "created_at": 1756680866000
+    },
+    {
+      "id": 45083952,
+      "title": "Jujutsu for everyone",
+      "link": "https://jj-for-everyone.github.io/",
+      "score": 363,
+      "author": "Bogdanp",
+      "created": "2025-08-31 15:31:04",
+      "created_at": 1756654264000
+    }
+  ]
+}

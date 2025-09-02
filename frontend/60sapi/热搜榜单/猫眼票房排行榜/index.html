@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="猫眼票房排行榜 - 展示全球电影总票房排行榜">
+    <meta name="keywords" content="猫眼, 票房, 排行榜, 电影票房, 全球票房">
+    <title>猫眼票房排行榜 | 全球电影总票房</title>
+
+    <!-- 引入CSS样式 -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- 网站图标（SVG内联为data URL，避免外部依赖） -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <!-- 页面头部 -->
+        <header class="header">
+            <h1>
+                <span>🎬</span>
+                猫眼票房排行榜（时更）
+            </h1>
+            <p>展示全球电影总票房排行榜，数据来自权威源头，稳定实时</p>
+        </header>
+
+        <!-- 加载状态 -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>正在加载票房数据...</p>
+        </div>
+
+        <!-- 内容区域 -->
+        <main id="ranking-content" class="content" style="display: none;"></main>
+    </div>
+
+    <!-- 引入JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

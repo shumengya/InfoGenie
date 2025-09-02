@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实时天气查询</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/background.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>实时天气查询</h1>
+        </header>
+        
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" id="cityInput" placeholder="请输入城市名称（如：北京）" value="北京">
+                <button id="searchBtn">查询天气</button>
+            </div>
+        </div>
+        
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>正在获取天气信息...</p>
+        </div>
+        
+        <div class="weather-container" id="weatherContainer" style="display: none;">
+            <div class="location-info">
+                <h2 id="locationName"></h2>
+                <p id="locationDetail"></p>
+            </div>
+            
+            <div class="current-weather">
+                <div class="weather-main">
+                    <div class="temperature">
+                        <span id="temperature"></span>
+                        <span class="unit">°C</span>
+                    </div>
+                    <div class="weather-desc">
+                        <p id="weatherCondition"></p>
+                        <p id="feelsLike"></p>
+                    </div>
+                </div>
+                
+                <div class="weather-details">
+                    <div class="detail-item">
+                        <span class="label">湿度</span>
+                        <span id="humidity"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">风向</span>
+                        <span id="windDirection"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">风力</span>
+                        <span id="windStrength"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">气压</span>
+                        <span id="pressure"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">能见度</span>
+                        <span id="visibility"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">空气质量</span>
+                        <span id="aqi"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="life-index">
+                <h3>生活指数</h3>
+                <div class="index-grid">
+                    <div class="index-item">
+                        <div class="index-icon comfort">🌡️</div>
+                        <div class="index-content">
+                            <h4>舒适度</h4>
+                            <p id="comfortLevel"></p>
+                            <span id="comfortDesc"></span>
+                        </div>
+                    </div>
+                    <div class="index-item">
+                        <div class="index-icon clothing">👕</div>
+                        <div class="index-content">
+                            <h4>穿衣指数</h4>
+                            <p id="clothingLevel"></p>
+                            <span id="clothingDesc"></span>
+                        </div>
+                    </div>
+                    <div class="index-item">
+                        <div class="index-icon umbrella">☂️</div>
+                        <div class="index-content">
+                            <h4>雨伞指数</h4>
+                            <p id="umbrellaLevel"></p>
+                            <span id="umbrellaDesc"></span>
+                        </div>
+                    </div>
+                    <div class="index-item">
+                        <div class="index-icon uv">☀️</div>
+                        <div class="index-content">
+                            <h4>紫外线</h4>
+                            <p id="uvLevel"></p>
+                            <span id="uvDesc"></span>
+                        </div>
+                    </div>
+                    <div class="index-item">
+                        <div class="index-icon travel">🚗</div>
+                        <div class="index-content">
+                            <h4>出行指数</h4>
+                            <p id="travelLevel"></p>
+                            <span id="travelDesc"></span>
+                        </div>
+                    </div>
+                    <div class="index-item">
+                        <div class="index-icon sport">🏃</div>
+                        <div class="index-content">
+                            <h4>运动指数</h4>
+                            <p id="sportLevel"></p>
+                            <span id="sportDesc"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="update-time">
+                <p>更新时间：<span id="updateTime"></span></p>
+            </div>
+        </div>
+        
+        <div class="error-message" id="errorMessage" style="display: none;">
+            <p>获取天气信息失败，请稍后重试</p>
+        </div>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

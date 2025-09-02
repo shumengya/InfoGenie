@@ -1,0 +1,132 @@
+/* 背景样式文件 - 独立分离便于迁移 */
+
+/* 主背景渐变 */
+body {
+    background: linear-gradient(135deg, 
+        #e8f5e8 0%, 
+        #f1f8e9 25%, 
+        #e8f5e8 50%, 
+        #c8e6c9 75%, 
+        #e8f5e8 100%);
+    background-size: 400% 400%;
+    animation: backgroundShift 15s ease-in-out infinite;
+    position: relative;
+}
+
+/* 背景动画 */
+@keyframes backgroundShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 50%;
+    }
+    50% {
+        background-position: 50% 100%;
+    }
+    75% {
+        background-position: 50% 0%;
+    }
+}
+
+/* 背景装饰元素 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(129, 199, 132, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 60%, rgba(165, 214, 167, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+    animation: floatingBubbles 20s ease-in-out infinite;
+}
+
+@keyframes floatingBubbles {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 1;
+    }
+    33% {
+        transform: translateY(-20px) rotate(120deg);
+        opacity: 0.8;
+    }
+    66% {
+        transform: translateY(10px) rotate(240deg);
+        opacity: 0.9;
+    }
+}
+
+/* 背景粒子效果 */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(76, 175, 80, 0.3), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(129, 199, 132, 0.2), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(165, 214, 167, 0.3), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(76, 175, 80, 0.2), transparent),
+        radial-gradient(2px 2px at 160px 30px, rgba(129, 199, 132, 0.3), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    pointer-events: none;
+    z-index: -1;
+    animation: particleFloat 25s linear infinite;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-100px);
+    }
+}
+
+/* 响应式背景调整 */
+@media (max-width: 768px) {
+    body::after {
+        background-size: 150px 75px;
+        animation-duration: 20s;
+    }
+    
+    body::before {
+        animation-duration: 15s;
+    }
+}
+
+@media (max-width: 480px) {
+    body::after {
+        background-size: 100px 50px;
+        animation-duration: 15s;
+    }
+    
+    body::before {
+        animation-duration: 12s;
+    }
+    
+    body {
+        animation-duration: 12s;
+    }
+}
+
+/* 高性能模式 - 减少动画 */
+@media (prefers-reduced-motion: reduce) {
+    body,
+    body::before,
+    body::after {
+        animation: none;
+    }
+    
+    body {
+        background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 50%, #c8e6c9 100%);
+    }
+}

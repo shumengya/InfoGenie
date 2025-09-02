@@ -1,0 +1,647 @@
+{
+  "code": 200,
+  "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
+  "data": {
+    "solar": {
+      "year": 2025,
+      "month": 9,
+      "day": 1,
+      "hour": 17,
+      "minute": 58,
+      "second": 47,
+      "full": "2025-09-01",
+      "full_with_time": "2025-09-01 17:58:47",
+      "week": 1,
+      "week_desc": "星期一",
+      "week_desc_short": "一",
+      "season": 3,
+      "season_desc": "三季度",
+      "season_desc_short": "三",
+      "season_name": "秋",
+      "season_name_desc": "秋天",
+      "is_leap_year": false
+    },
+    "lunar": {
+      "year": "乙巳",
+      "month": "七",
+      "day": "初十",
+      "hour": "酉",
+      "full_with_hour": "农历乙巳年七月初十酉时",
+      "desc_short": "农历乙巳年七月初十",
+      "year_desc": "农历乙巳年",
+      "month_desc": "七月",
+      "day_desc": "初十",
+      "hour_desc": "酉时",
+      "is_leap_month": false
+    },
+    "stats": {
+      "day_of_year": 244,
+      "week_of_year": 36,
+      "week_of_month": 1,
+      "percents": {
+        "year": 0.665753424657534,
+        "month": 0.0333333333333333,
+        "week": 0.142857142857143,
+        "day": 0.749161909722222
+      },
+      "percents_formatted": {
+        "year": "66.58%",
+        "month": "3.33%",
+        "week": "14.29%",
+        "day": "74.92%"
+      }
+    },
+    "term": {
+      "today": null,
+      "stage": {
+        "name": "处暑",
+        "position": 10,
+        "is_jie": false,
+        "is_qi": true
+      }
+    },
+    "zodiac": {
+      "year": "蛇",
+      "month": "鸡",
+      "day": "鸡",
+      "hour": "鸡"
+    },
+    "sixty_cycle": {
+      "year": {
+        "heaven_stem": "乙",
+        "earth_branch": "巳",
+        "name": "乙巳年",
+        "name_short": "乙巳"
+      },
+      "month": {
+        "heaven_stem": "乙",
+        "earth_branch": "酉",
+        "name": "乙酉月",
+        "name_short": "乙酉"
+      },
+      "day": {
+        "heaven_stem": "癸",
+        "earth_branch": "酉",
+        "name": "癸酉日",
+        "name_short": "癸酉"
+      },
+      "hour": {
+        "heaven_stem": "辛",
+        "earth_branch": "酉",
+        "name": "辛酉时",
+        "name_short": "辛酉"
+      }
+    },
+    "legal_holiday": null,
+    "festival": {
+      "solar": null,
+      "lunar": null,
+      "both_desc": null
+    },
+    "phase": {
+      "name": "宵月",
+      "position": 10
+    },
+    "constellation": {
+      "name": "处女座",
+      "name_short": "处女"
+    },
+    "taboo": {
+      "day": {
+        "recommends": "解除.祭祀.祈福.求嗣.修造.动土.竖柱.上梁.安床.纳畜.盖屋.合脊.起基.入殓.破土.安葬",
+        "avoids": "出火.嫁娶.开光.进人口.出行.词讼.开市.入宅.移徙.赴任"
+      },
+      "hour": {
+        "hour": "酉时",
+        "hour_short": "酉",
+        "avoids": "乘船.造桥",
+        "recommends": "嫁娶.出行.移徙.入宅.开市.赴任.祈福.安床.开仓.盖屋.修造.求财"
+      },
+      "hours": [
+        {
+          "hour": "酉时",
+          "hour_short": "酉",
+          "recommends": "嫁娶.出行.移徙.入宅.开市.赴任.祈福.安床.开仓.盖屋.修造.求财",
+          "avoids": "乘船.造桥"
+        },
+        {
+          "hour": "戌时",
+          "hour_short": "戌",
+          "recommends": "嫁娶.移徙.安葬.进人口.求财",
+          "avoids": "出行.赴任.祈福.祭祀.开光.斋醮"
+        },
+        {
+          "hour": "亥时",
+          "hour_short": "亥",
+          "recommends": "嫁娶.移徙.交易.入宅.开市.安葬.求嗣.求财",
+          "avoids": "出行.赴任.动土.祈福.祭祀.修造.开光.斋醮"
+        },
+        {
+          "hour": "子时",
+          "hour_short": "子",
+          "recommends": "嫁娶.交易.入宅.开市.祈福.安葬.求嗣.求财",
+          "avoids": "出行.移徙.赴任.词讼.修造"
+        },
+        {
+          "hour": "丑时",
+          "hour_short": "丑",
+          "recommends": "嫁娶.祈福.安葬.祭祀.酬神.求财",
+          "avoids": "出行.赴任.动土.修造"
+        },
+        {
+          "hour": "寅时",
+          "hour_short": "寅",
+          "recommends": "嫁娶.出行.交易.开市.赴任.祈福.安床.祭祀.求嗣.求财",
+          "avoids": "盖屋.入殓.上梁"
+        },
+        {
+          "hour": "卯时",
+          "hour_short": "卯",
+          "recommends": "嫁娶.交易.入宅.开市.祈福.安床.安葬.求嗣.求财",
+          "avoids": "出行.赴任.修造"
+        },
+        {
+          "hour": "辰时",
+          "hour_short": "辰",
+          "recommends": "",
+          "avoids": "诸事不宜"
+        },
+        {
+          "hour": "巳时",
+          "hour_short": "巳",
+          "recommends": "嫁娶.出行.移徙.入宅.开市.祈福.安床.盖屋.祭祀.作灶",
+          "avoids": "安葬.修造.开光"
+        },
+        {
+          "hour": "午时",
+          "hour_short": "午",
+          "recommends": "嫁娶.出行.交易.开市.祈福.安床.求嗣.求财",
+          "avoids": "赴任.动土.词讼.修造"
+        },
+        {
+          "hour": "未时",
+          "hour_short": "未",
+          "recommends": "嫁娶.入宅.祈福.安葬.祭祀.修造.酬神.求财",
+          "avoids": "出行.赴任"
+        },
+        {
+          "hour": "申时",
+          "hour_short": "申",
+          "recommends": "嫁娶.出行.开市.赴任.安葬.求财",
+          "avoids": "祈福.祭祀.酬神.斋醮"
+        }
+      ]
+    },
+    "julian_day": 2460919.5,
+    "nayin": {
+      "year": "覆灯火",
+      "month": "泉中水",
+      "day": "剑锋金",
+      "hour": "石榴木"
+    },
+    "baizi": {
+      "year_baizi": "性格温和，为人正直诚信。",
+      "day_baizi": "性格温和，为人正直诚信。"
+    },
+    "fortune": {
+      "today_luck": "今日学习运好，适合进修",
+      "career": "领导能力突出，升职有望",
+      "money": "偏财运不错，可小试投资",
+      "love": "感情需要沟通，避免误会"
+    },
+    "constants": {
+      "legal_holiday_list": [
+        {
+          "name": "元旦节",
+          "date": "2025-01-01",
+          "start": "2025-01-01",
+          "end": "2025-01-01"
+        },
+        {
+          "name": "春节",
+          "date": "2025-01-29",
+          "start": "2025-01-26",
+          "end": "2025-02-08"
+        },
+        {
+          "name": "清明节",
+          "date": "2025-04-04",
+          "start": "2025-04-04",
+          "end": "2025-04-06"
+        },
+        {
+          "name": "劳动节",
+          "date": "2025-05-01",
+          "start": "2025-04-27",
+          "end": "2025-05-05"
+        },
+        {
+          "name": "端午节",
+          "date": "2025-05-31",
+          "start": "2025-05-31",
+          "end": "2025-06-02"
+        },
+        {
+          "name": "国庆中秋",
+          "date": "2025-10-01",
+          "start": "2025-09-28",
+          "end": "2025-10-11"
+        }
+      ],
+      "phase_list": [
+        {
+          "name": "朔月",
+          "lunar_day": 1
+        },
+        {
+          "name": "既朔月",
+          "lunar_day": 2
+        },
+        {
+          "name": "蛾眉新月",
+          "lunar_day": 3
+        },
+        {
+          "name": "蛾眉新月",
+          "lunar_day": 4
+        },
+        {
+          "name": "蛾眉月",
+          "lunar_day": 5
+        },
+        {
+          "name": "夕月",
+          "lunar_day": 6
+        },
+        {
+          "name": "上弦月",
+          "lunar_day": 7
+        },
+        {
+          "name": "上弦月",
+          "lunar_day": 8
+        },
+        {
+          "name": "九夜月",
+          "lunar_day": 9
+        },
+        {
+          "name": "宵月",
+          "lunar_day": 10
+        },
+        {
+          "name": "宵月",
+          "lunar_day": 11
+        },
+        {
+          "name": "宵月",
+          "lunar_day": 12
+        },
+        {
+          "name": "渐盈凸月",
+          "lunar_day": 13
+        },
+        {
+          "name": "小望月",
+          "lunar_day": 14
+        },
+        {
+          "name": "望月",
+          "lunar_day": 15
+        },
+        {
+          "name": "既望月",
+          "lunar_day": 16
+        },
+        {
+          "name": "立待月",
+          "lunar_day": 17
+        },
+        {
+          "name": "居待月",
+          "lunar_day": 18
+        },
+        {
+          "name": "寝待月",
+          "lunar_day": 19
+        },
+        {
+          "name": "更待月",
+          "lunar_day": 20
+        },
+        {
+          "name": "渐亏凸月",
+          "lunar_day": 21
+        },
+        {
+          "name": "下弦月",
+          "lunar_day": 22
+        },
+        {
+          "name": "下弦月",
+          "lunar_day": 23
+        },
+        {
+          "name": "有明月",
+          "lunar_day": 24
+        },
+        {
+          "name": "有明月",
+          "lunar_day": 25
+        },
+        {
+          "name": "蛾眉残月",
+          "lunar_day": 26
+        },
+        {
+          "name": "蛾眉残月",
+          "lunar_day": 27
+        },
+        {
+          "name": "残月",
+          "lunar_day": 28
+        },
+        {
+          "name": "晓月",
+          "lunar_day": 29
+        },
+        {
+          "name": "晦月",
+          "lunar_day": 30
+        }
+      ],
+      "zodiac_list": [
+        "鼠",
+        "牛",
+        "虎",
+        "兔",
+        "龙",
+        "蛇",
+        "马",
+        "羊",
+        "猴",
+        "鸡",
+        "狗",
+        "猪"
+      ],
+      "constellation_list": [
+        {
+          "name": "白羊",
+          "desc": "白羊座",
+          "start": "3月21日",
+          "end": "4月19日",
+          "range": "3月21日~4月19日",
+          "start_month": 3,
+          "start_day": 21,
+          "end_month": 4,
+          "end_day": 19
+        },
+        {
+          "name": "金牛",
+          "desc": "金牛座",
+          "start": "4月20日",
+          "end": "5月20日",
+          "range": "4月20日~5月20日",
+          "start_month": 4,
+          "start_day": 20,
+          "end_month": 5,
+          "end_day": 20
+        },
+        {
+          "name": "双子",
+          "desc": "双子座",
+          "start": "5月21日",
+          "end": "6月21日",
+          "range": "5月21日~6月21日",
+          "start_month": 5,
+          "start_day": 21,
+          "end_month": 6,
+          "end_day": 21
+        },
+        {
+          "name": "巨蟹",
+          "desc": "巨蟹座",
+          "start": "6月22日",
+          "end": "7月22日",
+          "range": "6月22日~7月22日",
+          "start_month": 6,
+          "start_day": 22,
+          "end_month": 7,
+          "end_day": 22
+        },
+        {
+          "name": "狮子",
+          "desc": "狮子座",
+          "start": "7月23日",
+          "end": "8月22日",
+          "range": "7月23日~8月22日",
+          "start_month": 7,
+          "start_day": 23,
+          "end_month": 8,
+          "end_day": 22
+        },
+        {
+          "name": "处女",
+          "desc": "处女座",
+          "start": "8月23日",
+          "end": "9月22日",
+          "range": "8月23日~9月22日",
+          "start_month": 8,
+          "start_day": 23,
+          "end_month": 9,
+          "end_day": 22
+        },
+        {
+          "name": "天秤",
+          "desc": "天秤座",
+          "start": "9月23日",
+          "end": "10月23日",
+          "range": "9月23日~10月23日",
+          "start_month": 9,
+          "start_day": 23,
+          "end_month": 10,
+          "end_day": 23
+        },
+        {
+          "name": "天蝎",
+          "desc": "天蝎座",
+          "start": "10月24日",
+          "end": "11月22日",
+          "range": "10月24日~11月22日",
+          "start_month": 10,
+          "start_day": 24,
+          "end_month": 11,
+          "end_day": 22
+        },
+        {
+          "name": "射手",
+          "desc": "射手座",
+          "start": "11月23日",
+          "end": "12月21日",
+          "range": "11月23日~12月21日",
+          "start_month": 11,
+          "start_day": 23,
+          "end_month": 12,
+          "end_day": 21
+        },
+        {
+          "name": "摩羯",
+          "desc": "摩羯座",
+          "start": "12月22日",
+          "end": "1月19日",
+          "range": "12月22日~1月19日",
+          "start_month": 12,
+          "start_day": 22,
+          "end_month": 1,
+          "end_day": 19
+        },
+        {
+          "name": "水瓶",
+          "desc": "水瓶座",
+          "start": "1月20日",
+          "end": "2月18日",
+          "range": "1月20日~2月18日",
+          "start_month": 1,
+          "start_day": 20,
+          "end_month": 2,
+          "end_day": 18
+        },
+        {
+          "name": "双鱼",
+          "desc": "双鱼座",
+          "start": "2月19日",
+          "end": "3月20日",
+          "range": "2月19日~3月20日",
+          "start_month": 2,
+          "start_day": 19,
+          "end_month": 3,
+          "end_day": 20
+        }
+      ],
+      "heaven_stems": [
+        "甲",
+        "乙",
+        "丙",
+        "丁",
+        "戊",
+        "己",
+        "庚",
+        "辛",
+        "壬",
+        "癸"
+      ],
+      "earth_branches": [
+        "子",
+        "丑",
+        "寅",
+        "卯",
+        "辰",
+        "巳",
+        "午",
+        "未",
+        "申",
+        "酉",
+        "戌",
+        "亥"
+      ],
+      "solar_terms": [
+        {
+          "name": "立春",
+          "desc": "春季开始"
+        },
+        {
+          "name": "雨水",
+          "desc": "降雨增多"
+        },
+        {
+          "name": "惊蛰",
+          "desc": "春雷乍响"
+        },
+        {
+          "name": "春分",
+          "desc": "昼夜等长"
+        },
+        {
+          "name": "清明",
+          "desc": "天清地明"
+        },
+        {
+          "name": "谷雨",
+          "desc": "雨生百谷"
+        },
+        {
+          "name": "立夏",
+          "desc": "夏季开始"
+        },
+        {
+          "name": "小满",
+          "desc": "麦粒渐满"
+        },
+        {
+          "name": "芒种",
+          "desc": "麦类收割"
+        },
+        {
+          "name": "夏至",
+          "desc": "白昼最长"
+        },
+        {
+          "name": "小暑",
+          "desc": "天气渐热"
+        },
+        {
+          "name": "大暑",
+          "desc": "一年最热"
+        },
+        {
+          "name": "立秋",
+          "desc": "秋季开始"
+        },
+        {
+          "name": "处暑",
+          "desc": "暑热结束"
+        },
+        {
+          "name": "白露",
+          "desc": "露水增多"
+        },
+        {
+          "name": "秋分",
+          "desc": "昼夜等长"
+        },
+        {
+          "name": "寒露",
+          "desc": "露水渐凉"
+        },
+        {
+          "name": "霜降",
+          "desc": "开始降霜"
+        },
+        {
+          "name": "立冬",
+          "desc": "冬季开始"
+        },
+        {
+          "name": "小雪",
+          "desc": "开始降雪"
+        },
+        {
+          "name": "大雪",
+          "desc": "降雪增多"
+        },
+        {
+          "name": "冬至",
+          "desc": "白昼最短"
+        },
+        {
+          "name": "小寒",
+          "desc": "天气渐冷"
+        },
+        {
+          "name": "大寒",
+          "desc": "一年最冷"
+        }
+      ]
+    }
+  }
+}
