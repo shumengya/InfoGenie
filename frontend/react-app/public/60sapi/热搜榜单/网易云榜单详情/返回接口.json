@@ -1,0 +1,5612 @@
+{
+  "code": 200,
+  "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
+  "data": [
+    {
+      "id": 2040015902,
+      "rank": 1,
+      "rank_name": "飙升榜",
+      "title": "熄灭",
+      "artist": [
+        {
+          "id": 12324449,
+          "name": "TC",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12324449"
+        }
+      ],
+      "album": {
+        "id": 163848123,
+        "name": "熄灭",
+        "cover": "http://p1.music.126.net/sNOy5UAdfk_OYumV4qF-0g==/109951168551205771.jpg",
+        "published": "2023-07-15",
+        "published_at": 1689436800000,
+        "company": ""
+      },
+      "duration": 148611,
+      "duration_desc": "2:28",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 29724874,
+          "size_desc": "29.72 MB",
+          "bitrate": 1600134,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 5947603,
+          "size_desc": "5.95 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3568579,
+          "size_desc": "3.57 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2379067,
+          "size_desc": "2.38 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2040015902"
+    },
+    {
+      "id": 2733008419,
+      "rank": 2,
+      "rank_name": "飙升榜",
+      "title": "LOVE",
+      "artist": [
+        {
+          "id": 12356808,
+          "name": "范世錡",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12356808"
+        }
+      ],
+      "album": {
+        "id": 280422980,
+        "name": "LOVE，So...",
+        "cover": "http://p1.music.126.net/BHdtr1R0-yuXLdoY3kJGUg==/109951171697418256.jpg",
+        "published": "2025-08-04",
+        "published_at": 1754323200000,
+        "company": "天娱传媒"
+      },
+      "duration": 238523,
+      "duration_desc": "3:58",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 30885411,
+          "size_desc": "30.89 MB",
+          "bitrate": 1035740,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 9543405,
+          "size_desc": "9.54 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5726061,
+          "size_desc": "5.73 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3817389,
+          "size_desc": "3.82 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2733008419"
+    },
+    {
+      "id": 2735554018,
+      "rank": 3,
+      "rank_name": "飙升榜",
+      "title": "拍拍灰",
+      "artist": [
+        {
+          "id": 30000014,
+          "name": "脏饼干",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=30000014"
+        }
+      ],
+      "album": {
+        "id": 281295264,
+        "name": "拍拍灰",
+        "cover": "http://p1.music.126.net/4riboo3M7VuJj6We6Sc1xw==/109951171845374025.jpg",
+        "published": "2025-08-14",
+        "published_at": 1755187200000,
+        "company": ""
+      },
+      "duration": 184106,
+      "duration_desc": "3:04",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 21134984,
+          "size_desc": "21.13 MB",
+          "bitrate": 918233,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7367085,
+          "size_desc": "7.37 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4420269,
+          "size_desc": "4.42 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2946861,
+          "size_desc": "2.95 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2735554018"
+    },
+    {
+      "id": 2684422547,
+      "rank": 4,
+      "rank_name": "飙升榜",
+      "title": "Money Loves Me",
+      "artist": [
+        {
+          "id": 97594003,
+          "name": "Alchemist Harmony",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=97594003"
+        }
+      ],
+      "album": {
+        "id": 265812259,
+        "name": "Money Loves Me",
+        "cover": "http://p1.music.126.net/nKyjr2f050Dl7CD4NUyKCQ==/109951170609858632.jpg",
+        "published": "2025-03-09",
+        "published_at": 1741536000000,
+        "company": "Alchemist Harmony"
+      },
+      "duration": 174000,
+      "duration_desc": "2:54",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 34717430,
+          "size_desc": "34.72 MB",
+          "bitrate": 1596056,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6962199,
+          "size_desc": "6.96 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4177337,
+          "size_desc": "4.18 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2784906,
+          "size_desc": "2.78 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2684422547"
+    },
+    {
+      "id": 2677396501,
+      "rank": 5,
+      "rank_name": "飙升榜",
+      "title": "NOT GOOD",
+      "artist": [
+        {
+          "id": 12563131,
+          "name": "Rapeter",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12563131"
+        }
+      ],
+      "album": {
+        "id": 263242113,
+        "name": "IMGOOD别担心我",
+        "cover": "http://p1.music.126.net/QpNRZsfMP5J4tOlziA8Pnw==/109951170504642760.jpg",
+        "published": "2025-02-21",
+        "published_at": 1740153600000,
+        "company": ""
+      },
+      "duration": 190558,
+      "duration_desc": "3:10",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 24001098,
+          "size_desc": "24 MB",
+          "bitrate": 1007462,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7624365,
+          "size_desc": "7.62 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4574637,
+          "size_desc": "4.57 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3049773,
+          "size_desc": "3.05 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2677396501"
+    },
+    {
+      "id": 405253632,
+      "rank": 6,
+      "rank_name": "飙升榜",
+      "title": "梦回还 (TV size)",
+      "artist": [
+        {
+          "id": 1215003,
+          "name": "呦猫UNEKO",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=1215003"
+        }
+      ],
+      "album": {
+        "id": 34513527,
+        "name": "梦回还",
+        "cover": "http://p1.music.126.net/hAfIXJP_ZBRQKd1VE_Hqbg==/16625715324173485.jpg",
+        "published": "2016-03-05",
+        "published_at": 1457142849504,
+        "company": ""
+      },
+      "duration": 72456,
+      "duration_desc": "1:12",
+      "popularity": 100,
+      "score": 100,
+      "fee": 0,
+      "status": 0,
+      "mb": {
+        "sq": null,
+        "hq": {
+          "size": 2902769,
+          "size_desc": "2.9 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 1741679,
+          "size_desc": "1.74 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 1161133,
+          "size_desc": "1.16 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=405253632"
+    },
+    {
+      "id": 1975295694,
+      "rank": 7,
+      "rank_name": "飙升榜",
+      "title": "小哑巴",
+      "artist": [
+        {
+          "id": 48277407,
+          "name": "BOBBYNOPEACE",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=48277407"
+        }
+      ],
+      "album": {
+        "id": 150299202,
+        "name": "小哑巴",
+        "cover": "http://p1.music.126.net/IhsEqn9OXuBYt2_Y8pAgCQ==/109951167815351812.jpg",
+        "published": "2022-08-27",
+        "published_at": 1661616000000,
+        "company": ""
+      },
+      "duration": 171176,
+      "duration_desc": "2:51",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 17473483,
+          "size_desc": "17.47 MB",
+          "bitrate": 816630,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6849645,
+          "size_desc": "6.85 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4109805,
+          "size_desc": "4.11 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2739885,
+          "size_desc": "2.74 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=1975295694"
+    },
+    {
+      "id": 88926,
+      "rank": 8,
+      "rank_name": "飙升榜",
+      "title": "想你的夜",
+      "artist": [
+        {
+          "id": 2868,
+          "name": "关喆",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=2868"
+        }
+      ],
+      "album": {
+        "id": 8668,
+        "name": "永远的永远",
+        "cover": "http://p1.music.126.net/zu9MjBERozqTv_0NpM91Rg==/109951164094037727.jpg",
+        "published": "2009-07-05",
+        "published_at": 1246809600000,
+        "company": "爱贝克思"
+      },
+      "duration": 265960,
+      "duration_desc": "4:25",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 26941966,
+          "size_desc": "26.94 MB",
+          "bitrate": 1411000,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 10641285,
+          "size_desc": "10.64 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6384788,
+          "size_desc": "6.38 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4256540,
+          "size_desc": "4.26 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=88926"
+    },
+    {
+      "id": 2118740086,
+      "rank": 9,
+      "rank_name": "飙升榜",
+      "title": "黒のバースデイ",
+      "artist": [
+        {
+          "id": 56525844,
+          "name": "Ave Mujica",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=56525844"
+        }
+      ],
+      "album": {
+        "id": 183578899,
+        "name": "黒のバースデイ",
+        "cover": "http://p1.music.126.net/0QwEBXfAZ8RzE41vZPlu7A==/109951170223390839.jpg",
+        "published": "2023-04-10",
+        "published_at": 1681142400000,
+        "company": "ブシロードミュージック"
+      },
+      "duration": 225706,
+      "duration_desc": "3:45",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 31389013,
+          "size_desc": "31.39 MB",
+          "bitrate": 1112559,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 9030765,
+          "size_desc": "9.03 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5418477,
+          "size_desc": "5.42 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3612333,
+          "size_desc": "3.61 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2118740086"
+    },
+    {
+      "id": 2729810172,
+      "rank": 10,
+      "rank_name": "飙升榜",
+      "title": "Montagem Nada Tropic",
+      "artist": [
+        {
+          "id": 99376836,
+          "name": "MHM",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=99376836"
+        }
+      ],
+      "album": {
+        "id": 279515736,
+        "name": "Montagem Nada Tropic",
+        "cover": "http://p1.music.126.net/YTA1HZJcLit_QoFfG81puQ==/109951171520378357.jpg",
+        "published": "2025-07-26",
+        "published_at": 1753545600000,
+        "company": ""
+      },
+      "duration": 121997,
+      "duration_desc": "2:01",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 12718907,
+          "size_desc": "12.72 MB",
+          "bitrate": 833893,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 4882852,
+          "size_desc": "4.88 MB",
+          "bitrate": 320003,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 2929729,
+          "size_desc": "2.93 MB",
+          "bitrate": 192003,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 1953167,
+          "size_desc": "1.95 MB",
+          "bitrate": 128003,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2729810172"
+    },
+    {
+      "id": 2734387620,
+      "rank": 11,
+      "rank_name": "飙升榜",
+      "title": "No title -10 Years Later Edition-",
+      "artist": [
+        {
+          "id": 13059968,
+          "name": "Reol",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=13059968"
+        }
+      ],
+      "album": {
+        "id": 280924754,
+        "name": "“No title” in NIPPON BUDOKAN",
+        "cover": "http://p1.music.126.net/1OmrYxGKdMGXH_lql-N3iA==/109951171817417918.jpg",
+        "published": "2025-08-16",
+        "published_at": 1755360000000,
+        "company": "索尼音乐"
+      },
+      "duration": 265264,
+      "duration_desc": "4:25",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 58682245,
+          "size_desc": "58.68 MB",
+          "bitrate": 1769624,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 10613072,
+          "size_desc": "10.61 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6367861,
+          "size_desc": "6.37 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4245255,
+          "size_desc": "4.25 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2734387620"
+    },
+    {
+      "id": 2738501239,
+      "rank": 12,
+      "rank_name": "飙升榜",
+      "title": "七小夕",
+      "artist": [
+        {
+          "id": 53868079,
+          "name": "Vvy王泽宇",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=53868079"
+        }
+      ],
+      "album": {
+        "id": 282255005,
+        "name": "七小夕",
+        "cover": "http://p1.music.126.net/EcEdbDFwZS41UcleVx5rAA==/109951171907096312.jpg",
+        "published": "2025-08-20",
+        "published_at": 1755705600000,
+        "company": ""
+      },
+      "duration": 234461,
+      "duration_desc": "3:54",
+      "popularity": 100,
+      "score": 100,
+      "fee": 0,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 25150986,
+          "size_desc": "25.15 MB",
+          "bitrate": 858023,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 9381138,
+          "size_desc": "9.38 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5628700,
+          "size_desc": "5.63 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3752481,
+          "size_desc": "3.75 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2738501239"
+    },
+    {
+      "id": 2622939350,
+      "rank": 13,
+      "rank_name": "飙升榜",
+      "title": "莆田才子",
+      "artist": [
+        {
+          "id": 35884195,
+          "name": "翁杰Winjay",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=35884195"
+        }
+      ],
+      "album": {
+        "id": 247120411,
+        "name": "莆田才子",
+        "cover": "http://p1.music.126.net/quYbskDqRirX3-wqgRLk7A==/109951169934912352.jpg",
+        "published": "2024-09-06",
+        "published_at": 1725638400000,
+        "company": ""
+      },
+      "duration": 150205,
+      "duration_desc": "2:30",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 17815377,
+          "size_desc": "17.82 MB",
+          "bitrate": 948852,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6010605,
+          "size_desc": "6.01 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3606381,
+          "size_desc": "3.61 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2404269,
+          "size_desc": "2.4 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2622939350"
+    },
+    {
+      "id": 2737575141,
+      "rank": 14,
+      "rank_name": "飙升榜",
+      "title": "陪你度过漫长岁月",
+      "artist": [
+        {
+          "id": 58810912,
+          "name": "赵小童",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=58810912"
+        }
+      ],
+      "album": {
+        "id": 282015216,
+        "name": "漫漫协奏曲",
+        "cover": "http://p1.music.126.net/a0yqXomXz_85AzybTmxBCA==/109951171910165132.jpg",
+        "published": "2025-08-21",
+        "published_at": 1755792000000,
+        "company": "网易·云上"
+      },
+      "duration": 307472,
+      "duration_desc": "5:07",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 32893926,
+          "size_desc": "32.89 MB",
+          "bitrate": 855708,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 12301485,
+          "size_desc": "12.3 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 7380909,
+          "size_desc": "7.38 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4920621,
+          "size_desc": "4.92 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2737575141"
+    },
+    {
+      "id": 2739871903,
+      "rank": 15,
+      "rank_name": "飙升榜",
+      "title": "路",
+      "artist": [
+        {
+          "id": 62183661,
+          "name": "DOMMIU李由音",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=62183661"
+        }
+      ],
+      "album": {
+        "id": 282846013,
+        "name": "路",
+        "cover": "http://p2.music.126.net/RWMmqPsIpY96teLLGPVKqg==/109951171928997751.jpg",
+        "published": "2025-08-25",
+        "published_at": 1756137600000,
+        "company": "索尼音乐X 深声不息"
+      },
+      "duration": 222890,
+      "duration_desc": "3:42",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 27957021,
+          "size_desc": "27.96 MB",
+          "bitrate": 1003287,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8918445,
+          "size_desc": "8.92 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5351085,
+          "size_desc": "5.35 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3567405,
+          "size_desc": "3.57 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2739871903"
+    },
+    {
+      "id": 2161222939,
+      "rank": 16,
+      "rank_name": "飙升榜",
+      "title": "沦陷",
+      "artist": [
+        {
+          "id": 13005262,
+          "name": "JuggShots",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=13005262"
+        }
+      ],
+      "album": {
+        "id": 197781559,
+        "name": "沦陷",
+        "cover": "http://p2.music.126.net/ctib5R--oR68W2IrOk765w==/109951169635716223.jpg",
+        "published": "2024-05-28",
+        "published_at": 1716912000000,
+        "company": ""
+      },
+      "duration": 183770,
+      "duration_desc": "3:03",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 22189011,
+          "size_desc": "22.19 MB",
+          "bitrate": 965943,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7353645,
+          "size_desc": "7.35 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4412205,
+          "size_desc": "4.41 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2941485,
+          "size_desc": "2.94 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2161222939"
+    },
+    {
+      "id": 26093064,
+      "rank": 17,
+      "rank_name": "飙升榜",
+      "title": "Sacred Play Secret Place",
+      "artist": [
+        {
+          "id": 12283,
+          "name": "Matryoshka",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12283"
+        }
+      ],
+      "album": {
+        "id": 2386118,
+        "name": "Laideronnette",
+        "cover": "http://p2.music.126.net/1opYZaMgfAQrKMKfLy1xZA==/109951169789816801.jpg",
+        "published": "2012-12-11",
+        "published_at": 1355241600000,
+        "company": "Virgin Babylon Records"
+      },
+      "duration": 317547,
+      "duration_desc": "5:17",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 30171985,
+          "size_desc": "30.17 MB",
+          "bitrate": 760124,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 12704958,
+          "size_desc": "12.7 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 7622992,
+          "size_desc": "7.62 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 5082009,
+          "size_desc": "5.08 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=26093064"
+    },
+    {
+      "id": 2081549596,
+      "rank": 18,
+      "rank_name": "飙升榜",
+      "title": "下次见",
+      "artist": [
+        {
+          "id": 55305505,
+          "name": "林心念",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=55305505"
+        }
+      ],
+      "album": {
+        "id": 174605542,
+        "name": "下次见",
+        "cover": "http://p2.music.126.net/g6STNqcm32HjAm4CpoJcBg==/109951168910388635.jpg",
+        "published": "2023-09-15",
+        "published_at": 1694793600000,
+        "company": "讯飞音乐"
+      },
+      "duration": 159375,
+      "duration_desc": "2:39",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 17672725,
+          "size_desc": "17.67 MB",
+          "bitrate": 887101,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6377325,
+          "size_desc": "6.38 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3826413,
+          "size_desc": "3.83 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2550957,
+          "size_desc": "2.55 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2081549596"
+    },
+    {
+      "id": 1894316939,
+      "rank": 19,
+      "rank_name": "飙升榜",
+      "title": "最渣男主角",
+      "artist": [
+        {
+          "id": 12292664,
+          "name": "Shooter",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12292664"
+        },
+        {
+          "id": 30003804,
+          "name": "404 RAPPER",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=30003804"
+        }
+      ],
+      "album": {
+        "id": 136039945,
+        "name": "最渣男主角",
+        "cover": "http://p2.music.126.net/9UTbTz8efieRMQvnaoJRwQ==/109951166612306430.jpg",
+        "published": "2021-11-11",
+        "published_at": 1636646400000,
+        "company": ""
+      },
+      "duration": 203664,
+      "duration_desc": "3:23",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 20614401,
+          "size_desc": "20.61 MB",
+          "bitrate": 809738,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8149485,
+          "size_desc": "8.15 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4889709,
+          "size_desc": "4.89 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3259821,
+          "size_desc": "3.26 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=1894316939"
+    },
+    {
+      "id": 2740938171,
+      "rank": 20,
+      "rank_name": "飙升榜",
+      "title": "须臾Karios(栩渝同人曲)",
+      "artist": [
+        {
+          "id": 33696439,
+          "name": "周冠宏",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=33696439"
+        },
+        {
+          "id": 34270051,
+          "name": "赵春寒Z&Hanl",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=34270051"
+        }
+      ],
+      "album": {
+        "id": 283152840,
+        "name": "须臾Karios(栩渝同人曲)",
+        "cover": "http://p2.music.126.net/s28QYI-yCjr2kHRGVsrr2g==/109951171943770807.jpg",
+        "published": "2025-08-27",
+        "published_at": 1756310400000,
+        "company": ""
+      },
+      "duration": 246342,
+      "duration_desc": "4:06",
+      "popularity": 100,
+      "score": 100,
+      "fee": 0,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 32856508,
+          "size_desc": "32.86 MB",
+          "bitrate": 1066872,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 9856365,
+          "size_desc": "9.86 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5913837,
+          "size_desc": "5.91 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3942573,
+          "size_desc": "3.94 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2740938171"
+    },
+    {
+      "id": 2738228860,
+      "rank": 21,
+      "rank_name": "飙升榜",
+      "title": "Dehors (普通话版)",
+      "artist": [
+        {
+          "id": 338718,
+          "name": "JORDANN",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=338718"
+        }
+      ],
+      "album": {
+        "id": 282257834,
+        "name": "Dehors (普通话版)",
+        "cover": "http://p2.music.126.net/8mNbLer5tKnkgj3Q4JPpWw==/109951171903070287.jpg",
+        "published": "2025-08-21",
+        "published_at": 1755792000000,
+        "company": "JORDANN"
+      },
+      "duration": 198026,
+      "duration_desc": "3:18",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 20334981,
+          "size_desc": "20.33 MB",
+          "bitrate": 821356,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7923885,
+          "size_desc": "7.92 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4754349,
+          "size_desc": "4.75 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3169581,
+          "size_desc": "3.17 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2738228860"
+    },
+    {
+      "id": 2710416778,
+      "rank": 22,
+      "rank_name": "飙升榜",
+      "title": "Long term",
+      "artist": [
+        {
+          "id": 94359653,
+          "name": "AI MUSIC MATRIX",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=94359653"
+        }
+      ],
+      "album": {
+        "id": 273690835,
+        "name": "Relax R&B 76",
+        "cover": "http://p2.music.126.net/p8hySF3PjpGyEdExUAocCw==/109951171182041062.jpg",
+        "published": "2025-05-30",
+        "published_at": 1748620800000,
+        "company": "Sound Matrix"
+      },
+      "duration": 189960,
+      "duration_desc": "3:09",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 14200860,
+          "size_desc": "14.2 MB",
+          "bitrate": 597909,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7600631,
+          "size_desc": "7.6 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4560396,
+          "size_desc": "4.56 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3040279,
+          "size_desc": "3.04 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2710416778"
+    },
+    {
+      "id": 2038203229,
+      "rank": 23,
+      "rank_name": "飙升榜",
+      "title": "FRIDAY9 II",
+      "artist": [
+        {
+          "id": 28642672,
+          "name": "kkluv",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=28642672"
+        }
+      ],
+      "album": {
+        "id": 163444153,
+        "name": "FRIDAY9 II",
+        "cover": "http://p2.music.126.net/TAz4QuITFBhN4D1xsiq0kg==/109951168538063565.jpg",
+        "published": "2023-01-17",
+        "published_at": 1673971200000,
+        "company": "索尼音乐"
+      },
+      "duration": 166285,
+      "duration_desc": "2:46",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 32263929,
+          "size_desc": "32.26 MB",
+          "bitrate": 1552216,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6653954,
+          "size_desc": "6.65 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3992390,
+          "size_desc": "3.99 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2661608,
+          "size_desc": "2.66 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2038203229"
+    },
+    {
+      "id": 2740641241,
+      "rank": 24,
+      "rank_name": "飙升榜",
+      "title": "归舟",
+      "artist": [
+        {
+          "id": 9491,
+          "name": "谭晶",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=9491"
+        },
+        {
+          "id": 53926051,
+          "name": "燕云十六声",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=53926051"
+        }
+      ],
+      "album": {
+        "id": 283122508,
+        "name": "归舟",
+        "cover": "http://p2.music.126.net/gWQj5VbaDK8kUvJS3uOl2g==/109951171939389473.jpg",
+        "published": "2025-08-27",
+        "published_at": 1756310400000,
+        "company": ""
+      },
+      "duration": 301006,
+      "duration_desc": "5:01",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 35503109,
+          "size_desc": "35.5 MB",
+          "bitrate": 943436,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 12042285,
+          "size_desc": "12.04 MB",
+          "bitrate": 320001,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 7225389,
+          "size_desc": "7.23 MB",
+          "bitrate": 192001,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4816941,
+          "size_desc": "4.82 MB",
+          "bitrate": 128001,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2740641241"
+    },
+    {
+      "id": 2604224368,
+      "rank": 25,
+      "rank_name": "飙升榜",
+      "title": "São Paulo",
+      "artist": [
+        {
+          "id": 30384202,
+          "name": "Fyex",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=30384202"
+        }
+      ],
+      "album": {
+        "id": 240979251,
+        "name": "São Paulo",
+        "cover": "http://p2.music.126.net/aGGl_ANW0kVZzfJMtmLR9Q==/109951169743205693.jpg",
+        "published": "2024-06-06",
+        "published_at": 1717689600000,
+        "company": "Fyex"
+      },
+      "duration": 97850,
+      "duration_desc": "1:37",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 9831272,
+          "size_desc": "9.83 MB",
+          "bitrate": 803775,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 3916321,
+          "size_desc": "3.92 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 2349810,
+          "size_desc": "2.35 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 1566555,
+          "size_desc": "1.57 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2604224368"
+    },
+    {
+      "id": 2738715964,
+      "rank": 26,
+      "rank_name": "飙升榜",
+      "title": "染春",
+      "artist": [
+        {
+          "id": 27730224,
+          "name": "回春丹",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=27730224"
+        }
+      ],
+      "album": {
+        "id": 282452357,
+        "name": "大把时间璀璨",
+        "cover": "http://p2.music.126.net/_gJgbfqTgWH2T1vk1Br1ig==/109951171911478103.jpg",
+        "published": "2025-08-25",
+        "published_at": 1756137600000,
+        "company": "池沼版全"
+      },
+      "duration": 206094,
+      "duration_desc": "3:26",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 23766803,
+          "size_desc": "23.77 MB",
+          "bitrate": 922409,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8246445,
+          "size_desc": "8.25 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4947885,
+          "size_desc": "4.95 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3298605,
+          "size_desc": "3.3 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2738715964"
+    },
+    {
+      "id": 2716412355,
+      "rank": 27,
+      "rank_name": "飙升榜",
+      "title": "Supra",
+      "artist": [
+        {
+          "id": 52410166,
+          "name": "泰格西",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=52410166"
+        },
+        {
+          "id": 32438941,
+          "name": "cLoner23",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=32438941"
+        }
+      ],
+      "album": {
+        "id": 275450408,
+        "name": "Block Core",
+        "cover": "http://p2.music.126.net/w6MAd3zX38cPTkB9v9aMZg==/109951171319396818.jpg",
+        "published": "2025-06-17",
+        "published_at": 1750176000000,
+        "company": ""
+      },
+      "duration": 126666,
+      "duration_desc": "2:06",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 15475009,
+          "size_desc": "15.48 MB",
+          "bitrate": 977219,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 5068845,
+          "size_desc": "5.07 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3041325,
+          "size_desc": "3.04 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2027565,
+          "size_desc": "2.03 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2716412355"
+    },
+    {
+      "id": 109196,
+      "rank": 28,
+      "rank_name": "飙升榜",
+      "title": "想太多",
+      "artist": [
+        {
+          "id": 3689,
+          "name": "李玖哲",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=3689"
+        }
+      ],
+      "album": {
+        "id": 10826,
+        "name": "想太多",
+        "cover": "http://p2.music.126.net/rseQHt6MVwmyLMpY_f5bOQ==/131941395346293.jpg",
+        "published": "2007-10-11",
+        "published_at": 1192118400000,
+        "company": "华纳音乐"
+      },
+      "duration": 216613,
+      "duration_desc": "3:36",
+      "popularity": 100,
+      "score": 100,
+      "fee": 0,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 23196782,
+          "size_desc": "23.2 MB",
+          "bitrate": 856705,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8667472,
+          "size_desc": "8.67 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5200501,
+          "size_desc": "5.2 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3467015,
+          "size_desc": "3.47 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=109196"
+    },
+    {
+      "id": 167942,
+      "rank": 29,
+      "rank_name": "飙升榜",
+      "title": "王妃",
+      "artist": [
+        {
+          "id": 5768,
+          "name": "萧敬腾",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=5768"
+        }
+      ],
+      "album": {
+        "id": 16961,
+        "name": "王妃",
+        "cover": "http://p2.music.126.net/Ewy0QAwwv6gXxszRn1KNpQ==/109951168271412207.jpg",
+        "published": "2009-07-16",
+        "published_at": 1247760000000,
+        "company": "华纳音乐"
+      },
+      "duration": 221760,
+      "duration_desc": "3:41",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 29095408,
+          "size_desc": "29.1 MB",
+          "bitrate": 1049617,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8873317,
+          "size_desc": "8.87 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5324008,
+          "size_desc": "5.32 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3549353,
+          "size_desc": "3.55 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=167942"
+    },
+    {
+      "id": 2738583947,
+      "rank": 30,
+      "rank_name": "飙升榜",
+      "title": "Happy Hare",
+      "artist": [
+        {
+          "id": 97654074,
+          "name": "X Chamber",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=97654074"
+        }
+      ],
+      "album": {
+        "id": 282405671,
+        "name": "Happy Hare",
+        "cover": "http://p2.music.126.net/ctQm9kmi8CjooxADvLyMQA==/109951171908403517.jpg",
+        "published": "2025-08-20",
+        "published_at": 1755705600000,
+        "company": ""
+      },
+      "duration": 96190,
+      "duration_desc": "1:36",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 20048170,
+          "size_desc": "20.05 MB",
+          "bitrate": 1667227,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 3850493,
+          "size_desc": "3.85 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 2310313,
+          "size_desc": "2.31 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 1540223,
+          "size_desc": "1.54 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2738583947"
+    },
+    {
+      "id": 2735962127,
+      "rank": 31,
+      "rank_name": "飙升榜",
+      "title": "放大",
+      "artist": [
+        {
+          "id": 49844742,
+          "name": "徐子未",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=49844742"
+        }
+      ],
+      "album": {
+        "id": 281446148,
+        "name": "放大",
+        "cover": "http://p2.music.126.net/WBbtAlKQBRgItkpbzUXa1w==/109951171856097610.jpg",
+        "published": "2025-08-15",
+        "published_at": 1755273600000,
+        "company": "索尼音乐"
+      },
+      "duration": 205200,
+      "duration_desc": "3:25",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 23835315,
+          "size_desc": "23.84 MB",
+          "bitrate": 929104,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8209965,
+          "size_desc": "8.21 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4925997,
+          "size_desc": "4.93 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3284013,
+          "size_desc": "3.28 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2735962127"
+    },
+    {
+      "id": 2738719308,
+      "rank": 32,
+      "rank_name": "飙升榜",
+      "title": "骑士",
+      "artist": [
+        {
+          "id": 27730224,
+          "name": "回春丹",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=27730224"
+        }
+      ],
+      "album": {
+        "id": 282452357,
+        "name": "大把时间璀璨",
+        "cover": "http://p2.music.126.net/_gJgbfqTgWH2T1vk1Br1ig==/109951171911478103.jpg",
+        "published": "2025-08-25",
+        "published_at": 1756137600000,
+        "company": "池沼版全"
+      },
+      "duration": 205376,
+      "duration_desc": "3:25",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 24969418,
+          "size_desc": "24.97 MB",
+          "bitrate": 972482,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8217645,
+          "size_desc": "8.22 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4930605,
+          "size_desc": "4.93 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3287085,
+          "size_desc": "3.29 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2738719308"
+    },
+    {
+      "id": 2162160807,
+      "rank": 33,
+      "rank_name": "飙升榜",
+      "title": "NEXT!",
+      "artist": [
+        {
+          "id": 54842340,
+          "name": "NCTS",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=54842340"
+        }
+      ],
+      "album": {
+        "id": 198075556,
+        "name": "NEXT!",
+        "cover": "http://p2.music.126.net/W4C4eI4EAE4dXwtZAeZv8Q==/109951169644186817.jpg",
+        "published": "2024-06-06",
+        "published_at": 1717689600000,
+        "company": "broke"
+      },
+      "duration": 99692,
+      "duration_desc": "1:39",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 12133996,
+          "size_desc": "12.13 MB",
+          "bitrate": 973715,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 3990509,
+          "size_desc": "3.99 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 2394323,
+          "size_desc": "2.39 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 1596230,
+          "size_desc": "1.6 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2162160807"
+    },
+    {
+      "id": 2099778087,
+      "rank": 34,
+      "rank_name": "飙升榜",
+      "title": "发迹",
+      "artist": [
+        {
+          "id": 49141872,
+          "name": "Top Barry",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=49141872"
+        }
+      ],
+      "album": {
+        "id": 179034955,
+        "name": "发迹",
+        "cover": "http://p2.music.126.net/WKf8wp_58LjK2I2EA1gKjQ==/109951169055625483.jpg",
+        "published": "2023-11-14",
+        "published_at": 1699977600000,
+        "company": ""
+      },
+      "duration": 162304,
+      "duration_desc": "2:42",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 16266288,
+          "size_desc": "16.27 MB",
+          "bitrate": 801764,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6494445,
+          "size_desc": "6.49 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3896685,
+          "size_desc": "3.9 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2597805,
+          "size_desc": "2.6 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2099778087"
+    },
+    {
+      "id": 2738719309,
+      "rank": 35,
+      "rank_name": "飙升榜",
+      "title": "梦蝶",
+      "artist": [
+        {
+          "id": 27730224,
+          "name": "回春丹",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=27730224"
+        }
+      ],
+      "album": {
+        "id": 282452357,
+        "name": "大把时间璀璨",
+        "cover": "http://p2.music.126.net/_gJgbfqTgWH2T1vk1Br1ig==/109951171911478103.jpg",
+        "published": "2025-08-25",
+        "published_at": 1756137600000,
+        "company": "池沼版全"
+      },
+      "duration": 239939,
+      "duration_desc": "3:59",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 32723142,
+          "size_desc": "32.72 MB",
+          "bitrate": 1090898,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 9600045,
+          "size_desc": "9.6 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5760045,
+          "size_desc": "5.76 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3840045,
+          "size_desc": "3.84 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2738719309"
+    },
+    {
+      "id": 2740511420,
+      "rank": 36,
+      "rank_name": "飙升榜",
+      "title": "WANTCHU (94bpm)",
+      "artist": [
+        {
+          "id": 12544511,
+          "name": "keshi",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12544511"
+        }
+      ],
+      "album": {
+        "id": 283084927,
+        "name": "WANTCHU (94bpm)",
+        "cover": "http://p2.music.126.net/6EQM-q53CjlapnKMTOSyKQ==/109951171937786942.jpg",
+        "published": "2025-08-26",
+        "published_at": 1756224000000,
+        "company": "Island Records"
+      },
+      "duration": 254873,
+      "duration_desc": "4:14",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 29015872,
+          "size_desc": "29.02 MB",
+          "bitrate": 910607,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 10197203,
+          "size_desc": "10.2 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6118339,
+          "size_desc": "6.12 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4078907,
+          "size_desc": "4.08 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2740511420"
+    },
+    {
+      "id": 2729743751,
+      "rank": 37,
+      "rank_name": "飙升榜",
+      "title": "Dreamin",
+      "artist": [
+        {
+          "id": 51253492,
+          "name": "穆祉丞",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=51253492"
+        }
+      ],
+      "album": {
+        "id": 279543769,
+        "name": "Dreamin",
+        "cover": "http://p2.music.126.net/X0NUwa8wMffZGXoPZtNpsA==/109951171517669783.jpg",
+        "published": "2025-07-27",
+        "published_at": 1753632000000,
+        "company": "北京时代峰峻文化艺术发展有限公司"
+      },
+      "duration": 136944,
+      "duration_desc": "2:16",
+      "popularity": 95,
+      "score": 95,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 19166561,
+          "size_desc": "19.17 MB",
+          "bitrate": 1119520,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 5480685,
+          "size_desc": "5.48 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3288429,
+          "size_desc": "3.29 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2192301,
+          "size_desc": "2.19 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2729743751"
+    },
+    {
+      "id": 2729689943,
+      "rank": 38,
+      "rank_name": "飙升榜",
+      "title": "为时已晚（越大越觉孤单）",
+      "artist": [
+        {
+          "id": 58568204,
+          "name": "管小天",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=58568204"
+        }
+      ],
+      "album": {
+        "id": 279534034,
+        "name": "为时已晚",
+        "cover": "http://p2.music.126.net/xSs5l9BWlKJGqXdH3SW_oA==/109951171516866306.jpg",
+        "published": "2025-07-24",
+        "published_at": 1753372800000,
+        "company": "看见音乐"
+      },
+      "duration": 204218,
+      "duration_desc": "3:24",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 18189938,
+          "size_desc": "18.19 MB",
+          "bitrate": 712421,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8171146,
+          "size_desc": "8.17 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4902705,
+          "size_desc": "4.9 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3268484,
+          "size_desc": "3.27 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2729689943"
+    },
+    {
+      "id": 2736196294,
+      "rank": 39,
+      "rank_name": "飙升榜",
+      "title": "你啊你，我的心",
+      "artist": [
+        {
+          "id": 37092139,
+          "name": "babychair",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=37092139"
+        },
+        {
+          "id": 12789956,
+          "name": "陈婧霏",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12789956"
+        }
+      ],
+      "album": {
+        "id": 281535136,
+        "name": "你啊你，我的心",
+        "cover": "http://p2.music.126.net/zWRB5KYDrulefgh_FVzIfw==/109951171865682128.jpg",
+        "published": "2025-08-18",
+        "published_at": 1755532800000,
+        "company": "网易云音乐｜网易音乐人 x 中国数字音乐基地"
+      },
+      "duration": 199621,
+      "duration_desc": "3:19",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 17022552,
+          "size_desc": "17.02 MB",
+          "bitrate": 682047,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7987245,
+          "size_desc": "7.99 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4792365,
+          "size_desc": "4.79 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3194925,
+          "size_desc": "3.19 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2736196294"
+    },
+    {
+      "id": 27955654,
+      "rank": 40,
+      "rank_name": "飙升榜",
+      "title": "其实",
+      "artist": [
+        {
+          "id": 5781,
+          "name": "薛之谦",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=5781"
+        }
+      ],
+      "album": {
+        "id": 2681139,
+        "name": "意外",
+        "cover": "http://p2.music.126.net/ywVjRpbu9KpcBQh9KJz2HA==/109951164499974026.jpg",
+        "published": "2013-11-10",
+        "published_at": 1384099200000,
+        "company": "潮石音乐"
+      },
+      "duration": 242146,
+      "duration_desc": "4:02",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 23339701,
+          "size_desc": "23.34 MB",
+          "bitrate": 771093,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 9688338,
+          "size_desc": "9.69 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5813020,
+          "size_desc": "5.81 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3875361,
+          "size_desc": "3.88 MB",
+          "bitrate": 128001,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=27955654"
+    },
+    {
+      "id": 2738459901,
+      "rank": 41,
+      "rank_name": "飙升榜",
+      "title": "空心人札记",
+      "artist": [
+        {
+          "id": 98856697,
+          "name": "Calia-林焰",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=98856697"
+        },
+        {
+          "id": 12046092,
+          "name": "星尘",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12046092"
+        }
+      ],
+      "album": {
+        "id": 282297325,
+        "name": "空心人札记",
+        "cover": "http://p2.music.126.net/7pZP5egJfBxAnJ1xZNdhXg==/109951171906929489.jpg",
+        "published": "2025-08-19",
+        "published_at": 1755619200000,
+        "company": ""
+      },
+      "duration": 178909,
+      "duration_desc": "2:58",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 22224636,
+          "size_desc": "22.22 MB",
+          "bitrate": 993636,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7158765,
+          "size_desc": "7.16 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4295277,
+          "size_desc": "4.3 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2863533,
+          "size_desc": "2.86 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2738459901"
+    },
+    {
+      "id": 2721839629,
+      "rank": 42,
+      "rank_name": "飙升榜",
+      "title": "Velvet Horizon/天鹅绒地平线",
+      "artist": [
+        {
+          "id": 97183508,
+          "name": "朱砂未央",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=97183508"
+        }
+      ],
+      "album": {
+        "id": 275635771,
+        "name": "Eternal Echoes",
+        "cover": "http://p2.music.126.net/RxQ2ueBidRYZBCtQTXJdLw==/109951171331877000.jpg",
+        "published": "2025-06-18",
+        "published_at": 1750262400000,
+        "company": ""
+      },
+      "duration": 203149,
+      "duration_desc": "3:23",
+      "popularity": 95,
+      "score": 95,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 20906818,
+          "size_desc": "20.91 MB",
+          "bitrate": 823160,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8128365,
+          "size_desc": "8.13 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4877037,
+          "size_desc": "4.88 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3251373,
+          "size_desc": "3.25 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2721839629"
+    },
+    {
+      "id": 63574,
+      "rank": 43,
+      "rank_name": "飙升榜",
+      "title": "背叛",
+      "artist": [
+        {
+          "id": 2110,
+          "name": "曹格",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=2110"
+        }
+      ],
+      "album": {
+        "id": 6295,
+        "name": "Superman",
+        "cover": "http://p2.music.126.net/eDinSMXNYMZHP9nAZ_sQkw==/48378511634444.jpg",
+        "published": "2006-12-26",
+        "published_at": 1167148800000,
+        "company": "滚石唱片"
+      },
+      "duration": 321629,
+      "duration_desc": "5:21",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 34294620,
+          "size_desc": "34.29 MB",
+          "bitrate": 853022,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 12867962,
+          "size_desc": "12.87 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 7720795,
+          "size_desc": "7.72 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 5147211,
+          "size_desc": "5.15 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=63574"
+    },
+    {
+      "id": 2738719310,
+      "rank": 44,
+      "rank_name": "飙升榜",
+      "title": "福寿螺",
+      "artist": [
+        {
+          "id": 27730224,
+          "name": "回春丹",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=27730224"
+        }
+      ],
+      "album": {
+        "id": 282452357,
+        "name": "大把时间璀璨",
+        "cover": "http://p2.music.126.net/_gJgbfqTgWH2T1vk1Br1ig==/109951171911478103.jpg",
+        "published": "2025-08-25",
+        "published_at": 1756137600000,
+        "company": "池沼版全"
+      },
+      "duration": 171106,
+      "duration_desc": "2:51",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 22295052,
+          "size_desc": "22.3 MB",
+          "bitrate": 1042244,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6846765,
+          "size_desc": "6.85 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4108077,
+          "size_desc": "4.11 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2738733,
+          "size_desc": "2.74 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2738719310"
+    },
+    {
+      "id": 2730270719,
+      "rank": 45,
+      "rank_name": "飙升榜",
+      "title": "Hollow",
+      "artist": [
+        {
+          "id": 1132066,
+          "name": "Fayzz",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=1132066"
+        }
+      ],
+      "album": {
+        "id": 279675457,
+        "name": "Patch",
+        "cover": "http://p2.music.126.net/AmLRTNKjHJwOo11jlQX0lw==/109951171525802692.jpg",
+        "published": "2025-08-04",
+        "published_at": 1754323200000,
+        "company": "HIFIVE"
+      },
+      "duration": 360000,
+      "duration_desc": "6:00",
+      "popularity": 90,
+      "score": 90,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 44161333,
+          "size_desc": "44.16 MB",
+          "bitrate": 981217,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 14401965,
+          "size_desc": "14.4 MB",
+          "bitrate": 320001,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 8641197,
+          "size_desc": "8.64 MB",
+          "bitrate": 192001,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 5760813,
+          "size_desc": "5.76 MB",
+          "bitrate": 128001,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2730270719"
+    },
+    {
+      "id": 2738719307,
+      "rank": 46,
+      "rank_name": "飙升榜",
+      "title": "降临",
+      "artist": [
+        {
+          "id": 27730224,
+          "name": "回春丹",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=27730224"
+        }
+      ],
+      "album": {
+        "id": 282452357,
+        "name": "大把时间璀璨",
+        "cover": "http://p2.music.126.net/_gJgbfqTgWH2T1vk1Br1ig==/109951171911478103.jpg",
+        "published": "2025-08-25",
+        "published_at": 1756137600000,
+        "company": "池沼版全"
+      },
+      "duration": 330139,
+      "duration_desc": "5:30",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 41595472,
+          "size_desc": "41.6 MB",
+          "bitrate": 1007803,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 13207725,
+          "size_desc": "13.21 MB",
+          "bitrate": 320001,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 7924653,
+          "size_desc": "7.92 MB",
+          "bitrate": 192001,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 5283117,
+          "size_desc": "5.28 MB",
+          "bitrate": 128001,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2738719307"
+    },
+    {
+      "id": 2730270717,
+      "rank": 47,
+      "rank_name": "飙升榜",
+      "title": "隐藏(Hide)",
+      "artist": [
+        {
+          "id": 1132066,
+          "name": "Fayzz",
+          "cover": "http://p2.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=1132066"
+        }
+      ],
+      "album": {
+        "id": 279675457,
+        "name": "Patch",
+        "cover": "http://p1.music.126.net/AmLRTNKjHJwOo11jlQX0lw==/109951171525802692.jpg",
+        "published": "2025-08-04",
+        "published_at": 1754323200000,
+        "company": "HIFIVE"
+      },
+      "duration": 306000,
+      "duration_desc": "5:06",
+      "popularity": 90,
+      "score": 90,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 31438598,
+          "size_desc": "31.44 MB",
+          "bitrate": 821778,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 12241965,
+          "size_desc": "12.24 MB",
+          "bitrate": 320001,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 7345197,
+          "size_desc": "7.35 MB",
+          "bitrate": 192001,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4896813,
+          "size_desc": "4.9 MB",
+          "bitrate": 128001,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2730270717"
+    },
+    {
+      "id": 413812470,
+      "rank": 48,
+      "rank_name": "飙升榜",
+      "title": "One More Time",
+      "artist": [
+        {
+          "id": 29959,
+          "name": "Craig David",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=29959"
+        }
+      ],
+      "album": {
+        "id": 34701579,
+        "name": "One More Time",
+        "cover": "http://p1.music.126.net/yGOnOKbJYXd7O_h0Ns_W_w==/1390882218000288.jpg",
+        "published": "2016-05-19",
+        "published_at": 1463673600007,
+        "company": "索尼音乐"
+      },
+      "duration": 194520,
+      "duration_desc": "3:14",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 40301209,
+          "size_desc": "40.3 MB",
+          "bitrate": 1657462,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7783489,
+          "size_desc": "7.78 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4670111,
+          "size_desc": "4.67 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3113422,
+          "size_desc": "3.11 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=413812470"
+    },
+    {
+      "id": 2740182817,
+      "rank": 49,
+      "rank_name": "飙升榜",
+      "title": "暗码",
+      "artist": [
+        {
+          "id": 12236269,
+          "name": "高天佐",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12236269"
+        },
+        {
+          "id": 12085066,
+          "name": "ZIV",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12085066"
+        }
+      ],
+      "album": {
+        "id": 282953625,
+        "name": "暗码",
+        "cover": "http://p1.music.126.net/zUqNfcfmNePSEazkOt9KXg==/109951171933460415.jpg",
+        "published": "2025-08-27",
+        "published_at": 1756310400000,
+        "company": ""
+      },
+      "duration": 186838,
+      "duration_desc": "3:06",
+      "popularity": 95,
+      "score": 95,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 22486402,
+          "size_desc": "22.49 MB",
+          "bitrate": 962670,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7475565,
+          "size_desc": "7.48 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4485357,
+          "size_desc": "4.49 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2990253,
+          "size_desc": "2.99 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2740182817"
+    },
+    {
+      "id": 2735983727,
+      "rank": 50,
+      "rank_name": "飙升榜",
+      "title": "光影戒断反应.wav",
+      "artist": [
+        {
+          "id": 99613013,
+          "name": "云落",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=99613013"
+        }
+      ],
+      "album": {
+        "id": 281406500,
+        "name": "光影戒断反应",
+        "cover": "http://p1.music.126.net/BZYzH0ODE-ypCtJvC6_x7w==/109951171857042141.jpg",
+        "published": "2025-08-12",
+        "published_at": 1755014400000,
+        "company": ""
+      },
+      "duration": 275439,
+      "duration_desc": "4:35",
+      "popularity": 95,
+      "score": 95,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 31477192,
+          "size_desc": "31.48 MB",
+          "bitrate": 914091,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 11019885,
+          "size_desc": "11.02 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6611949,
+          "size_desc": "6.61 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4407981,
+          "size_desc": "4.41 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2735983727"
+    },
+    {
+      "id": 2738715963,
+      "rank": 51,
+      "rank_name": "飙升榜",
+      "title": "宝藏",
+      "artist": [
+        {
+          "id": 27730224,
+          "name": "回春丹",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=27730224"
+        }
+      ],
+      "album": {
+        "id": 282452357,
+        "name": "大把时间璀璨",
+        "cover": "http://p1.music.126.net/_gJgbfqTgWH2T1vk1Br1ig==/109951171911478103.jpg",
+        "published": "2025-08-25",
+        "published_at": 1756137600000,
+        "company": "池沼版全"
+      },
+      "duration": 174001,
+      "duration_desc": "2:54",
+      "popularity": 95,
+      "score": 95,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 23432952,
+          "size_desc": "23.43 MB",
+          "bitrate": 1077220,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6962925,
+          "size_desc": "6.96 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4177773,
+          "size_desc": "4.18 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2785197,
+          "size_desc": "2.79 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2738715963"
+    },
+    {
+      "id": 2730600192,
+      "rank": 52,
+      "rank_name": "飙升榜",
+      "title": "Out of my system",
+      "artist": [
+        {
+          "id": 95288932,
+          "name": "Nia Nkuna",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=95288932"
+        }
+      ],
+      "album": {
+        "id": 279776498,
+        "name": "Mixed signals",
+        "cover": "http://p1.music.126.net/ulsDcoiZogmbQ96YccOp3g==/109951171529990940.jpg",
+        "published": "2025-08-06",
+        "published_at": 1754496000000,
+        "company": "7296470 Records DK2"
+      },
+      "duration": 211039,
+      "duration_desc": "3:31",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 26480510,
+          "size_desc": "26.48 MB",
+          "bitrate": 1003662,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8444205,
+          "size_desc": "8.44 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5066541,
+          "size_desc": "5.07 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3377709,
+          "size_desc": "3.38 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2730600192"
+    },
+    {
+      "id": 2739853860,
+      "rank": 53,
+      "rank_name": "飙升榜",
+      "title": "幻想彼岸",
+      "artist": [
+        {
+          "id": 95441940,
+          "name": "Tekoo",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=95441940"
+        },
+        {
+          "id": 29303235,
+          "name": "PSY.P",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=29303235"
+        }
+      ],
+      "album": {
+        "id": 282839523,
+        "name": "幻想彼岸",
+        "cover": "http://p1.music.126.net/Gi4zmlg7bemQ7_TG5QLI0w==/109951171928760549.jpg",
+        "published": "2025-08-25",
+        "published_at": 1756137600000,
+        "company": ""
+      },
+      "duration": 154532,
+      "duration_desc": "2:34",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 15954957,
+          "size_desc": "15.95 MB",
+          "bitrate": 825824,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6183405,
+          "size_desc": "6.18 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3710061,
+          "size_desc": "3.71 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2473389,
+          "size_desc": "2.47 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2739853860"
+    },
+    {
+      "id": 2715139032,
+      "rank": 54,
+      "rank_name": "飙升榜",
+      "title": "Got It Now (Phonk)",
+      "artist": [
+        {
+          "id": 52436538,
+          "name": "YaKio",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=52436538"
+        },
+        {
+          "id": 96953508,
+          "name": "Wehti",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=96953508"
+        },
+        {
+          "id": 48853047,
+          "name": "VZEUS",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=48853047"
+        },
+        {
+          "id": 48855131,
+          "name": "离离离",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=48855131"
+        }
+      ],
+      "album": {
+        "id": 275048395,
+        "name": "Got It Now (Phonk)",
+        "cover": "http://p1.music.126.net/zmottkLtPAA6_xz4ywWXhA==/109951171301374976.jpg",
+        "published": "2025-06-12",
+        "published_at": 1749744000000,
+        "company": ""
+      },
+      "duration": 113170,
+      "duration_desc": "1:53",
+      "popularity": 95,
+      "score": 95,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 13958890,
+          "size_desc": "13.96 MB",
+          "bitrate": 986598,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 4529676,
+          "size_desc": "4.53 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 2717823,
+          "size_desc": "2.72 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 1811897,
+          "size_desc": "1.81 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2715139032"
+    },
+    {
+      "id": 2730268845,
+      "rank": 55,
+      "rank_name": "飙升榜",
+      "title": "Intro",
+      "artist": [
+        {
+          "id": 1132066,
+          "name": "Fayzz",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=1132066"
+        }
+      ],
+      "album": {
+        "id": 279675457,
+        "name": "Patch",
+        "cover": "http://p1.music.126.net/AmLRTNKjHJwOo11jlQX0lw==/109951171525802692.jpg",
+        "published": "2025-08-04",
+        "published_at": 1754323200000,
+        "company": "HIFIVE"
+      },
+      "duration": 122000,
+      "duration_desc": "2:02",
+      "popularity": 90,
+      "score": 90,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 11610545,
+          "size_desc": "11.61 MB",
+          "bitrate": 761197,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 4882605,
+          "size_desc": "4.88 MB",
+          "bitrate": 320003,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 2929581,
+          "size_desc": "2.93 MB",
+          "bitrate": 192003,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 1953069,
+          "size_desc": "1.95 MB",
+          "bitrate": 128003,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2730268845"
+    },
+    {
+      "id": 2730268846,
+      "rank": 56,
+      "rank_name": "飙升榜",
+      "title": "Forlorn Hope",
+      "artist": [
+        {
+          "id": 1132066,
+          "name": "Fayzz",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=1132066"
+        }
+      ],
+      "album": {
+        "id": 279675457,
+        "name": "Patch",
+        "cover": "http://p1.music.126.net/AmLRTNKjHJwOo11jlQX0lw==/109951171525802692.jpg",
+        "published": "2025-08-04",
+        "published_at": 1754323200000,
+        "company": "HIFIVE"
+      },
+      "duration": 371000,
+      "duration_desc": "6:11",
+      "popularity": 90,
+      "score": 90,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 47693449,
+          "size_desc": "47.69 MB",
+          "bitrate": 1028284,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 14842605,
+          "size_desc": "14.84 MB",
+          "bitrate": 320001,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 8905581,
+          "size_desc": "8.91 MB",
+          "bitrate": 192001,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 5937069,
+          "size_desc": "5.94 MB",
+          "bitrate": 128001,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2730268846"
+    },
+    {
+      "id": 2739834858,
+      "rank": 57,
+      "rank_name": "飙升榜",
+      "title": "调色板",
+      "artist": [
+        {
+          "id": 37334229,
+          "name": "Sasuke",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=37334229"
+        }
+      ],
+      "album": {
+        "id": 282832994,
+        "name": "调色板",
+        "cover": "http://p1.music.126.net/F2fIIywgZ-U8-jGQnlWj-A==/109951171928465892.jpg",
+        "published": "2025-08-25",
+        "published_at": 1756137600000,
+        "company": ""
+      },
+      "duration": 176206,
+      "duration_desc": "2:56",
+      "popularity": 95,
+      "score": 95,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 21253895,
+          "size_desc": "21.25 MB",
+          "bitrate": 964805,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7050285,
+          "size_desc": "7.05 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4230189,
+          "size_desc": "4.23 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2820141,
+          "size_desc": "2.82 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2739834858"
+    },
+    {
+      "id": 2605650585,
+      "rank": 58,
+      "rank_name": "飙升榜",
+      "title": "Baigasai 想要有你在",
+      "artist": [
+        {
+          "id": 31001926,
+          "name": "Bohbat",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=31001926"
+        },
+        {
+          "id": 94228106,
+          "name": "Suie",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=94228106"
+        },
+        {
+          "id": 34279887,
+          "name": "布和都古仁",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=34279887"
+        }
+      ],
+      "album": {
+        "id": 241400517,
+        "name": "Baigasai(想要有你在）",
+        "cover": "http://p1.music.126.net/zA3k1aD3PRCDnmSI9zDqsw==/109951169757659301.jpg",
+        "published": "2024-07-06",
+        "published_at": 1720281600000,
+        "company": ""
+      },
+      "duration": 170623,
+      "duration_desc": "2:50",
+      "popularity": 95,
+      "score": 95,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 17200040,
+          "size_desc": "17.2 MB",
+          "bitrate": 806455,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6827565,
+          "size_desc": "6.83 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4096557,
+          "size_desc": "4.1 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2731053,
+          "size_desc": "2.73 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2605650585"
+    },
+    {
+      "id": 2730270720,
+      "rank": 59,
+      "rank_name": "飙升榜",
+      "title": "季风(Monsoon)",
+      "artist": [
+        {
+          "id": 1132066,
+          "name": "Fayzz",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=1132066"
+        }
+      ],
+      "album": {
+        "id": 279675457,
+        "name": "Patch",
+        "cover": "http://p1.music.126.net/AmLRTNKjHJwOo11jlQX0lw==/109951171525802692.jpg",
+        "published": "2025-08-04",
+        "published_at": 1754323200000,
+        "company": "HIFIVE"
+      },
+      "duration": 279500,
+      "duration_desc": "4:39",
+      "popularity": 90,
+      "score": 90,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 34576225,
+          "size_desc": "34.58 MB",
+          "bitrate": 989513,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 11182125,
+          "size_desc": "11.18 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6709293,
+          "size_desc": "6.71 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4472877,
+          "size_desc": "4.47 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2730270720"
+    },
+    {
+      "id": 167655,
+      "rank": 60,
+      "rank_name": "飙升榜",
+      "title": "幻听",
+      "artist": [
+        {
+          "id": 5771,
+          "name": "许嵩",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=5771"
+        }
+      ],
+      "album": {
+        "id": 16932,
+        "name": "梦游计",
+        "cover": "http://p1.music.126.net/IYgyEjL7w4xwPfyNDw8OzA==/109951169525619688.jpg",
+        "published": "2012-07-10",
+        "published_at": 1341936000000,
+        "company": "海蝶"
+      },
+      "duration": 273266,
+      "duration_desc": "4:33",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 26751365,
+          "size_desc": "26.75 MB",
+          "bitrate": 783157,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 10932811,
+          "size_desc": "10.93 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6559704,
+          "size_desc": "6.56 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4373151,
+          "size_desc": "4.37 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=167655"
+    },
+    {
+      "id": 642723,
+      "rank": 61,
+      "rank_name": "飙升榜",
+      "title": "17",
+      "artist": [
+        {
+          "id": 17635,
+          "name": "椎名林檎",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=17635"
+        }
+      ],
+      "album": {
+        "id": 61637,
+        "name": "罪と罰",
+        "cover": "http://p1.music.126.net/W3zh73z9SEOVx4IugvgQ-g==/109951163318826464.jpg",
+        "published": "2000-01-25",
+        "published_at": 948816000000,
+        "company": "Universal Music LLC"
+      },
+      "duration": 272625,
+      "duration_desc": "4:32",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 59365794,
+          "size_desc": "59.37 MB",
+          "bitrate": 1742046,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 10907733,
+          "size_desc": "10.91 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6544657,
+          "size_desc": "6.54 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4363119,
+          "size_desc": "4.36 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=642723"
+    },
+    {
+      "id": 429348598,
+      "rank": 62,
+      "rank_name": "飙升榜",
+      "title": "沦陷",
+      "artist": [
+        {
+          "id": 1081293,
+          "name": "李嘉格",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=1081293"
+        }
+      ],
+      "album": {
+        "id": 34841497,
+        "name": "四格",
+        "cover": "http://p1.music.126.net/svLJT1S1O0DXHRIghiuJyg==/18599338695655987.jpg",
+        "published": "2016-03-01",
+        "published_at": 1456848000000,
+        "company": "梦响当然"
+      },
+      "duration": 258933,
+      "duration_desc": "4:18",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 30269959,
+          "size_desc": "30.27 MB",
+          "bitrate": 935220,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 10360207,
+          "size_desc": "10.36 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6216142,
+          "size_desc": "6.22 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4144109,
+          "size_desc": "4.14 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=429348598"
+    },
+    {
+      "id": 2678794854,
+      "rank": 63,
+      "rank_name": "飙升榜",
+      "title": "MISERICÓRDIA GALLARDO",
+      "artist": [
+        {
+          "id": 34342469,
+          "name": "Prompto",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=34342469"
+        }
+      ],
+      "album": {
+        "id": 264022495,
+        "name": "MISERICÓRDIA GALLARDO",
+        "cover": "http://p1.music.126.net/JJYwOODi3m-YkPwAXeeiFA==/109951170518532282.jpg",
+        "published": "2025-03-06",
+        "published_at": 1741276800000,
+        "company": "Prompto Productions"
+      },
+      "duration": 96000,
+      "duration_desc": "1:36",
+      "popularity": 95,
+      "score": 95,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 11096948,
+          "size_desc": "11.1 MB",
+          "bitrate": 924594,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 3841965,
+          "size_desc": "3.84 MB",
+          "bitrate": 320004,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 2305197,
+          "size_desc": "2.31 MB",
+          "bitrate": 192004,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 1536813,
+          "size_desc": "1.54 MB",
+          "bitrate": 128004,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2678794854"
+    },
+    {
+      "id": 1859339684,
+      "rank": 64,
+      "rank_name": "飙升榜",
+      "title": "般配",
+      "artist": [
+        {
+          "id": 12471927,
+          "name": "江皓南",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12471927"
+        }
+      ],
+      "album": {
+        "id": 130039504,
+        "name": "般配",
+        "cover": "http://p1.music.126.net/_8D98wTjXWMhYl5Bofui0w==/109951166155884642.jpg",
+        "published": "2021-07-09",
+        "published_at": 1625846400000,
+        "company": ""
+      },
+      "duration": 181500,
+      "duration_desc": "3:01",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 37682299,
+          "size_desc": "37.68 MB",
+          "bitrate": 1660927,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7263129,
+          "size_desc": "7.26 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4357895,
+          "size_desc": "4.36 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2905278,
+          "size_desc": "2.91 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=1859339684"
+    },
+    {
+      "id": 2730270721,
+      "rank": 65,
+      "rank_name": "飙升榜",
+      "title": "Distance",
+      "artist": [
+        {
+          "id": 1132066,
+          "name": "Fayzz",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=1132066"
+        }
+      ],
+      "album": {
+        "id": 279675457,
+        "name": "Patch",
+        "cover": "http://p1.music.126.net/AmLRTNKjHJwOo11jlQX0lw==/109951171525802692.jpg",
+        "published": "2025-08-04",
+        "published_at": 1754323200000,
+        "company": "HIFIVE"
+      },
+      "duration": 301250,
+      "duration_desc": "5:01",
+      "popularity": 90,
+      "score": 90,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 31481807,
+          "size_desc": "31.48 MB",
+          "bitrate": 835885,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 12052845,
+          "size_desc": "12.05 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 7231725,
+          "size_desc": "7.23 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4821165,
+          "size_desc": "4.82 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2730270721"
+    },
+    {
+      "id": 1919524295,
+      "rank": 66,
+      "rank_name": "飙升榜",
+      "title": "问情",
+      "artist": [
+        {
+          "id": 29234568,
+          "name": "陈亦洺",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=29234568"
+        },
+        {
+          "id": 13699766,
+          "name": "尚辰",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=13699766"
+        }
+      ],
+      "album": {
+        "id": 140260623,
+        "name": "问情",
+        "cover": "http://p1.music.126.net/6_Skolb_X075lr2gSwQNew==/109951167039546994.jpg",
+        "published": "2022-02-15",
+        "published_at": 1644940800000,
+        "company": "雪球音乐"
+      },
+      "duration": 247134,
+      "duration_desc": "4:07",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 31029712,
+          "size_desc": "31.03 MB",
+          "bitrate": 1004465,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 9887913,
+          "size_desc": "9.89 MB",
+          "bitrate": 320001,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5932765,
+          "size_desc": "5.93 MB",
+          "bitrate": 192001,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3955191,
+          "size_desc": "3.96 MB",
+          "bitrate": 128001,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=1919524295"
+    },
+    {
+      "id": 2600493765,
+      "rank": 67,
+      "rank_name": "飙升榜",
+      "title": "恋人",
+      "artist": [
+        {
+          "id": 4292,
+          "name": "李荣浩",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=4292"
+        }
+      ],
+      "album": {
+        "id": 250748750,
+        "name": "黑马",
+        "cover": "http://p1.music.126.net/0bk3Iqe2OZGBH2Iuyx7RzA==/109951170045577565.jpg",
+        "published": "2024-10-17",
+        "published_at": 1729180800000,
+        "company": "一样音乐"
+      },
+      "duration": 275912,
+      "duration_desc": "4:35",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 30058936,
+          "size_desc": "30.06 MB",
+          "bitrate": 871549,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 11039085,
+          "size_desc": "11.04 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6623469,
+          "size_desc": "6.62 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4415661,
+          "size_desc": "4.42 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2600493765"
+    },
+    {
+      "id": 1893505014,
+      "rank": 68,
+      "rank_name": "飙升榜",
+      "title": "年轮说",
+      "artist": [
+        {
+          "id": 10199,
+          "name": "杨丞琳",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=10199"
+        }
+      ],
+      "album": {
+        "id": 135874294,
+        "name": "20首華語重溫經典",
+        "cover": "http://p1.music.126.net/3Ao29M_Bk9wuMe6Zq6mU2w==/109951168278832954.jpg",
+        "published": "2021-11-07",
+        "published_at": 1636300800000,
+        "company": "UME - Global Clearing House"
+      },
+      "duration": 266452,
+      "duration_desc": "4:26",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 26845620,
+          "size_desc": "26.85 MB",
+          "bitrate": 806014,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 10661138,
+          "size_desc": "10.66 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6396700,
+          "size_desc": "6.4 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4264481,
+          "size_desc": "4.26 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=1893505014"
+    },
+    {
+      "id": 209923,
+      "rank": 69,
+      "rank_name": "飙升榜",
+      "title": "Love Love Love",
+      "artist": [
+        {
+          "id": 7219,
+          "name": "蔡依林",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=7219"
+        }
+      ],
+      "album": {
+        "id": 21343,
+        "name": "城堡",
+        "cover": "http://p1.music.126.net/lKIkniPBdOWqZzl1yvgz9g==/109951170708258712.jpg",
+        "published": "2004-02-26",
+        "published_at": 1077811200000,
+        "company": "索尼音乐"
+      },
+      "duration": 229520,
+      "duration_desc": "3:49",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 29983141,
+          "size_desc": "29.98 MB",
+          "bitrate": 1045072,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 9183652,
+          "size_desc": "9.18 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5510209,
+          "size_desc": "5.51 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3673487,
+          "size_desc": "3.67 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=209923"
+    },
+    {
+      "id": 2724694389,
+      "rank": 70,
+      "rank_name": "飙升榜",
+      "title": "背篓少年",
+      "artist": [
+        {
+          "id": 54093175,
+          "name": "TCG尹妹",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=54093175"
+        }
+      ],
+      "album": {
+        "id": 277990540,
+        "name": "背篓少年",
+        "cover": "http://p1.music.126.net/ceoHVs2dvrfX50Ka6z2E9A==/109951171443733631.jpg",
+        "published": "2025-07-11",
+        "published_at": 1752249600000,
+        "company": "太合麦田"
+      },
+      "duration": 153845,
+      "duration_desc": "2:33",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 21621158,
+          "size_desc": "21.62 MB",
+          "bitrate": 1124160,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6156525,
+          "size_desc": "6.16 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3693933,
+          "size_desc": "3.69 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2462637,
+          "size_desc": "2.46 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2724694389"
+    },
+    {
+      "id": 1407658105,
+      "rank": 71,
+      "rank_name": "飙升榜",
+      "title": "我要找到你",
+      "artist": [
+        {
+          "id": 5998,
+          "name": "易泽禹",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=5998"
+        }
+      ],
+      "album": {
+        "id": 83891446,
+        "name": "我要找到你",
+        "cover": "http://p1.music.126.net/mKjg3atpmn9M4J951CiVTA==/109951164528618554.jpg",
+        "published": "2019-12-03",
+        "published_at": 1575388800000,
+        "company": ""
+      },
+      "duration": 202353,
+      "duration_desc": "3:22",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 21975656,
+          "size_desc": "21.98 MB",
+          "bitrate": 1411000,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8096958,
+          "size_desc": "8.1 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4858192,
+          "size_desc": "4.86 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3238809,
+          "size_desc": "3.24 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=1407658105"
+    },
+    {
+      "id": 2100282715,
+      "rank": 72,
+      "rank_name": "飙升榜",
+      "title": "歪歪",
+      "artist": [
+        {
+          "id": 37343207,
+          "name": "拂言",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=37343207"
+        }
+      ],
+      "album": {
+        "id": 179091457,
+        "name": "歪歪",
+        "cover": "http://p1.music.126.net/G0pr2aux9dzK9hT4-n2n5A==/109951169058424179.jpg",
+        "published": "2023-11-15",
+        "published_at": 1700064000000,
+        "company": ""
+      },
+      "duration": 167927,
+      "duration_desc": "2:47",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 18617591,
+          "size_desc": "18.62 MB",
+          "bitrate": 886934,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6719085,
+          "size_desc": "6.72 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4031469,
+          "size_desc": "4.03 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2687661,
+          "size_desc": "2.69 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2100282715"
+    },
+    {
+      "id": 2656356278,
+      "rank": 73,
+      "rank_name": "飙升榜",
+      "title": "HARPY HARE",
+      "artist": [
+        {
+          "id": 59651243,
+          "name": "NoAki",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=59651243"
+        },
+        {
+          "id": 12886162,
+          "name": "Skyver",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12886162"
+        }
+      ],
+      "album": {
+        "id": 256868094,
+        "name": "HARPY HARE",
+        "cover": "http://p1.music.126.net/y2GIIiHLPFn44tBUGqSBlg==/109951170259120670.jpg",
+        "published": "2025-01-09",
+        "published_at": 1736438400000,
+        "company": "HOUSE OF PHONK"
+      },
+      "duration": 77619,
+      "duration_desc": "1:17",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 10860026,
+          "size_desc": "10.86 MB",
+          "bitrate": 1119303,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 3107570,
+          "size_desc": "3.11 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 1864560,
+          "size_desc": "1.86 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 1243054,
+          "size_desc": "1.24 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2656356278"
+    },
+    {
+      "id": 2738936457,
+      "rank": 74,
+      "rank_name": "飙升榜",
+      "title": "Can't go back (Live)",
+      "artist": [
+        {
+          "id": 49141872,
+          "name": "Top Barry",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=49141872"
+        }
+      ],
+      "album": {
+        "id": 281143386,
+        "name": "新说唱2025 第十二期",
+        "cover": "http://p1.music.126.net/QQsOcKcT6kleCUhIFMn-mg==/109951171834703159.jpg",
+        "published": "2025-08-22",
+        "published_at": 1755878400000,
+        "company": "韶愔音乐娱乐（北京）有限公司"
+      },
+      "duration": 203999,
+      "duration_desc": "3:23",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 22384573,
+          "size_desc": "22.38 MB",
+          "bitrate": 877679,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8161965,
+          "size_desc": "8.16 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4897197,
+          "size_desc": "4.9 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3264813,
+          "size_desc": "3.26 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2738936457"
+    },
+    {
+      "id": 2739501337,
+      "rank": 75,
+      "rank_name": "飙升榜",
+      "title": "余烬",
+      "artist": [
+        {
+          "id": 48497149,
+          "name": "柠安",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=48497149"
+        }
+      ],
+      "album": {
+        "id": 282723264,
+        "name": "余烬",
+        "cover": "http://p1.music.126.net/XXwdSc8kr1b9WNCKI7FKHw==/109951171923938239.jpg",
+        "published": "2025-08-24",
+        "published_at": 1756051200000,
+        "company": ""
+      },
+      "duration": 161123,
+      "duration_desc": "2:41",
+      "popularity": 90,
+      "score": 90,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": null,
+        "hq": {
+          "size": 6447064,
+          "size_desc": "6.45 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3868256,
+          "size_desc": "3.87 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2578852,
+          "size_desc": "2.58 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2739501337"
+    },
+    {
+      "id": 2715166863,
+      "rank": 76,
+      "rank_name": "飙升榜",
+      "title": "雨会告诉你",
+      "artist": [
+        {
+          "id": 12600046,
+          "name": "陈文非",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12600046"
+        }
+      ],
+      "album": {
+        "id": 275076578,
+        "name": "我在等世界回电",
+        "cover": "http://p1.music.126.net/5UG9XVaPOdk7xVMjK6SS5w==/109951171301651895.jpg",
+        "published": "2025-06-15",
+        "published_at": 1750003200000,
+        "company": "海神音乐"
+      },
+      "duration": 240208,
+      "duration_desc": "4:00",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 25879917,
+          "size_desc": "25.88 MB",
+          "bitrate": 861768,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 9610605,
+          "size_desc": "9.61 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5766381,
+          "size_desc": "5.77 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3844269,
+          "size_desc": "3.84 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2715166863"
+    },
+    {
+      "id": 2114019727,
+      "rank": 77,
+      "rank_name": "飙升榜",
+      "title": "Don't Say Goodbye (Interlude) (feat. Lodoni)",
+      "artist": [
+        {
+          "id": 50848454,
+          "name": "thirtykay",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=50848454"
+        },
+        {
+          "id": 49090888,
+          "name": "LODONI",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=49090888"
+        }
+      ],
+      "album": {
+        "id": 182366445,
+        "name": "The Gift of Music",
+        "cover": "http://p1.music.126.net/on9kaYplg1ozEBx7Ep3G6g==/109951169232504429.jpg",
+        "published": "2023-12-27",
+        "published_at": 1703692800000,
+        "company": "3377803 Records DK"
+      },
+      "duration": 149347,
+      "duration_desc": "2:29",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 15661502,
+          "size_desc": "15.66 MB",
+          "bitrate": 838931,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 5976860,
+          "size_desc": "5.98 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3586133,
+          "size_desc": "3.59 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2390770,
+          "size_desc": "2.39 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2114019727"
+    },
+    {
+      "id": 29567193,
+      "rank": 78,
+      "rank_name": "飙升榜",
+      "title": "我们的时光",
+      "artist": [
+        {
+          "id": 6731,
+          "name": "赵雷",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=6731"
+        }
+      ],
+      "album": {
+        "id": 3048030,
+        "name": "吉姆餐厅",
+        "cover": "http://p1.music.126.net/pwcUlwh9MFZ_V3hGBOPaCQ==/109951169213425474.jpg",
+        "published": "2014-10-18",
+        "published_at": 1413648000000,
+        "company": "华宇世博"
+      },
+      "duration": 270746,
+      "duration_desc": "4:30",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 28479102,
+          "size_desc": "28.48 MB",
+          "bitrate": 841498,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 10832501,
+          "size_desc": "10.83 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6499518,
+          "size_desc": "6.5 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4333026,
+          "size_desc": "4.33 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=29567193"
+    },
+    {
+      "id": 2075593054,
+      "rank": 79,
+      "rank_name": "飙升榜",
+      "title": "林宛瑜",
+      "artist": [
+        {
+          "id": 12563131,
+          "name": "Rapeter",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12563131"
+        }
+      ],
+      "album": {
+        "id": 174245605,
+        "name": "DirtyGOOD 装乖",
+        "cover": "http://p1.music.126.net/-RYv_KQ7OjQYENoqhoXDmg==/109951168899147692.jpg",
+        "published": "2023-09-09",
+        "published_at": 1694275200000,
+        "company": ""
+      },
+      "duration": 186109,
+      "duration_desc": "3:06",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 19086070,
+          "size_desc": "19.09 MB",
+          "bitrate": 820423,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7446765,
+          "size_desc": "7.45 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4468077,
+          "size_desc": "4.47 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2978733,
+          "size_desc": "2.98 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2075593054"
+    },
+    {
+      "id": 2677400220,
+      "rank": 80,
+      "rank_name": "飙升榜",
+      "title": "NO HOOK FREESTYLE Pt.4",
+      "artist": [
+        {
+          "id": 12563131,
+          "name": "Rapeter",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12563131"
+        }
+      ],
+      "album": {
+        "id": 263242113,
+        "name": "IMGOOD别担心我",
+        "cover": "http://p1.music.126.net/QpNRZsfMP5J4tOlziA8Pnw==/109951170504642760.jpg",
+        "published": "2025-02-21",
+        "published_at": 1740153600000,
+        "company": ""
+      },
+      "duration": 225000,
+      "duration_desc": "3:45",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 28370966,
+          "size_desc": "28.37 MB",
+          "bitrate": 1008598,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 9001965,
+          "size_desc": "9 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5401197,
+          "size_desc": "5.4 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3600813,
+          "size_desc": "3.6 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2677400220"
+    },
+    {
+      "id": 2736690863,
+      "rank": 81,
+      "rank_name": "飙升榜",
+      "title": "MENTE MA",
+      "artist": [
+        {
+          "id": 48853047,
+          "name": "VZEUS",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=48853047"
+        }
+      ],
+      "album": {
+        "id": 281730160,
+        "name": "MENTA MA",
+        "cover": "http://p1.music.126.net/Jv1aVe2po_f2bE50czHSEQ==/109951171874809370.jpg",
+        "published": "2025-08-15",
+        "published_at": 1755246600000,
+        "company": ""
+      },
+      "duration": 127399,
+      "duration_desc": "2:07",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 15420410,
+          "size_desc": "15.42 MB",
+          "bitrate": 968172,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 5098101,
+          "size_desc": "5.1 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3058878,
+          "size_desc": "3.06 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2039266,
+          "size_desc": "2.04 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2736690863"
+    },
+    {
+      "id": 2735855320,
+      "rank": 82,
+      "rank_name": "飙升榜",
+      "title": "下课钟声",
+      "artist": [
+        {
+          "id": 34094059,
+          "name": "关浩德Walter",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=34094059"
+        }
+      ],
+      "album": {
+        "id": 281405272,
+        "name": "下课钟声",
+        "cover": "http://p1.music.126.net/_7Wa7O6fCdlRrNt17RzdAw==/109951171853737963.jpg",
+        "published": "2025-08-27",
+        "published_at": 1756310400000,
+        "company": "StreetVoice/触底而上DTT"
+      },
+      "duration": 273237,
+      "duration_desc": "4:33",
+      "popularity": 95,
+      "score": 95,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 26949536,
+          "size_desc": "26.95 MB",
+          "bitrate": 788897,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 10931565,
+          "size_desc": "10.93 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6558957,
+          "size_desc": "6.56 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4372653,
+          "size_desc": "4.37 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2735855320"
+    },
+    {
+      "id": 2717035826,
+      "rank": 83,
+      "rank_name": "飙升榜",
+      "title": "半情歌",
+      "artist": [
+        {
+          "id": 12275767,
+          "name": "step.jad依加",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12275767"
+        }
+      ],
+      "album": {
+        "id": 275651228,
+        "name": "半情歌",
+        "cover": "http://p1.music.126.net/ROw9CASwYMvQvuDOH6eVbw==/109951171330027735.jpg",
+        "published": "2025-07-14",
+        "published_at": 1752508800000,
+        "company": "华纳音乐"
+      },
+      "duration": 214905,
+      "duration_desc": "3:34",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 25754214,
+          "size_desc": "25.75 MB",
+          "bitrate": 958570,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8598765,
+          "size_desc": "8.6 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5159277,
+          "size_desc": "5.16 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3439533,
+          "size_desc": "3.44 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2717035826"
+    },
+    {
+      "id": 2735409135,
+      "rank": 84,
+      "rank_name": "飙升榜",
+      "title": "ハンドサイン",
+      "artist": [
+        {
+          "id": 27889701,
+          "name": "Kizuna AI",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=27889701"
+        }
+      ],
+      "album": {
+        "id": 281242596,
+        "name": "ハンドサイン",
+        "cover": "http://p1.music.126.net/1gnbsJg2rYHalSxBRSReYA==/109951171840112594.jpg",
+        "published": "2025-08-19",
+        "published_at": 1755619200000,
+        "company": "KizunaAI"
+      },
+      "duration": 238693,
+      "duration_desc": "3:58",
+      "popularity": 90,
+      "score": 90,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 29926707,
+          "size_desc": "29.93 MB",
+          "bitrate": 1002871,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 9550125,
+          "size_desc": "9.55 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5730093,
+          "size_desc": "5.73 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3820077,
+          "size_desc": "3.82 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2735409135"
+    },
+    {
+      "id": 2082176014,
+      "rank": 85,
+      "rank_name": "飙升榜",
+      "title": "最后的道别",
+      "artist": [
+        {
+          "id": 4464,
+          "name": "梁雨",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=4464"
+        }
+      ],
+      "album": {
+        "id": 174775874,
+        "name": "最后的道别",
+        "cover": "http://p1.music.126.net/EeoTFA6yT1e9k89QblcvHQ==/109951168914975164.jpg",
+        "published": "2023-09-14",
+        "published_at": 1694707200000,
+        "company": "淳music"
+      },
+      "duration": 264444,
+      "duration_desc": "4:24",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 34255476,
+          "size_desc": "34.26 MB",
+          "bitrate": 1036300,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 10580205,
+          "size_desc": "10.58 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6348141,
+          "size_desc": "6.35 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4232109,
+          "size_desc": "4.23 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2082176014"
+    },
+    {
+      "id": 2739596293,
+      "rank": 86,
+      "rank_name": "飙升榜",
+      "title": "五千两百遍",
+      "artist": [
+        {
+          "id": 34634779,
+          "name": "999PUNKSTA",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=34634779"
+        }
+      ],
+      "album": {
+        "id": 282723760,
+        "name": "五千两百遍",
+        "cover": "http://p1.music.126.net/d2BE2e7gxx0cKvZh3TiOew==/109951171925663378.jpg",
+        "published": "2025-08-23",
+        "published_at": 1755964800000,
+        "company": ""
+      },
+      "duration": 158261,
+      "duration_desc": "2:38",
+      "popularity": 90,
+      "score": 90,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 30834253,
+          "size_desc": "30.83 MB",
+          "bitrate": 1558497,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6333170,
+          "size_desc": "6.33 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3799920,
+          "size_desc": "3.8 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2533294,
+          "size_desc": "2.53 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2739596293"
+    },
+    {
+      "id": 150422,
+      "rank": 87,
+      "rank_name": "飙升榜",
+      "title": "今天你要嫁给我",
+      "artist": [
+        {
+          "id": 7219,
+          "name": "蔡依林",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=7219"
+        },
+        {
+          "id": 5196,
+          "name": "陶喆",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=5196"
+        }
+      ],
+      "album": {
+        "id": 15184,
+        "name": "太美丽",
+        "cover": "http://p1.music.126.net/Fq9QNt2SYKvPEL3ipfVc9g==/109951166916020363.jpg",
+        "published": "2006-08-03",
+        "published_at": 1154620800000,
+        "company": "华纳音乐"
+      },
+      "duration": 272066,
+      "duration_desc": "4:32",
+      "popularity": 100,
+      "score": 100,
+      "fee": 1,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 31284971,
+          "size_desc": "31.28 MB",
+          "bitrate": 919920,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 10885791,
+          "size_desc": "10.89 MB",
+          "bitrate": 320001,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6531492,
+          "size_desc": "6.53 MB",
+          "bitrate": 192001,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4354342,
+          "size_desc": "4.35 MB",
+          "bitrate": 128001,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=150422"
+    },
+    {
+      "id": 1958677933,
+      "rank": 88,
+      "rank_name": "飙升榜",
+      "title": "不温暖的歌",
+      "artist": [
+        {
+          "id": 1204076,
+          "name": "欧瑞SoulCore",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=1204076"
+        }
+      ],
+      "album": {
+        "id": 147035916,
+        "name": "不温暖的歌",
+        "cover": "http://p1.music.126.net/HnGeUR5qsVmbvtk5LEMvng==/109951167584589643.jpg",
+        "published": "2022-06-23",
+        "published_at": 1656000000000,
+        "company": ""
+      },
+      "duration": 190000,
+      "duration_desc": "3:10",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 38897482,
+          "size_desc": "38.9 MB",
+          "bitrate": 1637788,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7602721,
+          "size_desc": "7.6 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4561650,
+          "size_desc": "4.56 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3041115,
+          "size_desc": "3.04 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=1958677933"
+    },
+    {
+      "id": 2738570393,
+      "rank": 89,
+      "rank_name": "飙升榜",
+      "title": "爱情火车",
+      "artist": [
+        {
+          "id": 48577041,
+          "name": "Mikey-18",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=48577041"
+        },
+        {
+          "id": 37343744,
+          "name": "Katastic卡老师",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=37343744"
+        }
+      ],
+      "album": {
+        "id": 282399455,
+        "name": "爱情火车",
+        "cover": "http://p1.music.126.net/X7FCkAy-zM3KK3ulekJl-w==/109951171934200418.jpg",
+        "published": "2025-08-27",
+        "published_at": 1756310400000,
+        "company": "网易电波"
+      },
+      "duration": 168874,
+      "duration_desc": "2:48",
+      "popularity": 90,
+      "score": 90,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 19597500,
+          "size_desc": "19.6 MB",
+          "bitrate": 928231,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6757399,
+          "size_desc": "6.76 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4054457,
+          "size_desc": "4.05 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2702986,
+          "size_desc": "2.7 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2738570393"
+    },
+    {
+      "id": 2733116489,
+      "rank": 90,
+      "rank_name": "飙升榜",
+      "title": "云朵的歌",
+      "artist": [
+        {
+          "id": 29865317,
+          "name": "斯丹曼簇",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=29865317"
+        }
+      ],
+      "album": {
+        "id": 280458270,
+        "name": "云朵的歌",
+        "cover": "http://p1.music.126.net/EDicVyZ4SZJAnI-RqYLPSw==/109951171914367691.jpg",
+        "published": "2025-08-22",
+        "published_at": 1755878400000,
+        "company": ""
+      },
+      "duration": 254153,
+      "duration_desc": "4:14",
+      "popularity": 95,
+      "score": 95,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 27926440,
+          "size_desc": "27.93 MB",
+          "bitrate": 878894,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 10168365,
+          "size_desc": "10.17 MB",
+          "bitrate": 320001,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 6101037,
+          "size_desc": "6.1 MB",
+          "bitrate": 192001,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 4067373,
+          "size_desc": "4.07 MB",
+          "bitrate": 128001,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2733116489"
+    },
+    {
+      "id": 2666658963,
+      "rank": 91,
+      "rank_name": "飙升榜",
+      "title": "Show Me Love",
+      "artist": [
+        {
+          "id": 31988286,
+          "name": "WizTheMC",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=31988286"
+        },
+        {
+          "id": 94332017,
+          "name": "bees & honey",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=94332017"
+        }
+      ],
+      "album": {
+        "id": 259913344,
+        "name": "Show Me Love",
+        "cover": "http://p1.music.126.net/sPZ1mJ3Rh10cjRenbQ3bAg==/109951170383524946.jpg",
+        "published": "2025-02-06",
+        "published_at": 1738857600000,
+        "company": "Bamboo Artists"
+      },
+      "duration": 176965,
+      "duration_desc": "2:56",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 34535501,
+          "size_desc": "34.54 MB",
+          "bitrate": 1561083,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7081317,
+          "size_desc": "7.08 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4248808,
+          "size_desc": "4.25 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2832553,
+          "size_desc": "2.83 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2666658963"
+    },
+    {
+      "id": 2740196131,
+      "rank": 92,
+      "rank_name": "飙升榜",
+      "title": "一步几回头",
+      "artist": [
+        {
+          "id": 31364543,
+          "name": "蒋孜怡",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=31364543"
+        }
+      ],
+      "album": {
+        "id": 282958925,
+        "name": "一步几回头",
+        "cover": "http://p1.music.126.net/rzb1yI0jHl7jgoUnzZa_qg==/109951171933563007.jpg",
+        "published": "2025-08-27",
+        "published_at": 1756310400000,
+        "company": "Universal Music China"
+      },
+      "duration": 222659,
+      "duration_desc": "3:42",
+      "popularity": 90,
+      "score": 90,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 26687271,
+          "size_desc": "26.69 MB",
+          "bitrate": 958706,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 8908844,
+          "size_desc": "8.91 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5345324,
+          "size_desc": "5.35 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3563564,
+          "size_desc": "3.56 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2740196131"
+    },
+    {
+      "id": 2736339025,
+      "rank": 93,
+      "rank_name": "飙升榜",
+      "title": "桃花签",
+      "artist": [
+        {
+          "id": 1215003,
+          "name": "呦猫UNEKO",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=1215003"
+        },
+        {
+          "id": 816079,
+          "name": "薄彩生",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=816079"
+        }
+      ],
+      "album": {
+        "id": 281577462,
+        "name": "《百妖谱·洛阳篇》动画原声带",
+        "cover": "http://p1.music.126.net/MSfQ702QFv0w2OmifzyJEA==/109951171867725169.jpg",
+        "published": "2025-08-14",
+        "published_at": 1755187200000,
+        "company": "bilibili"
+      },
+      "duration": 239808,
+      "duration_desc": "3:59",
+      "popularity": 95,
+      "score": 95,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 27381733,
+          "size_desc": "27.38 MB",
+          "bitrate": 913308,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 9594285,
+          "size_desc": "9.59 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5756589,
+          "size_desc": "5.76 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3837741,
+          "size_desc": "3.84 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2736339025"
+    },
+    {
+      "id": 2652410538,
+      "rank": 94,
+      "rank_name": "飙升榜",
+      "title": "红太狼狂想曲(《喜羊羊与灰太狼之兔年顶呱呱》动画电影插曲)",
+      "artist": [
+        {
+          "id": 7481,
+          "name": "崔子格",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=7481"
+        }
+      ],
+      "album": {
+        "id": 255582143,
+        "name": "《喜羊羊与灰太狼》音乐原声带合辑",
+        "cover": "http://p1.music.126.net/KeZoz-csqAe30ovzgDFehQ==/109951170213887287.jpg",
+        "published": "2024-12-01",
+        "published_at": 1733068800000,
+        "company": "宇歌风行"
+      },
+      "duration": 160920,
+      "duration_desc": "2:40",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 18494176,
+          "size_desc": "18.49 MB",
+          "bitrate": 919422,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 6438765,
+          "size_desc": "6.44 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3863277,
+          "size_desc": "3.86 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2575533,
+          "size_desc": "2.58 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2652410538"
+    },
+    {
+      "id": 2733113572,
+      "rank": 95,
+      "rank_name": "飙升榜",
+      "title": "espero(等着你)",
+      "artist": [
+        {
+          "id": 46957283,
+          "name": "曼尼洛夫",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=46957283"
+        },
+        {
+          "id": 12568026,
+          "name": "小白羊HUSH",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12568026"
+        }
+      ],
+      "album": {
+        "id": 280457742,
+        "name": "espero(等着你)",
+        "cover": "http://p1.music.126.net/2CY0ZyIyAbCWErHS6VnX5g==/109951171715764900.jpg",
+        "published": "2025-08-03",
+        "published_at": 1754236800000,
+        "company": "独立发行"
+      },
+      "duration": 230999,
+      "duration_desc": "3:50",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 26319483,
+          "size_desc": "26.32 MB",
+          "bitrate": 911350,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 9242166,
+          "size_desc": "9.24 MB",
+          "bitrate": 320002,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 5545317,
+          "size_desc": "5.55 MB",
+          "bitrate": 192002,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3696893,
+          "size_desc": "3.7 MB",
+          "bitrate": 128002,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2733113572"
+    },
+    {
+      "id": 2738549556,
+      "rank": 96,
+      "rank_name": "飙升榜",
+      "title": "Vai Toma(PHONK)",
+      "artist": [
+        {
+          "id": 56856041,
+          "name": "GTR7",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=56856041"
+        }
+      ],
+      "album": {
+        "id": 282297619,
+        "name": "Vai Toma",
+        "cover": "http://p1.music.126.net/crZu8zAKrCR3pN8lzdUUVA==/109951171907812124.jpg",
+        "published": "2025-08-20",
+        "published_at": 1755705600000,
+        "company": ""
+      },
+      "duration": 131000,
+      "duration_desc": "2:11",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 28401103,
+          "size_desc": "28.4 MB",
+          "bitrate": 1734269,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 5242297,
+          "size_desc": "5.24 MB",
+          "bitrate": 320003,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3145395,
+          "size_desc": "3.15 MB",
+          "bitrate": 192003,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2096945,
+          "size_desc": "2.1 MB",
+          "bitrate": 128003,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2738549556"
+    },
+    {
+      "id": 2739231169,
+      "rank": 97,
+      "rank_name": "飙升榜",
+      "title": "她走的那夜下起了大雨 (纯音乐)",
+      "artist": [
+        {
+          "id": 59019507,
+          "name": "韦大鱼",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=59019507"
+        }
+      ],
+      "album": {
+        "id": 282657964,
+        "name": "纯音乐合集",
+        "cover": "http://p1.music.126.net/cfBzsQXbFCV1E_m5y1ZA3w==/109951171919074070.jpg",
+        "published": "2025-08-22",
+        "published_at": 1755878400000,
+        "company": "广西青衫网络传媒有限公司"
+      },
+      "duration": 188424,
+      "duration_desc": "3:08",
+      "popularity": 95,
+      "score": 95,
+      "fee": 0,
+      "status": 0,
+      "mb": {
+        "sq": null,
+        "hq": {
+          "size": 7538925,
+          "size_desc": "7.54 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4523373,
+          "size_desc": "4.52 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": null
+      },
+      "link": "https://music.163.com/#/song?id=2739231169"
+    },
+    {
+      "id": 2740703897,
+      "rank": 98,
+      "rank_name": "飙升榜",
+      "title": "Start Today",
+      "artist": [
+        {
+          "id": 56782,
+          "name": "Fall Out Boy",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=56782"
+        }
+      ],
+      "album": {
+        "id": 283140201,
+        "name": "Start Today",
+        "cover": "http://p1.music.126.net/gnMq2u8Nhsdewz3nnsEIVA==/109951171940498828.jpg",
+        "published": "2025-08-26",
+        "published_at": 1756224000000,
+        "company": "Island Records"
+      },
+      "duration": 122706,
+      "duration_desc": "2:02",
+      "popularity": 90,
+      "score": 90,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 14898805,
+          "size_desc": "14.9 MB",
+          "bitrate": 971194,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 4911064,
+          "size_desc": "4.91 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 2946656,
+          "size_desc": "2.95 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 1964452,
+          "size_desc": "1.96 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2740703897"
+    },
+    {
+      "id": 2100963421,
+      "rank": 99,
+      "rank_name": "飙升榜",
+      "title": "山海花开不是你",
+      "artist": [
+        {
+          "id": 12444269,
+          "name": "高源",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=12444269"
+        }
+      ],
+      "album": {
+        "id": 179350982,
+        "name": "山海花开不是你",
+        "cover": "http://p1.music.126.net/AksAWvy9M90X-quVpRm9aA==/109951169063447299.jpg",
+        "published": "2023-11-19",
+        "published_at": 1700409600000,
+        "company": "音符跳动"
+      },
+      "duration": 194516,
+      "duration_desc": "3:14",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 21032122,
+          "size_desc": "21.03 MB",
+          "bitrate": 864999,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 7782765,
+          "size_desc": "7.78 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 4669677,
+          "size_desc": "4.67 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 3113133,
+          "size_desc": "3.11 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2100963421"
+    },
+    {
+      "id": 2731613461,
+      "rank": 100,
+      "rank_name": "飙升榜",
+      "title": "不会在乎时间走多快",
+      "artist": [
+        {
+          "id": 1142011,
+          "name": "王极",
+          "cover": "http://p1.music.126.net/6y-UleORITEDbvrOLV0Q8A==/5639395138885805.jpg",
+          "link": "https://music.163.com/#/artist?id=1142011"
+        }
+      ],
+      "album": {
+        "id": 280119457,
+        "name": "不会在乎时间走多快",
+        "cover": "http://p1.music.126.net/QwXt6wm-zpToUdKVa-sXHA==/109951171580254229.jpg",
+        "published": "2025-08-01",
+        "published_at": 1754064000000,
+        "company": ""
+      },
+      "duration": 138929,
+      "duration_desc": "2:18",
+      "popularity": 100,
+      "score": 100,
+      "fee": 8,
+      "status": 0,
+      "mb": {
+        "sq": {
+          "size": 16673736,
+          "size_desc": "16.67 MB",
+          "bitrate": 959978,
+          "extension": "flac"
+        },
+        "hq": {
+          "size": 5559405,
+          "size_desc": "5.56 MB",
+          "bitrate": 320000,
+          "extension": "mp3"
+        },
+        "mq": {
+          "size": 3335661,
+          "size_desc": "3.34 MB",
+          "bitrate": 192000,
+          "extension": "mp3"
+        },
+        "lq": {
+          "size": 2223789,
+          "size_desc": "2.22 MB",
+          "bitrate": 128000,
+          "extension": "mp3"
+        }
+      },
+      "link": "https://music.163.com/#/song?id=2731613461"
+    }
+  ]
+}

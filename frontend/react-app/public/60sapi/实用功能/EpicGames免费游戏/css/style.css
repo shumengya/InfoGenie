@@ -1,0 +1,330 @@
+/* Epic Games 免费游戏 - 淡绿色清新风格样式 */
+
+/* 重置样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 50%, #ffd3a5 100%);
+    min-height: 100vh;
+    color: #2d5016;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 头部 */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 8px 25px rgba(45, 80, 22, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.header h1 {
+    font-size: 2.2rem;
+    color: #2d5016;
+    margin-bottom: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.header p {
+    color: #5a7c65;
+    font-size: 1rem;
+}
+
+/* 统计信息 */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 16px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 18px rgba(45, 80, 22, 0.08);
+}
+
+.stat-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1b5e20;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    color: #5a7c65;
+    font-size: 0.9rem;
+}
+
+/* 游戏网格 */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* 游戏卡片 */
+.game-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 6px 25px rgba(45, 80, 22, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(45, 80, 22, 0.15);
+}
+
+.game-cover {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.game-info {
+    padding: 18px;
+}
+
+.game-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1b5e20;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.game-description {
+    color: #5a7c65;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+}
+
+.game-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.game-price {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.original-price {
+    color: #81c784;
+    text-decoration: line-through;
+}
+
+.free-price {
+    color: #2e7d32;
+    font-weight: 700;
+}
+
+.game-seller {
+    color: #5a7c65;
+    font-size: 0.85rem;
+}
+
+.game-dates {
+    background: rgba(129, 199, 132, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    font-size: 0.85rem;
+    color: #2d5016;
+}
+
+.free-period {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.game-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(129, 199, 132, 0.35);
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(129, 199, 132, 0.45);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #a5d6a7 0%, #81c784 100%);
+}
+
+/* 状态标签 */
+.status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.status-free {
+    background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+}
+
+.status-upcoming {
+    background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+}
+
+/* 加载与错误 */
+.loading, .error {
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(45, 80, 22, 0.08);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e8f5e8;
+    border-top: 4px solid #81c784;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 动画 */
+.fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* 平板端适配 */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .container { padding: 16px; }
+    .header h1 { font-size: 2rem; }
+    .games-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+}
+
+/* 手机端优化 */
+@media (max-width: 767px) {
+    .container { padding: 12px; }
+    .header { padding: 18px; }
+    .header h1 { font-size: 1.8rem; gap: 8px; }
+    
+    .stats {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 8px;
+    }
+    
+    .stat-card { 
+        padding: 10px 8px;
+        flex: 1;
+        min-width: 0;
+    }
+    .stat-number { font-size: 1.4rem; }
+    .stat-label { font-size: 0.75rem; }
+    
+    .games-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .game-card { margin: 0 4px; }
+    .game-cover { height: 160px; }
+    .game-info { padding: 14px; }
+    
+    .game-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+/* 小屏手机优化 */
+@media (max-width: 480px) {
+    .stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .game-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+}
+
+/* 高分辨率显示器优化 */
+@media (min-width: 1400px) {
+    .games-grid {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+}

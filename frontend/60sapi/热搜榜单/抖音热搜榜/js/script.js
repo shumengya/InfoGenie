@@ -1,4 +1,7 @@
-// API接口列表
+// 本地后端API接口
+const LOCAL_API_BASE = 'http://localhost:5000/api/60s';
+
+// API接口列表（备用）
 const API_ENDPOINTS = [
     "https://60s-cf.viki.moe",
     "https://60s.viki.moe", 
@@ -9,6 +12,7 @@ const API_ENDPOINTS = [
 
 // 当前使用的API索引
 let currentApiIndex = 0;
+let useLocalApi = true;
 
 // DOM元素
 const loadingElement = document.getElementById('loading');
@@ -46,6 +50,30 @@ async function loadHotList() {
 
 // 获取数据
 async function fetchData() {
+    // 优先尝试本地API
+    if (useLocalApi) {
+        try {
+            const response = await fetch(`${LOCAL_API_BASE}/douyin`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                },
+                timeout: 10000
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                if (data.code === 200 && data.data) {
+                    return data;
+                }
+            }
+        } catch (error) {
+            console.warn('本地API请求失败，切换到外部API:', error);
+            useLocalApi = false;
+        }
+    }
+    
+    // 使用外部API作为备用
     for (let i = 0; i < API_ENDPOINTS.length; i++) {
         const apiUrl = API_ENDPOINTS[currentApiIndex];
         

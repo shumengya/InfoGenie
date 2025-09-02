@@ -1,0 +1,495 @@
+/* 猫眼票房排行榜 - 淡绿色清新风格样式 */
+
+/* 重置样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 50%, #ffd3a5 100%);
+    min-height: 100vh;
+    color: #2d5016;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 头部样式 */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(45, 80, 22, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #2d5016;
+    margin-bottom: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.header p {
+    color: #5a7c65;
+    font-size: 1.1rem;
+}
+
+/* 加载状态 */
+.loading {
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(45, 80, 22, 0.08);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e8f5e8;
+    border-top: 4px solid #81c784;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 票房排行榜容器 */
+.ranking-container {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(45, 80, 22, 0.08);
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px;
+}
+
+/* 排行榜标题 */
+.ranking-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2d5016;
+    margin-bottom: 25px;
+}
+
+/* 票房排行榜列表 */
+.movie-list {
+    display: grid;
+    gap: 15px;
+}
+
+/* 电影项目 */
+.movie-item {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(45, 80, 22, 0.05);
+    transition: all 0.3s ease;
+    border-left: 5px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.movie-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(45, 80, 22, 0.12);
+}
+
+/* 前三名特殊样式 */
+.movie-item.top-1 {
+    border-left-color: #ffd700;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%);
+}
+
+.movie-item.top-2 {
+    border-left-color: #c0c0c0;
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%);
+}
+
+.movie-item.top-3 {
+    border-left-color: #cd7f32;
+    background: linear-gradient(135deg, rgba(205, 127, 50, 0.1) 0%, rgba(255, 255, 255, 0.9) 100%);
+}
+
+/* 排名徽章 */
+.rank-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.rank-badge.gold {
+    background: linear-gradient(135deg, #ffd700, #ffed4a);
+}
+
+.rank-badge.silver {
+    background: linear-gradient(135deg, #c0c0c0, #e2e8f0);
+}
+
+.rank-badge.bronze {
+    background: linear-gradient(135deg, #cd7f32, #d69e2e);
+}
+
+.rank-badge.regular {
+    background: linear-gradient(135deg, #81c784, #66bb6a);
+}
+
+/* 电影信息布局 */
+.movie-info {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 20px;
+}
+
+.rank-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2d5016;
+    min-width: 60px;
+}
+
+.movie-details {
+    flex: 1;
+}
+
+.movie-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2d5016;
+    margin-bottom: 5px;
+}
+
+.movie-year {
+    color: #5a7c65;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.box-office {
+    text-align: right;
+}
+
+.box-office-amount {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #1b5e20;
+    margin-bottom: 3px;
+}
+
+.box-office-desc {
+    color: #5a7c65;
+    font-size: 0.9rem;
+}
+
+/* 统计信息 */
+.stats-container {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(45, 80, 22, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+
+.stat-item {
+    background: rgba(129, 199, 132, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2d5016;
+}
+
+.stat-label {
+    color: #5a7c65;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* 更新时间 */
+.update-time {
+    text-align: center;
+    color: #5a7c65;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+}
+
+/* 错误提示 */
+.error {
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(45, 80, 22, 0.08);
+}
+
+.error h3 {
+    color: #d32f2f;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.error p {
+    color: #5a7c65;
+    margin-bottom: 10px;
+}
+
+/* 动画效果 */
+.fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 平板端适配 (768px - 1024px) */
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .ranking-container {
+        padding: 25px;
+    }
+    
+    .movie-info {
+        gap: 15px;
+    }
+    
+    .rank-number {
+        font-size: 1.8rem;
+        min-width: 50px;
+    }
+    
+    .movie-name {
+        font-size: 1.2rem;
+    }
+    
+    .box-office-amount {
+        font-size: 1.3rem;
+    }
+}
+
+/* 手机端适配 (最大767px) - 优先优化 */
+@media screen and (max-width: 767px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .header {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .header h1 {
+        font-size: 1.8rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .header p {
+        font-size: 1rem;
+    }
+    
+    .ranking-container {
+        padding: 20px 15px;
+        margin-bottom: 15px;
+    }
+    
+    .ranking-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .movie-item {
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .movie-info {
+        grid-template-columns: 50px 1fr;
+        grid-template-rows: auto auto;
+        gap: 10px;
+    }
+    
+    .rank-number {
+        font-size: 1.5rem;
+        min-width: 40px;
+        grid-row: 1 / 3;
+    }
+    
+    .movie-details {
+        grid-column: 2;
+        grid-row: 1;
+    }
+    
+    .box-office {
+        grid-column: 2;
+        grid-row: 2;
+        text-align: left;
+        margin-top: 8px;
+    }
+    
+    .movie-name {
+        font-size: 1.1rem;
+        margin-bottom: 3px;
+    }
+    
+    .movie-year {
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+    }
+    
+    .box-office-amount {
+        font-size: 1.2rem;
+    }
+    
+    .box-office-desc {
+        font-size: 0.85rem;
+    }
+    
+    .rank-badge {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        top: -8px;
+        right: -8px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .stat-item {
+        padding: 12px;
+    }
+    
+    .stat-value {
+        font-size: 1.3rem;
+    }
+    
+    .update-time {
+        padding: 12px;
+        font-size: 0.85rem;
+    }
+}
+
+/* 小屏手机适配 (最大480px) */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 8px;
+    }
+    
+    .header {
+        padding: 15px;
+    }
+    
+    .header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .ranking-container {
+        padding: 15px 10px;
+    }
+    
+    .movie-item {
+        padding: 12px;
+    }
+    
+    .movie-name {
+        font-size: 1rem;
+    }
+    
+    .box-office-amount {
+        font-size: 1.1rem;
+    }
+    
+    .rank-number {
+        font-size: 1.3rem;
+        min-width: 35px;
+    }
+}
+
+/* 高分辨率显示器优化 */
+@media screen and (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .header h1 {
+        font-size: 3rem;
+    }
+    
+    .movie-list {
+        gap: 20px;
+    }
+    
+    .movie-item {
+        padding: 25px;
+    }
+    
+    .movie-name {
+        font-size: 1.4rem;
+    }
+    
+    .box-office-amount {
+        font-size: 1.5rem;
+    }
+}
