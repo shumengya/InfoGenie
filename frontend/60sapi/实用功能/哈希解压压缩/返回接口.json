@@ -1,0 +1,33 @@
+{
+  "code": 200,
+  "message": "处理成功",
+  "data": {
+    "source": "你好👋",
+    "md5": "a1b2c3d4e5f6789012345678901234567",
+    "sha": {
+      "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sha512": "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"
+    },
+    "base64": {
+      "encode": "5L2g5aW9",
+      "decode": "你好"
+    },
+    "url": {
+      "encode": "%E4%BD%A0%E5%A5%BD%F0%9F%91%8B",
+      "decode": "你好👋"
+    },
+    "gzip": {
+      "compress": "H4sIAAAAAAAAA...(压缩后的数据)",
+      "decompress": "你好👋"
+    },
+    "deflate": {
+      "compress": "eJwrz8kvTUlMy...(压缩后的数据)",
+      "decompress": "你好👋"
+    },
+    "brotli": {
+      "compress": "CwWAaGVsbG8g...(压缩后的数据)",
+      "decompress": "你好👋"
+    }
+  }
+}
