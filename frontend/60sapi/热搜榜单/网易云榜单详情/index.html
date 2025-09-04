@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>网易云榜单详情</title>
+    <title>网易云音乐榜单详情</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loading.css">
     <link rel="stylesheet" href="css/background.css">
 </head>
 <body>
+    <!-- 音符装饰 -->
+    <div id="musicNotes"></div>
+    
     <div class="container">
         <header class="header">
             <h1 class="title">🎵 网易云榜单详情</h1>
             <p class="subtitle">发现音乐的魅力</p>
+            <a href="../网易云榜单列表/index.html" class="back-link" id="backLink">← 返回榜单列表</a>
         </header>
 
         <div class="rank-info" id="rankInfo" style="display: none;">
@@ -56,7 +61,7 @@
         </div>
 
         <div class="back-to-list">
-            <a href="../网易云榜单列表/index.html" class="back-btn">← 返回榜单列表</a>
+            <a href="../网易云榜单列表/index.html" class="back-btn" id="backBtnBottom">← 返回榜单列表</a>
         </div>
     </div>
 
@@ -64,6 +69,42 @@
         <p>&copy; 2025 网易云榜单详情 - 数据来源于官方API</p>
     </footer>
 
+    <script>
+        // 创建音符装饰
+        function createMusicNotes() {
+            const musicNotes = document.getElementById('musicNotes');
+            const noteSymbols = ['♪', '♫', '♬', '♩', '♭', '♮', '♯'];
+            const containerWidth = window.innerWidth;
+            const containerHeight = window.innerHeight;
+            
+            // 创建20个音符
+            for (let i = 0; i < 20; i++) {
+                const note = document.createElement('div');
+                note.className = 'music-note';
+                note.textContent = noteSymbols[Math.floor(Math.random() * noteSymbols.length)];
+                
+                // 随机位置
+                const left = Math.random() * containerWidth;
+                const top = Math.random() * containerHeight;
+                
+                // 随机动画延迟
+                const delay = Math.random() * 15;
+                const duration = 10 + Math.random() * 20;
+                
+                note.style.left = `${left}px`;
+                note.style.top = `${top}px`;
+                note.style.animationDelay = `${delay}s`;
+                note.style.animationDuration = `${duration}s`;
+                
+                musicNotes.appendChild(note);
+            }
+        }
+        
+        // 页面加载完成后创建音符
+        document.addEventListener('DOMContentLoaded', () => {
+            createMusicNotes();
+        });
+    </script>
     <script src="js/script.js"></script>
 </body>
 </html>

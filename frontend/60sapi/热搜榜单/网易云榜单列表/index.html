@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网易云音乐榜单列表</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/background.css">
+</head>
+<body>
+    <!-- 音符装饰 -->
+    <div id="musicNotes"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="title">🎵 网易云音乐榜单列表</h1>
+            <p class="subtitle">发现音乐的魅力</p>
+        </header>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>正在加载榜单数据...</p>
+        </div>
+
+        <div class="error" id="error" style="display: none;">
+            <div class="error-icon">⚠️</div>
+            <p class="error-message" id="errorMessage"></p>
+            <button class="retry-btn" id="retryBtn">重试</button>
+        </div>
+
+        <div class="rank-list" id="rankList" style="display: none;">
+            <!-- 榜单列表将在这里动态生成 -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 网易云音乐榜单列表 - 数据来源于官方API</p>
+    </footer>
+
+    <script>
+        // 创建音符装饰
+        function createMusicNotes() {
+            const musicNotes = document.getElementById('musicNotes');
+            const noteSymbols = ['♪', '♫', '♬', '♩', '♭', '♮', '♯'];
+            const containerWidth = window.innerWidth;
+            const containerHeight = window.innerHeight;
+            
+            // 创建20个音符
+            for (let i = 0; i < 20; i++) {
+                const note = document.createElement('div');
+                note.className = 'music-note';
+                note.textContent = noteSymbols[Math.floor(Math.random() * noteSymbols.length)];
+                
+                // 随机位置
+                const left = Math.random() * containerWidth;
+                const top = Math.random() * containerHeight;
+                
+                // 随机动画延迟
+                const delay = Math.random() * 15;
+                const duration = 10 + Math.random() * 20;
+                
+                note.style.left = `${left}px`;
+                note.style.top = `${top}px`;
+                note.style.animationDelay = `${delay}s`;
+                note.style.animationDuration = `${duration}s`;
+                
+                musicNotes.appendChild(note);
+            }
+        }
+        
+        // 页面加载完成后创建音符
+        document.addEventListener('DOMContentLoaded', () => {
+            createMusicNotes();
+        });
+        
+        // API接口列表
+        const API_ENDPOINTS = [
+            "https://60s.viki.moe",
+            "https://60s-cf.viki.moe",
+            "https://60s.b23.run",
+            "https://60s.114128.xyz",
+            "https://60s-cf.114128.xyz",
+            "https://60s.api.shumengya.top",
+            "https://api.03c3.cn/api/zb",
+            "https://api.vvhan.com/api/60s",
+            // 添加本地测试数据
+            "../返回接口.json"
+        ];
+
+        // 当前使用的API索引
+        let currentApiIndex = 0;
+
+        // DOM元素
+        const loadingElement = document.getElementById('loading');
+        const errorElement = document.getElementById('error');
+        const errorMessageElement = document.getElementById('errorMessage');
+        const retryBtnElement = document.getElementById('retryBtn');
+        const rankListElement = document.getElementById('rankList');
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRankList();
+            retryBtnElement.addEventListener('click', loadRankList);
+        });
+
+        // 显示加载状态
+        function showLoading() {
+            loadingElement.style.display = 'flex';
+            errorElement.style.display = 'none';
+            rankListElement.style.display = 'none';
+        }
+
+        // 显示错误状态
+        function showError(message) {
+            loadingElement.style.display = 'none';
+            errorElement.style.display = 'flex';
+            errorMessageElement.textContent = message;
+            rankListElement.style.display = 'none';
+        }
+
+        // 显示榜单列表
+        function showRankList() {
+            loadingElement.style.display = 'none';
+            errorElement.style.display = 'none';
+            rankListElement.style.display = 'block';
+        }
+
+        // 加载榜单列表
+        async function loadRankList() {
+            showLoading();
+            
+            try {
+                const data = await fetchRankList();
+                displayRankList(data);
+                showRankList();
+            } catch (error) {
+                console.error('加载榜单列表失败:', error);
+                showError(error.message || '加载榜单列表失败，请重试');
+            }
+        }
+
+        // 获取榜单列表数据
+        async function fetchRankList() {
+            let lastError = null;
+            let attemptedApis = 0;
+            
+            // 尝试所有API接口
+            while (attemptedApis < API_ENDPOINTS.length) {
+                try {
+                    const apiUrl = API_ENDPOINTS[currentApiIndex];
+                    let url = `${apiUrl}/v2/ncm-rank-list`;
+                    
+                    // 处理本地JSON文件
+                    if (apiUrl.includes('返回接口.json')) {
+                        url = apiUrl;
+                        console.log('使用本地测试数据:', url);
+                    }
+                    // 针对不同API接口格式进行适配
+                    else if (apiUrl.includes('03c3.cn') || apiUrl.includes('vvhan.com')) {
+                        // 这些API可能有不同的路径格式，需要特殊处理
+                        if (apiUrl.includes('03c3.cn')) {
+                            url = `${apiUrl}/ncm/toplist`;
+                        } else if (apiUrl.includes('vvhan.com')) {
+                            url = `${apiUrl}/music/netease/toplist`;
+                        }
+                    }
+                    
+                    console.log(`尝试API ${currentApiIndex + 1}/${API_ENDPOINTS.length}:`, url);
+                    
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 8000); // 缩短超时时间
+                    
+                    const response = await fetch(url, {
+                        signal: controller.signal,
+                        headers: {
+                            'Accept': 'application/json',
+                        },
+                        // 添加缓存控制
+                        cache: 'no-cache',
+                        // 添加模式
+                        mode: apiUrl.includes('返回接口.json') ? 'same-origin' : 'cors'
+                    });
+                    
+                    clearTimeout(timeoutId);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    
+                    const data = await response.json();
+                    
+                    // 不同API可能有不同的成功状态码
+                    if (data.code !== undefined && data.code !== 200 && data.code !== 0) {
+                        throw new Error(data.message || data.msg || '获取数据失败');
+                    }
+                    
+                    console.log('API调用成功:', data);
+                    return data;
+                    
+                } catch (error) {
+                    console.warn(`API ${currentApiIndex + 1} 失败:`, error.message);
+                    lastError = error;
+                    currentApiIndex = (currentApiIndex + 1) % API_ENDPOINTS.length;
+                    attemptedApis++;
+                    
+                    if (error.name === 'AbortError') {
+                        lastError = new Error('请求超时，请重试');
+                    }
+                    
+                    // 添加短暂延迟，避免过快请求下一个API
+                    await new Promise(resolve => setTimeout(resolve, 300));
+                }
+            }
+            
+            throw lastError || new Error('所有API接口都无法访问，请稍后再试');
+        }
+
+        // 显示榜单列表
+        function displayRankList(data) {
+            // 适配不同API返回的数据格式
+            let ranks = [];
+            
+            // 标准格式：data.data 是数组
+            if (data.data && Array.isArray(data.data)) {
+                ranks = data.data;
+            }
+            // 03c3.cn API格式：data.result 是数组
+            else if (data.result && Array.isArray(data.result)) {
+                ranks = data.result;
+            }
+            // vvhan.com API格式：data.list 是数组
+            else if (data.list && Array.isArray(data.list)) {
+                ranks = data.list;
+            }
+            // 其他可能的格式
+            else if (Array.isArray(data)) {
+                ranks = data;
+            }
+            else {
+                // 尝试查找数据中的任何数组
+                for (const key in data) {
+                    if (Array.isArray(data[key]) && data[key].length > 0) {
+                        ranks = data[key];
+                        break;
+                    }
+                }
+            }
+            
+            if (ranks.length === 0) {
+                showError('没有找到榜单数据');
+                return;
+            }
+            
+            rankListElement.innerHTML = '';
+            
+            ranks.forEach(rank => {
+                // 适配不同API的字段名
+                const id = rank.id || rank.listId || rank.list_id || '';
+                const name = rank.name || rank.listName || rank.list_name || '未知榜单';
+                const cover = rank.cover || rank.coverImgUrl || rank.picUrl || rank.pic || 'https://p2.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg';
+                const description = rank.description || rank.desc || rank.updateFrequency || '暂无描述';
+                const updateFrequency = rank.update_frequency || rank.updateFrequency || '定期更新';
+                const updated = rank.updated || rank.updateTime || rank.update_time || '';
+                
+                const rankItem = document.createElement('div');
+                rankItem.className = 'rank-item';
+                
+                rankItem.innerHTML = `
+                    <div class="rank-cover">
+                        <img src="${cover}" alt="${name}" onerror="this.src='https://p2.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg'">
+                    </div>
+                    <div class="rank-info">
+                        <h3 class="rank-name">${name}</h3>
+                        <p class="rank-description">${description}</p>
+                        <div class="rank-meta">
+                            <span class="update-frequency">${updateFrequency}</span>
+                            <span class="update-time">更新: ${formatDate(updated)}</span>
+                        </div>
+                    </div>
+                    <a href="../网易云榜单详情/index.html?id=${id}&name=${encodeURIComponent(name)}" class="view-btn">查看详情</a>
+                `;
+                
+                rankListElement.appendChild(rankItem);
+            });
+        }
+
+        // 格式化日期
+        function formatDate(dateStr) {
+            if (!dateStr) return '未知';
+            
+            try {
+                const date = new Date(dateStr);
+                return date.toLocaleString('zh-CN', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            } catch (e) {
+                return dateStr;
+            }
+        }
+    </script>
+</body>
+</html>

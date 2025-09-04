@@ -186,10 +186,18 @@ function renderMovieItem(item) {
     const rank = item.rank;
     const cls = rank === 1 ? 'top-1' : rank === 2 ? 'top-2' : rank === 3 ? 'top-3' : '';
     const badgeCls = rank === 1 ? 'gold' : rank === 2 ? 'silver' : rank === 3 ? 'bronze' : 'regular';
+    
+    // 使用猫眼ID获取电影海报图片 - 使用更可靠的图片源
+    const posterUrl = `https://img.maoyan.com/movie/poster/1${item.maoyan_id}.jpg`;
+    // 备用图片源
+    const backupPosterUrl = `https://p0.pipi.cn/mmdb/fb738633ac80c2f8a7a48e5b465128${item.maoyan_id % 10}/${item.maoyan_id}.jpg?imageView2/1/w/160/h/220`;
 
     return `
         <div class="movie-item ${cls}">
             <div class="rank-badge ${badgeCls}">${rank}</div>
+            <div class="movie-poster">
+                <img src="${posterUrl}" alt="${escapeHtml(item.movie_name)}" onerror="this.onerror=null; this.src='${backupPosterUrl}'; this.onerror=function(){this.src='data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 width%3D%22160%22 height%3D%22220%22 viewBox%3D%220 0 160 220%22%3E%3Crect fill%3D%22%23f0f0f0%22 width%3D%22160%22 height%3D%22220%22%2F%3E%3Ctext fill%3D%22%23999%22 font-family%3D%22Arial%2CSans-serif%22 font-size%3D%2216%22 x%3D%2250%25%22 y%3D%2250%25%22 text-anchor%3D%22middle%22 dominant-baseline%3D%22middle%22%3E无图片%3C%2Ftext%3E%3C%2Fsvg%3E';}">
+            </div>
             <div class="movie-info">
                 <div class="rank-number">#${rank}</div>
                 <div class="movie-details">

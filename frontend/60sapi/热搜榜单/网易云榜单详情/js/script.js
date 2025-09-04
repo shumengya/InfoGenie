@@ -31,11 +31,28 @@ class NeteaseMusicRankDetail {
             console.error('加载API接口失败:', error);
             // 使用默认接口
             this.apiUrls = [
-                'https://60s-cf.viki.moe',
                 'https://60s.viki.moe',
+                'https://60s-cf.viki.moe',
                 'https://60s.b23.run',
                 'https://60s.114128.xyz',
-                'https://60s-cf.114128.xyz'
+                'https://60s-cf.114128.xyz',
+                'https://60s.api.shumengya.top',
+                'https://api.03c3.cn/api/zb',
+                'https://api.vvhan.com/api/60s'
+            ];
+        }
+        
+        // 确保至少有一个API接口
+        if (!this.apiUrls || this.apiUrls.length === 0) {
+            this.apiUrls = [
+                'https://60s.viki.moe',
+                'https://60s-cf.viki.moe',
+                'https://60s.b23.run',
+                'https://60s.114128.xyz',
+                'https://60s-cf.114128.xyz',
+                'https://60s.api.shumengya.top',
+                'https://api.03c3.cn/api/zb',
+                'https://api.vvhan.com/api/60s'
             ];
         }
     }
@@ -45,6 +62,8 @@ class NeteaseMusicRankDetail {
         const loadBtn = document.getElementById('loadBtn');
         const rankIdInput = document.getElementById('rankId');
         const retryBtn = document.getElementById('retryBtn');
+        const backLink = document.getElementById('backLink');
+        const backBtnBottom = document.getElementById('backBtnBottom');
 
         loadBtn.addEventListener('click', () => this.loadRankDetail());
         retryBtn.addEventListener('click', () => this.loadRankDetail());
@@ -61,6 +80,19 @@ class NeteaseMusicRankDetail {
             const value = e.target.value.trim();
             loadBtn.disabled = !value || !/^\d+$/.test(value);
         });
+        
+        // 处理返回链接
+        if (backLink) {
+            backLink.addEventListener('click', (e) => {
+                console.log('返回榜单列表');
+            });
+        }
+        
+        if (backBtnBottom) {
+            backBtnBottom.addEventListener('click', (e) => {
+                console.log('返回榜单列表');
+            });
+        }
     }
 
     // 检查URL参数
@@ -102,12 +134,17 @@ class NeteaseMusicRankDetail {
         
         try {
             const data = await this.fetchRankDetail(rankId);
+            this.rankData = data;
             this.displayRankDetail(data);
             this.hideLoading();
             
             // 更新URL
             const newUrl = new URL(window.location);
             newUrl.searchParams.set('id', rankId);
+            if (data.playlist && data.playlist.name) {
+                newUrl.searchParams.set('name', encodeURIComponent(data.playlist.name));
+                document.title = `${data.playlist.name} - 网易云榜单详情`;
+            }
             window.history.replaceState({}, '', newUrl);
             
         } catch (error) {
@@ -120,22 +157,43 @@ class NeteaseMusicRankDetail {
     // 获取榜单详情数据
     async fetchRankDetail(rankId) {
         let lastError = null;
+        let attemptedApis = 0;
         
-        for (let i = 0; i < this.apiUrls.length; i++) {
+        // 尝试所有API接口
+        while (attemptedApis < this.apiUrls.length) {
             try {
                 const apiUrl = this.apiUrls[this.currentApiIndex];
-                const url = `${apiUrl}/v2/ncm-rank/${rankId}`;
+                let url = `${apiUrl}/v2/ncm-rank/${rankId}`;
                 
-                console.log(`尝试API ${this.currentApiIndex + 1}:`, url);
+                // 处理本地JSON文件
+                if (apiUrl.includes('返回接口.json')) {
+                    url = apiUrl;
+                    console.log('使用本地测试数据:', url);
+                }
+                // 针对不同API接口格式进行适配
+                else if (apiUrl.includes('03c3.cn') || apiUrl.includes('vvhan.com')) {
+                    // 这些API可能有不同的路径格式，需要特殊处理
+                    if (apiUrl.includes('03c3.cn')) {
+                        url = `${apiUrl}/ncm/playlist?id=${rankId}`;
+                    } else if (apiUrl.includes('vvhan.com')) {
+                        url = `${apiUrl}/music/netease/playlist?id=${rankId}`;
+                    }
+                }
+                
+                console.log(`尝试API ${this.currentApiIndex + 1}/${this.apiUrls.length}:`, url);
                 
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 10000);
+                const timeoutId = setTimeout(() => controller.abort(), 8000); // 缩短超时时间
                 
                 const response = await fetch(url, {
                     signal: controller.signal,
                     headers: {
                         'Accept': 'application/json',
-                    }
+                    },
+                    // 添加缓存控制
+                    cache: 'no-cache',
+                    // 添加模式
+                    mode: apiUrl.includes('返回接口.json') ? 'same-origin' : 'cors'
                 });
                 
                 clearTimeout(timeoutId);
@@ -146,8 +204,25 @@ class NeteaseMusicRankDetail {
                 
                 const data = await response.json();
                 
-                if (data.code !== 200) {
-                    throw new Error(data.message || '获取数据失败');
+                // 如果是本地测试数据，直接使用
+                if (apiUrl.includes('返回接口.json')) {
+                    // 查找对应ID的榜单
+                    if (data.data && Array.isArray(data.data)) {
+                        const rank = data.data.find(item => item.id == rankId);
+                        if (rank) {
+                            // 构造一个符合详情页面期望的数据结构
+                            return {
+                                code: 200,
+                                playlist: rank,
+                                data: [] // 模拟空歌曲列表
+                            };
+                        }
+                    }
+                }
+                
+                // 不同API可能有不同的成功状态码
+                if (data.code !== undefined && data.code !== 200 && data.code !== 0) {
+                    throw new Error(data.message || data.msg || '获取数据失败');
                 }
                 
                 console.log('API调用成功:', data);
@@ -157,23 +232,68 @@ class NeteaseMusicRankDetail {
                 console.warn(`API ${this.currentApiIndex + 1} 失败:`, error.message);
                 lastError = error;
                 this.currentApiIndex = (this.currentApiIndex + 1) % this.apiUrls.length;
+                attemptedApis++;
                 
                 if (error.name === 'AbortError') {
                     lastError = new Error('请求超时，请重试');
                 }
+                
+                // 添加短暂延迟，避免过快请求下一个API
+                await new Promise(resolve => setTimeout(resolve, 300));
             }
         }
         
-        throw lastError || new Error('所有API接口都无法访问');
+        throw lastError || new Error('所有API接口都无法访问，请稍后再试');
     }
 
     // 显示榜单详情
     displayRankDetail(data) {
         this.rankData = data;
-        const songs = data.data || [];
+        
+        // 适配不同API返回的数据格式
+        let songs = [];
+        let rankInfo = null;
+        
+        // 标准格式：data.data 是数组
+        if (data.data && Array.isArray(data.data)) {
+            songs = data.data;
+            rankInfo = data.playlist || {};
+        }
+        // 03c3.cn API格式：data.result 或 data.playlist
+        else if (data.result) {
+            if (data.result.tracks && Array.isArray(data.result.tracks)) {
+                songs = data.result.tracks;
+                rankInfo = data.result;
+            } else if (Array.isArray(data.result)) {
+                songs = data.result;
+            }
+        }
+        // vvhan.com API格式：data.playlist 和 data.playlist.tracks
+        else if (data.playlist && data.playlist.tracks) {
+            songs = data.playlist.tracks;
+            rankInfo = data.playlist;
+        }
+        // 其他可能的格式
+        else {
+            // 尝试查找数据中的任何数组
+            for (const key in data) {
+                if (Array.isArray(data[key]) && data[key].length > 0) {
+                    songs = data[key];
+                    break;
+                } else if (data[key] && data[key].tracks && Array.isArray(data[key].tracks)) {
+                    songs = data[key].tracks;
+                    rankInfo = data[key];
+                    break;
+                }
+            }
+        }
+        
+        if (songs.length === 0) {
+            throw new Error('未找到歌曲数据或数据格式不兼容');
+        }
         
         // 显示榜单信息（如果有的话）
-        this.displayRankInfo(songs[0]);
+        this.displayRankInfo(songs[0], rankInfo);
         
         // 显示歌曲列表
         this.displaySongList(songs);
@@ -184,25 +304,63 @@ class NeteaseMusicRankDetail {
     }
 
     // 显示榜单信息
-    displayRankInfo(firstSong) {
-        const rankInfo = document.getElementById('rankInfo');
+    displayRankInfo(firstSong, rankInfoData) {
+        const rankInfoElement = document.getElementById('rankInfo');
         
-        if (firstSong && firstSong.rank_name) {
-            document.getElementById('rankName').textContent = firstSong.rank_name;
-            document.getElementById('rankDescription').textContent = `${firstSong.rank_name} - 网易云音乐官方榜单`;
+        // 获取URL参数中的榜单名称
+        const urlParams = new URLSearchParams(window.location.search);
+        const rankNameFromUrl = urlParams.get('name');
+        
+        // 尝试从多个来源获取榜单名称
+        let rankName = rankNameFromUrl || '';
+        if (!rankName) {
+            if (rankInfoData && rankInfoData.name) {
+                rankName = rankInfoData.name;
+            } else if (firstSong) {
+                rankName = firstSong.rank_name || firstSong.rankName || firstSong.playlist_name || '';
+            }
+        }
+        
+        if (rankName) {
+            document.getElementById('rankName').textContent = rankName;
+            document.getElementById('rankDescription').textContent = `${rankName} - 网易云音乐官方榜单`;
+            document.title = `${rankName} - 网易云音乐榜单详情`;
             
-            // 如果有专辑封面，使用第一首歌的专辑封面作为榜单封面
-            if (firstSong.album && firstSong.album.cover) {
-                document.getElementById('rankCover').src = firstSong.album.cover;
-                document.getElementById('rankCover').alt = firstSong.rank_name;
+            // 尝试获取榜单封面
+            let coverUrl = '';
+            if (rankInfoData && rankInfoData.coverImgUrl) {
+                coverUrl = rankInfoData.coverImgUrl;
+            } else if (rankInfoData && rankInfoData.picUrl) {
+                coverUrl = rankInfoData.picUrl;
+            } else if (firstSong && firstSong.album && firstSong.album.cover) {
+                coverUrl = firstSong.album.cover;
+            } else if (firstSong && firstSong.album && firstSong.album.picUrl) {
+                coverUrl = firstSong.album.picUrl;
+            } else if (firstSong && firstSong.al && firstSong.al.picUrl) {
+                coverUrl = firstSong.al.picUrl;
             }
             
-            document.getElementById('updateTime').textContent = `更新时间: ${this.formatDate(new Date())}`;
-            document.getElementById('updateFrequency').textContent = '实时更新';
+            if (coverUrl) {
+                document.getElementById('rankCover').src = coverUrl;
+                document.getElementById('rankCover').alt = rankName;
+            }
             
-            rankInfo.style.display = 'block';
+            // 尝试获取更新时间
+            let updateTime = '';
+            if (rankInfoData && rankInfoData.updateTime) {
+                updateTime = this.formatDate(new Date(rankInfoData.updateTime));
+            } else if (rankInfoData && rankInfoData.updateFrequency) {
+                updateTime = rankInfoData.updateFrequency;
+            } else {
+                updateTime = this.formatDate(new Date());
+            }
+            
+            document.getElementById('updateTime').textContent = `更新时间: ${updateTime}`;
+            document.getElementById('updateFrequency').textContent = rankInfoData?.updateFrequency || '定期更新';
+            
+            rankInfoElement.style.display = 'block';
         } else {
-            rankInfo.style.display = 'none';
+            rankInfoElement.style.display = 'none';
         }
     }
 

@@ -58,28 +58,13 @@ body::after {
     opacity: 0.6;
 }
 
+/* 音符浮动动画 */
 @keyframes particleFloat {
     0% {
         transform: translateY(0px);
     }
     100% {
         transform: translateY(-100px);
-    }
-}
-
-/* 响应式背景调整 */
-@media (max-width: 768px) {
-    body::after {
-        background-size: 150px 75px;
-        animation-duration: 25s;
-    }
-}
-
-@media (max-width: 480px) {
-    body::after {
-        background-size: 100px 50px;
-        animation-duration: 30s;
-        opacity: 0.4;
     }
 }
 
@@ -109,6 +94,22 @@ body::after {
     }
 }
 
+/* 响应式背景调整 */
+@media (max-width: 768px) {
+    body::after {
+        background-size: 150px 75px;
+        animation-duration: 25s;
+    }
+}
+
+@media (max-width: 480px) {
+    body::after {
+        background-size: 100px 50px;
+        animation-duration: 30s;
+        opacity: 0.4;
+    }
+}
+
 /* 高性能模式 - 减少动画 */
 @media (prefers-reduced-motion: reduce) {
     body {
@@ -123,33 +124,5 @@ body::after {
     .music-note {
         animation: none;
         display: none;
-    }
-    
-    .title {
-        animation: none;
-    }
-}
-
-/* 深色模式支持 */
-@media (prefers-color-scheme: dark) {
-    body {
-        background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 25%, #388E3C 50%, #43A047 75%, #4CAF50 100%);
-    }
-    
-    body::before {
-        background-image: 
-            radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
-            radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
-    }
-    
-    body::after {
-        background-image: 
-            radial-gradient(1px 1px at 20px 30px, rgba(255, 255, 255, 0.1), transparent),
-            radial-gradient(1px 1px at 40px 70px, rgba(255, 255, 255, 0.08), transparent),
-            radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.06), transparent),
-            radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.04), transparent),
-            radial-gradient(1px 1px at 160px 30px, rgba(255, 255, 255, 0.05), transparent);
-        opacity: 0.3;
     }
 }

@@ -1,4 +1,103 @@
-/* 基础样式重置 */
+/* 背景样式 */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+/* 返回链接样式 */
+.back-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #1DB954;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #1ed760;
+    text-decoration: underline;
+}
+
+.modern-gradient {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        135deg,
+        rgba(64, 169, 255, 0.4) 0%,
+        rgba(120, 192, 255, 0.3) 25%,
+        rgba(255, 175, 64, 0.2) 50%,
+        rgba(255, 140, 50, 0.3) 75%,
+        rgba(255, 122, 69, 0.4) 100%
+    );
+    animation: gradient-flow 20s ease-in-out infinite;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+.modern-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at 30% 70%,
+        rgba(64, 169, 255, 0.5) 0%,
+        transparent 50%
+    ), radial-gradient(
+        circle at 70% 30%,
+        rgba(255, 140, 50, 0.4) 0%,
+        transparent 50%
+    );
+    animation: pulse-effect 15s ease-in-out infinite alternate;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+}
+
+@keyframes gradient-flow {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.8;
+    }
+    25% {
+        transform: rotate(90deg) scale(1.1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: rotate(180deg) scale(0.9);
+        opacity: 0.9;
+    }
+    75% {
+        transform: rotate(270deg) scale(1.05);
+        opacity: 0.7;
+    }
+}
+
+@keyframes pulse-effect {
+    0% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.2) rotate(180deg);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 0.6;
+    }
+}
+
+/* 主样式 */
 * {
     margin: 0;
     padding: 0;
@@ -6,9 +105,10 @@
 }
 
 body {
-    font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
-    line-height: 1.6;
-    color: #2c3e50;
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    color: #333;
+    background-color: #f8f9fa;
+    position: relative;
     min-height: 100vh;
     overflow-x: hidden;
 }
@@ -16,468 +116,280 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 24px;
     position: relative;
     z-index: 1;
-}
-
-/* 头部样式 */
-.header {
-    text-align: center;
-    margin-bottom: 40px;
-    padding: 40px 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(76, 175, 80, 0.1);
 }
 
-.title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #4CAF50, #81C784);
+header {
+    text-align: center;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+header h1 {
+    background: linear-gradient(135deg, #4096ff, #ff7a45);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 10px;
-    animation: titleGlow 3s ease-in-out infinite alternate;
+    color: transparent;
+    margin-bottom: 14px;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
-@keyframes titleGlow {
-    from { filter: drop-shadow(0 0 5px rgba(76, 175, 80, 0.3)); }
-    to { filter: drop-shadow(0 0 15px rgba(76, 175, 80, 0.6)); }
-}
-
-.subtitle {
-    font-size: 1.1rem;
+.update-time {
     color: #666;
-    opacity: 0.8;
-}
-
-/* 榜单信息样式 */
-.rank-info {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 30px;
-    box-shadow: 0 6px 25px rgba(76, 175, 80, 0.1);
-    border: 1px solid rgba(76, 175, 80, 0.2);
-}
-
-.rank-header {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-}
-
-.rank-cover {
-    width: 120px;
-    height: 120px;
-    border-radius: 12px;
-    object-fit: cover;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    flex-shrink: 0;
-}
-
-.rank-details {
-    flex: 1;
-}
-
-.rank-name {
-    font-size: 1.8rem;
-    color: #2c3e50;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-
-.rank-description {
-    color: #666;
-    margin-bottom: 15px;
-    line-height: 1.6;
-}
-
-.rank-meta {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.update-time, .update-frequency {
-    background: linear-gradient(135deg, #E8F5E8, #C8E6C9);
-    padding: 6px 12px;
-    border-radius: 20px;
     font-size: 0.9rem;
-    color: #2E7D32;
-    border: 1px solid rgba(76, 175, 80, 0.3);
+    background-color: rgba(0, 0, 0, 0.03);
+    padding: 8px 16px;
+    border-radius: 24px;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-/* 控制区域样式 */
-.controls {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 30px;
-    box-shadow: 0 6px 25px rgba(76, 175, 80, 0.1);
+.hot-list {
+    list-style: none;
 }
 
-.input-group {
+.hot-item {
+    padding: 20px;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
     display: flex;
-    gap: 15px;
     align-items: center;
-    flex-wrap: wrap;
+    border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-.input-group label {
-    font-weight: 600;
-    color: #2c3e50;
-    min-width: 80px;
+.hot-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    border-color: rgba(64, 169, 255, 0.3);
 }
 
-#rankId {
-    flex: 1;
-    min-width: 200px;
-    padding: 12px 16px;
-    border: 2px solid #E0E0E0;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.9);
+.hot-rank {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4096ff;
+    margin-right: 18px;
+    min-width: 38px;
+    text-align: center;
+    background-color: rgba(64, 169, 255, 0.1);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#rankId:focus {
-    outline: none;
-    border-color: #4CAF50;
-    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
-}
-
-.load-btn {
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #4CAF50, #66BB6A);
+.hot-rank.top-1 {
+    background: linear-gradient(135deg, #ff4d4f, #ff7a45);
     color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
-.load-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+.hot-rank.top-2 {
+    background: linear-gradient(135deg, #ff7a45, #ffa940);
+    color: white;
 }
 
-.load-btn:active {
-    transform: translateY(0);
+.hot-rank.top-3 {
+    background: linear-gradient(135deg, #ffa940, #ffec3d);
+    color: white;
 }
 
-.load-btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
+.hot-content {
+    flex: 1;
 }
 
-/* 加载动画 */
+.hot-title {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    line-height: 1.5;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.hot-title:hover {
+    color: #4096ff;
+    text-decoration: none;
+}
+
 .loading {
     text-align: center;
     padding: 40px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    margin-bottom: 30px;
-}
-
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid #E0E0E0;
-    border-top: 4px solid #4CAF50;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 15px;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* 错误提示 */
-.error {
-    text-align: center;
-    padding: 30px;
-    background: rgba(255, 245, 245, 0.95);
-    border: 2px solid #ffcdd2;
-    border-radius: 15px;
-    margin-bottom: 30px;
-}
-
-.error-icon {
-    font-size: 3rem;
-    margin-bottom: 15px;
-}
-
-.error-message {
-    color: #c62828;
-    margin-bottom: 20px;
+    color: #666;
     font-size: 1.1rem;
 }
 
-.retry-btn {
-    padding: 10px 20px;
-    background: #f44336;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.retry-btn:hover {
-    background: #d32f2f;
-    transform: translateY(-1px);
-}
-
-/* 歌曲列表样式 */
-.song-list {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 30px;
-    box-shadow: 0 6px 25px rgba(76, 175, 80, 0.1);
-}
-
-.list-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #E8F5E8;
-}
-
-.list-header h3 {
-    font-size: 1.5rem;
-    color: #2c3e50;
-    font-weight: 600;
-}
-
-.song-count {
-    background: linear-gradient(135deg, #4CAF50, #66BB6A);
-    color: white;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
-/* 歌曲项样式 */
-.song-item {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    margin-bottom: 12px;
-    background: rgba(248, 255, 248, 0.8);
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(76, 175, 80, 0.1);
-    cursor: pointer;
-}
-
-.song-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.15);
-    background: rgba(232, 245, 232, 0.9);
-}
-
-.song-rank {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #4CAF50;
-    min-width: 40px;
+footer {
     text-align: center;
-}
-
-.song-rank.top3 {
-    background: linear-gradient(135deg, #FFD700, #FFA000);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.song-info {
-    flex: 1;
-    margin-left: 15px;
-}
-
-.song-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #2c3e50;
-    margin-bottom: 5px;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.song-artist {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 3px;
-}
-
-.song-album {
-    color: #888;
-    font-size: 0.85rem;
-}
-
-.song-meta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 5px;
-}
-
-.song-duration {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
     color: #666;
     font-size: 0.9rem;
 }
 
-.song-popularity {
-    background: linear-gradient(135deg, #4CAF50, #66BB6A);
-    color: white;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: 600;
+/* 音符装饰样式 */
+.music-note {
+    position: fixed;
+    font-size: 24px;
+    color: rgba(236, 65, 65, 0.6);
+    z-index: 0;
+    pointer-events: none;
+    animation: floatNote 20s linear infinite;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
 }
 
-/* 返回按钮 */
-.back-to-list {
-    text-align: center;
-    margin: 30px 0;
-}
-
-.back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #81C784, #A5D6A7);
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(129, 199, 132, 0.3);
-}
-
-.back-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(129, 199, 132, 0.4);
-}
-
-/* 页脚 */
-.footer {
-    text-align: center;
-    padding: 30px 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    margin-top: 40px;
-    color: #666;
-    backdrop-filter: blur(10px);
+@keyframes floatNote {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-100px) rotate(180deg);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(-200px) rotate(360deg);
+        opacity: 0;
+    }
 }
 
 /* 响应式设计 */
-@media (max-width: 768px) {
+@media (max-width: 1024px) and (min-width: 768px) {
     .container {
-        padding: 15px;
+        max-width: 90%;
+        padding: 20px;
     }
     
-    .title {
-        font-size: 2rem;
+    header h1 {
+        font-size: 2.2rem;
     }
     
-    .rank-header {
-        flex-direction: column;
-        text-align: center;
+    .hot-item {
+        padding: 18px;
     }
     
-    .rank-cover {
-        width: 100px;
-        height: 100px;
-        margin: 0 auto 15px;
+    .hot-title {
+        font-size: 1.1rem;
     }
     
-    .input-group {
-        flex-direction: column;
-        align-items: stretch;
+    .music-note {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        background-color: #f8f9fa;
     }
     
-    .input-group label {
-        min-width: auto;
-        margin-bottom: 5px;
+    .container {
+        max-width: 95%;
+        margin: 12px auto;
+        padding: 16px;
+        border-radius: 12px;
     }
     
-    #rankId {
-        min-width: auto;
+    header {
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
         margin-bottom: 10px;
     }
     
-    .song-item {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
+    .update-time {
+        font-size: 0.85rem;
+        padding: 6px 12px;
     }
     
-    .song-info {
-        margin-left: 0;
-    }
-    
-    .song-meta {
-        align-items: center;
+    .hot-item {
+        padding: 16px;
+        margin-bottom: 12px;
+        border-radius: 10px;
         flex-direction: row;
-        justify-content: center;
+        align-items: flex-start;
     }
     
-    .list-header {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
+    .hot-rank {
+        font-size: 1.1rem;
+        margin-right: 14px;
+        min-width: 32px;
+        width: 32px;
+        height: 32px;
+        margin-top: 2px;
+    }
+    
+    .hot-title {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 6px;
+    }
+    
+    footer {
+        margin-top: 24px;
+        padding-top: 16px;
+        font-size: 0.85rem;
     }
 }
 
 @media (max-width: 480px) {
-    .title {
-        font-size: 1.8rem;
+    .container {
+        margin: 8px auto;
+        padding: 14px;
     }
     
-    .header {
-        padding: 30px 15px;
+    header h1 {
+        font-size: 1.6rem;
     }
     
-    .rank-info, .controls, .song-list {
-        padding: 20px;
+    .hot-item {
+        padding: 14px;
+        margin-bottom: 10px;
     }
     
-    .song-item {
-        padding: 12px;
+    .hot-rank {
+        font-size: 1rem;
+        margin-right: 12px;
+        min-width: 30px;
+        width: 30px;
+        height: 30px;
+    }
+    
+    .hot-title {
+        font-size: 0.95rem;
     }
 }
 
-/* 平板端适配 */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .container {
-        padding: 25px;
+/* 减少动画以节省电池 */
+@media (prefers-reduced-motion: reduce) {
+    .modern-gradient,
+    .modern-gradient::before {
+        animation: none;
     }
     
-    .song-item {
-        padding: 18px;
-    }
-    
-    .rank-cover {
-        width: 110px;
-        height: 110px;
+    .modern-gradient {
+        background: linear-gradient(
+            135deg,
+            rgba(64, 169, 255, 0.3) 0%,
+            rgba(255, 175, 64, 0.2) 50%,
+            rgba(255, 122, 69, 0.25) 100%
+        );
     }
 }

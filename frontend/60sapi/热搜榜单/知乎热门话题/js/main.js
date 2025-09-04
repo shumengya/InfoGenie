@@ -48,21 +48,29 @@ function renderTopicList(data) {
         const coverImg = item.cover ? 
             `<img src="${item.cover}" alt="话题封面" class="topic-cover" onerror="this.style.display='none'">` : '';
         
+        // 判断文本内容长度，决定图片位置
+        // 如果detail存在且长度较长，或者没有detail但标题较长，则图片放在下方
+        const detailLength = item.detail ? item.detail.length : 0;
+        const titleLength = item.title ? item.title.length : 0;
+        const isLongContent = detailLength > 100 || (detailLength === 0 && titleLength > 30);
+        
+        // 根据内容长度决定布局类名
+        const layoutClass = isLongContent ? 'long-content' : 'short-content';
+        
         topicItem.innerHTML = `
-            <div class="topic-header">
+            <div class="topic-header ${layoutClass}">
                 <div class="topic-rank ${rankClass}">${index + 1}</div>
                 <div class="topic-content">
-                    <a href="${item.link}" class="topic-title" target="_blank">${item.title}</a>
+                    <a href="${item.link}" class="topic-title" target="_blank">🔥 ${item.title}</a>
                     ${item.detail ? `<div class="topic-detail">${item.detail}</div>` : ''}
                     <div class="topic-stats">
-                        ${item.hot_value_desc ? `<div class="stat-item"><span class="hot-value">${item.hot_value_desc}</span></div>` : ''}
+                        ${item.hot_value_desc ? `<div class="stat-item"><span class="hot-value">🔥 ${item.hot_value_desc}</span></div>` : ''}
                         ${item.answer_cnt ? `<div class="stat-item">💬 ${formatNumber(item.answer_cnt)} 回答</div>` : ''}
                         ${item.follower_cnt ? `<div class="stat-item">👥 ${formatNumber(item.follower_cnt)} 关注</div>` : ''}
                     </div>
                 </div>
                 ${coverImg}
-            </div>
-        `;
+            </div>`;
         
         topicListElement.appendChild(topicItem);
     });

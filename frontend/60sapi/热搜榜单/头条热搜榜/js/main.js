@@ -38,34 +38,53 @@ function formatNumber(num) {
 function renderHotList(data) {
     hotListElement.innerHTML = '';
     
+    // 几何装饰符号数组
+    const geometricSymbols = ['◆', '■', '▲', '●', '★', '◈', '◇', '□', '△', '○'];
+    
     data.forEach((item, index) => {
         const hotItem = document.createElement('div');
         hotItem.className = 'hot-item';
         
         const rankClass = index < 3 ? `top-${index + 1}` : '';
         
+        // 随机选择几何符号作为装饰
+        const randomSymbol = geometricSymbols[index % geometricSymbols.length];
+        
         // 处理热度值显示
         const hotValueDisplay = item.hot_value ? 
-            `<div class="stat-item"><span class="hot-value">${formatNumber(item.hot_value)} 热度</span></div>` : '';
+            `<div class="stat-item"><span class="hot-value">${randomSymbol} ${formatNumber(item.hot_value)} 热度</span></div>` : '';
         
         // 处理标签显示
         const tagDisplay = item.tag ? 
-            `<div class="stat-item"><span class="hot-tag">${item.tag}</span></div>` : '';
+            `<div class="stat-item"><span class="hot-tag">${randomSymbol} ${item.tag}</span></div>` : '';
         
         hotItem.innerHTML = `
             <div class="hot-rank ${rankClass}">${index + 1}</div>
             <div class="hot-content">
-                <a href="${item.link}" class="hot-title" target="_blank">${item.title}</a>
+                <a href="${item.link}" class="hot-title" target="_blank">
+                    <span class="title-decoration">${randomSymbol}</span> ${item.title}
+                </a>
                 <div class="hot-stats">
                     ${hotValueDisplay}
                     ${tagDisplay}
-                    ${item.source ? `<div class="stat-item">📰 ${item.source}</div>` : ''}
-                    ${item.time ? `<div class="stat-item">🕒 ${item.time}</div>` : ''}
+                    ${item.source ? `<div class="stat-item"><span class="source-icon">${randomSymbol}</span> ${item.source}</div>` : ''}
+                    ${item.time ? `<div class="stat-item"><span class="time-icon">${randomSymbol}</span> ${item.time}</div>` : ''}
                 </div>
             </div>
         `;
         
         hotListElement.appendChild(hotItem);
+    });
+    
+    // 添加几何装饰到列表项
+    const hotItems = document.querySelectorAll('.hot-item');
+    hotItems.forEach((item, index) => {
+        // 为奇数和偶数项添加不同的装饰类
+        if (index % 2 === 0) {
+            item.classList.add('even-item');
+        } else {
+            item.classList.add('odd-item');
+        }
     });
     
     // 更新时间
