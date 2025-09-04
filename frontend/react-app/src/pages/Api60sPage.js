@@ -270,11 +270,12 @@ const Api60sPage = () => {
             const moduleName = moduleNames[i];
             try {
               const indexPath = `/60sapi/${categoryName}/${moduleName}/index.html`;
-              const response = await fetch(indexPath, { method: 'HEAD' });
+              const fullUrl = `http://localhost:5000${indexPath}`;
+              const response = await fetch(fullUrl, { method: 'HEAD' });
               
               if (response.ok) {
                 // 获取页面标题
-                const htmlResponse = await fetch(indexPath);
+                const htmlResponse = await fetch(fullUrl);
                 const html = await htmlResponse.text();
                 const titleMatch = html.match(/<title>(.*?)<\/title>/i);
                 const title = titleMatch ? titleMatch[1].trim() : moduleName;
@@ -282,7 +283,7 @@ const Api60sPage = () => {
                 apis.push({
                   title,
                   description: `${moduleName}相关功能`,
-                  link: `http://localhost:5000${indexPath}`,
+                  link: fullUrl,
                   status: 'active',
                   color: gradientColors[i % gradientColors.length]
                 });

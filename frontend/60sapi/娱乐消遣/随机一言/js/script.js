@@ -4,11 +4,7 @@ class HitokotoApp {
     constructor() {
         // API接口列表
         this.apiEndpoints = [
-            "https://60s-cf.viki.moe",
-            "https://60s.viki.moe",
-            "https://60s.b23.run",
-            "https://60s.114128.xyz",
-            "https://60s-cf.114128.xyz"
+            "https://60s.api.shumengya.top"
         ];
         
         this.currentEndpointIndex = 0;
@@ -117,7 +113,8 @@ class HitokotoApp {
         const timeoutId = setTimeout(() => controller.abort(), 10000); // 10秒超时
         
         try {
-            const response = await fetch(`${endpoint}/v2/hitokoto?encoding=text`, {
+            // 移除URL中的encoding=text参数，确保返回JSON格式
+            const response = await fetch(`${endpoint}/v2/hitokoto`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',

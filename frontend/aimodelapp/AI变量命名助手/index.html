@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI变量命名助手</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 class="title">AI变量命名助手</h1>
+      <p class="subtitle">让AI帮您生成规范的变量名</p>
+    </div>
+
+    <div class="form-section">
+      <div class="form-group">
+        <label class="form-label" for="description">变量描述：</label>
+        <textarea 
+          id="description" 
+          class="form-input textarea" 
+          placeholder="请描述变量的用途，例如：用户的姓名、商品的价格、数据库连接状态等..."
+        >用户的姓名</textarea>
+      </div>
+
+      <!-- 命名规范选择已移除，将生成所有5种规范的建议 -->
+
+      <button id="generateBtn" class="btn">生成变量名</button>
+    </div>
+
+    <div class="result-section">
+      <h3 class="result-title">推荐的变量名</h3>
+      <div id="loading" class="loading">正在生成中，请稍候...</div>
+      <div id="suggestions" class="suggestions-container">
+        <div class="placeholder">点击"生成变量名"按钮，AI将为您推荐合适的变量名</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

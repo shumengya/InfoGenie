@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>段子游乐场</title>
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-comic"> <!-- Default Theme -->
+
+    <div class="theme-switcher">
+        <div class="theme-icon" data-theme="theme-comic" title="手绘漫画">✏️</div>
+        <div class="theme-icon" data-theme="theme-emoji" title="表情包狂欢">😂</div>
+        <div class="theme-icon" data-theme="theme-retro" title="复古电视">📺</div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>段子游乐场</h1>
+            <div class="divider"></div>
+        </header>
+
+        <main>
+            <div id="joke-card" class="joke-card">
+                <div class="loading-container">
+                    <div class="loading-anim">
+                        <div class="book">
+                            <div class="book-page"></div>
+                            <div class="book-page"></div>
+                            <div class="book-page"></div>
+                        </div>
+                    </div>
+                    <p>段子菌正在翻笑话库...</p>
+                </div>
+                <p id="joke-text" class="joke-text"></p>
+            </div>
+
+            <div class="feedback-buttons">
+                <button id="btn-lol" class="feedback-btn" title="笑到拍桌">🤣</button>
+                <button id="btn-cold" class="feedback-btn" title="有点冷">🥶</button>
+                <button id="btn-seen" class="feedback-btn" title="似曾相识">🤔</button>
+                <button id="btn-absurd" class="feedback-btn" title="离谱但好笑">🤯</button>
+            </div>
+
+            <button id="new-joke-btn" class="new-joke-btn">
+                <span class="btn-text">再来一个!</span>
+            </button>
+        </main>
+    </div>
+
+    <!-- Animation & Sound Containers -->
+    <div id="animation-container"></div>
+    <audio id="sound-lol" src="https://www.myinstants.com/media/sounds/yay-6326.mp3" preload="auto"></audio>
+    <audio id="sound-cold" src="https://www.myinstants.com/media/sounds/zapsplat_cartoon_whoosh_fast_swoosh_001_76761.mp3" preload="auto"></audio>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

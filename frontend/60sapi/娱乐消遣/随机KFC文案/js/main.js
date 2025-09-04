@@ -17,8 +17,8 @@ class KFCGenerator {
     // 加载API接口列表
     async loadApiEndpoints() {
         try {
-            const response = await fetch('./接口集合.json');
-            this.apiEndpoints = await response.json();
+            // 直接硬编码API端点，避免CORS问题
+            this.apiEndpoints = ["https://60s.api.shumengya.top"];
         } catch (error) {
             console.error('加载API接口列表失败:', error);
             this.showToast('加载接口配置失败', 'error');

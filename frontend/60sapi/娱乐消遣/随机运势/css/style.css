@@ -1,0 +1,342 @@
+.container {
+    text-align: center;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+header h1 {
+    font-size: 2.8em;
+    color: #f0e6ff;
+    text-shadow: 0 0 10px #d1a9ff, 0 0 20px #d1a9ff;
+    margin-bottom: 0.2em;
+}
+
+header p {
+    font-size: 1.2em;
+    color: #e0c8ff;
+    margin-bottom: 40px;
+}
+
+.crystal-ball-container {
+    perspective: 1000px;
+    margin-bottom: 40px;
+}
+
+.crystal-ball {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), rgba(200, 180, 255, 0.1));
+    border-radius: 50%;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 0 30px #c390ff, 0 0 60px #a060e0, inset 0 0 20px rgba(255, 220, 255, 0.3);
+    animation: float 6s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+.reflection {
+    width: 80px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    transform: rotate(-30deg);
+    filter: blur(5px);
+}
+
+.swirl {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    background: linear-gradient(45deg, rgba(255, 192, 203, 0.1), rgba(128, 0, 128, 0.2));
+    border-radius: 50%;
+    animation: swirl 10s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes swirl {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.fortune-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fortune-content {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.fortune-content.visible {
+    opacity: 1;
+}
+
+#luck-desc {
+    font-size: 2em;
+    color: #ffc0cb;
+    margin: 0 0 10px;
+}
+
+#luck-tip {
+    font-size: 1.1em;
+    color: #e0e0e0;
+    margin: 0;
+    padding-bottom: 20px; /* Add some space before the new details */
+}
+
+.fortune-details {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.detail-item {
+    text-align: center;
+}
+
+.detail-item h3 {
+    font-size: 0.9em;
+    color: #ffc0cb;
+    margin: 0 0 5px;
+    font-weight: normal;
+}
+
+.detail-item p {
+    font-size: 1.2em;
+    margin: 0;
+    font-weight: bold;
+}
+
+#lucky-color {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    /* Remove the text content */
+    font-size: 0;
+}
+
+/* Tarot Card Styles */
+.tarot-container {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.tarot-container h2 {
+    font-size: 1.5em;
+    color: #f0e6ff;
+    text-shadow: 0 0 8px #d1a9ff;
+    margin-bottom: 20px;
+}
+
+.tarot-card-container {
+    width: 180px;
+    height: 280px;
+    perspective: 1000px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.tarot-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.tarot-card-container.flipped .tarot-card-inner {
+    transform: rotateY(180deg);
+}
+
+.tarot-card-front,
+.tarot-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.tarot-card-back {
+    background: linear-gradient(135deg, #4a1a6c, #2a0d3f);
+    border: 2px solid #d1a9ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    color: #d1a9ff;
+}
+
+.tarot-card-back::after {
+    content: '✧'; /* A simple star symbol */
+    text-shadow: 0 0 10px #f0e6ff;
+}
+
+.tarot-card-front {
+    background: linear-gradient(135deg, #3e165b, #592883);
+    border: 2px solid #d1a9ff;
+    color: white;
+    transform: rotateY(180deg);
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#tarot-name {
+    font-size: 1.4em;
+    color: #ffc0cb;
+    margin: 0 0 10px;
+}
+
+#tarot-interpretation {
+    font-size: 0.9em;
+    text-align: center;
+    margin: 0;
+}
+
+/* Side Decorations */
+.side-decor {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 15vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.left-decor {
+    left: 0;
+}
+
+.right-decor {
+    right: 0;
+}
+
+.decor-symbol {
+    position: absolute;
+    color: rgba(209, 169, 255, 0.5);
+    text-shadow: 0 0 10px rgba(240, 230, 255, 0.7);
+    animation: floatSymbol 20s infinite ease-in-out;
+}
+
+@keyframes floatSymbol {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    25%, 75% {
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(-20vh) rotate(180deg);
+        opacity: 0.3;
+    }
+}
+
+#get-fortune-btn {
+    background: linear-gradient(45deg, #da70d6, #8a2be2);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 15px #c390ff;
+}
+
+#get-fortune-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #d1a9ff;
+}
+
+#get-fortune-btn:active {
+    transform: scale(0.98);
+}
+
+.loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-left-color: #ffc0cb;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    display: none; /* Hidden by default */
+}
+
+.loading-spinner.visible {
+    display: block;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+footer {
+    margin-top: 40px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2em;
+    }
+    .crystal-ball {
+        width: 150px;
+        height: 150px;
+    }
+    .fortune-card {
+        padding: 20px;
+    }
+    .fortune-details {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .tarot-card-container {
+        width: 150px;
+        height: 233px;
+    }
+}
+
+/* Hide side decor on smaller screens */
+@media (max-width: 1200px) {
+    .side-decor {
+        display: none;
+    }
+}

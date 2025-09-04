@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机冷笑话</title>
+    <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-theme="light">
+    <div id="snowflake-container"></div>
+    <div id="frost-overlay"></div>
+    <div class="background-bottom"></div>
+
+    <nav class="top-nav">
+        <div class="theme-switcher">
+            <button class="theme-btn" data-theme-target="light" title="清新风">☀️</button>
+            <button class="theme-btn" data-theme-target="dark" title="暗黑风">🌙</button>
+            <button class="theme-btn" data-theme-target="winter" title="冰雪风">❄️</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1 class="title">冷笑话生成器</h1>
+        </header>
+
+        <main class="joke-card">
+            <div id="loader" class="hidden">
+                <div class="snowflake-loader"></div>
+                <p>思考中...</p>
+            </div>
+            <p id="joke-text">点击下面的按钮，来点冷笑话吧！</p>
+        </main>
+
+        <div class="controls">
+            <button id="new-joke-btn">再来一个</button>
+        </div>
+
+        <div class="interactions">
+            <button class="interaction-btn" id="like-btn" title="好笑">👍</button>
+            <button class="interaction-btn" id="dislike-btn" title="不好笑">👎</button>
+            <button class="interaction-btn" id="collect-btn" title="收藏">⭐️</button>
+            <button class="interaction-btn" id="share-btn" title="分享">🔗</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 冷笑话工坊</p>
+    </footer>
+
+    <audio id="wind-sound" src="https://www.soundjay.com/nature/sounds/wind-howl-01.mp3" preload="auto"></audio>
+    <audio id="snow-sound" src="https://www.soundjay.com/nature/sounds/walking-in-snow-01.mp3" preload="auto"></audio>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

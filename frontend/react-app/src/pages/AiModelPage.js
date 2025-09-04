@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { FiCpu, FiLock, FiMessageCircle, FiImage, FiFileText, FiUser } from 'react-icons/fi';
+import { FiCpu, FiUser, FiExternalLink, FiArrowLeft } from 'react-icons/fi';
 import { useUser } from '../contexts/UserContext';
+import axios from 'axios';
 
 const AiContainer = styled.div`
   min-height: calc(100vh - 140px);
@@ -53,6 +54,89 @@ const LoginPrompt = styled.div`
   margin-bottom: 40px;
 `;
 
+const AppGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+`;
+
+const AppCard = styled.div`
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  position: relative;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: #667eea;
+  }
+`;
+
+const AppHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+`;
+
+const AppTitle = styled.h3`
+  font-size: 20px;
+  font-weight: bold;
+  color: #1f2937;
+  margin: 0;
+`;
+
+const AppIcon = styled.div`
+  font-size: 24px;
+  color: #667eea;
+`;
+
+const AppDescription = styled.p`
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+`;
+
+const AppFooter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const AppTheme = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: ${props => props.gradient};
+`;
+
+const LaunchButton = styled.button`
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  }
+`;
+
 const LoginIcon = styled.div`
   font-size: 64px;
   margin-bottom: 24px;
@@ -92,116 +176,118 @@ const LoginButton = styled.button`
   }
 `;
 
-const FeatureGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-bottom: 40px;
-`;
-
-const FeatureCard = styled.div`
-  background: white;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  position: relative;
-  
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  }
-`;
-
-const FeatureIcon = styled.div`
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
+const EmbeddedContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+`;
+
+const EmbeddedContent = styled.div`
+  background: white;
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: none;
+`;
+
+const EmbeddedHeader = styled.div`
+  background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
-  font-size: 20px;
-  margin-bottom: 16px;
+  padding: 15px 20px;
+  padding-top: max(15px, env(safe-area-inset-top));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1001;
 `;
 
-const FeatureTitle = styled.h3`
-  font-size: 18px;
-  font-weight: bold;
-  color: #1f2937;
-  margin-bottom: 8px;
-`;
-
-const FeatureDescription = styled.p`
-  color: #6b7280;
-  font-size: 14px;
-  line-height: 1.5;
-  margin-bottom: 12px;
-`;
-
-const FeatureStatus = styled.div`
+const BackButton = styled.button`
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
-  color: #f59e0b;
-  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
 `;
 
-const LockOverlay = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(2px);
+const EmbeddedFrame = styled.iframe`
+  width: 100%;
+  height: calc(100% - 60px);
+  border: none;
+  background: white;
+  position: relative;
+  z-index: 1000;
 `;
 
-const LockIcon = styled.div`
-  font-size: 32px;
-  color: #9ca3af;
-`;
+
 
 const AiModelPage = () => {
   const { isLoggedIn, isLoading } = useUser();
   const navigate = useNavigate();
+  const [apps, setApps] = useState([]);
+  const [loadingApps, setLoadingApps] = useState(false);
+  const [error, setError] = useState(null);
+  const [embeddedApp, setEmbeddedApp] = useState(null);
 
   const handleLogin = () => {
     navigate('/login');
   };
 
-  const aiFeatures = [
-    {
-      icon: <FiMessageCircle />,
-      title: 'AI对话助手',
-      description: '智能对话机器人，回答问题、提供建议、进行闲聊',
-      status: '开发中'
-    },
-    {
-      icon: <FiFileText />,
-      title: '智能文本生成',
-      description: '根据提示生成文章、总结、翻译等文本内容',
-      status: '开发中'
-    },
-    {
-      icon: <FiImage />,
-      title: '图像识别分析',
-      description: '上传图片进行内容识别、文字提取、场景分析',
-      status: '规划中'
-    },
-    {
-      icon: <FiCpu />,
-      title: '数据智能处理',
-      description: '自动化数据分析、图表生成、趋势预测',
-      status: '规划中'
+  useEffect(() => {
+    if (isLoggedIn) {
+      fetchApps();
     }
-  ];
+  }, [isLoggedIn]);
+
+  const fetchApps = async () => {
+    try {
+      setLoadingApps(true);
+      const response = await axios.get('/api/aimodelapp/scan-directories');
+      if (response.data.success) {
+        setApps(response.data.apps);
+      } else {
+        setError('获取AI应用列表失败');
+      }
+    } catch (err) {
+      console.error('获取AI应用列表失败:', err);
+      setError('获取AI应用列表失败，请稍后重试');
+    } finally {
+      setLoadingApps(false);
+    }
+  };
+
+  const handleLaunchApp = (app) => {
+    // 将相对路径转换为完整的服务器地址
+    const fullLink = `http://localhost:5000${app.link}`;
+    setEmbeddedApp({ ...app, link: fullLink });
+  };
+
+  // 关闭内嵌显示
+  const closeEmbedded = () => {
+    setEmbeddedApp(null);
+  };
+
+
 
   if (isLoading) {
     return (
@@ -244,41 +330,91 @@ const AiModelPage = () => {
               立即登录
             </LoginButton>
           </LoginPrompt>
+        ) : loadingApps ? (
+          <LoginPrompt>
+            <LoginIcon>🤖</LoginIcon>
+            <LoginTitle>加载AI应用中...</LoginTitle>
+            <LoginText>
+              正在为您准备强大的AI工具，请稍候...
+            </LoginText>
+          </LoginPrompt>
+        ) : error ? (
+          <LoginPrompt>
+            <LoginIcon>😅</LoginIcon>
+            <LoginTitle>加载失败</LoginTitle>
+            <LoginText>
+              {error}
+              <br />
+              <button 
+                onClick={fetchApps}
+                style={{
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  color: 'white',
+                  border: 'none',
+                  padding: '8px 16px',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  marginTop: '16px'
+                }}
+              >
+                重新加载
+              </button>
+            </LoginText>
+          </LoginPrompt>
+        ) : apps.length > 0 ? (
+          <AppGrid>
+            {apps.map((app, index) => (
+              <AppCard key={index} onClick={() => handleLaunchApp(app)}>
+                <AppHeader>
+                  <AppTitle>{app.title}</AppTitle>
+                  <AppIcon>
+                    <FiCpu />
+                  </AppIcon>
+                </AppHeader>
+                <AppDescription>{app.description}</AppDescription>
+                <AppFooter>
+                  <AppTheme gradient={app.gradient} />
+                  <LaunchButton onClick={(e) => {
+                    e.stopPropagation();
+                    handleLaunchApp(app);
+                  }}>
+                    <FiExternalLink />
+                    启动应用
+                  </LaunchButton>
+                </AppFooter>
+              </AppCard>
+            ))}
+          </AppGrid>
         ) : (
           <LoginPrompt>
-            <LoginIcon>🚧</LoginIcon>
-            <LoginTitle>功能开发中</LoginTitle>
+            <LoginIcon>🎯</LoginIcon>
+            <LoginTitle>暂无AI应用</LoginTitle>
             <LoginText>
-              AI模型功能正在紧张开发中，即将为您带来强大的人工智能体验。
-              <br />
-              感谢您的耐心等待！
+              目前还没有可用的AI应用，请稍后再来查看。
             </LoginText>
           </LoginPrompt>
         )}
 
-        <FeatureGrid>
-          {aiFeatures.map((feature, index) => (
-            <FeatureCard key={index}>
-              <FeatureIcon>
-                {feature.icon}
-              </FeatureIcon>
-              <FeatureTitle>{feature.title}</FeatureTitle>
-              <FeatureDescription>{feature.description}</FeatureDescription>
-              <FeatureStatus>
-                <span>⏳</span>
-                {feature.status}
-              </FeatureStatus>
-              
-              {!isLoggedIn && (
-                <LockOverlay>
-                  <LockIcon>
-                    <FiLock />
-                  </LockIcon>
-                </LockOverlay>
-              )}
-            </FeatureCard>
-          ))}
-        </FeatureGrid>
+        {/* 内嵌显示组件 */}
+        {embeddedApp && (
+          <EmbeddedContainer onClick={closeEmbedded}>
+            <EmbeddedContent onClick={(e) => e.stopPropagation()}>
+              <EmbeddedHeader>
+                <h3>{embeddedApp.title}</h3>
+                <BackButton onClick={closeEmbedded}>
+                  <FiArrowLeft />
+                  返回
+                </BackButton>
+              </EmbeddedHeader>
+              <EmbeddedFrame
+                src={embeddedApp.link}
+                title={embeddedApp.title}
+              />
+            </EmbeddedContent>
+          </EmbeddedContainer>
+        )}
+
+
       </Container>
     </AiContainer>
   );
