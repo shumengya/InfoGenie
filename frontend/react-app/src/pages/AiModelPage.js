@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FiCpu, FiUser, FiExternalLink, FiArrowLeft } from 'react-icons/fi';
 import { useUser } from '../contexts/UserContext';
-import axios from 'axios';
+import api from '../utils/api';
 
 const AiContainer = styled.div`
   min-height: calc(100vh - 140px);
@@ -262,7 +262,7 @@ const AiModelPage = () => {
   const fetchApps = async () => {
     try {
       setLoadingApps(true);
-      const response = await axios.get('/api/aimodelapp/scan-directories');
+      const response = await api.get('/api/aimodelapp/scan-directories');
       if (response.data.success) {
         setApps(response.data.apps);
       } else {
@@ -278,7 +278,8 @@ const AiModelPage = () => {
 
   const handleLaunchApp = (app) => {
     // 将相对路径转换为完整的服务器地址
-    const fullLink = `http://localhost:5000${app.link}`;
+    const baseUrl = process.env.REACT_APP_API_URL || 'https://infogenie.api.shumengya.top';
+    const fullLink = `${baseUrl}${app.link}`;
     setEmbeddedApp({ ...app, link: fullLink });
   };
 

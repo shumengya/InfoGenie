@@ -31,7 +31,7 @@ def create_app():
     # 加载配置
     app.config.from_object(Config)
     
-    # 启用CORS跨域支持
+    # 启用CORS跨域支持（允许所有源）
     CORS(app, supports_credentials=True)
     
     # 初始化MongoDB
@@ -182,6 +182,4 @@ def create_app():
 if __name__ == '__main__':
     app = create_app()
     print("🚀 启动 InfoGenie 后端服务...")
-    print("📡 API地址: http://localhost:5000")
-    print("📚 文档地址: http://localhost:5000/api/health")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5002)

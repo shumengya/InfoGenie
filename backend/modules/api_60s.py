@@ -73,10 +73,13 @@ def scan_directories():
                         except:
                             title = module_name
                         
+                        # 根据环境获取基础URL
+                        base_url = 'https://infogenie.api.shumengya.top'
+                        
                         apis.append({
                             'title': title,
                             'description': f'{module_name}相关功能',
-                            'link': f'http://localhost:5000/60sapi/{category_name}/{module_name}/index.html',
+                            'link': f'{base_url}/60sapi/{category_name}/{module_name}/index.html',
                             'status': 'active',
                             'color': gradient_colors[i % len(gradient_colors)]
                         })

@@ -1,5 +1,5 @@
 // 本地后端API接口
-const LOCAL_API_BASE = 'http://localhost:5000/api/60s';
+const LOCAL_API_BASE = 'https://infogenie.api.shumengya.top/api/60s';
 
 // API接口列表（备用）
 const API_ENDPOINTS = [

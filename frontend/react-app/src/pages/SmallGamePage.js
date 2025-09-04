@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { FiGrid, FiPlay, FiExternalLink, FiArrowLeft } from 'react-icons/fi';
-import axios from 'axios';
+import api from '../utils/api';
 
 const GameContainer = styled.div`
   min-height: calc(100vh - 140px);
@@ -233,7 +233,7 @@ const SmallGamePage = () => {
   const fetchGames = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/smallgame/scan-directories');
+      const response = await api.get('/api/smallgame/scan-directories');
       if (response.data.success) {
         setGames(response.data.games);
       } else {
@@ -249,7 +249,8 @@ const SmallGamePage = () => {
 
   const handlePlayGame = (game) => {
     // 将相对路径转换为完整的服务器地址
-    const fullLink = `http://localhost:5000${game.link}`;
+    const baseUrl = process.env.REACT_APP_API_URL || 'https://infogenie.api.shumengya.top';
+    const fullLink = `${baseUrl}${game.link}`;
     setEmbeddedGame({ ...game, link: fullLink });
   };
 

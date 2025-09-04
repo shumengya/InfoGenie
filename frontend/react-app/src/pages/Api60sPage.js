@@ -238,81 +238,26 @@ const Api60sPage = () => {
       // 从后端API获取目录结构
       const scanDirectories = async () => {
         try {
-          const response = await fetch('http://localhost:5000/api/60s/scan-directories');
+          // 使用环境变量中配置的API URL
+          const baseUrl = process.env.REACT_APP_API_URL || 'https://infogenie.api.shumengya.top';
+          const apiUrl = `${baseUrl}/api/60s/scan-directories`;
+          console.log('正在请求API目录结构:', apiUrl);
+          const response = await fetch(apiUrl);
           if (response.ok) {
             const data = await response.json();
             return data;
           }
         } catch (error) {
-          console.warn('无法从后端获取目录结构，使用前端扫描方式');
+          console.warn('无法从后端获取目录结构:', error);
         }
         return null;
       };
 
-      // 前端扫描方式（备用）
-      const frontendScan = async () => {
-        const categories = [];
-        
-        for (const [categoryName, config] of Object.entries(categoryConfig)) {
-          const apis = [];
-          
-          // 尝试访问已知的模块列表（只包含实际存在的模块）
-          const knownModules = {
-            '热搜榜单': ['抖音热搜榜'],
-            '日更资讯': [],
-            '实用功能': [],
-            '娱乐消遣': []
-          };
+      // 前端扫描方式已移除
 
-          const moduleNames = knownModules[categoryName] || [];
-          
-          for (let i = 0; i < moduleNames.length; i++) {
-            const moduleName = moduleNames[i];
-            try {
-              const indexPath = `/60sapi/${categoryName}/${moduleName}/index.html`;
-              const fullUrl = `http://localhost:5000${indexPath}`;
-              const response = await fetch(fullUrl, { method: 'HEAD' });
-              
-              if (response.ok) {
-                // 获取页面标题
-                const htmlResponse = await fetch(fullUrl);
-                const html = await htmlResponse.text();
-                const titleMatch = html.match(/<title>(.*?)<\/title>/i);
-                const title = titleMatch ? titleMatch[1].trim() : moduleName;
-                
-                apis.push({
-                  title,
-                  description: `${moduleName}相关功能`,
-                  link: fullUrl,
-                  status: 'active',
-                  color: gradientColors[i % gradientColors.length]
-                });
-              }
-            } catch (error) {
-              // 忽略访问失败的模块
-            }
-          }
-          
-          if (apis.length > 0) {
-            categories.push({
-              title: categoryName,
-              icon: config.icon,
-              color: config.color,
-              apis
-            });
-          }
-        }
-        
-        return categories;
-      };
-
-      // 首先尝试后端扫描，失败则使用前端扫描
+      // 只使用后端扫描
       const backendResult = await scanDirectories();
-      if (backendResult && backendResult.success) {
-        return backendResult.categories || [];
-      } else {
-        return await frontendScan();
-      }
+      return backendResult && backendResult.success ? backendResult.categories || [] : [];
       
     } catch (error) {
       console.error('扫描API模块时出错:', error);
