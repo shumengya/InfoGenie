@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网易云榜单详情</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/background.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">🎵 网易云榜单详情</h1>
+            <p class="subtitle">发现音乐的魅力</p>
+        </header>
+
+        <div class="rank-info" id="rankInfo" style="display: none;">
+            <div class="rank-header">
+                <img class="rank-cover" id="rankCover" src="" alt="榜单封面">
+                <div class="rank-details">
+                    <h2 class="rank-name" id="rankName"></h2>
+                    <p class="rank-description" id="rankDescription"></p>
+                    <div class="rank-meta">
+                        <span class="update-time" id="updateTime"></span>
+                        <span class="update-frequency" id="updateFrequency"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="input-group">
+                <label for="rankId">榜单ID:</label>
+                <input type="text" id="rankId" placeholder="请输入榜单ID，如：3778678">
+                <button id="loadBtn" class="load-btn">加载榜单</button>
+            </div>
+        </div>
+
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>正在加载榜单数据...</p>
+        </div>
+
+        <div class="error" id="error" style="display: none;">
+            <div class="error-icon">⚠️</div>
+            <p class="error-message" id="errorMessage"></p>
+            <button class="retry-btn" id="retryBtn">重试</button>
+        </div>
+
+        <div class="song-list" id="songList" style="display: none;">
+            <div class="list-header">
+                <h3>歌曲列表</h3>
+                <div class="song-count" id="songCount"></div>
+            </div>
+            <div class="songs" id="songs"></div>
+        </div>
+
+        <div class="back-to-list">
+            <a href="../网易云榜单列表/index.html" class="back-btn">← 返回榜单列表</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 网易云榜单详情 - 数据来源于官方API</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

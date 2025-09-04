@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌙 农历信息查询</title>
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-icon">🏮</div>
+            <h1 class="title">🌙 农历信息查询 📅</h1>
+            <p class="subtitle">传统文化 · 时光转换 · 节气查询</p>
+            
+            <div class="date-selector">
+                <div class="input-group">
+                    <label for="dateInput" class="input-label">
+                        <span class="label-icon">📅</span>
+                        选择日期
+                    </label>
+                    <input type="date" id="dateInput" class="date-input" />
+                </div>
+                <button id="queryBtn" class="query-btn">
+                    <span class="btn-icon">🔍</span>
+                    查询农历
+                </button>
+            </div>
+            
+            <div class="update-time">
+                <span class="time-icon">⏰</span>
+                <span id="updateTime">等待查询...</span>
+            </div>
+        </header>
+
+        <div class="loading" id="loading" style="display: none;">
+            <div class="loading-content">
+                <div class="glass-spinner"></div>
+                <div class="loading-text">
+                    <span class="loading-emoji">🔮</span>
+                    <p>正在查询农历信息...</p>
+                    <div class="loading-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lunar-info" id="lunarInfo" style="display: none;">
+            <!-- 农历信息将动态生成 -->
+        </div>
+
+        <div class="error-message" id="errorMessage" style="display: none;">
+            <div class="error-content">
+                <div class="error-icon">😔</div>
+                <h3>查询失败了</h3>
+                <p>无法获取农历信息，请稍后重试</p>
+                <button onclick="queryLunarInfo()" class="retry-btn">
+                    <span>🔄</span>
+                    重新查询
+                </button>
+            </div>
+        </div>
+
+
+    <script src="js/script.js"></script>
+</body>
+</html>

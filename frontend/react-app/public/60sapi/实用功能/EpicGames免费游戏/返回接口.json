@@ -1,0 +1,66 @@
+{
+  "code": 200,
+  "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
+  "data": [
+    {
+      "id": "9aa227e2ba294bb1a95c95fde892eb31",
+      "title": "《Totally Reliable Delivery Service》 Standard Edition",
+      "cover": "https://cdn1.epicgames.com/52b90f9a982a404781b189f6a7903226/offer/EGS_TotallyReliableDeliveryService_WereFiveGames_S1-2560x1440-47e6e9562d62705a75ea7b7096d0b8dc.jpg",
+      "original_price": 52,
+      "original_price_desc": "¥52.00",
+      "description": "穿好护腰护具，发动货车，送货的时间到啦！在一个高度互动的沙盒世界中，与最多三位好友一起随意地完成送货。货物已试投，这就是我们靠谱快递（Totally Reliable Delivery Service）的品质保证！",
+      "seller": "Infogrames LLC",
+      "is_free_now": true,
+      "free_start": "2025/08/14 23:00:00",
+      "free_start_at": 1755183600000,
+      "free_end": "2025/08/21 23:00:00",
+      "free_end_at": 1755788400000,
+      "link": "https://store.epicgames.com/store/zh-CN/p/totally-reliable-delivery-service/home"
+    },
+    {
+      "id": "8ea3500dc38e4f429702bf889c172d3d",
+      "title": "Hidden Folks",
+      "cover": "https://cdn1.epicgames.com/spt-assets/7bfd56b0586348dcb139945d9e59f988/hidden-folks-1b7hh.png",
+      "original_price": 47,
+      "original_price_desc": "¥47.00",
+      "description": "Search for hidden folks in hand-drawn, interactive, miniature landscapes. Unfurl tent flaps, cut through bushes, slam doors, and poke some crocodiles! Rooooaaaarrrr!!!!!",
+      "seller": "Adriaan de Jongh",
+      "is_free_now": true,
+      "free_start": "2025/08/14 23:00:00",
+      "free_start_at": 1755183600000,
+      "free_end": "2025/08/21 23:00:00",
+      "free_end_at": 1755788400000,
+      "link": "https://store.epicgames.com/store/zh-CN/p/hidden-folks-239d16"
+    },
+    {
+      "id": "4cbb6c3704d240f19c3dd5f5cb2b0cb4",
+      "title": "Kamaeru",
+      "cover": "https://cdn1.epicgames.com/spt-assets/44313cfbb62b4df5801d0c8d541c2624/kamaeru-40asc.png",
+      "original_price": 62,
+      "original_price_desc": "¥62.00",
+      "description": "Foster a sanctuary for frogs and restore the biodiversity of the wetlands in Kamaeru, a cozy frog collecting game, where you take pictures of frogs, play mini-games and decorate your habitat. Hop right to it!",
+      "seller": "Armor Games Studios",
+      "is_free_now": false,
+      "free_start": "2025/08/21 23:00:00",
+      "free_start_at": 1755788400000,
+      "free_end": "2025/08/28 23:00:00",
+      "free_end_at": 1756393200000,
+      "link": "https://store.epicgames.com/store/zh-CN/p/kamaeru-0c301e"
+    },
+    {
+      "id": "0d9a533f0e684cc18620a8f408e8e72c",
+      "title": "Strange Horticulture",
+      "cover": "https://cdn1.epicgames.com/spt-assets/15e8e3eba65a4763a815d6eae1d763b2/strange-horticulture-offer-2wghv.png",
+      "original_price": 45,
+      "original_price_desc": "¥45.00",
+      "description": "款神秘学解谜游戏，你将扮演当地植物商店的店主，寻找并识别新的植物，悠闲撸猫，与女巫团体交谈，或加入异教。收集各种强大的植物，用它们来影响故事走向，揭开昂德米尔镇的黑暗谜团。",
+      "seller": "Iceberg Interactive",
+      "is_free_now": false,
+      "free_start": "2025/08/21 23:00:00",
+      "free_start_at": 1755788400000,
+      "free_end": "2025/08/28 23:00:00",
+      "free_end_at": 1756393200000,
+      "link": "https://store.epicgames.com/store/zh-CN/p/strange-horticulture-360e80"
+    }
+  ]
+}

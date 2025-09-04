@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    color: #333;
+    background-color: #f0f8f0;
+    position: relative;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 128, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e8f5e8;
+}
+
+header h1 {
+    color: #2d8f47;
+    margin-bottom: 12px;
+    font-size: 2.2rem;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(45, 143, 71, 0.1);
+}
+
+.update-time {
+    color: #6b8e6b;
+    font-size: 0.95rem;
+    background-color: #f0f8f0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.hot-list {
+    list-style: none;
+}
+
+.hot-item {
+    padding: 18px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0 3px 8px rgba(0, 128, 0, 0.08);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    border-left: 4px solid transparent;
+}
+
+.hot-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 128, 0, 0.15);
+    border-left-color: #4caf50;
+}
+
+.hot-rank {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #4caf50;
+    margin-right: 18px;
+    min-width: 35px;
+    text-align: center;
+    background-color: #f0f8f0;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hot-rank.top-1 {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+}
+
+.hot-rank.top-2 {
+    background: linear-gradient(135deg, #ffa726, #ffb74d);
+    color: white;
+}
+
+.hot-rank.top-3 {
+    background: linear-gradient(135deg, #ffca28, #ffd54f);
+    color: white;
+}
+
+.hot-content {
+    flex: 1;
+}
+
+.hot-title {
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+    color: #2c3e2c;
+    text-decoration: none;
+    display: block;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.hot-title:hover {
+    color: #2d8f47;
+    text-decoration: underline;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #6b8e6b;
+    font-size: 1.1rem;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e8f5e8;
+    color: #6b8e6b;
+    font-size: 0.9rem;
+}
+
+/* 平板端适配 (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .container {
+        max-width: 90%;
+        padding: 18px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .hot-item {
+        padding: 16px;
+    }
+    
+    .hot-title {
+        font-size: 1.1rem;
+    }
+}
+
+/* 手机端适配 (最大768px) */
+@media (max-width: 768px) {
+    body {
+        background-color: #f8fdf8;
+    }
+    
+    .container {
+        max-width: 95%;
+        margin: 10px auto;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    header {
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .update-time {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+    
+    .hot-item {
+        padding: 14px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .hot-rank {
+        font-size: 1.1rem;
+        margin-right: 12px;
+        min-width: 30px;
+        width: 30px;
+        height: 30px;
+        margin-top: 2px;
+    }
+    
+    .hot-title {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 4px;
+    }
+    
+    footer {
+        margin-top: 20px;
+        padding-top: 15px;
+        font-size: 0.8rem;
+    }
+}
+
+/* 小屏手机适配 (最大480px) */
+@media (max-width: 480px) {
+    .container {
+        margin: 5px auto;
+        padding: 12px;
+    }
+    
+    header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .hot-item {
+        padding: 12px;
+        margin-bottom: 8px;
+    }
+    
+    .hot-rank {
+        font-size: 1rem;
+        margin-right: 10px;
+        min-width: 28px;
+        width: 28px;
+        height: 28px;
+    }
+    
+    .hot-title {
+        font-size: 0.95rem;
+    }
+    
+    .update-time {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+}

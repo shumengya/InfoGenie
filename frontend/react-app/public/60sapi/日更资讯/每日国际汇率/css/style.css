@@ -1,0 +1,409 @@
+/* 每日国际汇率 - 淡绿色清新风格样式 */
+
+/* 重置样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 50%, #ffd3a5 100%);
+    min-height: 100vh;
+    color: #2d5016;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 头部样式 */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(45, 80, 22, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    color: #2d5016;
+    margin-bottom: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.header p {
+    color: #5a7c65;
+    font-size: 1.1rem;
+}
+
+/* 货币选择器 */
+.currency-selector {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(45, 80, 22, 0.08);
+    text-align: center;
+}
+
+.currency-selector label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #2d5016;
+}
+
+.currency-selector select {
+    padding: 12px 20px;
+    border: 2px solid #c8e6c9;
+    border-radius: 25px;
+    background: white;
+    color: #2d5016;
+    font-size: 1rem;
+    min-width: 200px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.currency-selector select:focus {
+    outline: none;
+    border-color: #81c784;
+    box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.2);
+}
+
+/* 加载状态 */
+.loading {
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(45, 80, 22, 0.08);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e8f5e8;
+    border-top: 4px solid #81c784;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 汇率信息容器 */
+.exchange-info {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(45, 80, 22, 0.08);
+    backdrop-filter: blur(10px);
+}
+
+.base-currency {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.base-currency h2 {
+    font-size: 1.8rem;
+    color: #2d5016;
+    margin-bottom: 10px;
+}
+
+.update-time {
+    color: #5a7c65;
+    font-size: 0.9rem;
+}
+
+/* 汇率网格 */
+.rates-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.rate-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 3px 10px rgba(45, 80, 22, 0.06);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(200, 230, 201, 0.5);
+    text-align: center;
+}
+
+.rate-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(45, 80, 22, 0.1);
+    border-color: #81c784;
+}
+
+.currency-code {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2d5016;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.currency-flag {
+    font-size: 1.2rem;
+}
+
+.exchange-rate {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #388e3c;
+    margin-bottom: 4px;
+}
+
+.currency-name {
+    color: #5a7c65;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+/* 搜索框 */
+.search-container {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(45, 80, 22, 0.08);
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 20px;
+    border: 2px solid #c8e6c9;
+    border-radius: 25px;
+    background: white;
+    color: #2d5016;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #81c784;
+    box-shadow: 0 0 0 3px rgba(129, 199, 132, 0.2);
+}
+
+.search-input::placeholder {
+    color: #81c784;
+}
+
+/* 错误提示 */
+.error {
+    background: #fed7d7;
+    color: #c53030;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid #feb2b2;
+    margin: 20px 0;
+}
+
+/* 统计信息 */
+.stats {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(45, 80, 22, 0.08);
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.stat-item {
+    padding: 15px;
+    background: rgba(129, 199, 132, 0.1);
+    border-radius: 10px;
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2d5016;
+}
+
+.stat-label {
+    color: #5a7c65;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* 响应式设计 */
+
+/* 平板端 */
+@media (max-width: 768px) and (min-width: 481px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .header {
+        padding: 20px;
+    }
+    
+    .rates-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+    }
+    
+    .rate-card {
+        padding: 10px;
+    }
+    
+    .currency-selector select {
+        min-width: 180px;
+    }
+}
+
+/* 手机端 */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .header {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .rates-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+    }
+    
+    .rate-card {
+        padding: 8px;
+        border-radius: 8px;
+    }
+    
+    .currency-code {
+        font-size: 0.85rem;
+        margin-bottom: 4px;
+        gap: 4px;
+    }
+    
+    .currency-flag {
+        font-size: 1rem;
+    }
+    
+    .exchange-rate {
+        font-size: 0.9rem;
+        margin-bottom: 3px;
+    }
+    
+    .currency-name {
+        font-size: 0.7rem;
+        line-height: 1.1;
+    }
+    
+    .currency-selector {
+        padding: 15px;
+    }
+    
+    .currency-selector select {
+        min-width: 100%;
+        padding: 10px 15px;
+    }
+    
+    .search-input {
+        padding: 10px 15px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+}
+
+/* 大屏幕优化 */
+@media (min-width: 1200px) {
+    .container {
+        padding: 40px;
+    }
+    
+    .header {
+        padding: 40px;
+    }
+}
+
+/* 特殊效果 */
+.fade-in {
+    animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(129, 199, 132, 0.5);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(129, 199, 132, 0.7);
+}
+
+/* 隐藏类 */
+.hidden {
+    display: none;
+}
