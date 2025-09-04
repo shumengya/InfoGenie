@@ -23,7 +23,6 @@ const resultElements = {
     urlEncode: document.getElementById('urlEncodeResult'),
     urlDecode: document.getElementById('urlDecodeResult'),
     gzipCompress: document.getElementById('gzipCompressResult'),
-    gzipDecompress: document.getElementById('gzipDecompressResult'),
     deflateCompress: document.getElementById('deflateCompressResult'),
     brotliCompress: document.getElementById('brotliCompressResult')
 };
@@ -142,28 +141,43 @@ function displayResults(data) {
         
         // Base64编码
         if (data.base64) {
-            updateResultElement('base64Encode', data.base64.encode || '不可用');
-            updateResultElement('base64Decode', data.base64.decode || '不可用');
+            updateResultElement('base64Encode', data.base64.encoded || '不可用');
+            // BASE64解码：只有当输入本身是BASE64格式时才显示解码结果
+            let base64DecodeResult = data.base64.decoded;
+            if (!base64DecodeResult) {
+                // 检查输入是否为有效的BASE64格式
+                const inputValue = elements.inputText.value.trim();
+                const base64Regex = /^[A-Za-z0-9+/]*={0,2}$/;
+                if (base64Regex.test(inputValue) && inputValue.length % 4 === 0) {
+                    try {
+                        base64DecodeResult = atob(inputValue);
+                    } catch (e) {
+                        base64DecodeResult = '解码失败';
+                    }
+                } else {
+                    base64DecodeResult = '输入非BASE64格式';
+                }
+            }
+            updateResultElement('base64Decode', base64DecodeResult || '不可用');
         }
         
         // URL编码
         if (data.url) {
-            updateResultElement('urlEncode', data.url.encode || '不可用');
-            updateResultElement('urlDecode', data.url.decode || '不可用');
+            updateResultElement('urlEncode', data.url.encoded || '不可用');
+            updateResultElement('urlDecode', data.url.decoded || '不可用');
         }
         
-        // 压缩结果
+        // 压缩结果（仅显示压缩，不显示解压）
         if (data.gzip) {
-            updateResultElement('gzipCompress', data.gzip.compress || '不可用');
-            updateResultElement('gzipDecompress', data.gzip.decompress || '不可用');
+            updateResultElement('gzipCompress', data.gzip.encoded || '不可用');
         }
         
         if (data.deflate) {
-            updateResultElement('deflateCompress', data.deflate.compress || '不可用');
+            updateResultElement('deflateCompress', data.deflate.encoded || '不可用');
         }
         
         if (data.brotli) {
-            updateResultElement('brotliCompress', data.brotli.compress || '不可用');
+            updateResultElement('brotliCompress', data.brotli.encoded || '不可用');
         }
         
     } catch (error) {

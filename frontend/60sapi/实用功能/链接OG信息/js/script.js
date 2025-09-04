@@ -124,6 +124,7 @@ class OGAnalyzer {
 
         this.currentUrl = url;
         this.isAnalyzing = true;
+        this.startTime = Date.now(); // 记录开始时间
         this.showLoading();
         this.hideError();
         this.hideResults();
@@ -185,23 +186,36 @@ class OGAnalyzer {
         const resultsElement = document.getElementById('results');
         const ogCard = document.getElementById('og-card');
         
-        // 基础信息
-        this.updateElement('og-title', data.title || '未获取到标题');
-        this.updateElement('og-description', data.description || '未获取到描述');
-        this.updateElement('og-url', data.url || this.currentUrl);
-        this.updateElement('og-site-name', data.site_name || '未知站点');
-        this.updateElement('og-type', data.type || 'website');
+        // 检查是否有有效数据 - 放宽检查条件，只要有任何非空字段就显示
+        const hasValidData = Object.values(data).some(value => {
+            if (value === null || value === undefined) return false;
+            if (typeof value === 'string') return value.trim() !== '';
+            return true; // 其他类型的值都认为是有效的
+        });
+        
+        if (!hasValidData) {
+            this.showError('该链接暂无可获取的OG信息，请检查链接是否正确或稍后重试');
+            return;
+        }
+        
+        // 基础信息 - 只显示有数据的字段
+        this.updateElementWithVisibility('og-title', data.title, '标题');
+        this.updateElementWithVisibility('og-description', data.description, '描述');
+        this.updateElement('og-url', data.url || this.currentUrl); // URL始终显示
+        this.updateElementWithVisibility('og-site-name', data.site_name, '网站名称');
+        this.updateElement('og-type', data.type || 'website'); // 类型始终显示
         
         // 媒体信息
-        this.updateImageElement('og-image', data.image);
-        this.updateElement('og-image-alt', data.image_alt || '图片描述不可用');
+        this.updateImageElementWithVisibility('og-image', data.image);
+        this.updateElementWithVisibility('og-image-alt', data.image_alt, '图片描述');
         
         // 技术信息
-        this.updateElement('og-locale', data.locale || '未指定');
-        this.updateElement('og-updated-time', this.formatDate(data.updated_time));
-        this.updateElement('response-time', `${Date.now() - this.startTime}ms`);
+        this.updateElementWithVisibility('og-locale', data.locale, '语言');
+        this.updateElementWithVisibility('og-updated-time', this.formatDate(data.updated_time), '更新时间');
+        this.updateElement('response-time', `${Date.now() - this.startTime}ms`); // 响应时间始终显示
         
         // 显示结果
+        resultsElement.style.display = 'block';
         resultsElement.classList.add('active');
         
         // 添加动画效果
@@ -216,6 +230,21 @@ class OGAnalyzer {
         const element = document.getElementById(id);
         if (element) {
             element.textContent = content;
+        }
+    }
+
+    updateElementWithVisibility(id, content, fieldName) {
+        const element = document.getElementById(id);
+        if (!element) return;
+        
+        const parentItem = element.closest('.info-item');
+        if (!parentItem) return;
+        
+        if (content && content.trim() !== '') {
+            element.textContent = content;
+            parentItem.style.display = 'block';
+        } else {
+            parentItem.style.display = 'none';
         }
     }
 
@@ -237,6 +266,30 @@ class OGAnalyzer {
             if (placeholder && placeholder.classList.contains('image-placeholder')) {
                 placeholder.style.display = 'flex';
             }
+        }
+    }
+
+    updateImageElementWithVisibility(id, imageSrc) {
+        const element = document.getElementById(id);
+        const mediaSection = document.querySelector('.media-info');
+        const mediaPreview = document.getElementById('media-preview');
+        
+        if (imageSrc && imageSrc.trim() !== '') {
+            element.textContent = imageSrc;
+            if (mediaSection) mediaSection.style.display = 'block';
+            
+            if (mediaPreview) {
+                mediaPreview.innerHTML = `
+                    <img src="${imageSrc}" alt="OG Image" class="og-preview-image" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="no-media" style="display: none;">
+                        <i class="fas fa-image-slash"></i>
+                        <span>图片加载失败</span>
+                    </div>
+                `;
+            }
+        } else {
+            if (mediaSection) mediaSection.style.display = 'none';
         }
     }
 
@@ -292,6 +345,7 @@ class OGAnalyzer {
 
     hideResults() {
         const resultsElement = document.getElementById('results');
+        resultsElement.style.display = 'none';
         resultsElement.classList.remove('active');
         
         // 重置动画状态
@@ -358,6 +412,7 @@ class OGAnalyzer {
         
         urlInput.value = '';
         urlInput.classList.remove('error');
+        resultsElement.style.display = 'none';
         resultsElement.classList.remove('active');
         errorElement.classList.remove('active');
         
@@ -366,6 +421,13 @@ class OGAnalyzer {
         document.getElementById('clear-btn').disabled = true;
         
         this.currentUrl = '';
+        
+        // 重置所有字段的显示状态
+        const infoItems = document.querySelectorAll('.info-item');
+        infoItems.forEach(item => item.style.display = 'block');
+        
+        const mediaSection = document.querySelector('.media-info');
+        if (mediaSection) mediaSection.style.display = 'block';
         
         // 重置动画状态
         const cards = document.querySelectorAll('.info-card');
