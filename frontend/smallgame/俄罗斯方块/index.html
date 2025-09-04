@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>俄罗斯方块</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>俄罗斯方块</h1>
+            <div class="score-board">
+                <div class="score-item">
+                    <span class="label">分数:</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="label">等级:</span>
+                    <span id="level">1</span>
+                </div>
+                <div class="score-item">
+                    <span class="label">消除行数:</span>
+                    <span id="lines">0</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-main">
+            <div class="game-board">
+                <canvas id="gameCanvas" width="300" height="600"></canvas>
+                <div class="game-overlay" id="gameOverlay">
+                    <div class="overlay-content">
+                        <h2 id="overlayTitle">游戏暂停</h2>
+                        <p id="overlayMessage">按空格键继续游戏</p>
+                        <button id="startBtn" class="game-btn">开始游戏</button>
+                        <button id="restartBtn" class="game-btn">重新开始</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-sidebar">
+                <div class="next-piece">
+                    <h3>下一个</h3>
+                    <canvas id="nextCanvas" width="120" height="120"></canvas>
+                </div>
+                
+                <div class="controls-info">
+                    <h3>操作说明</h3>
+                    <div class="control-item">
+                        <span class="key">←→</span>
+                        <span class="desc">移动</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">↓</span>
+                        <span class="desc">快速下降</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">↑</span>
+                        <span class="desc">旋转</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key">空格</span>
+                        <span class="desc">暂停/继续</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 手机端触摸控制 -->
+        <div class="mobile-controls">
+            <div class="mobile-controls-left">
+                <button class="control-btn" id="rotateBtn">↻</button>
+                <button class="control-btn" id="leftBtn">←</button>
+                <button class="control-btn" id="downBtn">↓</button>
+            </div>
+            <div class="mobile-controls-right">
+                <button class="control-btn" id="dropBtn">⇩</button>
+                <button class="control-btn" id="rightBtn">→</button>
+                <button class="control-btn" id="pauseBtn">⏸</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 游戏结束统计界面 -->
+    <div class="game-stats" id="gameStats">
+        <div class="stats-content">
+            <h2>游戏结束</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-label">最终分数</span>
+                    <span class="stat-value" id="finalScore">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">达到等级</span>
+                    <span class="stat-value" id="finalLevel">1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">消除行数</span>
+                    <span class="stat-value" id="finalLines">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">游戏时长</span>
+                    <span class="stat-value" id="playTime">00:00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">单次消除最大行数</span>
+                    <span class="stat-value" id="maxCombo">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">平均每分钟分数</span>
+                    <span class="stat-value" id="avgScore">0</span>
+                </div>
+            </div>
+            <div class="achievement" id="achievement"></div>
+            <button class="game-btn" id="playAgainBtn">再玩一次</button>
+        </div>
+    </div>
+    
+    <script src="tetris.js"></script>
+    <script src="game-controls.js"></script>
+    <script src="game-stats.js"></script>
+</body>
+</html>

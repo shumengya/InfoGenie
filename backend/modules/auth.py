@@ -317,6 +317,7 @@ def login():
         session['user_id'] = str(user['_id'])
         session['email'] = email
         session['username'] = user.get('用户名', '')
+        session['logged_in'] = True
         session.permanent = True
         
         return jsonify({
@@ -394,13 +395,14 @@ def logout():
 def check_login():
     """检查登录状态"""
     try:
-        if session.get('logged_in'):
+        if session.get('logged_in') and session.get('user_id'):
             return jsonify({
                 'success': True,
                 'logged_in': True,
                 'user': {
-                    'account': session.get('account'),
-                    'user_id': session.get('user_id')
+                    'id': session.get('user_id'),
+                    'email': session.get('email'),
+                    'username': session.get('username')
                 }
             }), 200
         else:

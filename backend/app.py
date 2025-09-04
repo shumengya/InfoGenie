@@ -19,6 +19,8 @@ from modules.auth import auth_bp
 from modules.api_60s import api_60s_bp
 from modules.user_management import user_bp
 from modules.email_service import init_mail
+from modules.smallgame import smallgame_bp
+from modules.aimodelapp import aimodelapp_bp
 
 from config import Config
 
@@ -43,6 +45,8 @@ def create_app():
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(api_60s_bp, url_prefix='/api/60s')
     app.register_blueprint(user_bp, url_prefix='/api/user')
+    app.register_blueprint(smallgame_bp, url_prefix='/api/smallgame')
+    app.register_blueprint(aimodelapp_bp, url_prefix='/api/aimodelapp')
     
     # 基础路由
     @app.route('/')
@@ -55,7 +59,9 @@ def create_app():
             'endpoints': {
                 'auth': '/api/auth',
                 '60s_api': '/api/60s',
-                'user': '/api/user'
+                'user': '/api/user',
+                'smallgame': '/api/smallgame',
+                'aimodelapp': '/api/aimodelapp'
             }
         })
     
@@ -87,6 +93,60 @@ def create_app():
             # 安全检查：确保文件路径在允许的目录内
             full_path = os.path.join(api_directory, filename)
             if not os.path.commonpath([api_directory, full_path]) == api_directory:
+                return jsonify({'error': '非法文件路径'}), 403
+            
+            # 检查文件是否存在
+            if not os.path.exists(full_path):
+                return jsonify({'error': '文件不存在'}), 404
+            
+            # 获取文件目录和文件名
+            directory = os.path.dirname(full_path)
+            file_name = os.path.basename(full_path)
+            
+            return send_from_directory(directory, file_name)
+            
+        except Exception as e:
+            return jsonify({'error': f'文件服务错误: {str(e)}'}), 500
+    
+    # smallgame静态文件服务
+    @app.route('/smallgame/<path:filename>')
+    def serve_smallgame_files(filename):
+        """提供smallgame目录下的静态文件服务"""
+        try:
+            # 获取项目根目录
+            project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            game_directory = os.path.join(project_root, 'frontend', 'smallgame')
+            
+            # 安全检查：确保文件路径在允许的目录内
+            full_path = os.path.join(game_directory, filename)
+            if not os.path.commonpath([game_directory, full_path]) == game_directory:
+                return jsonify({'error': '非法文件路径'}), 403
+            
+            # 检查文件是否存在
+            if not os.path.exists(full_path):
+                return jsonify({'error': '文件不存在'}), 404
+            
+            # 获取文件目录和文件名
+            directory = os.path.dirname(full_path)
+            file_name = os.path.basename(full_path)
+            
+            return send_from_directory(directory, file_name)
+            
+        except Exception as e:
+            return jsonify({'error': f'文件服务错误: {str(e)}'}), 500
+    
+    # aimodelapp静态文件服务
+    @app.route('/aimodelapp/<path:filename>')
+    def serve_aimodelapp_files(filename):
+        """提供aimodelapp目录下的静态文件服务"""
+        try:
+            # 获取项目根目录
+            project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            ai_directory = os.path.join(project_root, 'frontend', 'aimodelapp')
+            
+            # 安全检查：确保文件路径在允许的目录内
+            full_path = os.path.join(ai_directory, filename)
+            if not os.path.commonpath([ai_directory, full_path]) == ai_directory:
                 return jsonify({'error': '非法文件路径'}), 403
             
             # 检查文件是否存在

@@ -245,9 +245,9 @@ const Header = () => {
             {isLoggedIn && user ? (
               <>
                 <UserInfo>
-                  {getQQAvatar(user.account) ? (
+                  {getQQAvatar(user.email) ? (
                     <UserAvatar 
-                      src={getQQAvatar(user.account)} 
+                      src={getQQAvatar(user.email)} 
                       alt="QQ头像"
                       onError={(e) => {
                         e.target.style.display = 'none';
@@ -255,8 +255,8 @@ const Header = () => {
                       }}
                     />
                   ) : null}
-                  <FiUser style={{ display: getQQAvatar(user.account) ? 'none' : 'inline' }} />
-                  <span className="user-name">{user.account}</span>
+                  <FiUser style={{ display: getQQAvatar(user.email) ? 'none' : 'inline' }} />
+                  <span className="user-name">{user.username || user.email}</span>
                 </UserInfo>
                 <UserButton onClick={handleLogout}>
                   <FiLogOut size={16} />
@@ -308,16 +308,16 @@ const Header = () => {
                 alignItems: 'center',
                 gap: '12px'
               }}>
-                {getQQAvatar(user.account) ? (
+                {getQQAvatar(user.email) ? (
                   <UserAvatar 
-                    src={getQQAvatar(user.account)} 
+                    src={getQQAvatar(user.email)} 
                     alt="QQ头像"
                     style={{ width: '32px', height: '32px' }}
                   />
                 ) : (
                   <FiUser size={24} color="#666" />
                 )}
-                <span style={{ color: '#374151', fontWeight: '500' }}>{user.account}</span>
+                <span style={{ color: '#374151', fontWeight: '500' }}>{user.username || user.email}</span>
               </div>
               <MobileNavLink as="button" 
                 style={{ 
