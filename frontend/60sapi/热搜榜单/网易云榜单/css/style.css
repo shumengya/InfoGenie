@@ -96,6 +96,7 @@ body {
     position: relative;
     min-height: 100vh;
     overflow-x: hidden;
+    line-height: 1.6;
 }
 
 .container {
@@ -139,61 +140,106 @@ header h1 {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-.hot-list {
-    list-style: none;
+.rank-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 20px;
 }
 
-.hot-item {
-    padding: 20px;
-    margin-bottom: 16px;
-    border-radius: 12px;
+.rank-item {
     background-color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
     transition: all 0.3s ease;
     display: flex;
-    align-items: center;
-    border: 1px solid rgba(0, 0, 0, 0.03);
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-.hot-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    border-color: rgba(64, 169, 255, 0.3);
+.rank-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: rgba(236, 65, 65, 0.3);
 }
 
-.hot-rank {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #4096ff;
-    margin-right: 18px;
-    min-width: 38px;
-    text-align: center;
-    background-color: rgba(64, 169, 255, 0.1);
-    border-radius: 50%;
-    width: 38px;
-    height: 38px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.rank-cover {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
 }
 
-.hot-rank.top-1 {
-    background: linear-gradient(135deg, #ff4d4f, #ff7a45);
+.rank-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.rank-item:hover .rank-cover img {
+    transform: scale(1.05);
+}
+
+.rank-update {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: rgba(236, 65, 65, 0.8);
     color: white;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    border-top-left-radius: 8px;
 }
 
-.hot-rank.top-2 {
-    background: linear-gradient(135deg, #ff7a45, #ffa940);
-    color: white;
-}
-
-.hot-rank.top-3 {
-    background: linear-gradient(135deg, #ffa940, #ffec3d);
-    color: white;
-}
-
-.hot-content {
+.rank-info {
+    padding: 16px;
     flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.rank-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.rank-desc {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+}
+
+.rank-meta {
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 12px;
+}
+
+.rank-link {
+    display: inline-block;
+    background: linear-gradient(135deg, #ec4141, #ff7a45);
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(236, 65, 65, 0.3);
+}
+
+.rank-link:hover {
+    background: linear-gradient(135deg, #d73435, #f06937);
+    box-shadow: 0 4px 12px rgba(236, 65, 65, 0.4);
+    transform: translateY(-2px);
 }
 
 .hot-title {
@@ -217,6 +263,45 @@ header h1 {
     padding: 40px;
     color: #666;
     font-size: 1.1rem;
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(236, 65, 65, 0.3);
+    border-radius: 50%;
+    border-top-color: #ec4141;
+    animation: spin 1s ease-in-out infinite;
+    margin-bottom: 16px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.error-message {
+    text-align: center;
+    padding: 40px;
+    color: #ff4d4f;
+    font-size: 1.1rem;
+}
+
+.retry-button {
+    background: #ec4141;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-top: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.retry-button:hover {
+    background: #d73435;
+    box-shadow: 0 2px 8px rgba(236, 65, 65, 0.4);
 }
 
 footer {
