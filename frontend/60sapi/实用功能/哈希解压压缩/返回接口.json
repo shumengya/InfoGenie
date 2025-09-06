@@ -1,33 +1,35 @@
 {
   "code": 200,
-  "message": "处理成功",
+  "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
   "data": {
-    "source": "你好👋",
-    "md5": "a1b2c3d4e5f6789012345678901234567",
+    "source": "hello",
+    "md5": "5d41402abc4b2a76b9719d911017c592",
     "sha": {
-      "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "sha512": "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"
+      "sha1": "aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d",
+      "sha256": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+      "sha512": "9b71d224bd62f3785d96d46ad3ea3d73319bfbc2890caadae2dff72519673ca72323c3d99ba5c11d7c7acc6e14b8c5da0c4663475c2e5c3adef46f73bcdec043"
     },
     "base64": {
-      "encode": "5L2g5aW9",
-      "decode": "你好"
+      "encoded": "aGVsbG8=",
+      "decoded": ""
     },
     "url": {
-      "encode": "%E4%BD%A0%E5%A5%BD%F0%9F%91%8B",
-      "decode": "你好👋"
+      "encoded": "hello",
+      "decoded": "hello"
     },
     "gzip": {
-      "compress": "H4sIAAAAAAAAA...(压缩后的数据)",
-      "decompress": "你好👋"
+      "encoded": "1f8b0800000000000003cb48cdc9c9070086a6103605000000",
+      "decoded": ""
     },
     "deflate": {
-      "compress": "eJwrz8kvTUlMy...(压缩后的数据)",
-      "decompress": "你好👋"
+      "encoded": "789ccb48cdc9c90700062c0215",
+      "decoded": ""
     },
     "brotli": {
-      "compress": "CwWAaGVsbG8g...(压缩后的数据)",
-      "decompress": "你好👋"
+      "encoded": "0b028068656c6c6f03",
+      "decoded": ""
     }
   }
 }
+
+注意：实际API返回的字段名是 encoded/decoded，不是 encode/decode

@@ -159,13 +159,24 @@ class IPQueryApp {
             queryTimeElement.textContent = now.toLocaleString('zh-CN');
         }
 
-        // 更新详细信息
-        this.updateDetailItem('location', data.location || '未知');
-        this.updateDetailItem('isp', data.isp || '未知');
-        this.updateDetailItem('country', data.country || '未知');
-        this.updateDetailItem('region', data.region || '未知');
-        this.updateDetailItem('city', data.city || '未知');
-        this.updateDetailItem('timezone', data.timezone || '未知');
+        // 更新详细信息 - 只显示API提供的数据
+        if (data.location) this.updateDetailItem('location', data.location);
+        else this.hideDetailItem('location');
+        
+        if (data.isp) this.updateDetailItem('isp', data.isp);
+        else this.hideDetailItem('isp');
+        
+        if (data.country) this.updateDetailItem('country', data.country);
+        else this.hideDetailItem('country');
+        
+        if (data.region) this.updateDetailItem('region', data.region);
+        else this.hideDetailItem('region');
+        
+        if (data.city) this.updateDetailItem('city', data.city);
+        else this.hideDetailItem('city');
+        
+        if (data.timezone) this.updateDetailItem('timezone', data.timezone);
+        else this.hideDetailItem('timezone');
 
         // 显示IP信息，隐藏错误信息
         if (ipInfo) ipInfo.style.display = 'block';
@@ -180,6 +191,23 @@ class IPQueryApp {
         const element = document.getElementById(id);
         if (element) {
             element.textContent = value;
+            // 显示对应的详细信息行
+            const detailRow = element.closest('.detail-item');
+            if (detailRow) {
+                detailRow.style.display = 'flex';
+            }
+        }
+    }
+
+    // 隐藏详细信息项
+    hideDetailItem(id) {
+        const element = document.getElementById(id);
+        if (element) {
+            // 隐藏整个详细信息行
+            const detailRow = element.closest('.detail-item');
+            if (detailRow) {
+                detailRow.style.display = 'none';
+            }
         }
     }
 

@@ -1,20 +1,21 @@
-/* 玻璃拟态背景相关样式 */
+/* 农历主题背景样式 - 动态调节版本 */
 body {
     background: linear-gradient(135deg, 
-        #667eea 0%, 
-        #764ba2 25%, 
-        #f093fb 50%, 
-        #f5576c 75%, 
-        #4facfe 100%
+        #fff8dc 0%,     /* 玉米丝色 */
+        #ffd700 20%,    /* 金黄色 */
+        #ffcc00 40%,    /* 亮金色 */
+        #daa520 60%,    /* 深金色 */
+        #b8860b 80%,    /* 暗金色 */
+        #fff8dc 100%    /* 玉米丝色 */
     );
     background-size: 400% 400%;
-    animation: gradientShift 20s ease infinite;
+    animation: goldenShift 25s ease infinite;
     background-attachment: fixed;
     min-height: 100vh;
     position: relative;
 }
 
-@keyframes gradientShift {
+@keyframes goldenShift {
     0% { background-position: 0% 50%; }
     25% { background-position: 100% 50%; }
     50% { background-position: 100% 100%; }
@@ -22,7 +23,56 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* 玻璃拟态装饰层 */
+/* 动态颜色调节系统 */
+.adaptive-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+        linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+    pointer-events: none;
+    z-index: 1;
+    animation: adaptiveShift 60s ease infinite;
+}
+
+@keyframes adaptiveShift {
+    0% { 
+        background: 
+            radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+            linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+    }
+    25% { 
+        background: 
+            radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.25) 100%);
+    }
+    50% { 
+        background: 
+            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
+            linear-gradient(225deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.22) 100%);
+    }
+    75% { 
+        background: 
+            radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.18) 0%, transparent 50%),
+            radial-gradient(circle at 40% 10%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
+            linear-gradient(315deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+    }
+    100% { 
+        background: 
+            radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+            linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+    }
+}
+
+/* 高清稻穗贴图层 */
 body::before {
     content: '';
     position: fixed;
@@ -30,17 +80,70 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.06) 0%, transparent 30%),
-        radial-gradient(circle at 60% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 35%);
+    background-image: 
+        /* 主稻穗束 - 高清细节 */
+        radial-gradient(ellipse 1.5px 12px at 50% 45%, #DAA520 0%, #B8860B 30%, transparent 80%),
+        radial-gradient(ellipse 1px 10px at 48% 50%, #FFD700 0%, #DAA520 40%, transparent 75%),
+        radial-gradient(ellipse 1.2px 11px at 52% 48%, #FFCC00 0%, #B8860B 35%, transparent 78%),
+        radial-gradient(ellipse 0.8px 9px at 49% 52%, #F4A460 0%, #DAA520 45%, transparent 70%),
+        radial-gradient(ellipse 1.3px 13px at 51% 46%, #DEB887 0%, #B8860B 38%, transparent 82%),
+        
+        /* 次级稻穗 */
+        radial-gradient(ellipse 1px 8px at 30% 35%, #FFD700 0%, #DAA520 50%, transparent 75%),
+        radial-gradient(ellipse 0.9px 7px at 32% 38%, #FFCC00 0%, #B8860B 45%, transparent 70%),
+        radial-gradient(ellipse 1.1px 9px at 28% 36%, #DEB887 0%, #DAA520 40%, transparent 78%),
+        
+        radial-gradient(ellipse 1px 8px at 70% 65%, #FFD700 0%, #DAA520 50%, transparent 75%),
+        radial-gradient(ellipse 0.8px 7px at 72% 68%, #F4A460 0%, #B8860B 45%, transparent 70%),
+        radial-gradient(ellipse 1.2px 9px at 68% 66%, #FFCC00 0%, #DAA520 40%, transparent 78%),
+        
+        /* 散落稻粒 */
+        radial-gradient(ellipse 0.5px 4px at 20% 80%, #FFD700 0%, transparent 60%),
+        radial-gradient(ellipse 0.6px 5px at 80% 20%, #FFCC00 0%, transparent 65%),
+        radial-gradient(ellipse 0.4px 3px at 15% 25%, #DEB887 0%, transparent 55%),
+        radial-gradient(ellipse 0.7px 6px at 85% 75%, #DAA520 0%, transparent 70%),
+        
+        /* 稻穗茎秆 - 更细致 */
+        linear-gradient(88deg, transparent 49%, #9ACD32 49.5%, #8FBC8F 50%, #9ACD32 50.5%, transparent 51%),
+        linear-gradient(92deg, transparent 49%, #8FBC8F 49.5%, #228B22 50%, #8FBC8F 50.5%, transparent 51%),
+        linear-gradient(85deg, transparent 49%, #32CD32 49.5%, #9ACD32 50%, #32CD32 50.5%, transparent 51%);
+    
+    background-size: 
+        25px 25px, 24px 24px, 26px 26px, 23px 23px, 27px 27px,
+        20px 20px, 19px 19px, 21px 21px,
+        22px 22px, 18px 18px, 23px 23px,
+        15px 15px, 16px 16px, 14px 14px, 17px 17px,
+        80px 80px, 85px 85px, 75px 75px;
+    
+    background-position:
+        0 0, 12px 12px, 6px 18px, 18px 6px, 3px 21px,
+        40px 40px, 52px 48px, 35px 55px,
+        120px 120px, 135px 115px, 110px 130px,
+        200px 200px, 220px 180px, 180px 220px, 240px 160px,
+        0 0, 40px 40px, 20px 60px;
+    
+    opacity: 0.25;
     pointer-events: none;
-    z-index: -1;
-    animation: glassFloat 25s ease-in-out infinite alternate;
+    z-index: -2;
+    animation: wheatSway 20s ease-in-out infinite;
 }
 
-/* 毛玻璃气泡效果 */
+@keyframes wheatSway {
+    0%, 100% {
+        transform: translateX(0) rotate(0deg);
+    }
+    25% {
+        transform: translateX(5px) rotate(0.5deg);
+    }
+    50% {
+        transform: translateX(-3px) rotate(-0.3deg);
+    }
+    75% {
+        transform: translateX(2px) rotate(0.2deg);
+    }
+}
+
+/* 大型稻穗背景层 */
 body::after {
     content: '';
     position: fixed;
@@ -49,41 +152,424 @@ body::after {
     width: 100%;
     height: 100%;
     background-image: 
-        radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
-        radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.25) 3px, transparent 3px),
-        radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.2) 1.5px, transparent 1.5px),
-        radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.3) 2.5px, transparent 2.5px),
-        radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.25) 2px, transparent 2px),
-        radial-gradient(circle at 20% 90%, rgba(255, 255, 255, 0.2) 1px, transparent 1px);
-    background-size: 300px 300px, 250px 250px, 400px 400px, 200px 200px, 350px 350px, 150px 150px;
-    animation: bubbleFloat 30s linear infinite;
+        /* 主稻穗茎秆 - 右侧大型 */
+        linear-gradient(85deg, transparent 45%, #9ACD32 47%, #8FBC8F 48%, #228B22 49%, #8FBC8F 50%, #9ACD32 51%, transparent 53%),
+        linear-gradient(87deg, transparent 46%, #32CD32 47.5%, #9ACD32 48.5%, #8FBC8F 49.5%, #9ACD32 50.5%, #32CD32 51.5%, transparent 54%),
+        
+        /* 主稻穗穗头 - 大型椭圆稻粒群 */
+        radial-gradient(ellipse 8px 25px at 75% 15%, #FFD700 0%, #DAA520 30%, #B8860B 60%, transparent 85%),
+        radial-gradient(ellipse 7px 23px at 77% 18%, #FFCC00 0%, #DAA520 35%, transparent 80%),
+        radial-gradient(ellipse 9px 27px at 73% 12%, #F4A460 0%, #B8860B 40%, transparent 88%),
+        radial-gradient(ellipse 6px 22px at 79% 20%, #DEB887 0%, #DAA520 45%, transparent 75%),
+        radial-gradient(ellipse 8px 24px at 75% 16%, #FFD700 0%, #B8860B 38%, transparent 82%),
+        
+        /* 稻穗分支 */
+        radial-gradient(ellipse 5px 18px at 72% 25%, #FFCC00 0%, #DAA520 50%, transparent 75%),
+        radial-gradient(ellipse 4px 16px at 78% 28%, #F4A460 0%, #B8860B 45%, transparent 70%),
+        radial-gradient(ellipse 6px 20px at 70% 22%, #DEB887 0%, #DAA520 40%, transparent 78%),
+        radial-gradient(ellipse 5px 17px at 80% 30%, #FFD700 0%, #B8860B 42%, transparent 76%),
+        
+        /* 左侧稻穗茎秆 */
+        linear-gradient(95deg, transparent 15%, #9ACD32 17%, #8FBC8F 18%, #228B22 19%, #8FBC8F 20%, #9ACD32 21%, transparent 23%),
+        
+        /* 左侧稻穗穗头 */
+        radial-gradient(ellipse 6px 20px at 25% 25%, #FFD700 0%, #DAA520 30%, transparent 80%),
+        radial-gradient(ellipse 5px 18px at 27% 28%, #FFCC00 0%, #B8860B 35%, transparent 75%),
+        radial-gradient(ellipse 7px 22px at 23% 22%, #F4A460 0%, #DAA520 40%, transparent 85%),
+        
+        /* 麦田远景效果 */
+        linear-gradient(180deg, transparent 70%, rgba(255, 215, 0, 0.1) 75%, rgba(218, 165, 32, 0.15) 85%, rgba(255, 215, 0, 0.2) 95%, rgba(255, 215, 0, 0.25) 100%),
+        
+        /* 散落稻粒 */
+        radial-gradient(ellipse 2px 8px at 60% 40%, #FFD700 0%, transparent 60%),
+        radial-gradient(ellipse 1.5px 6px at 40% 60%, #FFCC00 0%, transparent 65%),
+        radial-gradient(ellipse 2.5px 10px at 85% 50%, #DEB887 0%, transparent 70%),
+        radial-gradient(ellipse 1.8px 7px at 15% 80%, #DAA520 0%, transparent 68%);
+    
+    background-size: 
+        /* 主茎秆 */
+        100vw 80vh, 100vw 82vh,
+        /* 主穗头 */
+        50vw 60vh, 48vw 58vh, 52vw 62vh, 46vw 56vh, 50vw 60vh,
+        /* 分支 */
+        40vw 50vh, 38vw 48vh, 42vw 52vh, 36vw 46vh,
+        /* 左侧茎秆 */
+        100vw 70vh,
+        /* 左侧穗头 */
+        35vw 45vh, 33vw 43vh, 37vw 47vh,
+        /* 麦田远景 */
+        100vw 100vh,
+        /* 散落稻粒 */
+        20vw 20vh, 25vw 25vh, 30vw 30vh, 22vw 22vh;
+    
+    background-position:
+        /* 主茎秆 */
+        70% 20%, 72% 18%,
+        /* 主穗头 */
+        60% 0%, 62% 2%, 58% -2%, 64% 4%, 60% 1%,
+        /* 分支 */
+        65% 15%, 67% 17%, 63% 13%, 69% 19%,
+        /* 左侧茎秆 */
+        20% 30%,
+        /* 左侧穗头 */
+        15% 20%, 17% 22%, 13% 18%,
+        /* 麦田远景 */
+        0% 0%,
+        /* 散落稻粒 */
+        30% 50%, 50% 70%, 80% 40%, 10% 80%;
+    
+    background-repeat: no-repeat;
+    opacity: 0.4;
     pointer-events: none;
     z-index: -1;
-    opacity: 0.7;
+    animation: wheatSway 25s ease-in-out infinite;
 }
 
-@keyframes glassFloat {
+@keyframes spiralRotate {
     0% {
-        transform: translateY(0px) rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 流星效果容器 */
+.meteor-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* 流星轨迹 */
+.meteor {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: radial-gradient(circle, #FFD700 0%, #FFA500 50%, transparent 100%);
+    border-radius: 50%;
+    box-shadow: 
+        0 0 10px #FFD700,
+        0 0 20px #FFA500,
+        0 0 30px #FF8C00;
+    animation: meteorFall linear infinite;
+}
+
+/* 流星尾迹 */
+.meteor::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        #FFD700 0%, 
+        #FFA500 30%, 
+        #FF8C00 60%, 
+        transparent 100%);
+    transform-origin: 0 50%;
+    transform: rotate(-45deg);
+    opacity: 0.8;
+}
+
+@keyframes meteorFall {
+    0% {
+        transform: translateX(-100px) translateY(-100px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px));
+        opacity: 0;
+    }
+}
+
+/* 多个流星的不同轨迹 */
+.meteor:nth-child(1) {
+    top: 10%;
+    left: -100px;
+    animation-duration: 8s;
+    animation-delay: 0s;
+}
+
+.meteor:nth-child(2) {
+    top: 20%;
+    left: -100px;
+    animation-duration: 12s;
+    animation-delay: 2s;
+}
+
+.meteor:nth-child(3) {
+    top: 30%;
+    left: -100px;
+    animation-duration: 10s;
+    animation-delay: 4s;
+}
+
+.meteor:nth-child(4) {
+    top: 50%;
+    left: -100px;
+    animation-duration: 15s;
+    animation-delay: 6s;
+}
+
+.meteor:nth-child(5) {
+    top: 70%;
+    left: -100px;
+    animation-duration: 9s;
+    animation-delay: 8s;
+}
+
+.meteor:nth-child(6) {
+    top: 80%;
+    left: -100px;
+    animation-duration: 11s;
+    animation-delay: 10s;
+}
+
+/* 金色粒子效果 */
+.golden-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: radial-gradient(circle, #FFD700 0%, #FFA500 70%, transparent 100%);
+    border-radius: 50%;
+    animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* 粒子的不同位置和动画时长 */
+.particle:nth-child(1) { left: 10%; animation-duration: 20s; animation-delay: 0s; }
+.particle:nth-child(2) { left: 20%; animation-duration: 25s; animation-delay: 2s; }
+.particle:nth-child(3) { left: 30%; animation-duration: 18s; animation-delay: 4s; }
+.particle:nth-child(4) { left: 40%; animation-duration: 22s; animation-delay: 6s; }
+.particle:nth-child(5) { left: 50%; animation-duration: 24s; animation-delay: 8s; }
+.particle:nth-child(6) { left: 60%; animation-duration: 19s; animation-delay: 10s; }
+.particle:nth-child(7) { left: 70%; animation-duration: 21s; animation-delay: 12s; }
+.particle:nth-child(8) { left: 80%; animation-duration: 23s; animation-delay: 14s; }
+.particle:nth-child(9) { left: 90%; animation-duration: 26s; animation-delay: 16s; }
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .meteor {
+        width: 1px;
+        height: 1px;
+    }
+    
+    .meteor::before {
+        width: 50px;
+    }
+    
+    .particle {
+        width: 2px;
+        height: 2px;
+    }
+    
+    body::before {
+        background-size: 
+            30px 30px, 25px 25px, 35px 35px, 28px 28px, 32px 32px,
+            40px 40px, 45px 45px;
+    }
+    
+    body::after {
+        background-size: 200px 200px, 150px 150px, 100px 100px;
+    }
+}
+
+/* 麦穗飘舞特效 */
+.wheat-floating {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+}
+
+/* 移动设备性能优化 */
+@media (max-width: 768px) {
+    .wheat-floating {
+        display: none;
+    }
+    
+    .golden-particles {
+        display: none;
+    }
+    
+    .meteor-container {
+        display: none;
+    }
+    
+    .adaptive-overlay {
+        animation: none;
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+.wheat-particle {
+    position: absolute;
+    width: 8px;
+    height: 20px;
+    background: linear-gradient(180deg, 
+        #FFD700 0%, 
+        #DAA520 50%, 
+        #B8860B 100%
+    );
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0.7;
+    animation: wheatFloat 15s linear infinite;
+}
+
+.wheat-particle::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 8px;
+    background: #8B7355;
+    border-radius: 1px;
+}
+
+.wheat-particle::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 1px;
+    width: 2px;
+    height: 4px;
+    background: #FFEC8C;
+    border-radius: 50%;
+    box-shadow: 
+        3px 2px 0 #FFEC8C,
+        1px 6px 0 #FFEC8C,
+        4px 8px 0 #FFEC8C;
+}
+
+@keyframes wheatFloat {
+    0% {
+        transform: translateY(-100vh) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
         opacity: 0.7;
     }
     100% {
-        transform: translateY(-20px) rotate(2deg);
-        opacity: 0.9;
+        transform: translateY(100vh) translateX(50px) rotate(360deg);
+        opacity: 0;
     }
 }
 
-@keyframes bubbleFloat {
-    0%, 100% {
-        transform: translateX(0) translateY(0);
+/* 不同大小和速度的麦穗 */
+.wheat-particle:nth-child(1) {
+    left: 10%;
+    animation-duration: 12s;
+    animation-delay: 0s;
+    transform: scale(0.8);
+}
+
+.wheat-particle:nth-child(2) {
+    left: 25%;
+    animation-duration: 18s;
+    animation-delay: 2s;
+    transform: scale(1.2);
+}
+
+.wheat-particle:nth-child(3) {
+    left: 40%;
+    animation-duration: 15s;
+    animation-delay: 4s;
+    transform: scale(0.9);
+}
+
+.wheat-particle:nth-child(4) {
+    left: 60%;
+    animation-duration: 20s;
+    animation-delay: 1s;
+    transform: scale(1.1);
+}
+
+.wheat-particle:nth-child(5) {
+    left: 75%;
+    animation-duration: 14s;
+    animation-delay: 3s;
+    transform: scale(0.7);
+}
+
+.wheat-particle:nth-child(6) {
+    left: 90%;
+    animation-duration: 16s;
+    animation-delay: 5s;
+    transform: scale(1.0);
+}
+
+.wheat-particle:nth-child(7) {
+    left: 5%;
+    animation-duration: 22s;
+    animation-delay: 6s;
+    transform: scale(0.6);
+}
+
+.wheat-particle:nth-child(8) {
+    left: 35%;
+    animation-duration: 13s;
+    animation-delay: 2.5s;
+    transform: scale(1.3);
+}
+
+/* 减少动画偏好设置 */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
-    25% {
-        transform: translateX(-15px) translateY(-10px);
-    }
-    50% {
-        transform: translateX(10px) translateY(-20px);
-    }
-    75% {
-        transform: translateX(-5px) translateY(-15px);
+    
+    .meteor,
+    .particle {
+        display: none;
     }
 }
