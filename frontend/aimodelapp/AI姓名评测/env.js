@@ -1,7 +1,7 @@
 // AI姓名评测配置文件
 const CONFIG = {
     // GitHub API 配置
-    GITHUB_TOKEN: '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',
+    GITHUB_TOKEN: '',
     endpoint: 'https://models.github.ai/inference/chat/completions',
     model: 'deepseek/DeepSeek-V3-0324',
     

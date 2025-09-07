@@ -1,7 +1,7 @@
 // AI变量命名助手配置文件
 const CONFIG = {
     // GitHub Models API 配置
-    GITHUB_TOKEN: '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',
+    GITHUB_TOKEN: '',
     API_URL: 'https://models.github.ai/inference/chat/completions',
     MODEL_NAME: 'openai/gpt-4o-mini',
     
