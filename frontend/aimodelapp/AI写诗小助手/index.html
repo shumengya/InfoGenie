@@ -227,34 +227,16 @@
     </div>
   </div>
 
+  <script src="env.js"></script>
   <script>
-    // GitHub API 配置
-    const GITHUB_TOKEN = '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';
-    const endpoint = 'https://models.github.ai/inference/chat/completions';
+    // 从配置文件导入设置
+    // 配置在 env.js 文件中定义
+
     const generateBtn = document.getElementById('generateBtn');
     const loading = document.getElementById('loading');
     const poemOutput = document.getElementById('poemOutput');
     
-    // 专业的古诗生成提示词
-    const createPoemPrompt = (theme) => {
-      return `你是一位精通中国古典诗词的大师，请根据用户提供的主题创作一首优美的古诗。
 
-      要求：
-      1. 严格遵循中国古诗的格律和韵律
-      2. 可以是五言绝句、七言绝句、五言律诗或七言律诗
-      3. 注重意境的营造，体现中国传统文化的美感
-      4. 用词典雅，富有诗意
-      5. 根据主题选择合适的风格（豪放、婉约、田园、边塞等）
-      6. 确保押韵和平仄协调
-      7. 请先给诗歌起一个优美的标题，然后换行写出诗歌内容
-      8. 格式：标题\n诗歌正文
-      9. 注意排版对齐，标题居中，诗歌正文左对齐
-      10. 诗歌内容必须是中文
-
-      主题：${theme}
-
-      请创作一首古诗：`;
-          };
 
     generateBtn.addEventListener('click', async () => {
       const theme = document.getElementById('theme').value.trim();
@@ -277,21 +259,21 @@
       }
 
       const requestBody = {
-        model: "openai/gpt-4o-mini",
+        model: CONFIG.MODEL_NAME,
         messages: [{ 
           role: "user", 
-          content: createPoemPrompt(theme)
+          content: CONFIG.createPoemPrompt(theme)
         }],
         temperature: 0.8,
         max_tokens: 500
       };
 
       try {
-        const response = await fetch(endpoint, {
+        const response = await fetch(CONFIG.endpoint, {
           method: 'POST',
           headers: {
             'Accept': 'application/vnd.github+json',
-            'Authorization': `Bearer ${GITHUB_TOKEN}`,
+            'Authorization': `Bearer ${CONFIG.GITHUB_TOKEN}`,
             'X-GitHub-Api-Version': '2022-11-28',
             'Content-Type': 'application/json'
           },

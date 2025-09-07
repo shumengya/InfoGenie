@@ -16,8 +16,10 @@ class QRCodeGenerator {
     // 加载API接口列表
     async loadApiEndpoints() {
         try {
-            const response = await fetch('./接口集合.json');
-            this.apiEndpoints = await response.json();
+            // 直接在代码中配置API接口，避免CORS问题
+            this.apiEndpoints = [
+                "https://60s.api.shumengya.top"
+            ];
             console.log('已加载API接口:', this.apiEndpoints);
         } catch (error) {
             console.error('加载API接口失败:', error);
@@ -32,16 +34,26 @@ class QRCodeGenerator {
         const downloadBtn = document.querySelector('.download-btn');
         const copyBtn = document.querySelector('.copy-btn');
         const newBtn = document.querySelector('.new-btn');
-
-        form.addEventListener('submit', (e) => this.handleSubmit(e));
-        retryBtn.addEventListener('click', () => this.retryGeneration());
-        downloadBtn.addEventListener('click', () => this.downloadQRCode());
-        copyBtn.addEventListener('click', () => this.copyImageLink());
-        newBtn.addEventListener('click', () => this.resetForm());
-
-        // 实时字符计数
         const textArea = document.getElementById('text');
-        textArea.addEventListener('input', () => this.updateCharCount());
+
+        if (form) {
+            form.addEventListener('submit', (e) => this.handleSubmit(e));
+        }
+        if (retryBtn) {
+            retryBtn.addEventListener('click', () => this.retryGeneration());
+        }
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => this.downloadQRCode());
+        }
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => this.copyImageLink());
+        }
+        if (newBtn) {
+            newBtn.addEventListener('click', () => this.resetForm());
+        }
+        if (textArea) {
+            textArea.addEventListener('input', () => this.updateCharCount());
+        }
     }
 
     // 设置表单验证
@@ -162,7 +174,7 @@ class QRCodeGenerator {
         
         // 添加查询参数
         Object.entries(params).forEach(([key, value]) => {
-            if (value) {
+            if (value !== null && value !== undefined && value !== '') {
                 url.searchParams.append(key, value);
             }
         });
@@ -188,20 +200,44 @@ class QRCodeGenerator {
             }
 
             // 根据返回格式处理
-            if (params.encoding === 'image') {
-                const blob = await response.blob();
-                const imageUrl = URL.createObjectURL(blob);
-                return {
-                    success: true,
-                    data: {
-                        imageUrl: imageUrl,
-                        text: params.text,
-                        size: params.size,
-                        level: params.level,
-                        format: 'image'
+            if (params.encoding === 'image' || !params.encoding) {
+                // 默认返回图片格式
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.startsWith('image/')) {
+                    const blob = await response.blob();
+                    const imageUrl = URL.createObjectURL(blob);
+                    return {
+                        success: true,
+                        data: {
+                            imageUrl: imageUrl,
+                            text: params.text,
+                            size: params.size,
+                            level: params.level,
+                            format: 'image'
+                        }
+                    };
+                } else {
+                    // 如果返回的不是图片，尝试解析JSON
+                    const jsonData = await response.json();
+                    if (jsonData.code === 0 && jsonData.data && jsonData.data.data_uri) {
+                        return {
+                            success: true,
+                            data: {
+                                imageUrl: jsonData.data.data_uri,
+                                text: params.text,
+                                size: params.size,
+                                level: params.level,
+                                format: 'json',
+                                base64: jsonData.data.base64,
+                                mimeType: jsonData.data.mime_type
+                            }
+                        };
+                    } else {
+                        throw new Error(jsonData.message || '生成失败');
                     }
-                };
+                }
             } else {
+                // JSON或text格式
                 const jsonData = await response.json();
                 if (jsonData.code === 0 && jsonData.data) {
                     return {
@@ -211,7 +247,7 @@ class QRCodeGenerator {
                             text: params.text,
                             size: params.size,
                             level: params.level,
-                            format: 'json',
+                            format: params.encoding,
                             base64: jsonData.data.base64,
                             mimeType: jsonData.data.mime_type
                         }

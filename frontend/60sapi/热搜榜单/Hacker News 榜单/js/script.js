@@ -1,10 +1,6 @@
 // API接口列表
 const API_ENDPOINTS = [
-    "https://60s-cf.viki.moe",
-    "https://60s.viki.moe", 
-    "https://60s.b23.run",
-    "https://60s.114128.xyz",
-    "https://60s-cf.114128.xyz"
+    "https://60s.api.shumengya.top",
 ];
 
 // 当前使用的API索引
@@ -118,7 +114,7 @@ function createNewsItem(item, rank) {
     const newsItem = document.createElement('div');
     newsItem.className = 'news-item';
     
-    const rankClass = rank <= 5 ? 'news-rank top-5' : 'news-rank';
+    const rankClass = rank <= 3 ? `news-rank rank-${rank}` : 'news-rank';
     const formattedScore = formatScore(item.score);
     const formattedTime = formatTime(item.created);
     
@@ -127,8 +123,6 @@ function createNewsItem(item, rank) {
     if (rank === 1) rankEmoji = '🏆';
     else if (rank === 2) rankEmoji = '🥈';
     else if (rank === 3) rankEmoji = '🥉';
-    else if (rank <= 10) rankEmoji = '💎';
-    else rankEmoji = '⭐';
     
     // 根据评分添加热度指示
     let heatLevel = '';
@@ -138,18 +132,35 @@ function createNewsItem(item, rank) {
     else heatLevel = '💫';
     
     newsItem.innerHTML = `
-        <div class="news-header">
-            <div class="${rankClass}">${rank}</div>
-            <div class="news-score">${heatLevel} ${formattedScore}</div>
+        <div class="news-rank-container">
+            <div class="${rankClass}">
+                <span class="rank-number">${rank}</span>
+                <span class="rank-emoji">${rankEmoji}</span>
+            </div>
         </div>
-        <div class="news-title">${rankEmoji} ${escapeHtml(item.title)}</div>
-        <div class="news-meta">
-            <div class="news-author">👤 ${escapeHtml(item.author)}</div>
-            <div class="news-time">🕒 ${formattedTime}</div>
+        <div class="news-content-wrapper">
+            <h3 class="news-title">${escapeHtml(item.title)}</h3>
+            <div class="news-meta-row">
+                <div class="news-author">
+                    <span class="meta-icon">👤</span>
+                    <span class="meta-text">${escapeHtml(item.author)}</span>
+                </div>
+                <div class="news-time">
+                    <span class="meta-icon">🕒</span>
+                    <span class="meta-text">${formattedTime}</span>
+                </div>
+            </div>
+            <div class="news-stats-row">
+                <div class="news-score">
+                    <span class="heat-level">${heatLevel}</span>
+                    <span class="score-text">${formattedScore} 分</span>
+                </div>
+                <a href="${item.link}" target="_blank" class="news-link">
+                    <span class="link-icon">🚀</span>
+                    <span class="link-text">阅读全文</span>
+                </a>
+            </div>
         </div>
-        <a href="${item.link}" target="_blank" class="news-link">
-            🚀 阅读全文
-        </a>
     `;
     
     return newsItem;

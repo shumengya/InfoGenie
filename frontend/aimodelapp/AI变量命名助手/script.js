@@ -1,7 +1,5 @@
-// GitHub Models API 配置
-const GITHUB_TOKEN = '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';
-const API_URL = 'https://models.github.ai/inference/chat/completions';
-const MODEL_NAME = 'openai/gpt-4o-mini';
+// 从配置文件导入设置
+// 配置在 env.js 文件中定义
 
 // DOM 元素
 const descriptionInput = document.getElementById('description');
@@ -37,68 +35,16 @@ const namingConventions = {
     }
 };
 
-// 创建AI提示词
-function createNamingPrompt(description) {
-    return `你是一个专业的变量命名助手。请根据以下描述为变量生成合适的名称：
 
-描述：${description}
-
-请为每种命名规范生成3个变量名建议：
-1. camelCase (驼峰命名法)
-2. PascalCase (帕斯卡命名法) 
-3. snake_case (下划线命名法)
-4. kebab-case (短横线命名法)
-5. CONSTANT_CASE (常量命名法)
-
-要求：
-- 变量名要准确反映功能和用途
-- 严格遵循各自的命名规范
-- 避免使用缩写，除非是广泛认知的缩写
-- 名称要简洁但具有描述性
-- 考虑代码的可读性和维护性
-
-请按以下JSON格式返回：
-{
-  "suggestions": {
-    "camelCase": [
-      {"name": "变量名1", "description": "解释说明1"},
-      {"name": "变量名2", "description": "解释说明2"},
-      {"name": "变量名3", "description": "解释说明3"}
-    ],
-    "PascalCase": [
-      {"name": "变量名1", "description": "解释说明1"},
-      {"name": "变量名2", "description": "解释说明2"},
-      {"name": "变量名3", "description": "解释说明3"}
-    ],
-    "snake_case": [
-      {"name": "变量名1", "description": "解释说明1"},
-      {"name": "变量名2", "description": "解释说明2"},
-      {"name": "变量名3", "description": "解释说明3"}
-    ],
-    "kebab-case": [
-      {"name": "变量名1", "description": "解释说明1"},
-      {"name": "变量名2", "description": "解释说明2"},
-      {"name": "变量名3", "description": "解释说明3"}
-    ],
-    "CONSTANT_CASE": [
-      {"name": "变量名1", "description": "解释说明1"},
-      {"name": "变量名2", "description": "解释说明2"},
-      {"name": "变量名3", "description": "解释说明3"}
-    ]
-  }
-}
-
-只返回JSON格式的结果，不要包含其他文字。`;
-}
 
 // 调用GitHub Models API
 async function callGitHubModelsAPI(prompt) {
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(CONFIG.API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${GITHUB_TOKEN}`
+                'Authorization': `Bearer ${CONFIG.GITHUB_TOKEN}`
             },
             body: JSON.stringify({
                 messages: [
@@ -107,7 +53,7 @@ async function callGitHubModelsAPI(prompt) {
                         content: prompt
                     }
                 ],
-                model: MODEL_NAME,
+                model: CONFIG.MODEL_NAME,
                 temperature: 0.7,
                 max_tokens: 1000
             })
@@ -270,7 +216,7 @@ async function generateSuggestions() {
     suggestionsContainer.innerHTML = '';
     
     try {
-        const prompt = createNamingPrompt(description);
+        const prompt = CONFIG.createNamingPrompt(description);
         const response = await callGitHubModelsAPI(prompt);
         const suggestions = parseAIResponse(response);
         

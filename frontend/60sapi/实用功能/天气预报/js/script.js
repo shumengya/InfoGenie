@@ -2,11 +2,7 @@
 class WeatherApp {
     constructor() {
         this.apiEndpoints = [
-            'https://60s-cf.viki.moe',
-            'https://60s.viki.moe',
-            'https://60s.b23.run',
-            'https://60s.114128.xyz',
-            'https://60s-cf.114128.xyz'
+            "https://60s.api.shumengya.top/v2/weather/forecast"
         ];
         this.currentEndpointIndex = 0;
         this.init();
@@ -74,7 +70,7 @@ class WeatherApp {
     }
 
     async fetchWeatherData(endpoint, city) {
-        const url = `${endpoint}/v2/weather?query=${encodeURIComponent(city)}`;
+        const url = `${endpoint}?query=${encodeURIComponent(city)}`;
         
         const response = await fetch(url, {
             method: 'GET',
@@ -93,96 +89,79 @@ class WeatherApp {
     }
 
     displayWeatherData(data) {
-        const { location, realtime } = data;
+        const { location, forecast } = data;
         
         // 显示位置信息
         document.getElementById('locationName').textContent = location.formatted;
         document.getElementById('locationDetail').textContent = 
             `${location.province} ${location.city} | 邮编: ${location.zip_code}`;
 
-        // 显示当前天气
-        document.getElementById('temperature').textContent = realtime.temperature;
-        document.getElementById('weatherCondition').textContent = realtime.weather;
+        // 使用第一天的预报数据作为当前天气（今天的天气）
+        const todayWeather = forecast[0];
         
-        // 体感温度转换（API返回的是华氏度，需要转换为摄氏度）
-        const feelsLikeCelsius = this.fahrenheitToCelsius(realtime.temperature_feels_like);
+        // 显示当前天气（使用今天的最高温度）
+        document.getElementById('temperature').textContent = todayWeather.temperature_high;
+        document.getElementById('weatherCondition').textContent = 
+            `${todayWeather.weather_day} 转 ${todayWeather.weather_night}`;
+        
+        // 体感温度（使用温度范围）
         document.getElementById('feelsLike').textContent = 
-            `体感温度 ${feelsLikeCelsius}°C`;
+            `温度范围 ${todayWeather.temperature_low}°C - ${todayWeather.temperature_high}°C`;
 
-        // 显示天气详情
-        document.getElementById('humidity').textContent = `${realtime.humidity}%`;
-        document.getElementById('windDirection').textContent = realtime.wind_direction;
-        document.getElementById('windStrength').textContent = realtime.wind_strength;
-        document.getElementById('pressure').textContent = `${realtime.pressure} hPa`;
-        document.getElementById('visibility').textContent = realtime.visibility;
-        
-        // 空气质量显示
-        const aqiElement = document.getElementById('aqi');
-        aqiElement.textContent = `${realtime.aqi} (PM2.5: ${realtime.pm25})`;
-        aqiElement.className = this.getAQIClass(realtime.aqi);
-
-        // 显示生活指数
-        const lifeIndex = realtime.life_index;
-        this.displayLifeIndex('comfort', lifeIndex.comfort);
-        this.displayLifeIndex('clothing', lifeIndex.clothing);
-        this.displayLifeIndex('umbrella', lifeIndex.umbrella);
-        this.displayLifeIndex('uv', lifeIndex.uv);
-        this.displayLifeIndex('travel', lifeIndex.travel);
-        this.displayLifeIndex('sport', lifeIndex.sport);
-
-        // 显示更新时间
+        // 显示更新时间（使用当前时间）
         document.getElementById('updateTime').textContent = 
-            `${realtime.updated} (${realtime.updated_at})`;
+            `${this.formatDate(new Date())} (基于预报数据)`;
+
+        // 显示天气预报
+        this.displayForecast(forecast);
 
         this.showWeatherContainer();
     }
 
-    displayLifeIndex(type, indexData) {
-        const levelElement = document.getElementById(`${type}Level`);
-        const descElement = document.getElementById(`${type}Desc`);
+    displayForecast(forecast) {
+        const forecastGrid = document.getElementById('forecastGrid');
+        forecastGrid.innerHTML = '';
         
-        if (levelElement && descElement && indexData) {
-            levelElement.textContent = indexData.level;
-            descElement.textContent = indexData.desc;
+        forecast.forEach((day, index) => {
+            const forecastItem = document.createElement('div');
+            forecastItem.className = 'forecast-item';
             
-            // 根据指数级别设置颜色
-            levelElement.className = this.getIndexLevelClass(indexData.level);
-        }
-    }
-
-    getAQIClass(aqi) {
-        if (aqi <= 50) return 'aqi-good';
-        if (aqi <= 100) return 'aqi-moderate';
-        if (aqi <= 150) return 'aqi-unhealthy-sensitive';
-        if (aqi <= 200) return 'aqi-unhealthy';
-        if (aqi <= 300) return 'aqi-very-unhealthy';
-        return 'aqi-hazardous';
-    }
-
-    getIndexLevelClass(level) {
-        const levelMap = {
-            '优': 'level-excellent',
-            '良': 'level-good', 
-            '适宜': 'level-suitable',
-            '舒适': 'level-comfortable',
-            '较适宜': 'level-fairly-suitable',
-            '不宜': 'level-unsuitable',
-            '较不宜': 'level-fairly-unsuitable',
-            '带伞': 'level-bring-umbrella',
-            '最弱': 'level-weakest',
-            '弱': 'level-weak',
-            '中等': 'level-moderate',
-            '强': 'level-strong',
-            '很强': 'level-very-strong'
-        };
-        
-        return levelMap[level] || 'level-default';
+            forecastItem.innerHTML = `
+                <div class="forecast-date">${day.date_desc}</div>
+                <div class="forecast-weather">
+                    <div class="weather-day">${day.weather_day}</div>
+                    <div class="weather-night">${day.weather_night}</div>
+                </div>
+                <div class="forecast-temp">
+                    <span class="temp-high">${day.temperature_high}°</span>
+                    <span class="temp-low">${day.temperature_low}°</span>
+                </div>
+                <div class="forecast-wind">
+                    <div>${day.wind_direction_day} ${day.wind_strength_day}</div>
+                </div>
+                <div class="forecast-humidity">湿度: ${day.humidity}%</div>
+            `;
+            
+            forecastGrid.appendChild(forecastItem);
+        });
     }
 
     // 华氏度转摄氏度
     fahrenheitToCelsius(fahrenheit) {
         const celsius = (fahrenheit - 32) * 5 / 9;
         return Math.round(celsius * 10) / 10; // 保留一位小数
+    }
+
+    // 格式化时间
+    formatDate(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     }
 
     showLoading() {
@@ -205,26 +184,6 @@ class WeatherApp {
         errorElement.querySelector('p').textContent = message;
     }
 }
-
-// 添加生活指数级别样式
-const style = document.createElement('style');
-style.textContent = `
-    .aqi-good { color: #52c41a; }
-    .aqi-moderate { color: #faad14; }
-    .aqi-unhealthy-sensitive { color: #fa8c16; }
-    .aqi-unhealthy { color: #f5222d; }
-    .aqi-very-unhealthy { color: #a0206e; }
-    .aqi-hazardous { color: #722ed1; }
-    
-    .level-excellent, .level-suitable, .level-comfortable { color: #52c41a; }
-    .level-good, .level-fairly-suitable { color: #1890ff; }
-    .level-bring-umbrella, .level-moderate { color: #faad14; }
-    .level-unsuitable, .level-fairly-unsuitable { color: #f5222d; }
-    .level-weakest, .level-weak { color: #52c41a; }
-    .level-strong, .level-very-strong { color: #fa8c16; }
-    .level-default { color: #666; }
-`;
-document.head.appendChild(style);
 
 // 页面加载完成后初始化应用
 document.addEventListener('DOMContentLoaded', () => {

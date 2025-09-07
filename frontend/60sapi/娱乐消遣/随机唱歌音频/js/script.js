@@ -17,7 +17,7 @@
         this.endpoints = endpoints.map(endpoint => `${endpoint}/v2/changya`);
       } catch (e) {
         // 如果无法加载接口集合，使用默认接口
-        this.endpoints = ['https://60s.viki.moe/v2/changya'];
+        this.endpoints = ['https://60s.api.shumengya.top/v2/changya'];
       }
     },
     // 获取当前接口URL

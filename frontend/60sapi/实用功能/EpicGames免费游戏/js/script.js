@@ -13,7 +13,7 @@
         this.endpoints = endpoints.map(endpoint => `${endpoint}/v2/epic`);
       } catch (e) {
         // 如果无法加载接口集合，使用默认接口
-        this.endpoints = ['https://60s-api.viki.moe/v2/epic'];
+        this.endpoints = ['https://60s.api.shumengya.top/v2/epic'];
       }
     },
     // 获取当前接口URL

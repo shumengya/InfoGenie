@@ -3,11 +3,7 @@ class BaikeApp {
     constructor() {
         // API接口列表
         this.apiEndpoints = [
-            'https://60s-cf.viki.moe',
-            'https://60s.viki.moe',
-            'https://60s.b23.run',
-            'https://60s.114128.xyz',
-            'https://60s-cf.114128.xyz'
+            'https://60s.api.shumengya.top',
         ];
         
         this.currentApiIndex = 0;

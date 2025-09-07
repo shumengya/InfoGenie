@@ -3,7 +3,7 @@
 
 class OGAnalyzer {
     constructor() {
-        this.apiUrl = 'https://60s.viki.moe/v2/og';
+        this.apiUrl = 'https://60s.api.shumengya.top/v2/og';
         this.isAnalyzing = false;
         this.currentUrl = '';
         this.animationFrameId = null;

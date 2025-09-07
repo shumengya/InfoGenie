@@ -1,7 +1,7 @@
 // 公网IP地址查询应用
 class IPQueryApp {
     constructor() {
-        this.apiEndpoint = 'https://60s.viki.moe/v2/ip';
+        this.apiEndpoint = 'https://60s.api.shumengya.top/v2/ip';
         this.init();
     }
 

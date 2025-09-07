@@ -1,5 +1,5 @@
 // API配置
-const API_BASE_URL = 'https://60s.viki.moe/v2/hash';
+const API_BASE_URL = 'https://60s.api.shumengya.top/v2/hash';
 
 // DOM元素
 const elements = {

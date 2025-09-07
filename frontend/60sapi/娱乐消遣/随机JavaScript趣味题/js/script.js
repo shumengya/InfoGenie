@@ -2,19 +2,17 @@
 class JSQuizApp {
     constructor() {
         this.apiEndpoints = [
-            'https://60s-cf.viki.moe',
-            'https://60s.viki.moe',
-            'https://60s.b23.run',
-            'https://60s.114128.xyz',
-            'https://60s-cf.114128.xyz'
+            'https://60s.api.shumengya.top',
         ];
         this.currentApiIndex = 0;
         this.currentQuestion = null;
         this.selectedOption = null;
         this.isAnswered = false;
+        this.loadStartTime = null;
         
         this.initElements();
         this.bindEvents();
+        this.preloadResources();
         this.loadQuestion();
     }
     
@@ -39,6 +37,17 @@ class JSQuizApp {
             explanation: document.getElementById('explanation'),
             errorMessage: document.getElementById('errorMessage')
         };
+    }
+    
+    // 预加载资源
+    preloadResources() {
+        // 预连接API服务器
+        this.apiEndpoints.forEach(endpoint => {
+            const link = document.createElement('link');
+            link.rel = 'preconnect';
+            link.href = endpoint;
+            document.head.appendChild(link);
+        });
     }
     
     // 绑定事件
@@ -84,6 +93,7 @@ class JSQuizApp {
     
     // 加载题目
     async loadQuestion() {
+        this.loadStartTime = Date.now();
         this.showLoading();
         this.resetQuestion();
         
@@ -92,14 +102,19 @@ class JSQuizApp {
         
         while (attempts < maxAttempts) {
             try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 5000);
+                
                 const response = await fetch(this.getCurrentApiUrl(), {
                     method: 'GET',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    timeout: 10000
+                    signal: controller.signal
                 });
+                
+                clearTimeout(timeoutId);
                 
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
@@ -109,6 +124,8 @@ class JSQuizApp {
                 
                 if (data.code === 200 && data.data) {
                     this.currentQuestion = data.data;
+                    const loadTime = Date.now() - this.loadStartTime;
+                    console.log(`题目加载完成，耗时: ${loadTime}ms`);
                     this.displayQuestion();
                     return;
                 } else {

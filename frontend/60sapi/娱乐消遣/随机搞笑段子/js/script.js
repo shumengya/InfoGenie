@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const jokeCard = document.getElementById('joke-card');
 
     // API
-    const apiBaseUrls = ["https://60s.api.shumengya.top", "https://60s-cf.viki.moe", "https://60s.viki.moe"];
+    const apiBaseUrls = ["https://60s.api.shumengya.top"];
     const apiPath = "/v2/duanzi";
     let currentApiIndex = 0;
 

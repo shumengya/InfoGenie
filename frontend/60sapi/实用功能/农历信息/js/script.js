@@ -1,10 +1,6 @@
 // API接口列表
 const API_ENDPOINTS = [
-    "https://60s-cf.viki.moe",
-    "https://60s.viki.moe", 
-    "https://60s.b23.run",
-    "https://60s.114128.xyz",
-    "https://60s-cf.114128.xyz"
+    "https://60s.api.shumengya.top",
 ];
 
 // 当前使用的API索引
@@ -118,7 +114,7 @@ function displayLunarInfo(lunarData) {
                     <div class="item-value">${lunarData.solar.week_desc}</div>
                 </div>
                 <div class="info-item">
-                    <div class="item-icon">�</div>
+                    <div class="item-icon">🍂</div>
                     <div class="item-label">季节</div>
                     <div class="item-value">${lunarData.solar.season_name_desc}</div>
                 </div>
@@ -147,7 +143,7 @@ function displayLunarInfo(lunarData) {
                     <div class="item-value">${lunarData.zodiac.year}年</div>
                 </div>
                 <div class="info-item">
-                    <div class="item-icon">⚡</div>
+                    <div class="item-icon">☯️</div>
                     <div class="item-label">天干地支</div>
                     <div class="item-value">${lunarData.sixty_cycle.year.name}</div>
                 </div>
@@ -161,27 +157,27 @@ function displayLunarInfo(lunarData) {
 
         <div class="info-card">
             <div class="card-header">
-                <div class="card-icon">🌸</div>
+                <div class="card-icon">🌾</div>
                 <div class="card-title">节气节日</div>
             </div>
             <div class="card-content">
                 <div class="info-item">
-                    <div class="item-icon">🍃</div>
+                    <div class="item-icon">🌱</div>
                     <div class="item-label">当前节气</div>
                     <div class="item-value">${lunarData.term.stage ? lunarData.term.stage.name : '无节气'}</div>
                 </div>
                 <div class="info-item">
-                    <div class="item-icon">🎊</div>
+                    <div class="item-icon">🎉</div>
                     <div class="item-label">法定假日</div>
                     <div class="item-value">${lunarData.legal_holiday ? lunarData.legal_holiday.name : '无假日'}</div>
                 </div>
                 <div class="info-item">
-                    <div class="item-icon">�</div>
+                    <div class="item-icon">🎊</div>
                     <div class="item-label">传统节日</div>
                     <div class="item-value">${lunarData.festival.both_desc || '无特殊节日'}</div>
                 </div>
                 <div class="info-item">
-                    <div class="item-icon">🔢</div>
+                    <div class="item-icon">📊</div>
                     <div class="item-label">一年第几天</div>
                     <div class="item-value">第${lunarData.stats.day_of_year}天</div>
                 </div>
@@ -200,12 +196,12 @@ function displayLunarInfo(lunarData) {
                     <div class="item-value">${lunarData.lunar.hour_desc}</div>
                 </div>
                 <div class="info-item">
-                    <div class="item-icon">⚡</div>
+                    <div class="item-icon">☯️</div>
                     <div class="item-label">时辰干支</div>
                     <div class="item-value">${lunarData.sixty_cycle.hour.name}</div>
                 </div>
                 <div class="info-item">
-                    <div class="item-icon">🐓</div>
+                    <div class="item-icon">🐾</div>
                     <div class="item-label">时辰生肖</div>
                     <div class="item-value">${lunarData.zodiac.hour}</div>
                 </div>
@@ -219,7 +215,7 @@ function displayLunarInfo(lunarData) {
 
         <div class="info-card">
             <div class="card-header">
-                <div class="card-icon">🔮</div>
+                <div class="card-icon">📖</div>
                 <div class="card-title">黄历宜忌</div>
             </div>
             <div class="card-content">
@@ -253,7 +249,7 @@ function displayLunarInfo(lunarData) {
             </div>
             <div class="card-content">
                 <div class="info-item">
-                    <div class="item-icon">🎯</div>
+                    <div class="item-icon">🍀</div>
                     <div class="item-label">今日运势</div>
                     <div class="item-value">${lunarData.fortune.today_luck}</div>
                 </div>
@@ -268,7 +264,7 @@ function displayLunarInfo(lunarData) {
                     <div class="item-value">${lunarData.fortune.money}</div>
                 </div>
                 <div class="info-item">
-                    <div class="item-icon">💕</div>
+                    <div class="item-icon">💖</div>
                     <div class="item-label">感情运</div>
                     <div class="item-value">${lunarData.fortune.love}</div>
                 </div>
@@ -277,12 +273,12 @@ function displayLunarInfo(lunarData) {
 
         <div class="info-card">
             <div class="card-header">
-                <div class="card-icon">📊</div>
+                <div class="card-icon">📈</div>
                 <div class="card-title">年度统计</div>
             </div>
             <div class="card-content">
                 <div class="info-item">
-                    <div class="item-icon">📈</div>
+                    <div class="item-icon">📊</div>
                     <div class="item-label">年度进度</div>
                     <div class="item-value">${lunarData.stats.percents_formatted.year}</div>
                 </div>

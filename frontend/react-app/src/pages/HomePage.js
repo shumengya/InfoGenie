@@ -181,43 +181,35 @@ const HomePage = () => {
     {
       path: '/60sapi',
       icon: FiActivity,
-      title: '60s API',
-      description: '实时获取各种热门数据和资讯信息',
+      title: 'API聚合应用',
+      description: '实时获取各种热门数据,资讯信息和实用工具',
       features: [
-        '抖音热搜榜单',
-        '微博热搜话题',
-        '猫眼票房排行',
-        '每日60秒读懂世界',
-        '必应每日壁纸',
-        '实时天气信息'
+        '娱乐消遣板块',
+        '实用功能板块',
+        '日更咨询板块',
+        '热搜榜单板块',
       ]
     },
     {
       path: '/smallgame',
       icon: FiGrid,
-      title: '小游戏',
+      title: '玩玩小游戏',
       description: '轻松有趣的休闲小游戏合集',
       features: [
-        '经典益智游戏',
-        '休闲娱乐游戏',
-        '技能挑战游戏',
-        '即点即玩',
-        '无需下载',
-        '移动端优化'
+        '2048',
+        '俄罗斯方块',
+        '别踩白方块',
       ]
     },
     {
       path: '/aimodel',
       icon: FiCpu,
-      title: 'AI模型',
+      title: 'AI工具',
       description: '智能AI工具和模型应用',
       features: [
-        'AI对话助手',
-        '智能文本生成',
-        '图像识别分析',
-        '数据智能处理',
-        '个性化推荐',
-        '需要登录使用'
+        'AI写诗达人',
+        'AI变量命名小助手',
+        'AI姓名评测',
       ]
     }
   ];
@@ -234,7 +226,8 @@ const HomePage = () => {
           <HeroSubtitle>
             🎨 一个多功能的聚合软件应用 💬
             <br />
-            提供实时数据、娱乐游戏、AI工具等丰富功能
+            提供各种API聚合应用、娱乐小游戏、AI大模型工具等丰富功能，目标是用一个应用解决用户的各种需求。
+            模仿微信小程序那样，用户可以在一个应用中完成多个功能，而不需要下载多个APP
           </HeroSubtitle>
           <HeroButton to="/60sapi">
             <FiTrendingUp />

@@ -15,7 +15,7 @@ const API = {
             this.endpoints = endpoints.map(endpoint => `${endpoint}/v2/maoyan`);
         } catch (e) {
             // 如果无法加载接口集合，使用默认接口
-            this.endpoints = ['https://60s.viki.moe/v2/maoyan'];
+            this.endpoints = ['https://60s.api.shumengya.top/v2/maoyan'];
         }
     },
     // 获取当前接口URL
@@ -199,22 +199,24 @@ function renderMovieItem(item) {
     // 美化排名显示
     let rankDisplay;
     if (rank === 1) {
-        rankDisplay = '🏆 1';
+        rankDisplay = '🏆';
     } else if (rank === 2) {
-        rankDisplay = '🥈 2';
+        rankDisplay = '🥈';
     } else if (rank === 3) {
-        rankDisplay = '🥉 3';
+        rankDisplay = '🥉';
     } else {
-        rankDisplay = `NO.${rank}`;
+        rankDisplay = rank;
     }
 
     return `
         <div class="movie-item ${cls}">
-            <div class="rank-badge ${badgeCls}">${rankDisplay}</div>
-            <div class="movie-info">
-                <div class="movie-name">${escapeHtml(item.movie_name)}</div>
-                <div class="movie-detail"><span class="label">上映:</span> ${escapeHtml(item.release_year || '未知')}</div>
-                <div class="movie-boxoffice"><span class="currency">¥</span> ${boxOffice}</div>
+            <div class="movie-rank ${badgeCls}">${rankDisplay}</div>
+            <div class="movie-content">
+                <div class="movie-title">${escapeHtml(item.movie_name)}</div>
+                <div class="movie-meta">
+                    <span class="movie-year">${escapeHtml(item.release_year || '未知')}</span>
+                    <span class="movie-boxoffice">¥${boxOffice}</span>
+                </div>
             </div>
         </div>`;
 }

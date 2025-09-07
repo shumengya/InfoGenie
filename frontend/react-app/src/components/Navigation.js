@@ -79,17 +79,17 @@ const Navigation = () => {
     {
       path: '/60sapi',
       icon: FiActivity,
-      text: '60s API'
+      text: 'API聚合应用'
     },
     {
       path: '/smallgame',
       icon: FiGrid,
-      text: '小游戏'
+      text: '玩玩小游戏'
     },
     {
       path: '/aimodel',
       icon: FiCpu,
-      text: 'AI模型'
+      text: 'AI工具'
     }
   ];
 

@@ -1,10 +1,6 @@
 // API接口列表
 const API_ENDPOINTS = [
-    "https://60s.viki.moe/v2/toutiao",
-    "https://60s-cf.viki.moe/v2/toutiao",
-    "https://60s.b23.run/v2/toutiao",
-    "https://60s.114128.xyz/v2/toutiao",
-    "https://60s-cf.114128.xyz/v2/toutiao"
+    "https://60s.api.shumengya.top/v2/toutiao",
 ];
 
 // 当前使用的API索引

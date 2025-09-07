@@ -95,8 +95,8 @@ const Footer = () => {
         </FooterInfo>
 
         <FooterLinks>
-          <FooterLink href="/60sapi">📡聚合应用</FooterLink>
-          <FooterLink href="/smallgame">🎮小游戏</FooterLink>
+          <FooterLink href="/60sapi">📡API聚合应用</FooterLink>
+          <FooterLink href="/smallgame">🎮玩玩小游戏</FooterLink>
           <FooterLink href="/aimodel">🤖AI工具</FooterLink>
         </FooterLinks>
 

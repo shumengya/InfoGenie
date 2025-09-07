@@ -1,7 +1,5 @@
-// GitHub API 配置
-const GITHUB_TOKEN = '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';
-const endpoint = 'https://models.github.ai/inference/chat/completions';
-const model = 'deepseek/DeepSeek-V3-0324';
+// 从配置文件导入设置
+// 配置在 env.js 文件中定义
 
 // DOM 元素
 const nameInput = document.getElementById('nameInput');
@@ -13,38 +11,7 @@ const phoneticScore = document.getElementById('phoneticScore');
 const phoneticDesc = document.getElementById('phoneticDesc');
 const meaningAnalysis = document.getElementById('meaningAnalysis');
 
-// 专业的姓名分析提示词
-const createNameAnalysisPrompt = (name) => {
-  return `你是一位专业的姓名学专家和语言学家，请对输入的姓名进行全面分析。请直接输出分析结果，不要包含任何思考过程或<think>标签。
 
-姓名：${name}
-
-请按照以下格式严格输出分析结果：
-
-【稀有度评分】
-评分：X%
-评价：[对稀有度的详细说明，包括姓氏和名字的常见程度分析]
-
-【音韵评价】
-评分：X%
-评价：[对音韵美感的分析，包括声调搭配、读音流畅度、音律和谐度等]
-
-【含义解读】
-[详细分析姓名的寓意内涵，包括：
-1. 姓氏的历史渊源和文化背景
-2. 名字各字的含义和象征
-3. 整体姓名的寓意组合
-4. 可能体现的父母期望或文化内涵
-5. 与传统文化、诗词典故的关联等]
-
-要求：
-1. 评分必须是1-100的整数百分比，要有明显区分度，避免雷同
-2. 分析要专业、客观、有依据，评分要根据实际情况有所差异
-3. 含义解读要详细深入，至少150字
-4. 严格按照上述格式输出，不要添加思考过程、<think>标签或其他内容
-5. 如果是生僻字或罕见姓名，要特别说明
-6. 直接输出最终结果，不要显示推理过程`;
-};
 
 // 解析AI返回的分析结果
 function parseAnalysisResult(content) {
@@ -221,21 +188,21 @@ async function analyzeName() {
   }
 
   const requestBody = {
-    model: model,
+    model: CONFIG.model,
     messages: [{ 
       role: "user", 
-      content: createNameAnalysisPrompt(name)
+      content: CONFIG.createNameAnalysisPrompt(name)
     }],
     temperature: 0.7,
     max_tokens: 1000
   };
 
   try {
-    const response = await fetch(endpoint, {
+    const response = await fetch(CONFIG.endpoint, {
       method: 'POST',
       headers: {
         'Accept': 'application/vnd.github+json',
-        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Authorization': `Bearer ${CONFIG.GITHUB_TOKEN}`,
         'X-GitHub-Api-Version': '2022-11-28',
         'Content-Type': 'application/json'
       },

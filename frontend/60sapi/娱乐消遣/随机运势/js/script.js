@@ -14,11 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const apiBaseUrls = [
         "https://60s.api.shumengya.top",
-        "https://60s-cf.viki.moe",
-        "https://60s.viki.moe",
-        "https://60s.b23.run",
-        "https://60s.114128.xyz",
-        "https://60s-cf.114128.xyz"
     ];
     const apiPath = "/v2/luck";
 

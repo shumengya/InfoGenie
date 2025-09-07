@@ -15,7 +15,7 @@ const API = {
             this.endpoints = endpoints.map(endpoint => `${endpoint}/v2/bing`);
         } catch (e) {
             // 如果无法加载接口集合，使用默认接口
-            this.endpoints = ['https://60s.viki.moe/v2/bing'];
+            this.endpoints = ['https://60s.api.shumengya.top/v2/bing'];
         }
     },
     // 获取当前接口URL

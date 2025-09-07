@@ -162,95 +162,6 @@ body {
     font-size: 14px;
 }
 
-/* 天气详情 */
-.weather-details {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-}
-
-.detail-item {
-    background: rgba(168, 213, 186, 0.1);
-    padding: 15px;
-    border-radius: 12px;
-    text-align: center;
-    border: 1px solid rgba(168, 213, 186, 0.2);
-}
-
-.detail-item .label {
-    display: block;
-    color: #666;
-    font-size: 12px;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.detail-item span:last-child {
-    color: #2d5a3d;
-    font-weight: 600;
-    font-size: 16px;
-}
-
-/* 生活指数 */
-.life-index {
-    margin-top: 30px;
-}
-
-.life-index h3 {
-    color: #2d5a3d;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.index-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.index-item {
-    display: flex;
-    align-items: center;
-    background: rgba(168, 213, 186, 0.05);
-    padding: 20px;
-    border-radius: 15px;
-    border: 1px solid rgba(168, 213, 186, 0.2);
-    transition: all 0.3s ease;
-}
-
-.index-item:hover {
-    background: rgba(168, 213, 186, 0.1);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(168, 213, 186, 0.2);
-}
-
-.index-icon {
-    font-size: 2rem;
-    margin-right: 15px;
-    width: 50px;
-    text-align: center;
-}
-
-.index-content h4 {
-    color: #2d5a3d;
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-.index-content p {
-    color: #6bb77b;
-    font-weight: 600;
-    margin-bottom: 3px;
-}
-
-.index-content span {
-    color: #666;
-    font-size: 13px;
-    line-height: 1.4;
-}
-
 /* 更新时间 */
 .update-time {
     text-align: center;
@@ -285,10 +196,6 @@ body {
         font-size: 3.5rem;
     }
     
-    .weather-details {
-        grid-template-columns: repeat(3, 1fr);
-    }
-    
     .index-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -306,10 +213,6 @@ body {
     
     .weather-main {
         justify-content: space-around;
-    }
-    
-    .weather-details {
-        grid-template-columns: repeat(6, 1fr);
     }
     
     .index-grid {
@@ -355,15 +258,6 @@ body {
         font-size: 3rem;
     }
     
-    .weather-details {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-    
-    .detail-item {
-        padding: 12px;
-    }
-    
     .index-grid {
         grid-template-columns: 1fr;
         gap: 15px;
@@ -398,12 +292,121 @@ body {
     .temperature {
         font-size: 2.5rem;
     }
-    
-    .weather-details {
-        grid-template-columns: 1fr;
+}
+
+/* 预报区域样式 */
+.forecast-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.forecast-section h3 {
+    color: #2d5a3d;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.forecast-item {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid rgba(168, 213, 186, 0.3);
+    transition: all 0.3s ease;
+}
+
+.forecast-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.forecast-date {
+    font-weight: bold;
+    color: #2d5a3d;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.forecast-weather {
+    margin-bottom: 10px;
+}
+
+.weather-day {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.weather-night {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.forecast-temp {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.temp-high {
+    color: #ff6b6b;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.temp-low {
+    color: #4ecdc4;
+    font-size: 1rem;
+}
+
+.forecast-wind {
+    color: #666;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+.forecast-humidity {
+    color: #888;
+    font-size: 0.8rem;
+}
+
+/* 预报区域响应式设计 */
+@media (max-width: 768px) {
+    .forecast-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
     }
     
-    .detail-item {
-        padding: 10px;
+    .forecast-item {
+        padding: 12px;
+    }
+    
+    .forecast-date {
+        font-size: 1rem;
+    }
+    
+    .temp-high {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .forecast-section {
+        padding: 15px;
+    }
+    
+    .forecast-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

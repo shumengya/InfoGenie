@@ -3,11 +3,7 @@ const LOCAL_API_BASE = 'https://infogenie.api.shumengya.top/api/60s';
 
 // API接口列表（备用）
 const API_ENDPOINTS = [
-    "https://60s-cf.viki.moe",
-    "https://60s.viki.moe", 
-    "https://60s.b23.run",
-    "https://60s.114128.xyz",
-    "https://60s-cf.114128.xyz"
+    "https://60s.api.shumengya.top",
 ];
 
 // 当前使用的API索引
@@ -123,42 +119,50 @@ function createHotItem(item, rank) {
     const hotItem = document.createElement('div');
     hotItem.className = 'hot-item';
     
-    const rankClass = rank <= 3 ? 'hot-rank top-3' : 'hot-rank';
+    // 排名样式类
+    let rankClass = 'hot-rank';
+    if (rank === 1) rankClass += ' rank-1';
+    else if (rank === 2) rankClass += ' rank-2';
+    else if (rank === 3) rankClass += ' rank-3';
+    
     const formattedHotValue = formatHotValue(item.hot_value);
     const formattedTime = formatTime(item.event_time);
     
     // 根据排名添加特殊标识
     let rankEmoji = '';
-    if (rank === 1) rankEmoji = '🥇';
+    if (rank === 1) rankEmoji = '👑';
     else if (rank === 2) rankEmoji = '🥈';
     else if (rank === 3) rankEmoji = '🥉';
     else if (rank <= 10) rankEmoji = '🔥';
-    else rankEmoji = '📈';
     
     // 根据热度值添加火焰等级
     let fireLevel = '';
-        if (item.hot_value >= 11000000) fireLevel = '🔥🔥🔥🔥🔥🔥🔥🔥🔥';
-    else if (item.hot_value >= 1000000) fireLevel = '🔥🔥🔥🔥🔥🔥🔥🔥';
-    else if (item.hot_value >= 9500000) fireLevel = '🔥🔥🔥🔥🔥🔥🔥';
-    else if (item.hot_value >= 9000000) fireLevel = '🔥🔥🔥🔥🔥🔥';
-    else if (item.hot_value >= 8000000) fireLevel = '🔥🔥🔥🔥🔥';
-    else if (item.hot_value >= 7000000) fireLevel = '🔥🔥🔥🔥';
-    else if (item.hot_value >= 6000000) fireLevel = '🔥🔥🔥';
+    if (item.hot_value >= 10000000) fireLevel = '🔥🔥🔥';
     else if (item.hot_value >= 5000000) fireLevel = '🔥🔥';
     else fireLevel = '🔥';
     
     hotItem.innerHTML = `
-        <div class="hot-item-header">
-            <div class="${rankClass}">${rank}</div>
-            <div class="hot-title">${rankEmoji} ${escapeHtml(item.title)}</div>
+        <div class="hot-rank-container">
+            <div class="${rankClass}">
+                <div class="rank-number">${rank}</div>
+                <div class="rank-emoji">${rankEmoji}</div>
+            </div>
         </div>
-        <div class="hot-content">
-            <img src="${item.cover}" alt="${escapeHtml(item.title)}" class="hot-cover" onerror="handleImageError(this)">
-            <div class="hot-info">
-                <div class="hot-value">${fireLevel} ${formattedHotValue}</div>
-                <div class="hot-time"> ${formattedTime}</div>
+        <img src="${item.cover}" alt="${escapeHtml(item.title)}" class="hot-cover" onerror="handleImageError(this)">
+        <div class="hot-content-wrapper">
+            <div class="hot-title">${escapeHtml(item.title)}</div>
+            <div class="hot-bottom-row">
+                <div class="hot-time">
+                    <span class="meta-icon">⏰</span>
+                    <span class="meta-text">${formattedTime}</span>
+                </div>
+                <div class="hot-value">
+                    <span class="heat-level">${fireLevel}</span>
+                    <span class="value-text">${formattedHotValue}</span>
+                </div>
                 <a href="${item.link}" target="_blank" class="hot-link">
-                    查看详情
+                    <span class="link-icon">🎬</span>
+                    <span class="link-text">观看视频</span>
                 </a>
             </div>
         </div>

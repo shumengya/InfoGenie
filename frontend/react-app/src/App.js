@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import styled from 'styled-components';
 
@@ -48,6 +48,8 @@ function App() {
               <Route path="/60sapi" element={<Api60sPage />} />
               <Route path="/smallgame" element={<SmallGamePage />} />
               <Route path="/aimodel" element={<AiModelPage />} />
+              {/* 通配符路由 - 所有未匹配的路径都重定向到首页 */}
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </MainContent>
           <Navigation />
