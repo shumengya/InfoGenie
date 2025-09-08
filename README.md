@@ -13,28 +13,32 @@ InfoGenie 是一个前后端分离的多功能聚合应用，提供实时数据�
 
 ### 🏗️ 技术架构
 
-- **前端**: React + Styled Components + React Router
-- **后端**: Python Flask + MongoDB + PyMongo
+- **前端**: React 18.2.0 + Styled Components + React Router 6.15.0 + Axios
+- **后端**: Python Flask 2.3.3 + MongoDB + PyMongo 4.5.0
+- **认证**: QQ邮箱验证 + 验证码登录
+- **邮件服务**: Flask-Mail + QQ SMTP
 - **架构**: 前后端分离，RESTful API
 - **部署**: 支持Docker容器化部署
 
 ### 🌟 主要功能
 
 #### 📡 60s API 模块
-- **热搜榜单**: 抖音、微博、猫眼票房、HackerNews等
-- **日更资讯**: 60秒读懂世界、必应壁纸、历史今天、汇率信息
-- **实用功能**: 天气查询、百科搜索、农历信息、二维码生成
-- **娱乐消遣**: 随机一言、音频、趣味题、文案生成
+- **热搜榜单**: 抖音、微博、猫眼票房、头条、网易云、知乎、HackerNews等实时热搜
+- **日更资讯**: 60秒读懂世界、必应每日壁纸、历史上的今天、每日国际汇率
+- **实用功能**: 百度百科词条、公网IP地址、哈希解压压缩、链接OG信息、农历信息、生成二维码、天气预报、EpicGames免费游戏
+- **娱乐消遣**: 随机唱歌音频、随机发病文学、随机搞笑段子、随机冷笑话、随机一言、随机运势、随机JavaScript趣味题、随机KFC文案
 
 #### 🎮 小游戏模块
-- 经典游戏合集（开发中）
+- 2048游戏
+- 别踩白方块
+- 俄罗斯方块
 - 移动端优化
 - 即点即玩
 
 #### 🤖 AI模型模块
-- AI对话助手（开发中）
-- 智能文本生成（开发中）
-- 图像识别分析（规划中）
+- AI变量命名助手
+- AI写诗小助手
+- AI姓名评测
 - 需要登录验证
 
 ## 🚀 快速开始
@@ -44,6 +48,7 @@ InfoGenie 是一个前后端分离的多功能聚合应用，提供实时数据�
 - **Python**: 3.8+
 - **Node.js**: 14+
 - **MongoDB**: 4.0+
+- **npm**: 6.0+
 
 ### 📦 安装依赖
 
@@ -53,7 +58,19 @@ cd backend
 pip install -r requirements.txt
 ```
 
-## 🚢 部署指南
+#### 前端依赖
+```bash
+cd frontend/react-app
+npm install
+```
+
+主要依赖包：
+- React 18.2.0
+- React Router DOM 6.15.0
+- Styled Components 6.0.7
+- Axios 1.5.0
+- React Hot Toast 2.4.1
+- React Icons 4.11.0
 
 ### 🖥️ 前端部署
 
@@ -98,7 +115,8 @@ pip install -r requirements.txt
 后端通过 `config.py` 和环境变量进行配置：
 
 - MongoDB连接：通过环境变量 `MONGO_URI` 设置
-- 邮件服务：通过环境变量 `MAIL_USERNAME` 和 `MAIL_PASSWORD` 设置
+- 邮件服务：通过环境变量 `MAIL_USERNAME` 和 `MAIL_PASSWORD` 设置（支持QQ邮箱）
+- 认证配置：支持QQ邮箱验证登录
 - CORS配置：在 `app.py` 中配置允许的前端域名
 
 #### 60sAPI配置
@@ -106,6 +124,29 @@ pip install -r requirements.txt
 60sAPI模块的静态文件位于 `frontend/60sapi` 目录，通过后端的静态文件服务提供访问。
 
 各API模块的接口地址已配置为 `https://infogenie.api.shumengya.top/api/60s`。
+
+#### 项目结构
+
+```
+InfoGenie/
+├── backend/                 # 后端Python Flask应用
+│   ├── app.py              # 主应用入口
+│   ├── config.py           # 配置文件
+│   ├── requirements.txt    # Python依赖
+│   └── modules/            # 功能模块
+│       ├── auth.py         # 用户认证
+│       ├── api_60s.py      # 60s API接口
+│       ├── user_management.py  # 用户管理
+│       ├── email_service.py    # 邮件服务
+│       ├── smallgame.py    # 小游戏
+│       └── aimodelapp.py   # AI模型应用
+├── frontend/               # 前端应用
+│   ├── react-app/         # React主应用
+│   ├── 60sapi/            # 60s API静态页面
+│   ├── aimodelapp/        # AI模型应用页面
+│   └── smallgame/         # 小游戏页面
+└── README.md              # 项目说明
+```
 
 #### 前端依赖
 ```bash
@@ -126,8 +167,8 @@ npm install
 **启动后端服务**
 ```bash
 cd backend
-python run.py
-# 后端服务: http://localhost:5000
+python app.py
+# 后端服务: http://localhost:5002
 ```
 
 **启动前端服务**
@@ -141,7 +182,10 @@ npm start
 
 - **开发者**: 神奇万事通
 - **项目地址**: https://github.com/shumengya/InfoGenie
+- **演示地址**: https://infogenie.shumengya.top
+- **API地址**: https://infogenie.api.shumengya.top
 - **反馈邮箱**: 请通过GitHub Issues反馈
+- **ICP备案**: 蜀ICP备2025151694号
 
 ## 📄 许可证
 
@@ -155,7 +199,7 @@ npm start
 
 🎨 *一个多功能的聚合软件应用* 💬
 
+*支持Web、Windows、Android多平台*
+
 </div>
-神奇万事通，一个支持Windows，Android和web的app，聚合了许多神奇有趣的功能，帮助用户一键化解决问题
-前端使用React框架，后端使用Python的Flask框架
 
