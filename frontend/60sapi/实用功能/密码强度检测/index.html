@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="在线密码强度检测工具，实时分析密码安全性，提供专业的密码安全建议">
+    <meta name="keywords" content="密码强度检测,密码安全,密码分析,在线工具">
+    <title>🔒 密码强度检测器</title>
+    <link rel="preconnect" href="https://60s.api.shumengya.top">
+    <link rel="dns-prefetch" href="https://60s.api.shumengya.top">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/background.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🔒 密码强度检测器</h1>
+            <p class="subtitle">实时分析密码安全性，保护您的数字生活</p>
+        </header>
+        
+        <main class="main-content">
+            <!-- 密码输入区域 -->
+            <div class="input-container">
+                <div class="input-group">
+                    <label for="passwordInput" class="input-label">请输入要检测的密码</label>
+                    <div class="password-input-wrapper">
+                        <input 
+                            type="password" 
+                            id="passwordInput" 
+                            class="password-input" 
+                            placeholder="输入您的密码进行安全性检测..."
+                            autocomplete="new-password"
+                            spellcheck="false"
+                        >
+                        <button type="button" class="toggle-visibility" id="toggleVisibility" title="显示/隐藏密码">
+                            <svg class="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                            <svg class="eye-off-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                <line x1="1" y1="1" x2="23" y2="23"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="input-hint">
+                        <span class="hint-icon">💡</span>
+                        <span class="hint-text">输入密码后将实时显示安全性分析结果</span>
+                    </div>
+                </div>
+                
+                <button type="button" class="check-btn" id="checkBtn">
+                    <span class="btn-icon">🔍</span>
+                    <span class="btn-text">检测密码强度</span>
+                    <span class="btn-loading" style="display: none;">检测中...</span>
+                </button>
+            </div>
+            
+            <!-- 结果显示区域 -->
+            <div class="result-container" id="resultContainer" style="display: none;">
+                <!-- 密码强度概览 -->
+                <div class="strength-overview">
+                    <div class="strength-score">
+                        <div class="score-circle" id="scoreCircle">
+                            <div class="score-value" id="scoreValue">0</div>
+                            <div class="score-label">分</div>
+                        </div>
+                        <div class="strength-info">
+                            <div class="strength-level" id="strengthLevel">未知</div>
+                            <div class="strength-description" id="strengthDescription">请输入密码进行检测</div>
+                        </div>
+                    </div>
+                    
+                    <div class="strength-bar">
+                        <div class="bar-background">
+                            <div class="bar-fill" id="strengthBar"></div>
+                        </div>
+                        <div class="bar-labels">
+                            <span>弱</span>
+                            <span>中等</span>
+                            <span>强</span>
+                            <span>非常强</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 详细信息 -->
+                <div class="details-grid">
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <span class="card-icon">📏</span>
+                            <h3>基本信息</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">密码长度:</span>
+                                <span class="info-value" id="passwordLength">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">熵值:</span>
+                                <span class="info-value" id="entropyValue">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">破解时间:</span>
+                                <span class="info-value" id="crackTime">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">字符种类:</span>
+                                <span class="info-value" id="characterVariety">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <span class="card-icon">🔤</span>
+                            <h3>字符分析</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="character-types" id="characterTypes">
+                                <div class="char-type" id="hasLowercase">
+                                    <span class="type-icon">❌</span>
+                                    <span class="type-text">小写字母</span>
+                                </div>
+                                <div class="char-type" id="hasUppercase">
+                                    <span class="type-icon">❌</span>
+                                    <span class="type-text">大写字母</span>
+                                </div>
+                                <div class="char-type" id="hasNumbers">
+                                    <span class="type-icon">❌</span>
+                                    <span class="type-text">数字</span>
+                                </div>
+                                <div class="char-type" id="hasSymbols">
+                                    <span class="type-icon">❌</span>
+                                    <span class="type-text">特殊符号</span>
+                                </div>
+                            </div>
+                            
+                            <div class="character-issues" id="characterIssues">
+                                <div class="issue-item" id="hasRepeated">
+                                    <span class="issue-icon">⚠️</span>
+                                    <span class="issue-text">包含重复字符</span>
+                                </div>
+                                <div class="issue-item" id="hasSequential">
+                                    <span class="issue-icon">⚠️</span>
+                                    <span class="issue-text">包含连续字符</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 建议和提示 -->
+                <div class="recommendations-section">
+                    <div class="recommendations-card">
+                        <div class="card-header">
+                            <span class="card-icon">💡</span>
+                            <h3>改进建议</h3>
+                        </div>
+                        <div class="card-content">
+                            <ul class="recommendations-list" id="recommendationsList">
+                                <li>请输入密码进行分析</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="security-tips-card">
+                        <div class="card-header">
+                            <span class="card-icon">🛡️</span>
+                            <h3>安全提示</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="tips-container" id="securityTips">
+                                <div class="tip-item">
+                                    <span class="tip-icon">🔐</span>
+                                    <span class="tip-text">使用密码管理器生成和存储复杂密码</span>
+                                </div>
+                                <div class="tip-item">
+                                    <span class="tip-icon">🔄</span>
+                                    <span class="tip-text">为不同账户使用不同的密码</span>
+                                </div>
+                                <div class="tip-item">
+                                    <span class="tip-icon">⏰</span>
+                                    <span class="tip-text">定期更换重要账户的密码</span>
+                                </div>
+                                <div class="tip-item">
+                                    <span class="tip-icon">🔒</span>
+                                    <span class="tip-text">启用双因素认证（2FA）增强安全性</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 错误显示区域 -->
+            <div class="error-container" id="errorContainer" style="display: none;">
+                <div class="error-icon">⚠️</div>
+                <h3>检测失败</h3>
+                <p id="errorMessage">请检查网络连接后重试</p>
+                <button class="retry-btn" id="retryBtn">重新检测</button>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>🔒 保护您的数字安全，从强密码开始</p>
+            <p class="footer-note">本工具不会存储您的密码信息</p>
+        </footer>
+    </div>
+    
+    <!-- 提示框 -->
+    <div class="toast" id="toast" style="display: none;">
+        <span id="toastMessage">操作成功</span>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,697 @@
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    line-height: 1.6;
+    color: #2d5a3d;
+    min-height: 100vh;
+}
+
+/* 容器布局 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 头部样式 */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 0;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a4d2e;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(26, 77, 46, 0.1);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #4a7c59;
+    font-weight: 400;
+}
+
+/* 主内容区域 */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* 表单区域 */
+.form-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(26, 77, 46, 0.1);
+    border: 1px solid rgba(144, 238, 144, 0.3);
+}
+
+.health-form {
+    display: grid;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #2d5a3d;
+    font-size: 1rem;
+}
+
+.form-input,
+.form-select {
+    padding: 15px 20px;
+    border: 2px solid #a8e6a3;
+    border-radius: 12px;
+    font-size: 1rem;
+    background: #f8fff8;
+    color: #2d5a3d;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-select:focus {
+    outline: none;
+    border-color: #4caf50;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+    background: #ffffff;
+}
+
+.form-input::placeholder {
+    color: #81c784;
+}
+
+/* 提交按钮 */
+.submit-btn {
+    background: linear-gradient(135deg, #4caf50, #66bb6a);
+    color: white;
+    border: none;
+    padding: 18px 30px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #45a049, #5cb85c);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn:disabled {
+    background: #c8e6c9;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* 加载动画 */
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 结果区域 */
+.result-section {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.result-title {
+    font-size: 2rem;
+    color: #1a4d2e;
+    font-weight: 700;
+}
+
+.reset-btn {
+    background: #e8f5e8;
+    color: #2d5a3d;
+    border: 2px solid #a8e6a3;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+    background: #d4edda;
+    border-color: #4caf50;
+}
+
+/* 结果卡片 */
+.result-content {
+    display: grid;
+    gap: 20px;
+}
+
+.basic-info-card,
+.bmi-card,
+.weight-card,
+.metabolism-card,
+.body-fat-card,
+.measurements-card,
+.advice-card,
+.disclaimer-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 6px 20px rgba(26, 77, 46, 0.08);
+    border: 1px solid rgba(144, 238, 144, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.basic-info-card:hover,
+.bmi-card:hover,
+.weight-card:hover,
+.metabolism-card:hover,
+.body-fat-card:hover,
+.measurements-card:hover,
+.advice-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(26, 77, 46, 0.12);
+}
+
+.card-title {
+    font-size: 1.4rem;
+    color: #1a4d2e;
+    font-weight: 700;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #e8f5e8;
+    padding-bottom: 10px;
+}
+
+/* 信息网格 */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.info-item {
+    background: #f8fff8;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 4px solid #4caf50;
+}
+
+.info-label {
+    font-size: 0.9rem;
+    color: #4a7c59;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.info-value {
+    font-size: 1.2rem;
+    color: #2d5a3d;
+    font-weight: 700;
+}
+
+/* BMI 特殊样式 */
+.bmi-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #4caf50;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.bmi-category {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2d5a3d;
+    background: #e8f5e8;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+/* 健康建议列表 */
+.health-tips {
+    list-style: none;
+    padding: 0;
+}
+
+.health-tips li {
+    background: #f8fff8;
+    margin: 10px 0;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border-left: 4px solid #81c784;
+    position: relative;
+}
+
+.health-tips li::before {
+    content: "✓";
+    color: #4caf50;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* 免责声明 */
+.disclaimer {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* 错误区域 */
+.error-section {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.error-content {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.2);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.error-title {
+    color: #dc3545;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.error-message {
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+.retry-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.retry-btn:hover {
+    background: #c82333;
+}
+
+/* 底部 */
+.footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    border-top: 1px solid rgba(144, 238, 144, 0.3);
+}
+
+.footer-text {
+    color: #4a7c59;
+    font-size: 0.9rem;
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 平板端适配 (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .container {
+        padding: 30px;
+    }
+    
+    .title {
+        font-size: 2.8rem;
+    }
+    
+    .form-section {
+        padding: 35px;
+    }
+    
+    .health-form {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .form-group:last-child {
+        grid-column: 1 / -1;
+    }
+    
+    .result-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .advice-card,
+    .disclaimer-card {
+        grid-column: 1 / -1;
+    }
+}
+
+/* 电脑端适配 (1024px+) */
+@media (min-width: 1024px) {
+    .container {
+        padding: 40px;
+        max-width: 1400px;
+    }
+    
+    .title {
+        font-size: 3.2rem;
+    }
+    
+    .main-content {
+        flex-direction: row;
+        gap: 40px;
+        align-items: flex-start;
+    }
+    
+    .form-section {
+        flex: 0 0 380px;
+        position: sticky;
+        top: 20px;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+    }
+    
+    .result-section,
+    .error-section {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    /* 桌面端结果区域重新设计 - 使用更清晰的布局 */
+    .result-content {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        grid-auto-rows: min-content;
+    }
+    
+    /* 基本信息卡片 - 占满第一行 */
+    .basic-info-card {
+        grid-column: 1 / -1;
+    }
+    
+    /* 第二行：BMI、体重评估、代谢分析 */
+    .bmi-card,
+    .weight-card,
+    .metabolism-card {
+        grid-column: span 1;
+    }
+    
+    /* 第三行：体脂分析和理想三围 */
+    .body-fat-card {
+        grid-column: span 2;
+    }
+    
+    .measurements-card {
+        grid-column: span 1;
+    }
+    
+    /* 第四行：健康建议 - 占满整行 */
+    .advice-card {
+        grid-column: 1 / -1;
+    }
+    
+    /* 第五行：免责声明 - 占满整行 */
+    .disclaimer-card {
+        grid-column: 1 / -1;
+    }
+    
+    /* 基本信息网格优化 */
+    .basic-info-card .info-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+    
+    /* BMI卡片特殊布局 */
+    .bmi-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 280px;
+    }
+    
+    .bmi-card .bmi-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .bmi-value {
+        font-size: 3rem;
+        margin: 20px 0;
+    }
+    
+    /* 体重评估卡片布局优化 */
+    .weight-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 280px;
+    }
+    
+    .weight-card .weight-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .weight-card .info-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    /* 代谢分析卡片布局优化 */
+    .metabolism-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 280px;
+    }
+    
+    .metabolism-card .metabolism-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    .metabolism-card .info-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    /* 体脂分析卡片网格优化 */
+    .body-fat-card .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    /* 理想三围卡片网格优化 */
+    .measurements-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 200px;
+    }
+    
+    .measurements-card .measurements-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .measurements-card .info-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* 健康建议卡片布局优化 */
+    .advice-card {
+        padding: 30px;
+    }
+    
+    .advice-card .advice-content {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        margin-bottom: 25px;
+    }
+    
+    .advice-card .health-tips {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        list-style: none;
+        padding: 0;
+    }
+    
+    /* 表单区域优化 */
+    .health-form {
+        display: grid;
+        gap: 25px;
+    }
+    
+    .form-group {
+        margin-bottom: 0;
+    }
+    
+    .submit-btn {
+        margin-top: 20px;
+        padding: 20px 30px;
+        font-size: 1.2rem;
+    }
+}
+
+/* 手机端适配 (最高优先级) */
+@media (max-width: 767px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .header {
+        margin-bottom: 20px;
+        padding: 15px 0;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+    }
+    
+    .form-section {
+        padding: 20px;
+        border-radius: 16px;
+    }
+    
+    .form-input,
+    .form-select {
+        padding: 12px 16px;
+        font-size: 16px; /* 防止iOS缩放 */
+    }
+    
+    .submit-btn {
+        padding: 16px 24px;
+        font-size: 1rem;
+    }
+    
+    .result-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+    
+    .result-title {
+        font-size: 1.6rem;
+        text-align: center;
+    }
+    
+    .reset-btn {
+        align-self: center;
+        padding: 12px 24px;
+    }
+    
+    .basic-info-card,
+    .bmi-card,
+    .weight-card,
+    .metabolism-card,
+    .body-fat-card,
+    .measurements-card,
+    .advice-card,
+    .disclaimer-card {
+        padding: 20px;
+        border-radius: 12px;
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .bmi-value {
+        font-size: 2rem;
+    }
+    
+    .bmi-category {
+        font-size: 1.1rem;
+    }
+    
+    .health-tips li {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+    
+    .error-content {
+        padding: 25px 20px;
+    }
+}

@@ -1,0 +1,37 @@
+{
+  "code": 200,
+  "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
+  "data": {
+    "password": "adasdasdasdadasd",
+    "length": 16,
+    "score": 68,
+    "strength": "中等",
+    "entropy": 75.21,
+    "time_to_crack": "数百万年",
+    "character_analysis": {
+      "has_lowercase": true,
+      "has_uppercase": false,
+      "has_numbers": false,
+      "has_symbols": false,
+      "has_repeated": false,
+      "has_sequential": true,
+      "character_variety": 26
+    },
+    "recommendations": [
+      "建议包含大写字母",
+      "建议包含数字",
+      "建议包含特殊符号",
+      "避免使用连续序列字符"
+    ],
+    "security_tips": [
+      "使用密码管理器生成和存储复杂密码",
+      "为不同账户使用不同的密码",
+      "定期更换重要账户的密码",
+      "启用双因素认证（2FA）增强安全性",
+      "避免在公共场合输入密码",
+      "不要将密码保存在浏览器中（除非使用可信的密码管理器）",
+      "避免使用个人信息作为密码",
+      "长密码比复杂密码更安全"
+    ]
+  }
+}

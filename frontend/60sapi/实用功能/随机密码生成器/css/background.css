@@ -1,0 +1,252 @@
+/* 背景样式文件 */
+
+/* 主背景渐变 */
+body {
+    background: linear-gradient(135deg, #e8f5e8 0%, #f0f9f0 25%, #f8fdf8 50%, #e8f5e8 75%, #f0f9f0 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* 背景渐变动画 */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 装饰性背景元素 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(45, 90, 61, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(76, 175, 80, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -2;
+}
+
+/* 浮动装饰圆点 */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(76, 175, 80, 0.3), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(45, 90, 61, 0.2), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(76, 175, 80, 0.4), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(45, 90, 61, 0.3), transparent),
+        radial-gradient(2px 2px at 160px 30px, rgba(76, 175, 80, 0.2), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: floatDots 20s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+/* 圆点浮动动画 */
+@keyframes floatDots {
+    0% {
+        transform: translateY(0px) translateX(0px);
+    }
+    33% {
+        transform: translateY(-10px) translateX(5px);
+    }
+    66% {
+        transform: translateY(5px) translateX(-5px);
+    }
+    100% {
+        transform: translateY(0px) translateX(0px);
+    }
+}
+
+/* 网格背景（可选，默认隐藏） */
+.grid-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(76, 175, 80, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(76, 175, 80, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: -3;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.grid-background.active {
+    opacity: 1;
+}
+
+/* 响应式背景调整 */
+@media (max-width: 768px) {
+    body::after {
+        background-size: 150px 75px;
+        animation-duration: 25s;
+    }
+    
+    body::before {
+        background-image: 
+            radial-gradient(circle at 30% 70%, rgba(76, 175, 80, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 70% 30%, rgba(45, 90, 61, 0.06) 0%, transparent 50%);
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        animation-duration: 20s;
+    }
+    
+    body::after {
+        background-size: 100px 50px;
+        opacity: 0.4;
+    }
+}
+
+/* 高对比度模式下的背景调整 */
+@media (prefers-contrast: high) {
+    body {
+        background: #f8fdf8;
+        animation: none;
+    }
+    
+    body::before,
+    body::after {
+        display: none;
+    }
+}
+
+/* 减少动画模式下的背景调整 */
+@media (prefers-reduced-motion: reduce) {
+    body {
+        animation: none;
+        background: linear-gradient(135deg, #e8f5e8 0%, #f0f9f0 50%, #f8fdf8 100%);
+    }
+    
+    body::after {
+        animation: none;
+    }
+    
+    @keyframes gradientShift {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+    }
+    
+    @keyframes floatDots {
+        0%, 100% {
+            transform: translateY(0px) translateX(0px);
+        }
+    }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #1a2e1a 0%, #2d4a2d 25%, #1f3a1f 50%, #1a2e1a 75%, #2d4a2d 100%);
+    }
+    
+    body::before {
+        background-image: 
+            radial-gradient(circle at 20% 80%, rgba(76, 175, 80, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(144, 238, 144, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(76, 175, 80, 0.08) 0%, transparent 50%);
+    }
+    
+    body::after {
+        background-image:
+            radial-gradient(2px 2px at 20px 30px, rgba(144, 238, 144, 0.4), transparent),
+            radial-gradient(2px 2px at 40px 70px, rgba(76, 175, 80, 0.3), transparent),
+            radial-gradient(1px 1px at 90px 40px, rgba(144, 238, 144, 0.5), transparent),
+            radial-gradient(1px 1px at 130px 80px, rgba(76, 175, 80, 0.4), transparent),
+            radial-gradient(2px 2px at 160px 30px, rgba(144, 238, 144, 0.3), transparent);
+    }
+}
+
+/* 打印样式 */
+@media print {
+    body {
+        background: white !important;
+        animation: none !important;
+    }
+    
+    body::before,
+    body::after {
+        display: none !important;
+    }
+}
+
+/* 特殊效果：鼠标悬停时的背景变化 */
+@media (hover: hover) {
+    .container:hover {
+        position: relative;
+    }
+    
+    .container:hover::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        right: -20px;
+        bottom: -20px;
+        background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(76, 175, 80, 0.05) 0%, transparent 50%);
+        border-radius: 30px;
+        pointer-events: none;
+        z-index: -1;
+        transition: opacity 0.3s ease;
+    }
+}
+
+/* 季节性主题变化（可通过JavaScript控制） */
+.theme-spring body {
+    background: linear-gradient(135deg, #e8f5e8 0%, #f0f9f0 25%, #e1f5e1 50%, #f8fdf8 75%, #e8f5e8 100%);
+}
+
+.theme-summer body {
+    background: linear-gradient(135deg, #f0f9f0 0%, #e8f5e8 25%, #f8fdf8 50%, #e1f5e1 75%, #f0f9f0 100%);
+}
+
+.theme-autumn body {
+    background: linear-gradient(135deg, #f5f0e8 0%, #f9f5f0 25%, #fdf8f0 50%, #f5f0e8 75%, #f9f5f0 100%);
+}
+
+.theme-winter body {
+    background: linear-gradient(135deg, #f0f5f8 0%, #f5f9fc 25%, #f8fbfd 50%, #f0f5f8 75%, #f5f9fc 100%);
+}
+
+/* 性能优化：GPU加速 */
+body,
+body::before,
+body::after {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* 无障碍支持：为屏幕阅读器隐藏装饰元素 */
+body::before,
+body::after {
+    speak: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
