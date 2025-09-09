@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100" height="60" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- 脸部 -->
+  <circle cx="50" cy="30" r="25" fill="#FFD6A5" />
+  
+  <!-- 左眼 -->
+  <g id="left-eye">
+    <circle cx="40" cy="25" r="5" fill="white" />
+    <circle cx="40" cy="25" r="2.5" fill="#333" class="pupil" />
+    <!-- 眨眼动画 -->
+    <animate 
+      xlink:href="#left-eye"
+      attributeName="transform"
+      attributeType="XML"
+      type="scale"
+      values="1 1; 1 0.1; 1 1"
+      dur="3s"
+      repeatCount="indefinite" />
+  </g>
+  
+  <!-- 右眼 -->
+  <g id="right-eye">
+    <circle cx="60" cy="25" r="5" fill="white" />
+    <circle cx="60" cy="25" r="2.5" fill="#333" class="pupil" />
+    <!-- 眨眼动画 -->
+    <animate 
+      xlink:href="#right-eye"
+      attributeName="transform"
+      attributeType="XML"
+      type="scale"
+      values="1 1; 1 0.1; 1 1"
+      dur="3s"
+      repeatCount="indefinite" />
+  </g>
+  
+  <!-- 嘴巴 -->
+  <path d="M45,35 Q50,40 55,35" stroke="#FF9999" stroke-width="2" fill="none" />
+  
+  <!-- 腮红 -->
+  <circle cx="35" cy="30" r="3" fill="#FF9999" opacity="0.5" />
+  <circle cx="65" cy="30" r="3" fill="#FF9999" opacity="0.5" />
+</svg>

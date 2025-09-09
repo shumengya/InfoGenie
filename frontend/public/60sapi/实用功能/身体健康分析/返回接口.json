@@ -1,0 +1,93 @@
+{
+    "code": 200,
+    "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
+    "data": {
+        "basic_info": {
+            "height": "176cm",
+            "height_desc": "身高",
+            "weight": "60kg",
+            "weight_desc": "体重",
+            "gender": "男性",
+            "gender_desc": "性别",
+            "age": "24岁",
+            "age_desc": "年龄"
+        },
+        "bmi": {
+            "value": 19.37,
+            "value_desc": "BMI 值",
+            "category": "正常体重",
+            "category_desc": "BMI 分类",
+            "evaluation": "体重正常，保持良好",
+            "evaluation_desc": "BMI 评价",
+            "risk": "健康风险较低",
+            "risk_desc": "健康风险"
+        },
+        "weight_assessment": {
+            "ideal_weight_range": "57.3-74.3kg",
+            "ideal_weight_range_desc": "理想体重范围",
+            "standard_weight": "71kg",
+            "standard_weight_desc": "标准体重",
+            "status": "体重正常",
+            "status_desc": "体重状态",
+            "adjustment": "保持当前体重",
+            "adjustment_desc": "调整建议"
+        },
+        "metabolism": {
+            "bmr": "1601 卡路里/天",
+            "bmr_desc": "基础代谢率",
+            "tdee": "2561 卡路里/天",
+            "tdee_desc": "每日总消耗",
+            "recommended_calories": "2561 卡路里/天",
+            "recommended_calories_desc": "推荐卡路里摄入",
+            "weight_loss_calories": "2061 卡路里/天",
+            "weight_loss_calories_desc": "减重卡路里",
+            "weight_gain_calories": "2861 卡路里/天",
+            "weight_gain_calories_desc": "增重卡路里"
+        },
+        "body_surface_area": {
+            "value": "1.74m²",
+            "value_desc": "体表面积",
+            "formula": "Du Bois 公式",
+            "formula_desc": "计算公式"
+        },
+        "body_fat": {
+            "percentage": "12.6%",
+            "percentage_desc": "体脂率",
+            "category": "正常",
+            "category_desc": "体脂分类",
+            "fat_weight": "7.6kg",
+            "fat_weight_desc": "脂肪重量",
+            "lean_weight": "52.4kg",
+            "lean_weight_desc": "瘦体重"
+        },
+        "health_advice": {
+            "daily_water_intake": "2000ml (约 8 杯水)，运动时需额外补充 500-1000ml",
+            "daily_water_intake_desc": "每日饮水量",
+            "exercise_recommendation": "继续保持运动习惯，有氧运动和力量训练相结合效果更佳。年轻人可选择多样化的运动方式，建议每周运动 3-5 次",
+            "exercise_recommendation_desc": "运动建议",
+            "nutrition_advice": "保持均衡饮食，三大营养素合理搭配，定时定量进餐。年轻人新陈代谢较快，可适当增加能量摄入，男性可适当增加蛋白质摄入",
+            "nutrition_advice_desc": "营养建议",
+            "health_tips": [
+                "保持充足睡眠，成年人建议每天 7-9 小时",
+                "定期体检有助于早期发现健康问题",
+                "保持良好心态，适当释放压力",
+                "年轻人要注意作息规律，合理安排工作与休息",
+                "长时间用眼后适当休息，保护视力",
+                "培养兴趣爱好，保持积极的生活态度",
+                "多饮水，成年人每天 1500-2000ml 为宜"
+            ],
+            "health_tips_desc": "健康提示"
+        },
+        "ideal_measurements": {
+            "chest": "84cm",
+            "chest_desc": "胸围",
+            "waist": "74cm",
+            "waist_desc": "腰围",
+            "hip": "83cm",
+            "hip_desc": "臀围",
+            "note": "男性理想三围参考标准",
+            "note_desc": "说明"
+        },
+        "disclaimer": "结果基于通用公式和统计数据，仅供参考，不能替代专业医疗建议。如有健康问题，请咨询医生。"
+    }
+}

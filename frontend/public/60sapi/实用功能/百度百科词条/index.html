@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度百科词条查询</title>
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">百度百科词条查询</h1>
+            <p class="subtitle">探索知识的彩虹世界</p>
+        </header>
+        
+        <main class="main">
+            <div class="search-section">
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="请输入要查询的词条..." autocomplete="off">
+                    <button id="searchBtn" class="search-btn">
+                        <span class="search-icon">🔍</span>
+                        <span class="search-text">搜索</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="result-section" id="resultSection">
+                <div class="loading" id="loading" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    <p>正在搜索中...</p>
+                </div>
+                
+                <div class="result-card" id="resultCard" style="display: none;">
+                    <div class="result-header">
+                        <h2 class="result-title" id="resultTitle"></h2>
+                        <p class="result-description" id="resultDescription"></p>
+                    </div>
+                    
+                    <div class="result-content">
+                        <div class="result-image-container">
+                            <img id="resultImage" class="result-image" alt="词条图片">
+                        </div>
+                        
+                        <div class="result-text">
+                            <div class="result-abstract">
+                                <h3>摘要</h3>
+                                <p id="resultAbstract"></p>
+                            </div>
+                            
+                            <div class="result-actions">
+                                <a id="resultLink" class="result-link" target="_blank">
+                                    <span>查看完整词条</span>
+                                    <span class="link-icon">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="error-message" id="errorMessage" style="display: none;">
+                    <div class="error-icon">⚠️</div>
+                    <h3>查询失败</h3>
+                    <p id="errorText"></p>
+                    <button id="retryBtn" class="retry-btn">重试</button>
+                </div>
+                
+                <div class="welcome-message" id="welcomeMessage">
+                    <div class="welcome-icon">📚</div>
+                    <h3>欢迎使用百度百科词条查询</h3>
+                    <p>在上方搜索框中输入您想了解的词条，开始探索知识的海洋</p>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>数据来源：百度百科</p>
+        </footer>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

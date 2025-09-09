@@ -1,0 +1,30 @@
+{
+  "code": 200,
+  "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
+  "data": [
+    {
+      "title": "九三阅兵具体安排公布",
+      "hot_value": 11821633,
+      "tag": "热",
+      "source": "头条新闻",
+      "time": "2小时前",
+      "link": "https://www.toutiao.com/article/7404567890123456789/"
+    },
+    {
+      "title": "九月第一天",
+      "hot_value": 11327170,
+      "tag": "新",
+      "source": "今日头条",
+      "time": "1小时前",
+      "link": "https://www.toutiao.com/article/7404567890123456790/"
+    },
+    {
+      "title": "遇见上合共享津彩",
+      "hot_value": 11222444,
+      "tag": "推荐",
+      "source": "头条资讯",
+      "time": "3小时前",
+      "link": "https://www.toutiao.com/article/7404567890123456791/"
+    }
+  ]
+}

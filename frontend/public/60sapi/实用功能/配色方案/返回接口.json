@@ -1,0 +1,273 @@
+{
+  "code": 200,
+  "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
+  "data": {
+    "input": {
+      "hex": "#DE4F99",
+      "rgb": {
+        "r": 222,
+        "g": 79,
+        "b": 153
+      },
+      "hsl": {
+        "h": 329,
+        "s": 68,
+        "l": 59
+      },
+      "name": "红色系"
+    },
+    "palettes": [
+      {
+        "name": "单色配色",
+        "description": "基于同一色相，通过调整明度和饱和度创建的和谐配色方案，适合营造统一、专业的视觉效果",
+        "colors": [
+          {
+            "hex": "#DE4F99",
+            "name": "主色",
+            "role": "primary",
+            "theory": "基础色相"
+          },
+          {
+            "hex": "#7C184C",
+            "name": "深色变体",
+            "role": "dark",
+            "theory": "降低明度"
+          },
+          {
+            "hex": "#EEA5CB",
+            "name": "浅色变体",
+            "role": "light",
+            "theory": "提高明度"
+          },
+          {
+            "hex": "#C96498",
+            "name": "柔和变体",
+            "role": "muted",
+            "theory": "降低饱和度"
+          },
+          {
+            "hex": "#ED4099",
+            "name": "鲜艳变体",
+            "role": "vibrant",
+            "theory": "提高饱和度"
+          }
+        ]
+      },
+      {
+        "name": "互补配色",
+        "description": "使用色轮上相对的颜色，创造强烈对比和视觉冲击力，适用于需要突出重点的设计",
+        "colors": [
+          {
+            "hex": "#DE4F99",
+            "name": "主色",
+            "role": "primary",
+            "theory": "基础色相"
+          },
+          {
+            "hex": "#4FDE94",
+            "name": "互补色",
+            "role": "complementary",
+            "theory": "色轮对面 +180°"
+          },
+          {
+            "hex": "#F2BAD7",
+            "name": "主色浅调",
+            "role": "primary-light",
+            "theory": "主色提高明度"
+          },
+          {
+            "hex": "#BAF2D5",
+            "name": "互补色浅调",
+            "role": "complementary-light",
+            "theory": "互补色提高明度"
+          }
+        ]
+      },
+      {
+        "name": "邻近配色",
+        "description": "使用色轮上相邻的颜色，创造自然和谐的渐变效果，常见于自然景观中",
+        "colors": [
+          {
+            "hex": "#DB4FDE",
+            "name": "邻近色1",
+            "role": "analogous-1",
+            "theory": "色相 -30°"
+          },
+          {
+            "hex": "#DE4F99",
+            "name": "主色",
+            "role": "primary",
+            "theory": "基础色相"
+          },
+          {
+            "hex": "#DE4F52",
+            "name": "邻近色2",
+            "role": "analogous-2",
+            "theory": "色相 +30°"
+          },
+          {
+            "hex": "#DE944F",
+            "name": "邻近色3",
+            "role": "analogous-3",
+            "theory": "色相 +60°"
+          }
+        ]
+      },
+      {
+        "name": "三角配色",
+        "description": "在色轮上形成等边三角形的三种颜色，提供丰富对比的同时保持和谐平衡",
+        "colors": [
+          {
+            "hex": "#DE4F99",
+            "name": "主色",
+            "role": "primary",
+            "theory": "基础色相"
+          },
+          {
+            "hex": "#99DE4F",
+            "name": "三角色1",
+            "role": "triadic-1",
+            "theory": "色相 +120°"
+          },
+          {
+            "hex": "#4F99DE",
+            "name": "三角色2",
+            "role": "triadic-2",
+            "theory": "色相 +240°"
+          }
+        ]
+      },
+      {
+        "name": "分裂互补配色",
+        "description": "使用互补色两侧的颜色，比纯互补配色更柔和，同时保持强烈的视觉对比",
+        "colors": [
+          {
+            "hex": "#DE4F99",
+            "name": "主色",
+            "role": "primary",
+            "theory": "基础色相"
+          },
+          {
+            "hex": "#52DE4F",
+            "name": "分裂互补色1",
+            "role": "split-comp-1",
+            "theory": "互补色 -30°"
+          },
+          {
+            "hex": "#4FDEDB",
+            "name": "分裂互补色2",
+            "role": "split-comp-2",
+            "theory": "互补色 +30°"
+          }
+        ]
+      },
+      {
+        "name": "四边形配色",
+        "description": "在色轮上形成正方形的四种颜色，提供最丰富的颜色变化，适合复杂的设计项目",
+        "colors": [
+          {
+            "hex": "#DE4F99",
+            "name": "主色",
+            "role": "primary",
+            "theory": "基础色相"
+          },
+          {
+            "hex": "#DEDB4F",
+            "name": "四边形色1",
+            "role": "square-1",
+            "theory": "色相 +90°"
+          },
+          {
+            "hex": "#4FDE94",
+            "name": "四边形色2",
+            "role": "square-2",
+            "theory": "色相 +180°"
+          },
+          {
+            "hex": "#4F52DE",
+            "name": "四边形色3",
+            "role": "square-3",
+            "theory": "色相 +270°"
+          }
+        ]
+      },
+      {
+        "name": "Web 设计配色",
+        "description": "专为 Web 界面设计优化的配色方案，考虑了可访问性和用户体验",
+        "colors": [
+          {
+            "hex": "#DE4F99",
+            "name": "品牌主色",
+            "role": "brand-primary",
+            "theory": "品牌识别色"
+          },
+          {
+            "hex": "#982F65",
+            "name": "按钮悬停",
+            "role": "hover-state",
+            "theory": "主色加深变体"
+          },
+          {
+            "hex": "#F6E9F0",
+            "name": "背景浅色",
+            "role": "background",
+            "theory": "高明度低饱和度"
+          },
+          {
+            "hex": "#1BDE7A",
+            "name": "强调色",
+            "role": "accent",
+            "theory": "互补色系强调"
+          },
+          {
+            "hex": "#6B7280",
+            "name": "文本辅助",
+            "role": "text-secondary",
+            "theory": "中性灰色文本"
+          }
+        ]
+      },
+      {
+        "name": "暖色调配色",
+        "description": "基于暖色系的配色方案，营造温暖、活力和友好的氛围，适合餐饮、儿童产品等",
+        "colors": [
+          {
+            "hex": "#DE4F99",
+            "name": "主暖色",
+            "role": "warm-primary",
+            "theory": "暖色系基调"
+          },
+          {
+            "hex": "#DE4FC8",
+            "name": "暖色变体1",
+            "role": "warm-variant-1",
+            "theory": "暖色范围内调整"
+          },
+          {
+            "hex": "#DE4F5E",
+            "name": "暖色变体2",
+            "role": "warm-variant-2",
+            "theory": "暖色范围内调整"
+          },
+          {
+            "hex": "#EEA5CB",
+            "name": "暖色浅调",
+            "role": "warm-tint",
+            "theory": "提高明度的暖色"
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "color_theory": "基于色彩理论生成的专业配色方案",
+      "total_palettes": 8,
+      "applications": [
+        "Web 设计",
+        "UI/UX",
+        "品牌设计",
+        "室内设计",
+        "服装搭配"
+      ]
+    }
+  }
+}

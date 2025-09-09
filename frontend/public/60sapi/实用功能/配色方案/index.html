@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>配色方案生成器</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="background.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>配色方案生成器</h1>
+            <p class="subtitle">输入颜色值，获取专业的配色方案</p>
+        </header>
+
+        <main class="main-content">
+            <section class="input-section">
+                <div class="color-input-group">
+                    <label for="colorInput">颜色值</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="colorInput" placeholder="#33AAFF" value="#DE4F99">
+                        <input type="color" id="colorPicker" value="#DE4F99">
+                    </div>
+                </div>
+                
+                <div class="format-select">
+                    <label for="formatSelect">输出格式</label>
+                    <select id="formatSelect">
+                        <option value="json">JSON</option>
+                        <option value="text">文本</option>
+                        <option value="html">HTML</option>
+                    </select>
+                </div>
+
+                <button id="generateBtn" class="generate-btn">生成配色方案</button>
+            </section>
+
+            <section class="result-section" id="resultSection">
+                <div class="loading" id="loading" style="display: none;">
+                    <div class="spinner"></div>
+                    <p>正在生成配色方案...</p>
+                </div>
+
+                <div class="color-info" id="colorInfo" style="display: none;">
+                    <h3>输入颜色信息</h3>
+                    <div class="color-preview" id="colorPreview"></div>
+                    <div class="color-details" id="colorDetails"></div>
+                </div>
+
+                <div class="palettes-container" id="palettesContainer">
+                    <!-- 配色方案将在这里动态生成 -->
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>基于色彩理论的专业配色方案生成</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

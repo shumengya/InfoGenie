@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公网IP地址查询</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <h1><i class="fas fa-globe"></i> 公网IP地址查询</h1>
+            <p class="subtitle">快速获取您的公网IP地址信息</p>
+        </header>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <!-- 查询按钮区域 -->
+            <div class="query-section">
+                <button id="queryBtn" class="query-btn">
+                    <i class="fas fa-search"></i>
+                    <span>查询我的IP地址</span>
+                </button>
+            </div>
+
+            <!-- 加载动画 -->
+            <div id="loading" class="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>正在获取IP地址信息...</p>
+            </div>
+
+            <!-- IP信息展示区域 -->
+            <div id="ip-info" class="ip-info" style="display: none;">
+                <div class="ip-card">
+                    <div class="ip-header">
+                        <i class="fas fa-network-wired"></i>
+                        <h2>您的公网IP地址</h2>
+                    </div>
+                    <div class="ip-display">
+                        <span id="ip-address" class="ip-address">---.---.---.---</span>
+                        <button id="copyBtn" class="copy-btn" title="复制IP地址">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <div class="ip-details">
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span class="label">查询时间:</span>
+                            <span id="query-time" class="value">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-server"></i>
+                            <span class="label">数据来源:</span>
+                            <span class="value">60s.viki.moe</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="label">位置信息:</span>
+                            <span id="location" class="value">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-building"></i>
+                            <span class="label">网络服务商:</span>
+                            <span id="isp" class="value">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-flag"></i>
+                            <span class="label">国家:</span>
+                            <span id="country" class="value">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map"></i>
+                            <span class="label">地区:</span>
+                            <span id="region" class="value">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-city"></i>
+                            <span class="label">城市:</span>
+                            <span id="city" class="value">--</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-clock"></i>
+                            <span class="label">时区:</span>
+                            <span id="timezone" class="value">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IP地址信息说明 -->
+                <div class="ip-explanation">
+                    <h3><i class="fas fa-info-circle"></i> 什么是公网IP地址？</h3>
+                    <p>公网IP地址是您的设备在互联网上的唯一标识符，由您的网络服务提供商(ISP)分配。通过这个地址，互联网上的其他设备可以找到并与您的设备通信。</p>
+                    
+                    <div class="features">
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <h4>隐私保护</h4>
+                                <p>了解您的IP地址有助于保护网络隐私</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>地理位置</h4>
+                                <p>IP地址可以大致确定您的地理位置</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-cogs"></i>
+                            <div>
+                                <h4>网络配置</h4>
+                                <p>用于网络故障排除和配置</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 错误信息 -->
+            <div id="error-message" class="error-message" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>获取IP地址失败，请检查网络连接或稍后重试</p>
+                <button id="retryBtn" class="retry-btn">重试</button>
+            </div>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>&copy; 2024 公网IP地址查询工具 | 数据来源: 60s.viki.moe</p>
+        </footer>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

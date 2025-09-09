@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Epic Games 免费游戏 - 60s API 集合</title>
+  <meta name="description" content="Epic Games 免费游戏列表，数据源自 60s.viki.moe，提供当前免费和即将免费的游戏信息。" />
+  
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>
+        🎮 Epic Games 免费游戏
+      </h1>
+    </header>
+
+    <!-- 加载与错误状态 -->
+    <section id="loading" class="loading">
+      <div class="spinner"></div>
+      <p>正在加载游戏数据，请稍候…</p>
+    </section>
+
+    <section id="error" class="error" style="display: none;">
+      <p>获取数据失败，请稍后重试</p>
+      <button id="refresh-btn" class="btn" style="margin-top: 15px;">重新加载</button>
+    </section>
+
+    <!-- 内容区域 -->
+    <main id="content" style="display: none;" class="fade-in">
+      <!-- 统计信息 -->
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-number" id="total-games">0</div>
+          <div class="stat-label">总游戏数</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="free-now">0</div>
+          <div class="stat-label">当前免费</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" id="upcoming">0</div>
+          <div class="stat-label">即将免费</div>
+        </div>
+      </div>
+
+      <!-- 游戏列表 -->
+      <div class="games-grid" id="games-grid">
+        <!-- 游戏卡片将通过 JavaScript 动态生成 -->
+      </div>
+
+      <!-- 刷新按钮 -->
+      <div style="text-align: center; margin-top: 30px;">
+        <button id="refresh-btn" class="btn btn-secondary">🔄 刷新数据</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="./js/script.js"></script>
+</body>
+</html>

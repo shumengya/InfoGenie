@@ -1,0 +1,35 @@
+{
+  "code": 200,
+  "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
+  "data": {
+    "source": "hello",
+    "md5": "5d41402abc4b2a76b9719d911017c592",
+    "sha": {
+      "sha1": "aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d",
+      "sha256": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+      "sha512": "9b71d224bd62f3785d96d46ad3ea3d73319bfbc2890caadae2dff72519673ca72323c3d99ba5c11d7c7acc6e14b8c5da0c4663475c2e5c3adef46f73bcdec043"
+    },
+    "base64": {
+      "encoded": "aGVsbG8=",
+      "decoded": ""
+    },
+    "url": {
+      "encoded": "hello",
+      "decoded": "hello"
+    },
+    "gzip": {
+      "encoded": "1f8b0800000000000003cb48cdc9c9070086a6103605000000",
+      "decoded": ""
+    },
+    "deflate": {
+      "encoded": "789ccb48cdc9c90700062c0215",
+      "decoded": ""
+    },
+    "brotli": {
+      "encoded": "0b028068656c6c6f03",
+      "decoded": ""
+    }
+  }
+}
+
+注意：实际API返回的字段名是 encoded/decoded，不是 encode/decode

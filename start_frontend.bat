@@ -1,3 +1,3 @@
 @echo off
-cd /d "e:\Python\InfoGenie\frontend\react-app"
+cd /d "e:\Python\InfoGenie\frontend"
 npm start

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机颜色/颜色转换工具</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="background.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>随机颜色/颜色转换工具</h1>
+            <p class="subtitle">获取随机颜色或转换指定颜色格式</p>
+        </header>
+
+        <main class="main-content">
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="colorInput">输入颜色值（可选）:</label>
+                    <input type="text" id="colorInput" placeholder="例如: #33AAFF">
+                </div>
+                <div class="input-group">
+                    <label for="encodingSelect">输出格式:</label>
+                    <select id="encodingSelect">
+                        <option value="json">JSON</option>
+                        <option value="text">文本</option>
+                        <option value="html">HTML</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <button id="randomBtn" class="btn btn-primary">获取随机颜色</button>
+                    <button id="convertBtn" class="btn btn-secondary">转换颜色</button>
+                </div>
+            </div>
+
+            <div class="result-section">
+                <div class="color-preview">
+                    <div id="colorDisplay" class="color-box"></div>
+                    <div class="color-info">
+                        <h3 id="colorName">颜色名称</h3>
+                        <p id="hexValue">#000000</p>
+                    </div>
+                </div>
+
+                <div class="color-formats">
+                    <div class="format-group">
+                        <h4>RGB</h4>
+                        <div class="format-values">
+                            <span id="rgbR">0</span>
+                            <span id="rgbG">0</span>
+                            <span id="rgbB">0</span>
+                        </div>
+                        <p id="rgbString">rgb(0, 0, 0)</p>
+                    </div>
+
+                    <div class="format-group">
+                        <h4>HSL</h4>
+                        <div class="format-values">
+                            <span id="hslH">0°</span>
+                            <span id="hslS">0%</span>
+                            <span id="hslL">0%</span>
+                        </div>
+                        <p id="hslString">hsl(0, 0%, 0%)</p>
+                    </div>
+
+                    <div class="format-group">
+                        <h4>HSV</h4>
+                        <div class="format-values">
+                            <span id="hsvH">0°</span>
+                            <span id="hsvS">0%</span>
+                            <span id="hsvV">0%</span>
+                        </div>
+                        <p id="hsvString">hsv(0, 0%, 0%)</p>
+                    </div>
+
+                    <div class="format-group">
+                        <h4>CMYK</h4>
+                        <div class="format-values">
+                            <span id="cmykC">0%</span>
+                            <span id="cmykM">0%</span>
+                            <span id="cmykY">0%</span>
+                            <span id="cmykK">0%</span>
+                        </div>
+                        <p id="cmykString">cmyk(0%, 0%, 0%, 0%)</p>
+                    </div>
+
+                    <div class="format-group">
+                        <h4>LAB</h4>
+                        <div class="format-values">
+                            <span id="labL">0</span>
+                            <span id="labA">0</span>
+                            <span id="labB">0</span>
+                        </div>
+                        <p id="labString">lab(0, 0, 0)</p>
+                    </div>
+                </div>
+
+                <div class="color-properties">
+                    <div class="property-item">
+                        <label>亮度:</label>
+                        <span id="brightness">0</span>
+                    </div>
+                    <div class="property-item">
+                        <label>对比度 (白色):</label>
+                        <span id="contrastWhite">0</span>
+                    </div>
+                    <div class="property-item">
+                        <label>对比度 (黑色):</label>
+                        <span id="contrastBlack">0</span>
+                    </div>
+                    <div class="property-item">
+                        <label>最佳文字颜色:</label>
+                        <span id="bestTextColor">#000000</span>
+                    </div>
+                </div>
+
+                <div class="color-palette">
+                    <h4>配色方案</h4>
+                    <div class="palette-group">
+                        <div class="palette-item">
+                            <label>互补色:</label>
+                            <div id="complementary" class="color-sample"></div>
+                            <span id="complementaryHex">#000000</span>
+                        </div>
+                        <div class="palette-item">
+                            <label>类似色:</label>
+                            <div class="analogous-colors">
+                                <div id="analogous1" class="color-sample"></div>
+                                <div id="analogous2" class="color-sample"></div>
+                            </div>
+                            <div class="analogous-hex">
+                                <span id="analogous1Hex">#000000</span>
+                                <span id="analogous2Hex">#000000</span>
+                            </div>
+                        </div>
+                        <div class="palette-item">
+                            <label>三角色:</label>
+                            <div class="triadic-colors">
+                                <div id="triadic1" class="color-sample"></div>
+                                <div id="triadic2" class="color-sample"></div>
+                            </div>
+                            <div class="triadic-hex">
+                                <span id="triadic1Hex">#000000</span>
+                                <span id="triadic2Hex">#000000</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accessibility-info">
+                    <h4>无障碍性</h4>
+                    <div class="accessibility-grid">
+                        <div class="accessibility-item">
+                            <span>AA 普通文本:</span>
+                            <span id="aaNormal" class="status">否</span>
+                        </div>
+                        <div class="accessibility-item">
+                            <span>AA 大文本:</span>
+                            <span id="aaLarge" class="status">否</span>
+                        </div>
+                        <div class="accessibility-item">
+                            <span>AAA 普通文本:</span>
+                            <span id="aaaNormal" class="status">否</span>
+                        </div>
+                        <div class="accessibility-item">
+                            <span>AAA 大文本:</span>
+                            <span id="aaaLarge" class="status">否</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>正在获取颜色信息...</p>
+            </div>
+
+            <div class="error" id="error" style="display: none;">
+                <p id="errorMessage">获取颜色信息失败，请稍后重试</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
