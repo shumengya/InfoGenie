@@ -27,6 +27,9 @@ class Config:
     SESSION_COOKIE_SECURE = False  # 开发环境设为False，生产环境设为True
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SAMESITE = 'Lax'
+    SESSION_COOKIE_DOMAIN = None  # 开发环境设为None，生产环境设为具体域名
+    SESSION_COOKIE_PATH = '/'
+    SESSION_REFRESH_EACH_REQUEST = True  # 每次请求刷新会话过期时间
     
     # 邮件配置
     MAIL_SERVER = 'smtp.qq.com'

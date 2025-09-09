@@ -16,11 +16,8 @@ import secrets
 
 # 导入模块
 from modules.auth import auth_bp
-from modules.api_60s import api_60s_bp
 from modules.user_management import user_bp
 from modules.email_service import init_mail
-from modules.smallgame import smallgame_bp
-from modules.aimodelapp import aimodelapp_bp
 
 from config import Config
 
@@ -43,10 +40,7 @@ def create_app():
     
     # 注册蓝图
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
-    app.register_blueprint(api_60s_bp, url_prefix='/api/60s')
     app.register_blueprint(user_bp, url_prefix='/api/user')
-    app.register_blueprint(smallgame_bp, url_prefix='/api/smallgame')
-    app.register_blueprint(aimodelapp_bp, url_prefix='/api/aimodelapp')
     
     # 基础路由
     @app.route('/')

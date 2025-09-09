@@ -10,10 +10,52 @@ from flask import Blueprint, request, jsonify, session, current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 import hashlib
 import re
-from datetime import datetime
+import jwt
+from datetime import datetime, timedelta
+from functools import wraps
 from .email_service import send_verification_email, verify_code, is_qq_email, get_qq_avatar_url
 
 auth_bp = Blueprint('auth', __name__)
+
+def generate_token(user_data):
+    """生成JWT token"""
+    payload = {
+        'user_id': user_data['user_id'],
+        'email': user_data['email'],
+        'username': user_data['username'],
+        'exp': datetime.utcnow() + timedelta(days=7),  # 7天过期
+        'iat': datetime.utcnow()
+    }
+    return jwt.encode(payload, current_app.config['SECRET_KEY'], algorithm='HS256')
+
+def verify_token(token):
+    """验证JWT token"""
+    try:
+        payload = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
+        return {'success': True, 'data': payload}
+    except jwt.ExpiredSignatureError:
+        return {'success': False, 'message': 'Token已过期'}
+    except jwt.InvalidTokenError:
+        return {'success': False, 'message': 'Token无效'}
+
+def token_required(f):
+    """JWT token验证装饰器"""
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.headers.get('Authorization')
+        if not token:
+            return jsonify({'success': False, 'message': '缺少认证token'}), 401
+        
+        if token.startswith('Bearer '):
+            token = token[7:]
+        
+        result = verify_token(token)
+        if not result['success']:
+            return jsonify({'success': False, 'message': result['message']}), 401
+        
+        request.current_user = result['data']
+        return f(*args, **kwargs)
+    return decorated
 
 def validate_qq_email(email):
     """验证QQ邮箱格式"""
@@ -313,16 +355,18 @@ def login():
             }
         )
         
-        # 设置会话
-        session['user_id'] = str(user['_id'])
-        session['email'] = email
-        session['username'] = user.get('用户名', '')
-        session['logged_in'] = True
-        session.permanent = True
-        
+        # 生成JWT token
+        user_data = {
+            'user_id': str(user['_id']),
+            'email': email,
+            'username': user.get('用户名', '')
+        }
+        token = generate_token(user_data)
+
         return jsonify({
             'success': True,
             'message': '登录成功！',
+            'token': token,
             'user': {
                 'id': str(user['_id']),
                 'email': email,
@@ -373,17 +417,11 @@ def login():
 def logout():
     """用户登出"""
     try:
-        if 'logged_in' in session:
-            session.clear()
-            return jsonify({
-                'success': True,
-                'message': '已成功登出'
-            }), 200
-        else:
-            return jsonify({
-                'success': False,
-                'message': '用户未登录'
-            }), 401
+        # JWT是无状态的，客户端删除token即可
+        return jsonify({
+            'success': True,
+            'message': '已成功登出'
+        }), 200
             
     except Exception as e:
         return jsonify({
@@ -395,14 +433,26 @@ def logout():
 def check_login():
     """检查登录状态"""
     try:
-        if session.get('logged_in') and session.get('user_id'):
+        token = request.headers.get('Authorization')
+        if not token:
+            return jsonify({
+                'success': True,
+                'logged_in': False
+            }), 200
+        
+        if token.startswith('Bearer '):
+            token = token[7:]
+        
+        result = verify_token(token)
+        if result['success']:
+            user_data = result['data']
             return jsonify({
                 'success': True,
                 'logged_in': True,
                 'user': {
-                    'id': session.get('user_id'),
-                    'email': session.get('email'),
-                    'username': session.get('username')
+                    'id': user_data['user_id'],
+                    'email': user_data['email'],
+                    'username': user_data['username']
                 }
             }), 200
         else:

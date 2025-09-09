@@ -10,6 +10,9 @@ pymongo==4.5.0
 # 密码加密
 Werkzeug==2.3.7
 
+# JWT认证
+PyJWT==2.8.0
+
 # HTTP请求
 requests==2.31.0
 

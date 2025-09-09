@@ -13,26 +13,52 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    // 从localStorage恢复用户信息
+    try {
+      const savedUser = localStorage.getItem('user');
+      return savedUser ? JSON.parse(savedUser) : null;
+    } catch {
+      return null;
+    }
+  });
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    // 从localStorage恢复登录状态和token
+    return localStorage.getItem('token') !== null;
+  });
 
   // 检查登录状态
   const checkLoginStatus = async () => {
     try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setUser(null);
+        setIsLoggedIn(false);
+        return;
+      }
+      
       const response = await authAPI.checkLogin();
       if (response.data.success && response.data.logged_in) {
         const userData = response.data.user;
         setUser(userData);
         setIsLoggedIn(true);
+        // 保存到localStorage
+        localStorage.setItem('user', JSON.stringify(userData));
       } else {
         setUser(null);
         setIsLoggedIn(false);
+        // 清除localStorage
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
       }
     } catch (error) {
       console.error('检查登录状态失败:', error);
       setUser(null);
       setIsLoggedIn(false);
+      // 清除localStorage
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
     } finally {
       setIsLoading(false);
     }
@@ -44,8 +70,12 @@ export const UserProvider = ({ children }) => {
       const response = await authAPI.login(loginData);
       if (response.data.success) {
         const userData = response.data.user;
+        const token = response.data.token;
         setUser(userData);
         setIsLoggedIn(true);
+        // 保存到localStorage
+        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('token', token);
         toast.success('登录成功！');
         return { success: true };
       } else {
@@ -66,12 +96,18 @@ export const UserProvider = ({ children }) => {
       await authAPI.logout();
       setUser(null);
       setIsLoggedIn(false);
+      // 清除localStorage
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
       toast.success('已成功登出');
     } catch (error) {
       console.error('登出失败:', error);
       // 即使登出请求失败，也清除本地状态
       setUser(null);
       setIsLoggedIn(false);
+      // 清除localStorage
+      localStorage.removeItem('user');
+      localStorage.removeItem('isLoggedIn');
       toast.error('登出失败');
     }
   };
