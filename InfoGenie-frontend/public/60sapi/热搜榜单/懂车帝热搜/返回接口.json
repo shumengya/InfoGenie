@@ -1,0 +1,66 @@
+{
+    "code": 200,
+    "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
+    "data": [
+        {
+            "rank": 1,
+            "title": "吉利银河星耀6将于9月5日发布",
+            "score": 846099,
+            "score_desc": "84.6w"
+        },
+        {
+            "rank": 2,
+            "title": "销售称Model Y L日均订单近万辆",
+            "score": 602350,
+            "score_desc": "60.2w"
+        },
+        {
+            "rank": 3,
+            "title": "极氪9X将于9月底上市",
+            "score": 241114,
+            "score_desc": "24.1w"
+        },
+        {
+            "rank": 4,
+            "title": "比亚迪“全家福”亮相齐鲁秋季车展",
+            "score": 239586,
+            "score_desc": "24.0w"
+        },
+        {
+            "rank": 5,
+            "title": "新一代宝马X5内饰曝光",
+            "score": 209847,
+            "score_desc": "21.0w"
+        },
+        {
+            "rank": 6,
+            "title": "LOL前职业选手PDD喜提理想MEGA",
+            "score": 204628,
+            "score_desc": "20.5w"
+        },
+        {
+            "rank": 7,
+            "title": "零跑Lafa5伪装车曝光",
+            "score": 143127,
+            "score_desc": "14.3w"
+        },
+        {
+            "rank": 8,
+            "title": "方程豹钛7将于9月9日上市",
+            "score": 135759,
+            "score_desc": "13.6w"
+        },
+        {
+            "rank": 9,
+            "title": "零跑9月购车政策",
+            "score": 94419,
+            "score_desc": "9.4w"
+        },
+        {
+            "rank": 10,
+            "title": "捷途X70L将于9月10日预售",
+            "score": 74292,
+            "score_desc": "7.4w"
+        }
+    ]
+}

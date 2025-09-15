@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Linux命令生成器</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 class="title">AI Linux命令生成器</h1>
+      <p class="subtitle">让AI为您的Linux操作生成准确的命令</p>
+    </div>
+
+    <div class="form-section">
+      <div class="form-group">
+        <label class="form-label" for="task-input">任务描述：</label>
+        <textarea 
+          id="task-input" 
+          class="form-input textarea" 
+          placeholder="请描述您想要在Linux系统中执行的操作，例如：切换到根目录、查看当前目录下的文件、创建新文件夹等..."
+        >切换到根目录</textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="level-select">技能水平：</label>
+        <select id="level-select" class="form-input select">
+          <option value="beginner">初学者 - 基础命令和详细解释</option>
+          <option value="intermediate">中级用户 - 常用命令和选项</option>
+          <option value="advanced">高级用户 - 高效命令和高级用法</option>
+        </select>
+      </div>
+
+      <button id="generateBtn" class="btn">生成命令</button>
+    </div>
+
+    <div class="result-section">
+      <h3 class="result-title">推荐的Linux命令</h3>
+      <div id="loading" class="loading">正在生成中，请稍候...</div>
+      <div id="commands" class="commands-container">
+        <div class="placeholder">点击"生成命令"按钮，AI将为您推荐合适的Linux命令</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="env.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

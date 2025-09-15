@@ -1,0 +1,603 @@
+/* 全局样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 主体样式 - iOS风格 */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #F4A460 100%);
+  min-height: 100vh;
+  padding: 20px;
+  color: #1D1D1F;
+  line-height: 1.47;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 容器样式 - iOS毛玻璃效果 */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 头部样式 - iOS风格 */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 2.25rem;
+  color: #8B4513;
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: #D2691E;
+  font-size: 1.0625rem;
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+/* 表单样式 - iOS风格 */
+.form-section {
+  margin-bottom: 32px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.half-width {
+  flex: 1;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #1D1D1F;
+  font-size: 1rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.8);
+  font-family: inherit;
+  backdrop-filter: blur(10px);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #D2691E;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 4px rgba(210, 105, 30, 0.1);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 150px;
+  font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+  line-height: 1.6;
+}
+
+.select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23666" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 12px;
+  padding-right: 40px;
+}
+
+/* 按钮样式 - iOS风格 */
+.btn {
+  width: 100%;
+  padding: 16px;
+  background: #D2691E;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(210, 105, 30, 0.25);
+}
+
+.btn:hover {
+  background: #B8860B;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(210, 105, 30, 0.35);
+}
+
+.btn:active {
+  transform: translateY(0);
+  background: #A0522D;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  background: #86868B;
+}
+
+/* 结果区域样式 - iOS风格 */
+.result-section {
+  margin-top: 32px;
+}
+
+.result-title {
+  font-size: 1.25rem;
+  color: #8B4513;
+  margin-bottom: 16px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.loading {
+  display: none;
+  text-align: center;
+  color: #D2691E;
+  font-style: normal;
+  padding: 24px;
+  font-weight: 500;
+}
+
+.conversion-container {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  min-height: 200px;
+  backdrop-filter: blur(10px);
+}
+
+.placeholder {
+  text-align: center;
+  color: #86868B;
+  font-style: normal;
+  padding: 40px 20px;
+  font-weight: 400;
+}
+
+/* 转换结果样式 */
+.conversion-result {
+  animation: fadeIn 0.3s ease;
+}
+
+.conversion-info {
+  background: rgba(139, 69, 19, 0.1);
+  border: 1px solid rgba(139, 69, 19, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-item .label {
+  font-weight: 600;
+  color: #8B4513;
+}
+
+.info-item .value {
+  color: #1D1D1F;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+}
+
+/* 文本显示区域 */
+.original-text,
+.classical-text {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.classical-text {
+  background: rgba(244, 164, 96, 0.1);
+  border: 1px solid rgba(244, 164, 96, 0.3);
+}
+
+.text-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.text-header .label {
+  font-weight: 600;
+  color: #1D1D1F;
+  font-size: 1rem;
+}
+
+.text-content {
+  font-size: 1.125rem;
+  color: #1D1D1F;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+.text-content.classical {
+  font-family: 'STKaiti', 'KaiTi', '楷体', serif;
+  font-size: 1.25rem;
+  line-height: 2;
+  color: #8B4513;
+  font-weight: 500;
+}
+
+/* 转换说明区域 */
+.transformations {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.transformations-title {
+  font-weight: 600;
+  color: #1D1D1F;
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+.transformation-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.transformation-item:last-child {
+  border-bottom: none;
+}
+
+.transformation-item .number {
+  color: #D2691E;
+  font-weight: 600;
+  min-width: 20px;
+}
+
+.transformation-item .text {
+  color: #1D1D1F;
+  line-height: 1.6;
+}
+
+/* 文言文特色分析 */
+.classical-features {
+  background: rgba(210, 105, 30, 0.1);
+  border: 1px solid rgba(210, 105, 30, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.features-title {
+  font-weight: 600;
+  color: #D2691E;
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.feature-item:last-child {
+  margin-bottom: 0;
+}
+
+.feature-label {
+  font-weight: 600;
+  color: #8B4513;
+  min-width: 80px;
+  font-size: 0.9375rem;
+}
+
+.feature-text {
+  color: #1D1D1F;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.explanation {
+  background: rgba(139, 69, 19, 0.1);
+  border: 1px solid rgba(139, 69, 19, 0.2);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.explanation .label {
+  font-weight: 600;
+  color: #8B4513;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.explanation-text {
+  color: #1D1D1F;
+  line-height: 1.6;
+  font-size: 0.9375rem;
+}
+
+.pronunciation {
+  background: rgba(255, 149, 0, 0.1);
+  border: 1px solid rgba(255, 149, 0, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  font-size: 0.9375rem;
+}
+
+.pronunciation .label {
+  font-weight: 600;
+  color: #FF9500;
+  margin-right: 8px;
+}
+
+.pronunciation .value {
+  color: #1D1D1F;
+  font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+}
+
+/* 复制按钮样式 */
+.copy-btn {
+  background: #D2691E;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(210, 105, 30, 0.25);
+}
+
+.copy-btn:hover {
+  background: #B8860B;
+  transform: translateY(-1px);
+}
+
+.copy-btn-small {
+  background: #D2691E;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(210, 105, 30, 0.25);
+}
+
+.copy-btn-small:hover {
+  background: #B8860B;
+  transform: translateY(-1px);
+}
+
+/* 错误样式 - iOS风格 */
+.error {
+  color: #FF3B30;
+  background: rgba(255, 59, 48, 0.1);
+  border: 1px solid rgba(255, 59, 48, 0.2);
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: 16px;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+}
+
+/* 成功提示 - iOS风格 */
+.success-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #34C759;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(52, 199, 89, 0.3);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.3s ease;
+  font-weight: 600;
+  backdrop-filter: blur(20px);
+}
+
+.success-toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .form-input {
+    padding: 12px;
+  }
+
+  .btn {
+    padding: 12px;
+  }
+
+  .conversion-container {
+    padding: 15px;
+  }
+
+  .original-text,
+  .classical-text {
+    padding: 15px;
+  }
+
+  .text-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .copy-btn {
+    align-self: flex-end;
+  }
+
+  .conversion-info {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .feature-item {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .feature-label {
+    min-width: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .form-input {
+    padding: 10px;
+  }
+
+  .original-text,
+  .classical-text {
+    padding: 12px;
+  }
+
+  .text-content {
+    font-size: 1rem;
+  }
+
+  .text-content.classical {
+    font-size: 1.125rem;
+  }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.conversion-result {
+  animation: fadeIn 0.3s ease;
+}
+
+/* 加载动画 */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* 古典风格装饰 */
+.classical-text::before {
+  content: '「';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 1.5rem;
+  color: #D2691E;
+  opacity: 0.6;
+}
+
+.classical-text::after {
+  content: '」';
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  color: #D2691E;
+  opacity: 0.6;
+}
+
+.classical-text .text-content {
+  margin: 0 20px;
+}

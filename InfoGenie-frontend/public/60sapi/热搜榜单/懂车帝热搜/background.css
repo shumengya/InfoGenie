@@ -1,0 +1,55 @@
+/* 背景样式文件 */
+body {
+    background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 25%, #f5f9f5 50%, #fafcfa 75%, #ffffff 100%);
+    background-attachment: fixed;
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+/* 背景动画 */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 容器背景 */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(139, 195, 74, 0.1);
+}
+
+/* 移动端背景优化 */
+@media (max-width: 767px) {
+    body {
+        background-attachment: scroll;
+    }
+    
+    .container {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 16px;
+    }
+}
+
+/* 深色模式支持 */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #1a2e1a 0%, #2d4a2d 25%, #3a5a3a 50%, #4a6a4a 75%, #5a7a5a 100%);
+    }
+    
+    .container {
+        background: rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+}

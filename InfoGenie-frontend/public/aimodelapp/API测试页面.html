@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API超时修复测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f7;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1d1d1f;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e5e5e7;
+            border-radius: 8px;
+        }
+        .test-section h3 {
+            color: #333;
+            margin-top: 0;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #d2d2d7;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            background: #007aff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .loading {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+        .status {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 API超时修复测试</h1>
+        
+        <div class="test-section">
+            <h3>🎭 表情制作器API测试</h3>
+            <input type="text" id="expressionText" placeholder="输入要生成表情的文字" value="开心">
+            <select id="expressionStyle">
+                <option value="mixed">混合风格</option>
+                <option value="emoji">仅Emoji</option>
+                <option value="kaomoji">仅颜文字</option>
+                <option value="cute">可爱风格</option>
+                <option value="cool">酷炫风格</option>
+            </select>
+            <button onclick="testExpressionAPI()">测试表情API</button>
+            <div id="expressionResult"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>📝 变量命名API测试</h3>
+            <input type="text" id="variableDesc" placeholder="输入变量描述" value="用户的年龄">
+            <button onclick="testVariableAPI()">测试变量命名API</button>
+            <div id="variableResult"></div>
+        </div>
+    </div>
+
+    <script>
+        async function testExpressionAPI() {
+            const text = document.getElementById('expressionText').value.trim();
+            const style = document.getElementById('expressionStyle').value;
+            const resultDiv = document.getElementById('expressionResult');
+            
+            if (!text) {
+                showResult(resultDiv, '请输入文字内容', 'error');
+                return;
+            }
+            
+            showResult(resultDiv, '正在调用表情制作API...\n请耐心等待（最多90秒）', 'loading');
+            
+            const startTime = Date.now();
+            
+            try {
+                const response = await fetch('http://127.0.0.1:5002/api/aimodelapp/expression-maker', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        style: style
+                    })
+                });
+                
+                const endTime = Date.now();
+                const duration = ((endTime - startTime) / 1000).toFixed(2);
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || `HTTP ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    let resultText = `✅ API调用成功！\n耗时: ${duration}秒\n\n`;
+                    resultText += `表情结果:\n${JSON.stringify(data.expressions, null, 2)}`;
+                    showResult(resultDiv, resultText, 'success');
+                } else {
+                    throw new Error(data.error || '未知错误');
+                }
+                
+            } catch (error) {
+                const endTime = Date.now();
+                const duration = ((endTime - startTime) / 1000).toFixed(2);
+                showResult(resultDiv, `❌ API调用失败\n耗时: ${duration}秒\n错误: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testVariableAPI() {
+            const description = document.getElementById('variableDesc').value.trim();
+            const resultDiv = document.getElementById('variableResult');
+            
+            if (!description) {
+                showResult(resultDiv, '请输入变量描述', 'error');
+                return;
+            }
+            
+            showResult(resultDiv, '正在调用变量命名API...\n请耐心等待（最多90秒）', 'loading');
+            
+            const startTime = Date.now();
+            
+            try {
+                const response = await fetch('http://127.0.0.1:5002/api/aimodelapp/variable-naming', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        description: description
+                    })
+                });
+                
+                const endTime = Date.now();
+                const duration = ((endTime - startTime) / 1000).toFixed(2);
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || `HTTP ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    let resultText = `✅ API调用成功！\n耗时: ${duration}秒\n\n`;
+                    resultText += `变量建议:\n${JSON.stringify(data.suggestions, null, 2)}`;
+                    showResult(resultDiv, resultText, 'success');
+                } else {
+                    throw new Error(data.error || '未知错误');
+                }
+                
+            } catch (error) {
+                const endTime = Date.now();
+                const duration = ((endTime - startTime) / 1000).toFixed(2);
+                showResult(resultDiv, `❌ API调用失败\n耗时: ${duration}秒\n错误: ${error.message}`, 'error');
+            }
+        }
+        
+        function showResult(element, message, type) {
+            element.innerHTML = `<div class="result ${type}"><div class="status">${getStatusText(type)}</div>${message}</div>`;
+        }
+        
+        function getStatusText(type) {
+            switch(type) {
+                case 'success': return '✅ 成功';
+                case 'error': return '❌ 错误';
+                case 'loading': return '⏳ 加载中';
+                default: return '';
+            }
+        }
+    </script>
+</body>
+</html>

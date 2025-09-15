@@ -1,0 +1,488 @@
+/* 全局样式重置 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 主体样式 - iOS风格 */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+  color: #1D1D1F;
+  line-height: 1.47;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 容器样式 - iOS毛玻璃效果 */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 头部样式 - iOS风格 */
+.header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.title {
+  font-size: 2.25rem;
+  color: #1D1D1F;
+  margin-bottom: 8px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: #86868B;
+  font-size: 1.0625rem;
+  margin-bottom: 24px;
+  font-weight: 400;
+}
+
+/* 表单样式 - iOS风格 */
+.form-section {
+  margin-bottom: 32px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #1D1D1F;
+  font-size: 1rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.8);
+  font-family: inherit;
+  backdrop-filter: blur(10px);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #007AFF;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23666" d="M2 0L0 2h4zm0 5L0 3h4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 12px;
+  padding-right: 40px;
+}
+
+/* 按钮样式 - iOS风格 */
+.btn {
+  width: 100%;
+  padding: 16px;
+  background: #007AFF;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.25);
+}
+
+.btn:hover {
+  background: #0056CC;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 122, 255, 0.35);
+}
+
+.btn:active {
+  transform: translateY(0);
+  background: #004499;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  background: #86868B;
+}
+
+/* 结果区域样式 - iOS风格 */
+.result-section {
+  margin-top: 32px;
+}
+
+.result-title {
+  font-size: 1.25rem;
+  color: #1D1D1F;
+  margin-bottom: 16px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.loading {
+  display: none;
+  text-align: center;
+  color: #007AFF;
+  font-style: normal;
+  padding: 24px;
+  font-weight: 500;
+}
+
+.translation-container {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  min-height: 150px;
+  backdrop-filter: blur(10px);
+}
+
+.placeholder {
+  text-align: center;
+  color: #86868B;
+  font-style: normal;
+  padding: 40px 20px;
+  font-weight: 400;
+}
+
+/* 翻译结果样式 */
+.translation-result {
+  animation: fadeIn 0.3s ease;
+}
+
+.detected-language {
+  background: rgba(52, 199, 89, 0.1);
+  border: 1px solid rgba(52, 199, 89, 0.2);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 0.9375rem;
+}
+
+.detected-language .label {
+  font-weight: 600;
+  color: #34C759;
+  margin-right: 8px;
+}
+
+.detected-language .value {
+  color: #1D1D1F;
+}
+
+.main-translation {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.translation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.translation-header .label {
+  font-weight: 600;
+  color: #1D1D1F;
+  font-size: 1rem;
+}
+
+.translation-text {
+  font-size: 1.125rem;
+  color: #1D1D1F;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.pronunciation {
+  background: rgba(255, 149, 0, 0.1);
+  border: 1px solid rgba(255, 149, 0, 0.2);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  font-size: 0.9375rem;
+}
+
+.pronunciation .label {
+  font-weight: 600;
+  color: #FF9500;
+  margin-right: 8px;
+}
+
+.pronunciation .value {
+  color: #1D1D1F;
+  font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+}
+
+.alternatives {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.alternatives-title {
+  font-weight: 600;
+  color: #1D1D1F;
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.alternative-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.alternative-item:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.alternative-item:last-child {
+  margin-bottom: 0;
+}
+
+.alternative-text {
+  color: #1D1D1F;
+  font-size: 1rem;
+}
+
+.explanation {
+  background: rgba(0, 122, 255, 0.1);
+  border: 1px solid rgba(0, 122, 255, 0.2);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.explanation .label {
+  font-weight: 600;
+  color: #007AFF;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.explanation-text {
+  color: #1D1D1F;
+  line-height: 1.6;
+  font-size: 0.9375rem;
+}
+
+/* 复制按钮样式 */
+.copy-btn {
+  background: #007AFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 122, 255, 0.25);
+}
+
+.copy-btn:hover {
+  background: #0056CC;
+  transform: translateY(-1px);
+}
+
+.copy-btn-small {
+  background: #007AFF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 122, 255, 0.25);
+}
+
+.copy-btn-small:hover {
+  background: #0056CC;
+  transform: translateY(-1px);
+}
+
+/* 错误样式 - iOS风格 */
+.error {
+  color: #FF3B30;
+  background: rgba(255, 59, 48, 0.1);
+  border: 1px solid rgba(255, 59, 48, 0.2);
+  padding: 16px;
+  border-radius: 12px;
+  margin-top: 16px;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+}
+
+/* 成功提示 - iOS风格 */
+.success-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #34C759;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(52, 199, 89, 0.3);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.3s ease;
+  font-weight: 600;
+  backdrop-filter: blur(20px);
+}
+
+.success-toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .form-input {
+    padding: 12px;
+  }
+
+  .btn {
+    padding: 12px;
+  }
+
+  .translation-container {
+    padding: 15px;
+  }
+
+  .main-translation {
+    padding: 15px;
+  }
+
+  .translation-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .copy-btn {
+    align-self: flex-end;
+  }
+
+  .alternative-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .copy-btn-small {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .form-input {
+    padding: 10px;
+  }
+
+  .main-translation {
+    padding: 12px;
+  }
+
+  .translation-text {
+    font-size: 1rem;
+  }
+
+  .alternative-text {
+    font-size: 0.9375rem;
+  }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.translation-result {
+  animation: fadeIn 0.3s ease;
+}
+
+/* 加载动画 */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="懂车帝热搜榜单 - 实时汽车资讯热点">
+    <meta name="keywords" content="懂车帝,热搜,汽车,资讯,榜单">
+    <title>懂车帝热搜榜单</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="background.css">
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-car"></i>
+                <h1>懂车帝热搜</h1>
+            </div>
+            <button class="refresh-btn" id="refreshBtn">
+                <i class="fas fa-sync-alt"></i>
+                <span>刷新</span>
+            </button>
+        </header>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <!-- 加载状态 -->
+            <div class="loading" id="loading">
+                <div class="loading-spinner"></div>
+                <p>正在加载热搜数据...</p>
+            </div>
+
+            <!-- 错误状态 -->
+            <div class="error" id="error" style="display: none;">
+                <div class="error-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <p class="error-message">加载失败，请稍后重试</p>
+                <button class="retry-btn" onclick="loadHotTopics()">重新加载</button>
+            </div>
+
+            <!-- 热搜列表 -->
+            <div class="hot-list" id="hotList" style="display: none;">
+                <div class="list-header">
+                    <h2>汽车热搜榜</h2>
+                    <span class="update-time" id="updateTime"></span>
+                </div>
+                <div class="topics-container" id="topicsContainer">
+                    <!-- 动态生成的热搜项目 -->
+                </div>
+            </div>
+        </main>
+
+        <!-- 底部信息 -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="data-source">数据来源：懂车帝官方</p>
+                <p class="update-info">实时更新 · 权威数据</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 提示消息 -->
+    <div class="toast" id="toast"></div>
+
+    <script src="api.js"></script>
+    <script src="ui.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

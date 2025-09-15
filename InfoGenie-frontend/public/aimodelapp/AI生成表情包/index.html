@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI表情制作器</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 class="title">AI表情制作器</h1>
+      <p class="subtitle">让AI为您的文字生成生动的表情符号</p>
+    </div>
+
+    <div class="form-section">
+      <div class="form-group">
+        <label class="form-label" for="text-input">输入文字：</label>
+        <textarea 
+          id="text-input" 
+          class="form-input textarea" 
+          placeholder="请输入您想要表达的短语或句子，例如：开心、生气、无奈、加油等..."
+        >开心</textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="style-select">表情风格：</label>
+        <select id="style-select" class="form-input select">
+          <option value="mixed">混合风格（推荐）</option>
+          <option value="emoji">仅Emoji表情</option>
+          <option value="kaomoji">仅颜文字</option>
+          <option value="cute">可爱风格</option>
+          <option value="cool">酷炫风格</option>
+        </select>
+      </div>
+
+      <button id="generateBtn" class="btn">生成表情</button>
+    </div>
+
+    <div class="result-section">
+      <h3 class="result-title">推荐的表情</h3>
+      <div id="loading" class="loading">正在生成中，请稍候...</div>
+      <div id="expressions" class="expressions-container">
+        <div class="placeholder">点击"生成表情"按钮，AI将为您推荐合适的表情符号</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="env.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

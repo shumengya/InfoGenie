@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI现代文转文言文助手</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 class="title">AI现代文转文言文助手</h1>
+      <p class="subtitle">古韵今声，文白互译</p>
+    </div>
+
+    <div class="form-section">
+      <div class="form-group">
+        <label class="form-label" for="modernText">请输入现代文内容：</label>
+        <textarea 
+          id="modernText" 
+          class="form-input textarea" 
+          placeholder="请输入您想要转换为文言文的现代文章内容..."
+        >今天天气很好，阳光明媚，我和朋友一起去公园游玩。公园里花开得很美，鸟儿在枝头歌唱，让人心情愉悦。</textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half-width">
+          <label class="form-label" for="styleSelect">文言文风格：</label>
+          <select id="styleSelect" class="form-input select">
+            <option value="classical">经典文言文</option>
+            <option value="elegant">雅致文言文</option>
+            <option value="formal">正式文言文</option>
+            <option value="poetic">诗意文言文</option>
+            <option value="historical">史书文言文</option>
+          </select>
+        </div>
+
+        <div class="form-group half-width">
+          <label class="form-label" for="articleTypeSelect">文章类型：</label>
+          <select id="articleTypeSelect" class="form-input select">
+            <option value="narrative">记叙文</option>
+            <option value="argumentative">议论文</option>
+            <option value="expository">说明文</option>
+            <option value="descriptive">描写文</option>
+            <option value="lyrical">抒情文</option>
+            <option value="official">公文体</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="convertBtn" class="btn">开始转换</button>
+    </div>
+
+    <div class="result-section">
+      <h3 class="result-title">文言文转换结果</h3>
+      <div id="loading" class="loading">正在转换中，请稍候...</div>
+      <div id="conversionResult" class="conversion-container">
+        <div class="placeholder">点击"开始转换"按钮，AI将为您提供精准的文言文转换</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="env.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

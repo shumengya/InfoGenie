@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" content="#2c3e50" />
+  <title>经典扫雷（手机竖屏适配）</title>
+  <meta name="description" content="经典Windows扫雷，手机竖屏与电脑端自适应，支持触摸与键盘操作，闯关无尽模式，难度逐步增加。" />
+
+  <link rel="preload" href="./css/style.css" as="style" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1 class="title">经典扫雷</h1>
+      <div class="hud">
+        <div class="hud-item"><span class="label">关卡</span><span id="level" class="value">1</span></div>
+        <div class="hud-item"><span class="label">雷数</span><span id="mines" class="value">0</span></div>
+        <div class="hud-item"><span class="label">计时</span><span id="timer" class="value">00:00</span></div>
+        <button id="btn-restart" class="btn primary" aria-label="重新开始">重开</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="board-wrapper">
+        <div id="board" class="board" role="grid" aria-label="扫雷棋盘"></div>
+      </section>
+
+      <section class="tips">
+        <p>
+          手机：点开格子，长按插旗；电脑：左键开格，右键插旗；键盘：方向键移动，空格/回车开格，F 插旗。
+        </p>
+      </section>
+    </main>
+
+    <!-- 关卡完成提示 -->
+    <div id="toast-level" class="toast" aria-live="polite" style="display:none;"></div>
+
+    <!-- 结束统计弹窗 -->
+    <div id="modal-overlay" class="modal-overlay" style="display:none;">
+      <div class="modal" role="dialog" aria-labelledby="gameover-title" aria-modal="true">
+        <h2 id="gameover-title">游戏结束</h2>
+        <div id="stats" class="stats"></div>
+        <div class="modal-actions">
+          <button id="btn-retry" class="btn primary">重新开始</button>
+          <button id="btn-close" class="btn">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

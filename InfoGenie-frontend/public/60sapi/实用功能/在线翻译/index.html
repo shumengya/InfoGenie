@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线翻译 - 支持109种语言</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="background.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>在线机器翻译</h1>
+            <p class="subtitle">支持109种语言互译</p>
+        </header>
+        
+        <main class="main-content">
+            <div class="translate-box">
+                <div class="language-selector">
+                    <div class="lang-group">
+                        <label for="from-lang">源语言</label>
+                        <select id="from-lang" class="lang-select">
+                            <option value="auto">自动检测</option>
+                        </select>
+                    </div>
+                    
+                    <button class="swap-btn" id="swap-btn" title="交换语言">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M7 16l4-4-4-4"></path>
+                            <path d="M17 8l-4 4 4 4"></path>
+                        </svg>
+                    </button>
+                    
+                    <div class="lang-group">
+                        <label for="to-lang">目标语言</label>
+                        <select id="to-lang" class="lang-select">
+                            <option value="auto">自动选择</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="text-areas">
+                    <div class="input-section">
+                        <div class="textarea-header">
+                            <span class="detected-lang" id="detected-lang"></span>
+                            <button class="clear-btn" id="clear-btn" title="清空">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                            </button>
+                        </div>
+                        <textarea 
+                            id="input-text" 
+                            placeholder="请输入要翻译的文本..."
+                            maxlength="5000"
+                        ></textarea>
+                        <div class="char-count">
+                            <span id="char-count">0</span>/5000
+                        </div>
+                    </div>
+                    
+                    <div class="output-section">
+                        <div class="textarea-header">
+                            <span class="target-lang" id="target-lang"></span>
+                            <button class="copy-btn" id="copy-btn" title="复制">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div id="output-text" class="output-text">翻译结果将显示在这里...</div>
+                        <div class="pronounce-section" id="pronounce-section">
+                            <div class="pronounce-item" id="source-pronounce"></div>
+                            <div class="pronounce-item" id="target-pronounce"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="translate-btn" id="translate-btn">
+                        <span class="btn-text">翻译</span>
+                        <div class="loading-spinner" id="loading-spinner"></div>
+                    </button>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>数据来源于有道翻译，与其网页端同步</p>
+        </footer>
+    </div>
+    
+    <div class="toast" id="toast"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

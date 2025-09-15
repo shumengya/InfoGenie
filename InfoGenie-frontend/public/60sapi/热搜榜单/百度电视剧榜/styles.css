@@ -1,0 +1,378 @@
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 头部样式 */
+.header {
+    text-align: center;
+    padding: 24px 0;
+    border-bottom: 2px solid #d4e157;
+    margin-bottom: 24px;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #8bc34a, #cddc39);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(139, 195, 74, 0.1);
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #7f8c8d;
+    font-weight: 400;
+}
+
+/* 主内容区域 */
+.main-content {
+    flex: 1;
+    position: relative;
+}
+
+/* 加载状态 */
+.loading {
+    text-align: center;
+    padding: 60px 20px;
+    color: #8bc34a;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #d4e157;
+    border-top: 3px solid #8bc34a;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 错误信息 */
+.error-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: #e74c3c;
+}
+
+.retry-btn {
+    background: linear-gradient(135deg, #8bc34a, #cddc39);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(139, 195, 74, 0.3);
+}
+
+.retry-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 195, 74, 0.4);
+}
+
+/* 电视剧列表 */
+.tv-list {
+    display: grid;
+    gap: 16px;
+}
+
+.tv-item {
+    background: #ffffff;
+    border: 1px solid #f1f8e9;
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(139, 195, 74, 0.08);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.tv-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(139, 195, 74, 0.15);
+    border-color: #d4e157;
+}
+
+.tv-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #8bc34a, #cddc39);
+}
+
+/* 排名样式 */
+.rank {
+    background: linear-gradient(135deg, #8bc34a, #cddc39);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 4px;
+    box-shadow: 0 2px 6px rgba(139, 195, 74, 0.3);
+}
+
+.rank.top3 {
+    background: linear-gradient(135deg, #ff9800, #ffc107);
+}
+
+.rank.top1 {
+    background: linear-gradient(135deg, #f44336, #e91e63);
+}
+
+/* 封面图片 */
+.item-cover {
+    width: 80px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid #f1f8e9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 内容区域 */
+.item-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100px;
+}
+
+.item-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.item-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    line-height: 1.4;
+    margin-bottom: 4px;
+    transition: color 0.3s ease;
+    flex: 1;
+}
+
+.item-title:hover {
+    background: linear-gradient(135deg, #8bc34a, #cddc39);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.item-desc {
+    font-size: 13px;
+    color: #7f8c8d;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.item-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.item-score {
+    font-size: 14px;
+    background: linear-gradient(135deg, #8bc34a, #cddc39);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+}
+
+.item-score-desc {
+    font-size: 12px;
+    color: #95a5a6;
+    margin-left: 4px;
+}
+
+.item-type {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.type-text {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+    background: linear-gradient(135deg, #f1f8e9, #e8f5e8);
+    color: #689f38;
+    border: 1px solid #d4e157;
+}
+
+/* 底部 */
+.footer {
+    text-align: center;
+    padding: 24px 0;
+    border-top: 1px solid #f1f8e9;
+    margin-top: 32px;
+}
+
+.update-time {
+    font-size: 12px;
+    color: #95a5a6;
+}
+
+/* 手机端优化 (默认) */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 12px;
+    }
+    
+    .header {
+        padding: 20px 0;
+    }
+    
+    .title {
+        font-size: 24px;
+    }
+    
+    .subtitle {
+        font-size: 13px;
+    }
+    
+    .tv-item {
+        padding: 14px;
+        gap: 10px;
+    }
+    
+    .item-cover {
+        width: 60px;
+        height: 80px;
+    }
+    
+    .item-title {
+        font-size: 15px;
+    }
+    
+    .item-desc {
+        font-size: 12px;
+        -webkit-line-clamp: 2;
+    }
+    
+    .rank {
+        width: 28px;
+        height: 28px;
+        font-size: 13px;
+    }
+}
+
+/* 平板端适配 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        padding: 0 24px;
+    }
+    
+    .tv-list {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 18px;
+    }
+    
+    .title {
+        font-size: 32px;
+    }
+    
+    .tv-item {
+        padding: 18px;
+    }
+    
+    .item-cover {
+        width: 90px;
+        height: 110px;
+    }
+}
+
+/* 电脑端适配 */
+@media (min-width: 1025px) {
+    .container {
+        padding: 0 32px;
+    }
+    
+    .tv-list {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+    }
+    
+    .title {
+        font-size: 36px;
+    }
+    
+    .tv-item {
+        padding: 20px;
+        gap: 16px;
+    }
+    
+    .item-cover {
+        width: 100px;
+        height: 130px;
+    }
+    
+    .item-title {
+        font-size: 17px;
+    }
+    
+    .item-desc {
+        font-size: 14px;
+    }
+}
+
+/* 大屏幕优化 */
+@media (min-width: 1400px) {
+    .tv-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "deepseek": {
+        "api_key": "sk-832f8e5250464de08a31523c7fd71295",
+        "api_base": "https://api.deepseek.com",
+        "model": ["deepseek-chat","deepseek-reasoner"]
+    },
+
+    "kimi": {
+        "api_key": "sk-zdg9NBpTlhOcDDpoWfaBKu0KNDdGv18SipORnL2utawja0bE",
+        "api_base": "https://api.moonshot.cn",
+        "model": ["kimi-k2-0905-preview","kimi-k2-0711-preview"]
+    }
+}
