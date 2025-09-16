@@ -59,6 +59,9 @@ async function callBackendAPI(description) {
         });
 
         if (!response.ok) {
+            if (response.status === 402) {
+                throw new Error('您的萌芽币余额不足，无法使用此功能');
+            }
             const errorData = await response.json();
             throw new Error(errorData.error || `API请求失败: ${response.status} ${response.statusText}`);
         }
@@ -216,22 +219,12 @@ async function generateSuggestions() {
         return;
     }
     
-    // 检查萌芽币余额是否足够
-    if (window.coinManager && !window.coinManager.checkBeforeApiCall()) {
-        return;
-    }
-    
     showLoading(true);
     suggestionsContainer.innerHTML = '';
     
     try {
         const suggestions = await callBackendAPI(description);
         displaySuggestions(suggestions);
-        
-        // 刷新萌芽币信息
-        if (window.coinManager) {
-            window.coinManager.loadCoinsInfo();
-        }
     } catch (error) {
         console.error('生成建议失败:', error);
         // 检查是否是萌芽币不足导致的错误

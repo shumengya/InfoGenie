@@ -11,10 +11,18 @@ const expressionsContainer = document.getElementById('expressions');
 // 调用后端API
 async function callBackendAPI(text, style) {
     try {
-        const response = await fetch('http://127.0.0.1:5002/api/aimodelapp/expression-maker', {
+        // 获取JWT token
+        const token = localStorage.getItem('token');
+        
+        if (!token) {
+            throw new Error('未登录，请先登录后使用AI功能');
+        }
+        
+        const response = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.expressionMaker}`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
                 text: text,
@@ -23,6 +31,9 @@ async function callBackendAPI(text, style) {
         });
 
         if (!response.ok) {
+            if (response.status === 402) {
+                throw new Error('您的萌芽币余额不足，无法使用此功能');
+            }
             const errorData = await response.json();
             throw new Error(errorData.error || `API请求失败: ${response.status} ${response.statusText}`);
         }
@@ -198,7 +209,12 @@ async function generateExpressions() {
         displayExpressions(expressions);
     } catch (error) {
         console.error('生成表情失败:', error);
-        showErrorMessage(`生成失败: ${error.message}`);
+        // 检查是否是萌芽币不足导致的错误
+        if (error.message && error.message.includes('萌芽币余额不足')) {
+            showErrorMessage(`萌芽币不足: 每次使用AI功能需要消耗100萌芽币，请通过每日签到获取更多萌芽币`);
+        } else {
+            showErrorMessage(`生成失败: ${error.message}`);
+        }
     } finally {
         showLoading(false);
     }

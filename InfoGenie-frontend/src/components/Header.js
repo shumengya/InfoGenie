@@ -33,14 +33,18 @@ const Logo = styled(Link)`
   
   .logo-icon {
     margin-right: 8px;
-    font-size: 24px;
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    border-radius: 50%;
   }
   
   @media (max-width: 768px) {
     font-size: 18px;
     
     .logo-icon {
-      font-size: 20px;
+      width: 30px;
+      height: 30px;
     }
   }
 `;
@@ -231,7 +235,7 @@ const Header = () => {
       <HeaderContainer>
         <HeaderContent>
           <Logo to="/">
-            <span className="logo-icon">✨</span>
+            <img className="logo-icon" src="/assets/logo.png" alt="InfoGenie Logo" />
             神奇万事通
           </Logo>
 

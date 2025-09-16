@@ -102,7 +102,12 @@ const GameTheme = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  background: ${props => props.$gradient};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.3);
 `;
 
 const PlayButton = styled.button`
@@ -311,7 +316,7 @@ const SmallGamePage = () => {
                 </GameHeader>
                 <GameDescription>{game.description}</GameDescription>
                 <GameFooter>
-                  <GameTheme $gradient={game.gradient} />
+                  <GameTheme>{game.icon}</GameTheme>
                   <PlayButton onClick={(e) => {
                     e.stopPropagation();
                     handlePlayGame(game);

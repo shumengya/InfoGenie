@@ -283,7 +283,7 @@ const Api60sPage = () => {
                   >
                     <CardHeader>
                       <CardIcon color={category.color}>
-                        {category.icon}
+                        {api.icon || category.icon}
                       </CardIcon>
                       <CardTitle>{api.title}</CardTitle>
                       <ExternalIcon>

@@ -11,11 +11,18 @@ const commandsContainer = document.getElementById('commands');
 // 调用后端API
 async function callBackendAPI(taskDescription, difficultyLevel) {
     try {
-        const response = await fetch('http://127.0.0.1:5002/api/aimodelapp/linux-command', {
+        const token = AUTH_CONFIG.getToken();
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+        
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+        
+        const response = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.linuxCommand}`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: headers,
             body: JSON.stringify({
                 task_description: taskDescription,
                 difficulty_level: difficultyLevel
@@ -23,6 +30,9 @@ async function callBackendAPI(taskDescription, difficultyLevel) {
         });
 
         if (!response.ok) {
+            if (response.status === 402) {
+                throw new Error('您的萌芽币余额不足，无法使用此功能');
+            }
             const errorData = await response.json();
             throw new Error(errorData.error || `API请求失败: ${response.status} ${response.statusText}`);
         }

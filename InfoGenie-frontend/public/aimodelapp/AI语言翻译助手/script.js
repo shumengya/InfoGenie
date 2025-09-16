@@ -11,11 +11,18 @@ const translationResultContainer = document.getElementById('translationResult');
 // 调用后端API
 async function callBackendAPI(sourceText, targetLanguage) {
     try {
-        const response = await fetch('http://127.0.0.1:5002/api/aimodelapp/translation', {
+        const token = AUTH_CONFIG.getToken();
+        const headers = {
+            'Content-Type': 'application/json'
+        };
+        
+        if (token) {
+            headers['Authorization'] = `Bearer ${token}`;
+        }
+        
+        const response = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.translation}`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: headers,
             body: JSON.stringify({
                 source_text: sourceText,
                 target_language: targetLanguage
@@ -23,6 +30,9 @@ async function callBackendAPI(sourceText, targetLanguage) {
         });
 
         if (!response.ok) {
+            if (response.status === 402) {
+                throw new Error('您的萌芽币余额不足，无法使用此功能');
+            }
             const errorData = await response.json();
             throw new Error(errorData.error || `API请求失败: ${response.status} ${response.statusText}`);
         }

@@ -116,7 +116,12 @@ const AppTheme = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  background: ${props => props.$gradient};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.3);
 `;
 
 const LaunchButton = styled.button`
@@ -295,10 +300,7 @@ const AiModelPage = () => {
         // 将token传递给iframe
         iframe.contentWindow.localStorage.setItem('token', token);
         
-        // 确保coin-manager.js已加载
-        if (iframe.contentWindow.coinManager) {
-          iframe.contentWindow.coinManager.loadCoinsInfo();
-        }
+        // Token已传递给iframe
       }
     } catch (error) {
       console.error('iframe通信错误:', error);
@@ -391,7 +393,7 @@ const AiModelPage = () => {
                 </AppHeader>
                 <AppDescription>{app.description}</AppDescription>
                 <AppFooter>
-                  <AppTheme $gradient={app.gradient} />
+                  <AppTheme>{app.icon}</AppTheme>
                   <LaunchButton onClick={(e) => {
                     e.stopPropagation();
                     handleLaunchApp(app);
