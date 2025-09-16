@@ -6,7 +6,7 @@ Created by: 神奇万事通
 Date: 2025-09-02
 """
 
-from flask import Flask, jsonify, request, session, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 from flask_pymongo import PyMongo
 import os
@@ -22,6 +22,7 @@ from modules.aimodelapp import aimodelapp_bp
 
 from config import Config
 
+# 创建Flask应用
 def create_app():
     """创建Flask应用实例"""
     app = Flask(__name__)

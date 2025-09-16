@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # InfoGenie 后端服务
+  infogenie-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5002:5002"
+    environment:
+      - FLASK_ENV=production
+      - SECRET_KEY=${SECRET_KEY:-infogenie-secret-key-2025}
+      - MONGO_URI=mongodb://mongodb:27017/InfoGenie
+      - MAIL_USERNAME=${MAIL_USERNAME:-your-email@qq.com}
+      - MAIL_PASSWORD=${MAIL_PASSWORD:-your-app-password}
+      - HWT_SECURE=false
+    depends_on:
+      - mongodb
+    networks:
+      - infogenie-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5002/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # MongoDB 数据库
+  mongodb:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=InfoGenie
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d
+    networks:
+      - infogenie-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  mongodb_data:
+
+networks:
+  infogenie-network:
+    driver: bridge

@@ -6,7 +6,7 @@ Created by: 神奇万事通
 Date: 2025-09-02
 """
 
-from flask import Blueprint, request, jsonify, session, current_app
+from flask import Blueprint, request, jsonify, current_app
 from datetime import datetime
 from bson import ObjectId
 import jwt
@@ -14,6 +14,7 @@ from functools import wraps
 
 user_bp = Blueprint('user', __name__)
 
+# 验证JWT token
 def verify_token(token):
     """验证JWT token"""
     try:
@@ -24,8 +25,9 @@ def verify_token(token):
     except jwt.InvalidTokenError:
         return {'success': False, 'message': 'Token无效'}
 
+# 登录验证装饰器（支持JWT token和hwt）
 def login_required(f):
-    """登录验证装饰器（支持JWT token和session）"""
+    """登录验证装饰器（支持JWT token和hwt）"""
     @wraps(f)
     def decorated_function(*args, **kwargs):
         # 优先检查JWT token
@@ -38,32 +40,32 @@ def login_required(f):
             if result['success']:
                 request.current_user = result['data']
                 return f(*args, **kwargs)
-        
-        # 回退到session验证
-        if not session.get('logged_in'):
+        # 回退到hwt验证
+        hwt = getattr(request, 'hwt', {})
+        if not hwt.get('logged_in'):
             return jsonify({
                 'success': False,
                 'message': '请先登录'
             }), 401
         return f(*args, **kwargs)
     return decorated_function
+    return decorated_function
 
+# 获取用户资料
 @user_bp.route('/profile', methods=['GET'])
 @login_required
 def get_profile():
     """获取用户资料"""
     try:
-        user_id = session.get('user_id')
+        hwt = getattr(request, 'hwt', {})
+        user_id = hwt.get('user_id')
         users_collection = current_app.mongo.db.userdata
-        
         user = users_collection.find_one({'_id': ObjectId(user_id)})
-        
         if not user:
             return jsonify({
                 'success': False,
                 'message': '用户不存在'
             }), 404
-        
         # 返回用户信息（不包含密码）
         profile = {
             'account': user['账号'],
@@ -72,18 +74,17 @@ def get_profile():
             'login_count': user.get('登录次数', 0),
             'status': user.get('用户状态', 'active')
         }
-        
         return jsonify({
             'success': True,
             'data': profile
         }), 200
-        
     except Exception as e:
         return jsonify({
             'success': False,
             'message': f'服务器错误: {str(e)}'
         }), 500
 
+# 修改密码
 @user_bp.route('/change-password', methods=['POST'])
 @login_required
 def change_password():
@@ -105,34 +106,28 @@ def change_password():
                 'message': '新密码长度必须在6-20位之间'
             }), 400
         
-        user_id = session.get('user_id')
+        hwt = getattr(request, 'hwt', {})
+        user_id = hwt.get('user_id')
         users_collection = current_app.mongo.db.userdata
-        
         user = users_collection.find_one({'_id': ObjectId(user_id)})
-        
         if not user:
             return jsonify({
                 'success': False,
                 'message': '用户不存在'
             }), 404
-        
         from werkzeug.security import check_password_hash, generate_password_hash
-        
         # 验证旧密码
         if not check_password_hash(user['密码'], old_password):
             return jsonify({
                 'success': False,
                 'message': '原密码错误'
             }), 401
-        
         # 更新密码
         new_password_hash = generate_password_hash(new_password)
-        
         result = users_collection.update_one(
             {'_id': ObjectId(user_id)},
             {'$set': {'密码': new_password_hash}}
         )
-        
         if result.modified_count > 0:
             return jsonify({
                 'success': True,
@@ -143,20 +138,20 @@ def change_password():
                 'success': False,
                 'message': '密码修改失败'
             }), 500
-        
     except Exception as e:
         return jsonify({
             'success': False,
             'message': f'服务器错误: {str(e)}'
         }), 500
 
+# 获取用户统计信息
 @user_bp.route('/stats', methods=['GET'])
 @login_required
 def get_user_stats():
     """获取用户统计信息"""
     try:
-        user_id = session.get('user_id')
-        
+        hwt = getattr(request, 'hwt', {})
+        user_id = hwt.get('user_id')
         # 这里可以添加更多统计信息，比如API调用次数等
         stats = {
             'login_today': 1,  # 今日登录次数
@@ -165,18 +160,17 @@ def get_user_stats():
             'join_days': 1,  # 加入天数
             'last_activity': datetime.now().isoformat()
         }
-        
         return jsonify({
             'success': True,
             'data': stats
         }), 200
-        
     except Exception as e:
         return jsonify({
             'success': False,
             'message': f'服务器错误: {str(e)}'
         }), 500
 
+# 获取用户游戏数据
 @user_bp.route('/game-data', methods=['GET'])
 @login_required
 def get_user_game_data():
@@ -186,7 +180,8 @@ def get_user_game_data():
         if hasattr(request, 'current_user'):
             user_id = request.current_user['user_id']
         else:
-            user_id = session.get('user_id')
+            hwt = getattr(request, 'hwt', {})
+            user_id = hwt.get('user_id')
             
         users_collection = current_app.mongo.db.userdata
         
@@ -221,6 +216,7 @@ def get_user_game_data():
             'message': f'服务器错误: {str(e)}'
         }), 500
 
+# 每日签到
 @user_bp.route('/checkin', methods=['POST'])
 @login_required
 def daily_checkin():
@@ -230,7 +226,8 @@ def daily_checkin():
         if hasattr(request, 'current_user'):
             user_id = request.current_user['user_id']
         else:
-            user_id = session.get('user_id')
+            hwt = getattr(request, 'hwt', {})
+            user_id = hwt.get('user_id')
             
         users_collection = current_app.mongo.db.userdata
         
@@ -350,6 +347,7 @@ def daily_checkin():
             'message': f'服务器错误: {str(e)}'
         }), 500
 
+# 删除账户
 @user_bp.route('/delete', methods=['POST'])
 @login_required
 def delete_account():
@@ -364,7 +362,8 @@ def delete_account():
                 'message': '请输入密码确认删除'
             }), 400
         
-        user_id = session.get('user_id')
+        hwt = getattr(request, 'hwt', {})
+        user_id = hwt.get('user_id')
         users_collection = current_app.mongo.db.userdata
         
         user = users_collection.find_one({'_id': ObjectId(user_id)})
@@ -389,7 +388,8 @@ def delete_account():
         
         if result.deleted_count > 0:
             # 清除会话
-            session.clear()
+            hwt = getattr(request, 'hwt', {})
+            hwt.clear()
             
             return jsonify({
                 'success': True,

@@ -6,14 +6,119 @@ Created by: 神奇万事通
 Date: 2025-01-15
 """
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app
 import requests
 import json
 import os
 from datetime import datetime
+from bson import ObjectId
+from functools import wraps
 
 # 创建蓝图
 aimodelapp_bp = Blueprint('aimodelapp', __name__)
+
+# AI功能萌芽币消耗配置
+AI_COST = 100  # 每次调用AI功能消耗的萌芽币数量
+
+# 验证用户萌芽币余额装饰器
+def verify_user_coins(f):
+    """验证用户萌芽币余额并在调用AI功能后扣除相应数量的萌芽币"""
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        try:
+            # 获取用户认证信息
+            token = request.headers.get('Authorization')
+            if not token:
+                return jsonify({
+                    'success': False, 
+                    'message': '未提供认证信息',
+                    'error_code': 'auth_required'
+                }), 401
+            
+            if token.startswith('Bearer '):
+                token = token[7:]
+            
+            # 解析JWT token
+            import jwt
+            try:
+                payload = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
+                user_id = payload['user_id']
+            except Exception as jwt_error:
+                print(f"JWT解析错误: {str(jwt_error)}")
+                return jsonify({
+                    'success': False, 
+                    'message': '无效的认证信息',
+                    'error_code': 'invalid_token'
+                }), 401
+            
+            # 查询用户萌芽币余额
+            users_collection = current_app.mongo.db.userdata
+            user = users_collection.find_one({'_id': ObjectId(user_id)})
+            
+            if not user:
+                return jsonify({
+                    'success': False, 
+                    'message': '用户不存在',
+                    'error_code': 'user_not_found'
+                }), 404
+            
+            # 检查萌芽币余额
+            current_coins = user.get('萌芽币', 0)
+            if current_coins < AI_COST:
+                return jsonify({
+                    'success': False, 
+                    'message': f'萌芽币余额不足！当前余额: {current_coins}, 需要: {AI_COST}',
+                    'error_code': 'insufficient_coins',
+                    'current_coins': current_coins,
+                    'required_coins': AI_COST
+                }), 402
+            
+            # 先扣除萌芽币，确保无论服务是否成功都会扣费
+            deduct_result = users_collection.update_one(
+                {'_id': ObjectId(user_id)},
+                {'$inc': {'萌芽币': -AI_COST}}
+            )
+            
+            if deduct_result.modified_count < 1:
+                print(f"警告: 用户 {user_id} 萌芽币扣除失败")
+            
+            # 为请求添加用户信息，以便在函数内部使用
+            request.current_user = {
+                'user_id': user_id,
+                'username': user.get('用户名', ''),
+                'email': user.get('邮箱', '')
+            }
+            
+            # 保存API调用类型
+            api_type = request.path.split('/')[-1]
+            
+            # 添加使用记录
+            usage_record = {
+                'api_type': api_type,
+                'timestamp': datetime.now().isoformat(),
+                'cost': AI_COST
+            }
+            
+            # 更新用户的AI使用历史记录
+            users_collection.update_one(
+                {'_id': ObjectId(user_id)},
+                {'$push': {'ai_usage_history': usage_record}}
+            )
+            
+            # 调用原函数
+            result = f(*args, **kwargs)
+            
+            return result
+            
+        except Exception as e:
+            print(f"验证萌芽币时发生错误: {str(e)}")
+            return jsonify({
+                'success': False, 
+                'message': '处理请求时出错',
+                'error': str(e)
+            }), 500
+            
+    return decorated
 
 #加载AI配置文件
 def load_ai_config():
@@ -126,6 +231,7 @@ def call_kimi_api(messages, model="kimi-k2-0905-preview"):
 
 #统一的AI聊天接口
 @aimodelapp_bp.route('/chat', methods=['POST'])
+@verify_user_coins
 def ai_chat():
     """统一的AI聊天接口"""
     try:
@@ -166,6 +272,7 @@ def ai_chat():
 
 #姓名分析专用接口
 @aimodelapp_bp.route('/name-analysis', methods=['POST'])
+@verify_user_coins
 def name_analysis():
     """姓名分析专用接口"""
     try:
@@ -228,6 +335,7 @@ def name_analysis():
 
 #变量命名助手接口
 @aimodelapp_bp.route('/variable-naming', methods=['POST'])
+@verify_user_coins
 def variable_naming():
     """变量命名助手接口"""
     try:
@@ -329,7 +437,9 @@ def variable_naming():
     except Exception as e:
         return jsonify({'error': f'变量命名失败: {str(e)}'}), 500
 
+#AI写诗助手接口
 @aimodelapp_bp.route('/poetry', methods=['POST'])
+@verify_user_coins
 def poetry_assistant():
     """AI写诗助手接口"""
     try:
@@ -379,7 +489,9 @@ def poetry_assistant():
     except Exception as e:
         return jsonify({'error': f'诗歌创作失败: {str(e)}'}), 500
 
+#AI语言翻译接口
 @aimodelapp_bp.route('/translation', methods=['POST'])
+@verify_user_coins
 def translation():
     """AI语言翻译接口"""
     try:
@@ -468,6 +580,7 @@ def translation():
 
 #现代文转文言文接口
 @aimodelapp_bp.route('/classical_conversion', methods=['POST'])
+@verify_user_coins
 def classical_conversion():
     """现代文转文言文接口"""
     try:
@@ -548,6 +661,7 @@ def classical_conversion():
 
 #AI表情制作器接口
 @aimodelapp_bp.route('/expression-maker', methods=['POST'])
+@verify_user_coins
 def expression_maker():
     """AI表情制作器接口"""
     try:
@@ -672,6 +786,7 @@ def expression_maker():
 
 #Linux命令生成接口
 @aimodelapp_bp.route('/linux-command', methods=['POST'])
+@verify_user_coins
 def linux_command_generator():
     """Linux命令生成接口"""
     try:
@@ -739,6 +854,80 @@ def linux_command_generator():
         
     except Exception as e:
         return jsonify({'error': f'Linux命令生成失败: {str(e)}'}), 500
+
+#获取用户萌芽币余额
+@aimodelapp_bp.route('/coins', methods=['GET'])
+def get_user_coins():
+    """获取用户萌芽币余额"""
+    try:
+        # 获取用户认证信息
+        token = request.headers.get('Authorization')
+        if not token:
+            return jsonify({
+                'success': False, 
+                'message': '未提供认证信息',
+                'error_code': 'auth_required'
+            }), 401
+        
+        if token.startswith('Bearer '):
+            token = token[7:]
+        
+        # 解析JWT token
+        import jwt
+        try:
+            payload = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
+            user_id = payload['user_id']
+        except jwt.ExpiredSignatureError:
+            return jsonify({
+                'success': False, 
+                'message': 'Token已过期，请重新登录',
+                'error_code': 'token_expired'
+            }), 401
+        except Exception as e:
+            return jsonify({
+                'success': False, 
+                'message': f'无效的认证信息: {str(e)}',
+                'error_code': 'invalid_token'
+            }), 401
+        
+        # 查询用户萌芽币余额
+        users_collection = current_app.mongo.db.userdata
+        user = users_collection.find_one({'_id': ObjectId(user_id)})
+        
+        if not user:
+            return jsonify({
+                'success': False, 
+                'message': '用户不存在',
+                'error_code': 'user_not_found'
+            }), 404
+        
+        # 返回萌芽币信息
+        current_coins = user.get('萌芽币', 0)
+        username = user.get('用户名', '用户')
+        
+        # 增加额外有用信息
+        ai_usage_history = [] 
+        if 'ai_usage_history' in user:
+            ai_usage_history = user['ai_usage_history'][-5:]  # 最近5条使用记录
+            
+        return jsonify({
+            'success': True,
+            'data': {
+                'coins': current_coins,
+                'ai_cost': AI_COST,
+                'can_use_ai': current_coins >= AI_COST,
+                'username': username,
+                'usage_count': len(ai_usage_history),
+                'recent_usage': ai_usage_history
+            },
+            'message': f'当前萌芽币余额: {current_coins}'
+        }), 200
+    except Exception as e:
+        return jsonify({
+            'success': False, 
+            'message': '处理请求时出错',
+            'error': str(e)
+        }), 500
 
 #获取可用的AI模型列表
 @aimodelapp_bp.route('/models', methods=['GET'])

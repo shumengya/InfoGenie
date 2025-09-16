@@ -18,15 +18,18 @@ import os
 # 验证码存储（生产环境建议使用Redis）
 verification_codes = {}
 
+# 初始化日志
 def init_mail(app):
     """初始化邮件配置"""
     # 使用smtplib直接发送，不需要Flask-Mail
     pass
 
+# 生成验证码
 def generate_verification_code(length=6):
     """生成验证码"""
     return ''.join(random.choices(string.digits, k=length))
 
+# 发送验证邮件
 def send_verification_email(email, verification_type='register'):
     """
     发送验证邮件
@@ -168,6 +171,7 @@ def send_verification_email(email, verification_type='register'):
             'message': '邮件发送失败，请稍后重试'
         }
 
+# 验证验证码
 def verify_code(email, code):
     """
     验证验证码
@@ -221,6 +225,7 @@ def verify_code(email, code):
         'type': verification_type
     }
 
+# 验证QQ邮箱格式
 def is_qq_email(email):
     """
     验证是否为QQ邮箱
@@ -239,6 +244,7 @@ def is_qq_email(email):
     
     return domain in qq_domains
 
+# 获取QQ头像URL
 def get_qq_avatar_url(email):
     """
     根据QQ邮箱获取QQ头像URL
@@ -262,6 +268,7 @@ def get_qq_avatar_url(email):
     # 返回QQ头像API URL
     return f"http://q1.qlogo.cn/g?b=qq&nk={qq_number}&s=100"
 
+# 清理过期验证码
 def cleanup_expired_codes():
     """清理过期的验证码"""
     current_time = datetime.now()

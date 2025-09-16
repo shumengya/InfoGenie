@@ -22,14 +22,14 @@ class Config:
     # MongoDB 配置
     MONGO_URI = os.environ.get('MONGO_URI') or 'mongodb://localhost:27017/InfoGenie'
     
-    # Session 配置
-    PERMANENT_SESSION_LIFETIME = timedelta(days=7)  # 会话持续7天
-    SESSION_COOKIE_SECURE = False  # 开发环境设为False，生产环境设为True
-    SESSION_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SAMESITE = 'Lax'
-    SESSION_COOKIE_DOMAIN = None  # 开发环境设为None，生产环境设为具体域名
-    SESSION_COOKIE_PATH = '/'
-    SESSION_REFRESH_EACH_REQUEST = True  # 每次请求刷新会话过期时间
+    # hwt 配置
+    HWT_LIFETIME = timedelta(days=7)  # hwt持续7天
+    HWT_SECURE = False  # 开发环境设为False，生产环境设为True
+    HWT_HTTPONLY = True
+    HWT_SAMESITE = 'Lax'
+    HWT_DOMAIN = None  # 开发环境设为None，生产环境设为具体域名
+    HWT_PATH = '/'
+    HWT_REFRESH_EACH_REQUEST = True  # 每次请求刷新hwt过期时间
     
     # 邮件配置
     MAIL_SERVER = 'smtp.qq.com'
@@ -68,7 +68,7 @@ class ProductionConfig(Config):
     """生产环境配置"""
     DEBUG = False
     TESTING = False
-    SESSION_COOKIE_SECURE = True
+    HWT_SECURE = True
 
 class TestingConfig(Config):
     """测试环境配置"""

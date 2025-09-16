@@ -40,10 +40,18 @@ const namingConventions = {
 // 调用后端API
 async function callBackendAPI(description) {
     try {
+        // 获取JWT token
+        const token = localStorage.getItem('token');
+        
+        if (!token) {
+            throw new Error('未登录，请先登录后使用AI功能');
+        }
+        
         const response = await fetch('http://127.0.0.1:5002/api/aimodelapp/variable-naming', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
                 description: description
@@ -208,15 +216,30 @@ async function generateSuggestions() {
         return;
     }
     
+    // 检查萌芽币余额是否足够
+    if (window.coinManager && !window.coinManager.checkBeforeApiCall()) {
+        return;
+    }
+    
     showLoading(true);
     suggestionsContainer.innerHTML = '';
     
     try {
         const suggestions = await callBackendAPI(description);
         displaySuggestions(suggestions);
+        
+        // 刷新萌芽币信息
+        if (window.coinManager) {
+            window.coinManager.loadCoinsInfo();
+        }
     } catch (error) {
         console.error('生成建议失败:', error);
-        showErrorMessage(`生成失败: ${error.message}`);
+        // 检查是否是萌芽币不足导致的错误
+        if (error.message && error.message.includes('萌芽币余额不足')) {
+            showErrorMessage(`萌芽币不足: 每次使用AI功能需要消耗100萌芽币，请通过每日签到获取更多萌芽币`);
+        } else {
+            showErrorMessage(`生成失败: ${error.message}`);
+        }
     } finally {
         showLoading(false);
     }

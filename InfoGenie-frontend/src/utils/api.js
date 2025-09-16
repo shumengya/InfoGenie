@@ -95,6 +95,12 @@ export const userAPI = {
 
 
 
+// AI模型相关API
+export const aiModelAPI = {
+  // 获取萌芽币余额和使用历史
+  getCoins: () => api.get('/api/aimodelapp/coins'),
+};
+
 // 健康检查
 export const healthAPI = {
   check: () => api.get('/api/health'),

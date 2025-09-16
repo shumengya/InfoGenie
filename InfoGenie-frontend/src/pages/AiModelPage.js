@@ -284,6 +284,26 @@ const AiModelPage = () => {
   const closeEmbedded = () => {
     setEmbeddedApp(null);
   };
+  
+  // 在iframe加载时注入token
+  const handleIframeLoad = (e) => {
+    try {
+      const iframe = e.target;
+      const token = localStorage.getItem('token');
+      
+      if (iframe && iframe.contentWindow && token) {
+        // 将token传递给iframe
+        iframe.contentWindow.localStorage.setItem('token', token);
+        
+        // 确保coin-manager.js已加载
+        if (iframe.contentWindow.coinManager) {
+          iframe.contentWindow.coinManager.loadCoinsInfo();
+        }
+      }
+    } catch (error) {
+      console.error('iframe通信错误:', error);
+    }
+  };
 
 
 
@@ -393,7 +413,36 @@ const AiModelPage = () => {
           </LoginPrompt>
         )}
 
-        {/* 内嵌显示组件 */}
+        {/* 萌芽币提示 */}
+        {isLoggedIn && (
+          <div style={{
+            maxWidth: '800px',
+            margin: '0 auto 40px',
+            padding: '20px',
+            background: 'rgba(74, 222, 128, 0.1)',
+            borderRadius: '12px',
+            border: '1px solid rgba(74, 222, 128, 0.3)'
+          }}>
+            <h3 style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '10px',
+              color: '#16a34a',
+              marginTop: 0
+            }}>
+              <span style={{ fontSize: '24px' }}>💰</span>
+              萌芽币消费提示
+            </h3>
+            <p style={{ lineHeight: '1.6', color: '#374151' }}>
+              每次使用AI功能将消耗<b>100萌芽币</b>，无论成功与否。当萌芽币余额不足时，无法使用AI功能。
+            </p>
+            <p style={{ lineHeight: '1.6', color: '#374151' }}>
+              您可以通过<b>每日签到</b>获得300萌芽币。详细的萌芽币余额和使用记录将显示在各AI应用的右上角。
+            </p>
+          </div>
+        )}
+
+      {/* 内嵌显示组件 */}
         {embeddedApp && (
           <EmbeddedContainer onClick={closeEmbedded}>
             <EmbeddedContent onClick={(e) => e.stopPropagation()}>
@@ -407,6 +456,7 @@ const AiModelPage = () => {
               <EmbeddedFrame
                 src={embeddedApp.link}
                 title={embeddedApp.title}
+                onLoad={handleIframeLoad}
               />
             </EmbeddedContent>
           </EmbeddedContainer>

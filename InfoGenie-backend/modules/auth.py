@@ -6,7 +6,7 @@ Created by: 神奇万事通
 Date: 2025-09-02
 """
 
-from flask import Blueprint, request, jsonify, session, current_app
+from flask import Blueprint, request, jsonify, current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 import hashlib
 import re
@@ -17,6 +17,7 @@ from .email_service import send_verification_email, verify_code, is_qq_email, ge
 
 auth_bp = Blueprint('auth', __name__)
 
+#生成JWT token
 def generate_token(user_data):
     """生成JWT token"""
     payload = {
@@ -28,6 +29,7 @@ def generate_token(user_data):
     }
     return jwt.encode(payload, current_app.config['SECRET_KEY'], algorithm='HS256')
 
+#验证JWT token
 def verify_token(token):
     """验证JWT token"""
     try:
@@ -38,6 +40,7 @@ def verify_token(token):
     except jwt.InvalidTokenError:
         return {'success': False, 'message': 'Token无效'}
 
+#JWT token验证装饰器
 def token_required(f):
     """JWT token验证装饰器"""
     @wraps(f)
@@ -57,14 +60,17 @@ def token_required(f):
         return f(*args, **kwargs)
     return decorated
 
+#验证QQ邮箱格式
 def validate_qq_email(email):
     """验证QQ邮箱格式"""
     return is_qq_email(email)
 
+#验证密码格式
 def validate_password(password):
     """验证密码格式（6-20位）"""
     return 6 <= len(password) <= 20
 
+#发送验证码邮件
 @auth_bp.route('/send-verification', methods=['POST'])
 def send_verification():
     """发送验证码邮件"""
@@ -120,6 +126,7 @@ def send_verification():
             'message': '发送失败，请稍后重试'
         }), 500
 
+#验证验证码
 @auth_bp.route('/verify-code', methods=['POST'])
 def verify_verification_code():
     """验证验证码"""
@@ -150,6 +157,7 @@ def verify_verification_code():
             'message': '验证失败，请稍后重试'
         }), 500
 
+#用户注册
 @auth_bp.route('/register', methods=['POST'])
 def register():
     """用户注册（需要先验证邮箱）"""
@@ -253,43 +261,8 @@ def register():
             'success': False,
             'message': '注册失败，请稍后重试'
         }), 500
-        
-        if existing_user:
-            return jsonify({
-                'success': False,
-                'message': '该账号已被注册'
-            }), 409
-        
-        # 创建新用户
-        password_hash = generate_password_hash(password)
-        user_data = {
-            '账号': account,
-            '密码': password_hash,
-            '注册时间': datetime.now().isoformat(),
-            '最后登录': None,
-            '登录次数': 0,
-            '用户状态': 'active'
-        }
-        
-        result = users_collection.insert_one(user_data)
-        
-        if result.inserted_id:
-            return jsonify({
-                'success': True,
-                'message': '注册成功！'
-            }), 201
-        else:
-            return jsonify({
-                'success': False,
-                'message': '注册失败，请稍后重试'
-            }), 500
-            
-    except Exception as e:
-        return jsonify({
-            'success': False,
-            'message': f'服务器错误: {str(e)}'
-        }), 500
 
+#用户登录
 @auth_bp.route('/login', methods=['POST'])
 def login():
     """用户登录（支持邮箱+验证码或邮箱+密码）"""
@@ -392,9 +365,10 @@ def login():
         }), 500
         
         # 登录成功，创建会话
-        session['user_id'] = str(user['_id'])
-        session['account'] = user['账号']
-        session['logged_in'] = True
+        hwt = getattr(request, 'hwt', {})
+        hwt['user_id'] = str(user['_id'])
+        hwt['account'] = user['账号']
+        hwt['logged_in'] = True
         
         # 更新登录信息
         users_collection.update_one(
@@ -421,6 +395,7 @@ def login():
             'message': f'服务器错误: {str(e)}'
         }), 500
 
+#用户登出
 @auth_bp.route('/logout', methods=['POST'])
 def logout():
     """用户登出"""
@@ -437,6 +412,7 @@ def logout():
             'message': f'服务器错误: {str(e)}'
         }), 500
 
+#检查登录状态
 @auth_bp.route('/check', methods=['GET'])
 def check_login():
     """检查登录状态"""
