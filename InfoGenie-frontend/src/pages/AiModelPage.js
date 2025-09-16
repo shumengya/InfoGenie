@@ -21,16 +21,14 @@ const Container = styled.div`
 const PageHeader = styled.div`
   text-align: center;
   margin-bottom: 40px;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(34, 197, 94, 0.1) 100%);
-  border-radius: 16px;
 `;
 
 const PageTitle = styled.h1`
+  color: white;
   font-size: 32px;
-  font-weight: bold;
-  color: #1f2937;
-  margin-bottom: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   
   .title-emoji {
     margin: 0 8px;
@@ -42,9 +40,10 @@ const PageTitle = styled.h1`
 `;
 
 const PageDescription = styled.p`
-  font-size: 16px;
-  color: #6b7280;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
 `;
 
 const LoginPrompt = styled.div`
@@ -270,8 +269,9 @@ const AiModelPage = () => {
     try {
       setLoadingApps(true);
       
-      // 从配置文件获取AI应用数据
-      setApps(AI_MODEL_APPS);
+      // 从配置文件获取AI应用数据，过滤掉IsShow为false的应用
+      const visibleApps = AI_MODEL_APPS.filter(app => app.IsShow !== false);
+      setApps(visibleApps);
     } catch (err) {
       console.error('获取AI应用列表失败:', err);
       setError('获取AI应用列表失败，请稍后重试');
@@ -327,12 +327,10 @@ const AiModelPage = () => {
       <Container>
         <PageHeader>
           <PageTitle>
-            <span className="title-emoji">🤖</span>
-            AI模型
-            <span className="title-emoji">🤖</span>
+            AI工具
           </PageTitle>
           <PageDescription>
-            智能AI工具和模型应用，提供对话、文本生成、图像识别等功能
+            AI大模型工具，提供一些小功能
           </PageDescription>
         </PageHeader>
 

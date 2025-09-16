@@ -2,7 +2,8 @@
 class WeatherApp {
     constructor() {
         this.apiEndpoints = [
-            "https://60s.api.shumengya.top/v2/weather/forecast"
+            "https://60s.api.shumengya.top/v2/weather/forecast",
+            "https://60s-cf.viki.moe/v2/weather/forecast"
         ];
         this.currentEndpointIndex = 0;
         this.init();
@@ -89,31 +90,42 @@ class WeatherApp {
     }
 
     displayWeatherData(data) {
-        const { location, forecast } = data;
+        const { location, daily_forecast, hourly_forecast } = data;
         
         // 显示位置信息
-        document.getElementById('locationName').textContent = location.formatted;
+        document.getElementById('locationName').textContent = location.name || '未知位置';
         document.getElementById('locationDetail').textContent = 
-            `${location.province} ${location.city} | 邮编: ${location.zip_code}`;
+            `${location.province || ''} ${location.city || ''} ${location.county || ''}`.trim();
 
         // 使用第一天的预报数据作为当前天气（今天的天气）
-        const todayWeather = forecast[0];
+        const todayWeather = daily_forecast && daily_forecast[0];
         
-        // 显示当前天气（使用今天的最高温度）
-        document.getElementById('temperature').textContent = todayWeather.temperature_high;
-        document.getElementById('weatherCondition').textContent = 
-            `${todayWeather.weather_day} 转 ${todayWeather.weather_night}`;
-        
-        // 体感温度（使用温度范围）
-        document.getElementById('feelsLike').textContent = 
-            `温度范围 ${todayWeather.temperature_low}°C - ${todayWeather.temperature_high}°C`;
+        if (todayWeather) {
+            // 显示当前天气（使用今天的最高温度）
+            document.getElementById('temperature').textContent = todayWeather.max_temperature;
+            document.getElementById('weatherCondition').textContent = 
+                `${todayWeather.day_condition} 转 ${todayWeather.night_condition}`;
+            
+            // 体感温度（使用温度范围）
+            document.getElementById('feelsLike').textContent = 
+                `温度范围 ${todayWeather.min_temperature}°C - ${todayWeather.max_temperature}°C`;
+        } else {
+            // 如果没有日预报数据，尝试使用小时预报数据
+            const currentHour = hourly_forecast && hourly_forecast[0];
+            if (currentHour) {
+                document.getElementById('temperature').textContent = currentHour.temperature;
+                document.getElementById('weatherCondition').textContent = currentHour.condition;
+                document.getElementById('feelsLike').textContent = 
+                    `风向: ${currentHour.wind_direction} ${currentHour.wind_power}`;
+            }
+        }
 
         // 显示更新时间（使用当前时间）
         document.getElementById('updateTime').textContent = 
             `${this.formatDate(new Date())} (基于预报数据)`;
 
         // 显示天气预报
-        this.displayForecast(forecast);
+        this.displayForecast(daily_forecast || []);
 
         this.showWeatherContainer();
     }
@@ -122,24 +134,33 @@ class WeatherApp {
         const forecastGrid = document.getElementById('forecastGrid');
         forecastGrid.innerHTML = '';
         
+        if (!forecast || forecast.length === 0) {
+            forecastGrid.innerHTML = '<div class="no-forecast">暂无预报数据</div>';
+            return;
+        }
+        
         forecast.forEach((day, index) => {
             const forecastItem = document.createElement('div');
             forecastItem.className = 'forecast-item';
             
+            // 格式化日期显示
+            const dateStr = day.date || '';
+            const dateDesc = this.formatDateDesc(dateStr);
+            
             forecastItem.innerHTML = `
-                <div class="forecast-date">${day.date_desc}</div>
+                <div class="forecast-date">${dateDesc}</div>
                 <div class="forecast-weather">
-                    <div class="weather-day">${day.weather_day}</div>
-                    <div class="weather-night">${day.weather_night}</div>
+                    <div class="weather-day">${day.day_condition || '未知'}</div>
+                    <div class="weather-night">${day.night_condition || '未知'}</div>
                 </div>
                 <div class="forecast-temp">
-                    <span class="temp-high">${day.temperature_high}°</span>
-                    <span class="temp-low">${day.temperature_low}°</span>
+                    <span class="temp-high">${day.max_temperature || '--'}°</span>
+                    <span class="temp-low">${day.min_temperature || '--'}°</span>
                 </div>
                 <div class="forecast-wind">
-                    <div>${day.wind_direction_day} ${day.wind_strength_day}</div>
+                    <div>${day.day_wind_direction || ''} ${day.day_wind_power || ''}</div>
                 </div>
-                <div class="forecast-humidity">湿度: ${day.humidity}%</div>
+                <div class="forecast-air">空气质量: ${day.air_quality || '未知'}</div>
             `;
             
             forecastGrid.appendChild(forecastItem);
@@ -162,6 +183,34 @@ class WeatherApp {
         const seconds = String(date.getSeconds()).padStart(2, '0');
         
         return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+
+    // 格式化日期描述
+    formatDateDesc(dateStr) {
+        if (!dateStr) return '未知日期';
+        
+        try {
+            const date = new Date(dateStr);
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1);
+            
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            
+            // 判断是今天、明天还是其他日期
+            if (date.toDateString() === today.toDateString()) {
+                return `今天 ${month}-${day}`;
+            } else if (date.toDateString() === tomorrow.toDateString()) {
+                return `明天 ${month}-${day}`;
+            } else {
+                const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+                const weekday = weekdays[date.getDay()];
+                return `${weekday} ${month}-${day}`;
+            }
+        } catch (error) {
+            return dateStr;
+        }
     }
 
     showLoading() {

@@ -17,16 +17,14 @@ const Container = styled.div`
 const PageHeader = styled.div`
   text-align: center;
   margin-bottom: 40px;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, rgba(74, 222, 128, 0.1) 0%, rgba(34, 197, 94, 0.1) 100%);
-  border-radius: 16px;
 `;
 
 const PageTitle = styled.h1`
+  color: white;
   font-size: 32px;
-  font-weight: bold;
-  color: #1f2937;
-  margin-bottom: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   
   .title-emoji {
     margin: 0 8px;
@@ -38,9 +36,10 @@ const PageTitle = styled.h1`
 `;
 
 const PageDescription = styled.p`
-  font-size: 16px;
-  color: #6b7280;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto;
 `;
 
 const GameGrid = styled.div`
@@ -239,8 +238,9 @@ const SmallGamePage = () => {
     try {
       setLoading(true);
       
-      // 从配置文件获取小游戏数据
-      setGames(SMALL_GAMES);
+      // 从配置文件获取小游戏数据，过滤掉IsShow为false的游戏
+      const visibleGames = SMALL_GAMES.filter(game => game.IsShow !== false);
+      setGames(visibleGames);
     } catch (err) {
       console.error('获取游戏列表失败:', err);
       setError('获取游戏列表失败，请稍后重试');
@@ -264,9 +264,7 @@ const SmallGamePage = () => {
       <Container>
         <PageHeader>
           <PageTitle>
-            <span className="title-emoji">🎮</span>
-            小游戏
-            <span className="title-emoji">🎮</span>
+            玩玩小游戏
           </PageTitle>
           <PageDescription>
             轻松有趣的休闲小游戏合集，即点即玩，无需下载

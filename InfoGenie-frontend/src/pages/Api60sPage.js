@@ -207,8 +207,13 @@ const Api60sPage = () => {
   // 从配置文件获取60s API数据
   const scanApiModules = async () => {
     try {
-      // 直接返回配置文件中的数据
-      return API_60S_CATEGORIES;
+      // 过滤掉IsShow为false的API项目
+      const filteredCategories = API_60S_CATEGORIES.map(category => ({
+        ...category,
+        apis: category.apis.filter(api => api.IsShow !== false)
+      })).filter(category => category.apis.length > 0); // 过滤掉没有可显示API的分类
+      
+      return filteredCategories;
     } catch (error) {
       console.error('获取API模块时出错:', error);
       return [];

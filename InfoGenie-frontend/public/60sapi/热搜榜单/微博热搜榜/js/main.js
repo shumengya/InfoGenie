@@ -1,6 +1,7 @@
 // API接口列表
 const API_ENDPOINTS = [
     "https://60s.api.shumengya.top/v2/weibo",
+    "https://60s-cf.viki.moe/v2/weibo",
 ];
 
 // 当前使用的API索引
@@ -72,7 +73,7 @@ async function fetchWeiboHotList() {
         // 显示错误信息
         hotListElement.innerHTML = `
             <div class="loading">
-                获取数据失败，正在尝试其他接口...
+                正在尝试其他接口...
             </div>
         `;
         
