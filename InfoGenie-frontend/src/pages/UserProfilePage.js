@@ -38,6 +38,14 @@ const Avatar = styled.div`
   color: white;
   font-size: 32px;
   box-shadow: 0 4px 16px rgba(129, 199, 132, 0.3);
+  overflow: hidden;
+`;
+
+const AvatarImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 `;
 
 const UserName = styled.h2`
@@ -55,9 +63,17 @@ const UserEmail = styled.p`
 
 const StatsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin-bottom: 24px;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const StatCard = styled.div`
@@ -191,6 +207,24 @@ const UserProfilePage = () => {
   const [checkinLoading, setCheckinLoading] = useState(false);
   const [checkinMessage, setCheckinMessage] = useState('');
   const [checkinSuccess, setCheckinSuccess] = useState(false);
+  const [avatarError, setAvatarError] = useState(false);
+
+  // 获取QQ头像URL
+  const getQQAvatar = (email) => {
+    if (!email) return null;
+    
+    const qqDomains = ['qq.com', 'vip.qq.com', 'foxmail.com'];
+    const domain = email.split('@')[1]?.toLowerCase();
+    
+    if (qqDomains.includes(domain)) {
+      const qqNumber = email.split('@')[0];
+      if (/^\d+$/.test(qqNumber)) {
+        return `http://q1.qlogo.cn/g?b=qq&nk=${qqNumber}&s=100`;
+      }
+    }
+    
+    return null;
+  };
 
   useEffect(() => {
     fetchGameData();
@@ -270,13 +304,26 @@ const UserProfilePage = () => {
   const consecutiveDays = gameData?.checkin_system?.['连续签到天数'] || 0;
   const expNeeded = calculateExpNeeded(gameData?.level || 0);
   const expProgress = ((gameData?.experience || 0) / expNeeded * 100).toFixed(1);
+  const qqAvatarUrl = getQQAvatar(user?.email);
+
+  const handleAvatarError = () => {
+    setAvatarError(true);
+  };
 
   return (
     <ProfileContainer>
       <Container>
         <ProfileHeader>
           <Avatar>
-            <FiUser />
+            {qqAvatarUrl && !avatarError ? (
+              <AvatarImage 
+                src={qqAvatarUrl} 
+                alt="用户头像" 
+                onError={handleAvatarError}
+              />
+            ) : (
+              <FiUser />
+            )}
           </Avatar>
           <UserName>{user?.username || '用户'}</UserName>
           <UserEmail>{user?.email || ''}</UserEmail>

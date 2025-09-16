@@ -287,16 +287,16 @@ const Header = () => {
           </MobileMenuHeader>
 
           <MobileNavLink to="/" onClick={handleMenuClose}>
-            🏠 首页
+            🏠首页
           </MobileNavLink>
           <MobileNavLink to="/60sapi" onClick={handleMenuClose}>
-            📡 60s API
+            📡API聚合应用
           </MobileNavLink>
           <MobileNavLink to="/smallgame" onClick={handleMenuClose}>
-            🎮 小游戏
+            🎮玩玩小游戏
           </MobileNavLink>
           <MobileNavLink to="/aimodel" onClick={handleMenuClose}>
-            🤖 AI模型
+            🤖AI工具
           </MobileNavLink>
 
           {isLoggedIn && user ? (

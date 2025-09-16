@@ -89,9 +89,6 @@ const Footer = () => {
       <FooterContent>
         <FooterInfo>
           <FooterTitle>✨ 神奇万事通 ✨</FooterTitle>
-          <FooterDescription>
-            🎨 一个多功能的聚合软件应用 💬
-          </FooterDescription>
         </FooterInfo>
 
         <FooterLinks>
@@ -104,7 +101,7 @@ const Footer = () => {
 
         <FooterBottom>
           <Copyright>
-            📄 蜀ICP备2025151694号  | Copyright © 2025-{currentYear} ✨
+            蜀ICP备2025151694号  | Copyright © 2025-{currentYear}
           </Copyright>
         </FooterBottom>
       </FooterContent>
