@@ -1,9 +1,10 @@
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { ENV_CONFIG } from '../config/env.js';
 
 // 创建axios实例
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'https://infogenie.api.shumengya.top',
+  baseURL: ENV_CONFIG.API_URL,
   timeout: 10000,
   withCredentials: true, // 支持携带cookie
   headers: {
@@ -12,8 +13,9 @@ const api = axios.create({
 });
 
 // 打印当前使用的API URL，便于调试
-console.log('🔧 环境变量 REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
-console.log('🌐 最终使用的 API Base URL:', process.env.REACT_APP_API_URL || 'https://infogenie.api.shumengya.top');
+if (ENV_CONFIG.DEBUG) {
+  console.log('🌐 使用的 API Base URL:', ENV_CONFIG.API_URL);
+}
 
 // 请求拦截器
 api.interceptors.request.use(

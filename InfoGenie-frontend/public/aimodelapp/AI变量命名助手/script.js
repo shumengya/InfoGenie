@@ -47,7 +47,7 @@ async function callBackendAPI(description) {
             throw new Error('未登录，请先登录后使用AI功能');
         }
         
-        const response = await fetch('http://127.0.0.1:5002/api/aimodelapp/variable-naming', {
+        const response = await fetch(`${window.API_CONFIG.baseUrl}/api/aimodelapp/variable-naming`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

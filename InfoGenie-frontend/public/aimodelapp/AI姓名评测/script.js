@@ -193,18 +193,19 @@ async function analyzeName() {
 
   try {
     // 调用后端API
-    const token = AUTH_CONFIG.getToken();
-    const headers = {
-      'Content-Type': 'application/json'
-    };
+    // 获取JWT token
+    const token = localStorage.getItem('token');
     
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
+    if (!token) {
+        throw new Error('未登录，请先登录后使用AI功能');
     }
     
-    const response = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.nameAnalysis}`, {
+    const response = await fetch(`${window.API_CONFIG.baseUrl}/api/aimodelapp/name-analysis`, {
       method: 'POST',
-      headers: headers,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify(requestBody)
     });
 

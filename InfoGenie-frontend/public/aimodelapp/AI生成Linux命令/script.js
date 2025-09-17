@@ -11,7 +11,7 @@ const commandsContainer = document.getElementById('commands');
 // 调用后端API
 async function callBackendAPI(taskDescription, difficultyLevel) {
     try {
-        const token = AUTH_CONFIG.getToken();
+        const token = localStorage.getItem('token');
         const headers = {
             'Content-Type': 'application/json'
         };
@@ -20,7 +20,7 @@ async function callBackendAPI(taskDescription, difficultyLevel) {
             headers['Authorization'] = `Bearer ${token}`;
         }
         
-        const response = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.linuxCommand}`, {
+        const response = await fetch(`${window.API_CONFIG.baseUrl}${window.API_CONFIG.endpoints.linuxCommand}`, {
             method: 'POST',
             headers: headers,
             body: JSON.stringify({

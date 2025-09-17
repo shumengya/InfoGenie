@@ -243,6 +243,7 @@ const Header = () => {
             <NavLink to="/60sapi">API聚合应用</NavLink>
             <NavLink to="/smallgame">玩玩小游戏</NavLink>
             <NavLink to="/aimodel">AI工具</NavLink>
+            <NavLink to="/profile">个人中心</NavLink>
           </Nav>
 
           <UserSection>
@@ -301,6 +302,9 @@ const Header = () => {
           </MobileNavLink>
           <MobileNavLink to="/aimodel" onClick={handleMenuClose}>
             🤖AI工具
+          </MobileNavLink>
+          <MobileNavLink to="/profile" onClick={handleMenuClose}>
+            👤个人中心
           </MobileNavLink>
 
           {isLoggedIn && user ? (

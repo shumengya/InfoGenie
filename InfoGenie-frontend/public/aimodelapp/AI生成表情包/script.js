@@ -1,6 +1,29 @@
 // 从配置文件导入设置
 // 配置在 env.js 文件中定义
 
+// 表情配置
+const CONFIG = {
+    intensityLevels: {
+        'low': { color: '#4CAF50' },
+        'medium': { color: '#FF9800' },
+        'high': { color: '#F44336' },
+        'very_high': { color: '#9C27B0' }
+    },
+    expressionCategories: {
+        'emoji': { className: 'emoji' },
+        'kaomoji': { className: 'kaomoji' },
+        'combination': { className: 'combination' }
+    },
+    expressionStyles: {
+        'cute': { name: '可爱风', description: '适合表达可爱、萌系情感' },
+        'cool': { name: '酷炫风', description: '适合表达酷炫、帅气情感' },
+        'angry': { name: '愤怒风', description: '适合表达愤怒、生气情感' },
+        'sad': { name: '悲伤风', description: '适合表达悲伤、难过情感' },
+        'happy': { name: '开心风', description: '适合表达开心、快乐情感' },
+        'mixed': { name: '混合风', description: '多种风格混合，适应各种情感' }
+    }
+};
+
 // DOM 元素
 const textInput = document.getElementById('text-input');
 const styleSelect = document.getElementById('style-select');
@@ -18,7 +41,7 @@ async function callBackendAPI(text, style) {
             throw new Error('未登录，请先登录后使用AI功能');
         }
         
-        const response = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.expressionMaker}`, {
+        const response = await fetch(`${window.API_CONFIG.baseUrl}/api/aimodelapp/expression-maker`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

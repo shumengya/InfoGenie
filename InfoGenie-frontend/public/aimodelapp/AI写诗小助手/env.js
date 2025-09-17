@@ -3,7 +3,7 @@
 
 // API配置
 window.API_CONFIG = {
-    baseUrl: 'http://127.0.0.1:5002',
+    baseUrl: window.parent.ENV_CONFIG.API_URL,
     endpoints: {
         poetry: '/api/aimodelapp/poetry'
     }

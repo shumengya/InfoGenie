@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useUser } from '../contexts/UserContext';
 import { FiUser, FiStar, FiTrendingUp, FiGift, FiCalendar, FiAward } from 'react-icons/fi';
@@ -68,11 +69,11 @@ const StatsGrid = styled.div`
   margin-bottom: 24px;
   
   @media (max-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
   
   @media (max-width: 480px) {
-    grid-template-columns: 1fr;
+    gap: 8px;
   }
 `;
 
@@ -90,6 +91,16 @@ const StatCard = styled.div`
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(168, 230, 207, 0.3);
   }
+  
+  @media (max-width: 768px) {
+    padding: 16px;
+    border-radius: 12px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 12px 8px;
+    border-radius: 10px;
+  }
 `;
 
 const StatIcon = styled.div`
@@ -103,6 +114,21 @@ const StatIcon = styled.div`
   margin: 0 auto 12px;
   color: white;
   font-size: 20px;
+  
+  @media (max-width: 768px) {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    margin: 0 auto 8px;
+  }
+  
+  @media (max-width: 480px) {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    margin: 0 auto 6px;
+    border-radius: 8px;
+  }
 `;
 
 const StatValue = styled.div`
@@ -110,11 +136,29 @@ const StatValue = styled.div`
   font-weight: bold;
   color: #2e7d32;
   margin-bottom: 4px;
+  
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
 `;
 
 const StatLabel = styled.div`
   font-size: 14px;
   color: #666;
+  
+  @media (max-width: 768px) {
+    font-size: 13px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 11px;
+    line-height: 1.2;
+  }
 `;
 
 const CheckinSection = styled.div`
@@ -199,8 +243,60 @@ const SuccessMessage = styled.div`
   text-align: center;
 `;
 
+const LoginPrompt = styled.div`
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(168, 230, 207, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(168, 230, 207, 0.2);
+  margin-bottom: 40px;
+`;
+
+const LoginIcon = styled.div`
+  font-size: 64px;
+  margin-bottom: 24px;
+`;
+
+const LoginTitle = styled.h2`
+  font-size: 24px;
+  font-weight: bold;
+  color: #2e7d32;
+  margin-bottom: 16px;
+`;
+
+const LoginText = styled.p`
+  color: #666;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+`;
+
+const LoginButton = styled.button`
+  background: linear-gradient(135deg, #81c784 0%, #a5d6a7 100%);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 16px rgba(129, 199, 132, 0.3);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(129, 199, 132, 0.4);
+  }
+`;
+
 const UserProfilePage = () => {
-  const { user } = useUser();
+  const { user, isLoggedIn, isLoading } = useUser();
+  const navigate = useNavigate();
   const [gameData, setGameData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -226,9 +322,17 @@ const UserProfilePage = () => {
     return null;
   };
 
+  const handleLogin = () => {
+    navigate('/login');
+  };
+
   useEffect(() => {
-    fetchGameData();
-  }, []);
+    if (isLoggedIn) {
+      fetchGameData();
+    } else {
+      setLoading(false);
+    }
+  }, [isLoggedIn]);
 
   const fetchGameData = async () => {
     try {
@@ -279,6 +383,38 @@ const UserProfilePage = () => {
   const calculateExpNeeded = (level) => {
     return Math.floor(100 * Math.pow(1.2, level));
   };
+
+  if (isLoading) {
+    return (
+      <ProfileContainer>
+        <Container>
+          <LoadingSpinner>加载中...</LoadingSpinner>
+        </Container>
+      </ProfileContainer>
+    );
+  }
+
+  if (!isLoggedIn) {
+    return (
+      <ProfileContainer>
+        <Container>
+          <LoginPrompt>
+            <LoginIcon>🔒</LoginIcon>
+            <LoginTitle>需要登录访问</LoginTitle>
+            <LoginText>
+              个人中心需要登录后才能查看，请先登录您的账户。
+              <br />
+              登录后即可查看您的个人信息、萌芽币余额、签到记录等。
+            </LoginText>
+            <LoginButton onClick={handleLogin}>
+              <FiUser />
+              立即登录
+            </LoginButton>
+          </LoginPrompt>
+        </Container>
+      </ProfileContainer>
+    );
+  }
 
   if (loading) {
     return (

@@ -11,18 +11,19 @@ const translationResultContainer = document.getElementById('translationResult');
 // 调用后端API
 async function callBackendAPI(sourceText, targetLanguage) {
     try {
-        const token = AUTH_CONFIG.getToken();
-        const headers = {
-            'Content-Type': 'application/json'
-        };
+        // 获取JWT token
+        const token = localStorage.getItem('token');
         
-        if (token) {
-            headers['Authorization'] = `Bearer ${token}`;
+        if (!token) {
+            throw new Error('未登录，请先登录后使用AI功能');
         }
         
-        const response = await fetch(`${API_CONFIG.baseUrl}${API_CONFIG.endpoints.translation}`, {
+        const response = await fetch(`${window.API_CONFIG.baseUrl}/api/aimodelapp/translation`, {
             method: 'POST',
-            headers: headers,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
             body: JSON.stringify({
                 source_text: sourceText,
                 target_language: targetLanguage
