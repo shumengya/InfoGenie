@@ -13,12 +13,31 @@ InfoGenie 是一个前后端分离的多功能聚合应用，提供实时数据�
 
 ### 🏗️ 技术架构
 
-- **前端**: React 18.2.0 + Styled Components + React Router 6.15.0 + Axios
-- **后端**: Python Flask 2.3.3 + MongoDB + PyMongo 4.5.0
-- **认证**: QQ邮箱验证 + 验证码登录
-- **邮件服务**: Flask-Mail + QQ SMTP
-- **架构**: 前后端分离，RESTful API
-- **部署**: 支持Docker容器化部署
+#### 前端技术栈
+- **核心框架**: React 18.2.0 + React Router DOM 6.15.0
+- **样式方案**: Styled Components 6.0.7 (CSS-in-JS)
+- **HTTP客户端**: Axios 1.5.0
+- **UI组件**: React Icons 4.11.0 + React Hot Toast 2.4.1
+- **状态管理**: React Context API
+- **构建工具**: Create React App
+- **PWA支持**: Service Worker
+
+#### 后端技术栈
+- **Web框架**: Flask 2.3.3 (轻量、灵活、可扩展)
+- **数据库**: MongoDB + PyMongo 4.5.0 (文档型数据存储)
+- **认证机制**: JWT Token (PyJWT 2.8.0，7天有效期)
+- **密码安全**: Werkzeug 2.3.7 (高强度密码哈希)
+- **跨域支持**: Flask-CORS 4.0.0
+- **API限流**: Flask-Limiter 3.5.0 (防止API滥用)
+- **环境配置**: python-dotenv 1.0.0
+- **邮件服务**: 基于SMTP协议的原生实现
+
+#### 架构特点
+- **前后端分离**: RESTful API架构，无状态通信
+- **混合架构**: React SPA + 静态HTML页面无缝集成
+- **模块化设计**: Flask蓝图 + React组件化
+- **容器化部署**: Docker + docker-compose支持
+- **多环境配置**: 开发/测试/生产环境分离
 
 ### 🌟 主要功能
 
@@ -36,10 +55,43 @@ InfoGenie 是一个前后端分离的多功能聚合应用，提供实时数据�
 - 即点即玩
 
 #### 🤖 AI模型模块
-- AI变量命名助手
-- AI写诗小助手
-- AI姓名评测
-- 需要登录验证
+- **AI变量命名助手**: 智能生成编程变量名
+- **AI写诗小助手**: 基于主题创作诗歌
+- **AI姓名评测**: 姓名寓意分析和评分
+- **萌芽币消费系统**: 每次AI调用消耗100萌芽币
+- **多模型支持**: 集成DeepSeek、Kimi等AI服务
+- **需要登录验证**: JWT Token认证
+
+#### 👤 用户系统
+- **邮箱验证注册**: QQ邮箱验证码注册登录
+- **用户资料管理**: 头像、用户名等个人信息
+- **签到系统**: 每日签到获取经验值和萌芽币
+- **等级系统**: 基于经验值的用户等级计算
+- **萌芽币管理**: 虚拟货币系统，用于AI功能消费
+- **使用统计**: AI调用次数和萌芽币消费记录
+
+## 🏛️ 架构设计亮点
+
+### 🔄 混合架构创新
+- **React SPA核心层**: 处理用户认证、全局状态管理和主要导航逻辑
+- **静态HTML模块**: 大量功能模块使用原生HTML/CSS/JS实现，降低加载时间
+- **通信机制**: 通过postMessage API实现SPA与静态页面的数据交换
+
+### 🧩 模块化设计
+- **前端组件化**: 基于React的原子设计系统，从原子级别到页面级别
+- **后端蓝图架构**: Flask蓝图实现功能模块解耦，提高可维护性
+- **装饰器模式**: 横切关注点(认证、萌芽币消费)集中处理
+
+### 🔒 安全与性能
+- **多层次认证**: JWT Token + 邮箱验证码双因素认证
+- **API限流保护**: 防止暴力攻击和资源耗尽
+- **性能优化**: 代码分割、懒加载、PWA缓存策略
+- **数据安全**: 密码哈希存储、敏感配置外部化
+
+### 🚀 部署与扩展
+- **容器化部署**: Docker + docker-compose支持
+- **多环境配置**: 开发/测试/生产环境分离
+- **微服务友好**: 模块化设计便于未来微服务拆分
 
 ## 🚀 快速开始
 
@@ -54,13 +106,13 @@ InfoGenie 是一个前后端分离的多功能聚合应用，提供实时数据�
 
 #### 后端依赖
 ```bash
-cd backend
+cd InfoGenie-backend
 pip install -r requirements.txt
 ```
 
 #### 前端依赖
 ```bash
-cd frontend/react-app
+cd InfoGenie-frontend
 npm install
 ```
 
@@ -74,32 +126,64 @@ npm install
 
 ### 🖥️ 前端部署
 
-1. 进入前端目录：`cd frontend/react-app`
+1. 进入前端目录：`cd InfoGenie-frontend`
 2. 安装依赖：`npm install`
 3. 构建生产环境应用：`npm run build`
 4. 将 `build` 目录下的所有文件上传到前端服务器的网站根目录
 
-也可以直接运行 `frontend/react-app/deploy.bat` 脚本进行构建。
+也可以直接运行 `InfoGenie-frontend/build_frontend.bat` 脚本进行构建。
 
 ### ⚙️ 后端部署
 
-1. 进入后端目录：`cd backend`
+#### 方式一：传统部署
+1. 进入后端目录：`cd InfoGenie-backend`
 2. 安装依赖：`pip install -r requirements.txt`
-3. 配置环境变量或创建 `.env` 文件，包含以下内容：
-   ```
-   MONGO_URI=你的MongoDB连接字符串
-   MAIL_USERNAME=你的邮箱地址
-   MAIL_PASSWORD=你的邮箱授权码
-   SECRET_KEY=你的应用密钥
+3. 配置环境变量或创建 `.env` 文件：
+   ```env
+   # 数据库配置
+   MONGO_URI=mongodb://localhost:27017/infogenie
+   
+   # 邮件服务配置
+   MAIL_USERNAME=your_email@qq.com
+   MAIL_PASSWORD=your_email_auth_code
+   MAIL_SERVER=smtp.qq.com
+   MAIL_PORT=587
+   
+   # 应用配置
+   SECRET_KEY=your_secret_key_here
    SESSION_COOKIE_SECURE=True
+   FLASK_ENV=production
+   
+   # AI服务配置
+   DEEPSEEK_API_KEY=your_deepseek_api_key
+   KIMI_API_KEY=your_kimi_api_key
    ```
-4. 使用 Gunicorn 或 uWSGI 作为 WSGI 服务器启动应用：
-   ```
+4. 使用 Gunicorn 启动应用：
+   ```bash
    gunicorn -w 4 -b 0.0.0.0:5000 "app:create_app()"
    ```
-5. 配置反向代理，将 `https://infogenie.api.shumengya.top` 反向代理到后端服务
 
-也可以参考 `backend/deploy.bat` 脚本中的部署说明。
+#### 方式二：Docker部署（推荐）
+1. 进入后端目录：`cd InfoGenie-backend`
+2. 构建Docker镜像：
+   ```bash
+   docker build -t infogenie-backend .
+   ```
+3. 使用docker-compose启动：
+   ```bash
+   docker-compose up -d
+   ```
+4. 或者直接运行构建脚本：
+   ```bash
+   ./build_docker.sh  # Linux/Mac
+   # 或
+   build_docker.bat   # Windows
+   ```
+
+#### 环境配置说明
+- **开发环境**: 使用 `.env` 文件配置本地开发环境
+- **生产环境**: 使用 `.env.production` 文件或环境变量注入
+- **反向代理**: 配置Nginx将 `https://infogenie.api.shumengya.top` 反向代理到后端服务
 
 ### ⚙️ 配置说明
 
@@ -129,23 +213,37 @@ npm install
 
 ```
 InfoGenie/
-├── backend/                 # 后端Python Flask应用
-│   ├── app.py              # 主应用入口
-│   ├── config.py           # 配置文件
-│   ├── requirements.txt    # Python依赖
-│   └── modules/            # 功能模块
-│       ├── auth.py         # 用户认证
-│       ├── api_60s.py      # 60s API接口
-│       ├── user_management.py  # 用户管理
-│       ├── email_service.py    # 邮件服务
-│       ├── smallgame.py    # 小游戏
-│       └── aimodelapp.py   # AI模型应用
-├── frontend/               # 前端应用
-│   ├── react-app/         # React主应用
-│   ├── 60sapi/            # 60s API静态页面
-│   ├── aimodelapp/        # AI模型应用页面
-│   └── smallgame/         # 小游戏页面
-└── README.md              # 项目说明
+├── InfoGenie-backend/           # 后端Python Flask应用
+│   ├── app.py                  # 主应用入口
+│   ├── config.py               # 配置文件
+│   ├── requirements.txt        # Python依赖
+│   ├── Dockerfile              # Docker构建文件
+│   ├── docker-compose.yml      # Docker编排文件
+│   ├── .env                    # 环境变量配置
+│   ├── modules/                # 功能模块
+│   │   ├── auth.py            # 用户认证
+│   │   ├── user_management.py # 用户管理
+│   │   ├── email_service.py   # 邮件服务
+│   │   └── aimodelapp.py      # AI模型应用
+│   ├── test/                   # 测试文件
+│   └── 后端架构文档.md          # 后端架构文档
+├── InfoGenie-frontend/          # 前端应用
+│   ├── src/                    # React源码
+│   │   ├── components/        # 公共组件
+│   │   ├── pages/             # 页面组件
+│   │   ├── contexts/          # React Context
+│   │   ├── utils/             # 工具函数
+│   │   └── styles/            # 全局样式
+│   ├── public/                 # 静态资源
+│   │   ├── 60sapi/            # 60s API静态页面
+│   │   ├── aimodelapp/        # AI模型应用页面
+│   │   └── smallgame/         # 小游戏页面
+│   ├── package.json           # 前端依赖
+│   ├── setting.json           # 前端配置
+│   └── 前端架构文档.md         # 前端架构文档
+├── README.md                   # 项目说明
+├── LICENSE                     # 许可证
+└── 项目架构说明.txt            # 项目架构说明
 ```
 
 #### 前端依赖
@@ -166,14 +264,14 @@ npm install
 
 **启动后端服务**
 ```bash
-cd backend
+cd InfoGenie-backend
 python app.py
 # 后端服务: http://localhost:5002
 ```
 
 **启动前端服务**
 ```bash
-cd frontend/react-app
+cd InfoGenie-frontend
 npm start
 # 前端服务: http://localhost:3000
 ```
