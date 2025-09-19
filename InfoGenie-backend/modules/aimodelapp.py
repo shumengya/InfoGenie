@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 AI模型应用服务模块
-Created by: 神奇万事通
+Created by: 万象口袋
 Date: 2025-01-15
 """
 

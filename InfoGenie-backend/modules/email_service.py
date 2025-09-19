@@ -72,7 +72,7 @@ def send_verification_email(email, verification_type='register'):
             <body>
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
                     <div style="text-align: center; margin-bottom: 30px;">
-                        <h1 style="color: #66bb6a; margin: 0;">InfoGenie 神奇万事通</h1>
+                        <h1 style="color: #66bb6a; margin: 0;">InfoGenie 万象口袋</h1>
                         <p style="color: #666; font-size: 14px; margin: 5px 0;">欢迎注册InfoGenie</p>
                     </div>
                     
@@ -101,7 +101,7 @@ def send_verification_email(email, verification_type='register'):
             <body>
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
                     <div style="text-align: center; margin-bottom: 30px;">
-                        <h1 style="color: #66bb6a; margin: 0;">InfoGenie 神奇万事通</h1>
+                        <h1 style="color: #66bb6a; margin: 0;">InfoGenie 万象口袋</h1>
                         <p style="color: #666; font-size: 14px; margin: 5px 0;">安全登录验证</p>
                     </div>
                     

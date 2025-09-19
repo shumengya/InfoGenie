@@ -236,12 +236,12 @@ const Header = () => {
         <HeaderContent>
           <Logo to="/">
             <img className="logo-icon" src="/assets/logo.png" alt="InfoGenie Logo" />
-            神奇万事通
+            万象口袋
           </Logo>
 
           <Nav>
-            <NavLink to="/60sapi">API聚合应用</NavLink>
-            <NavLink to="/smallgame">玩玩小游戏</NavLink>
+            <NavLink to="/60sapi">聚合应用</NavLink>
+            <NavLink to="/smallgame">休闲游戏</NavLink>
             <NavLink to="/aimodel">AI工具</NavLink>
             <NavLink to="/profile">个人中心</NavLink>
           </Nav>
@@ -292,19 +292,19 @@ const Header = () => {
           </MobileMenuHeader>
 
           <MobileNavLink to="/" onClick={handleMenuClose}>
-            🏠首页
+            首页
           </MobileNavLink>
           <MobileNavLink to="/60sapi" onClick={handleMenuClose}>
-            📡API聚合应用
+            聚合应用
           </MobileNavLink>
           <MobileNavLink to="/smallgame" onClick={handleMenuClose}>
-            🎮玩玩小游戏
+            休闲游戏
           </MobileNavLink>
           <MobileNavLink to="/aimodel" onClick={handleMenuClose}>
-            🤖AI工具
+            AI工具
           </MobileNavLink>
           <MobileNavLink to="/profile" onClick={handleMenuClose}>
-            👤个人中心
+            个人中心
           </MobileNavLink>
 
           {isLoggedIn && user ? (
@@ -345,7 +345,7 @@ const Header = () => {
             </>
           ) : (
             <MobileNavLink to="/login" onClick={handleMenuClose}>
-              👤 登录注册
+              登录注册
             </MobileNavLink>
           )}
         </MobileMenuContent>

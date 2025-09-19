@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FiActivity, FiGrid, FiCpu, FiTrendingUp } from 'react-icons/fi';
 
+//================css样式================
 const HomeContainer = styled.div`
   min-height: calc(100vh - 140px);
   padding: 20px 0;
@@ -172,7 +173,7 @@ const ModuleFeature = styled.li`
     margin-bottom: 0;
   }
 `;
-
+//================css样式================
 
 
 const HomePage = () => {
@@ -181,24 +182,25 @@ const HomePage = () => {
     {
       path: '/60sapi',
       icon: FiActivity,
-      title: 'API聚合应用',
-      description: '实时获取各种热门数据,资讯信息和实用工具',
+      title: '聚合应用',
+      description: '实时获取最新热门数据,资讯和实用工具',
       features: [
-        '娱乐消遣板块',
-        '实用功能板块',
-        '日更咨询板块',
-        '热搜榜单板块',
+        '🎯娱乐消遣板块',
+        '🔧实用功能板块',
+        '📰日更咨询板块',
+        '🔥热搜榜单板块',
       ]
     },
     {
       path: '/smallgame',
       icon: FiGrid,
-      title: '玩玩小游戏',
+      title: '休闲游戏',
       description: '轻松有趣的休闲小游戏合集',
       features: [
-        '2048',
-        '俄罗斯方块',
-        '别踩白方块',
+        '🔢2048小游戏',
+        '🧩俄罗斯方块',
+        '🐍经典贪吃蛇',
+        '◼️别踩白方块',
       ]
     },
     {
@@ -207,31 +209,37 @@ const HomePage = () => {
       title: 'AI工具',
       description: '智能AI工具和模型应用',
       features: [
-        'AI写诗达人',
-        'AI变量命名小助手',
-        'AI姓名评测',
+        '🌍翻译助手',
+        '📝写诗达人',
+        "🖊️文章转文言文",
+        "🫡表情包制作",
       ]
     }
   ];
-
+//<em> </em>
   return (
     <HomeContainer>
       <HeroSection>
         <HeroContent>
           <HeroTitle>
             <span className="title-emoji">✨</span>
-            神奇万事通
+            万象口袋
             <span className="title-emoji">✨</span>
           </HeroTitle>
           <HeroSubtitle>
-            🎨 一个多功能的聚合软件应用 💬
+<strong>💡一个跨平台的聚合式应用</strong>
             <br />
-            提供各种API聚合应用、娱乐小游戏、AI大模型工具等丰富功能，目标是用一个应用解决用户的各种需求。
-            模仿微信小程序那样，用户可以在一个应用中完成多个功能，而不需要下载多个APP
+集成了热搜榜单，日更资讯、休闲游戏、AI大模型工具等丰富功能。
+像微信小程序一样，把分散的功能汇聚在一个应用中，让你无需下载一个又一个app。
+            <br />
+<strong>🎯功能繁多却不显得臃肿</strong>
+            <br />
+「Windows」端仅约18MB；「Android」端仅约15MB；平均内存占用仅48MB
+相比市面上的软件更小巧、更轻便，却能承载更多可能。
           </HeroSubtitle>
           <HeroButton to="/60sapi">
             <FiTrendingUp />
-            开始探索
+            开始探索吧( •ω• )♡
           </HeroButton>
         </HeroContent>
       </HeroSection>

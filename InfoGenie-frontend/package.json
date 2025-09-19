@@ -1,9 +1,9 @@
 {
   "name": "infogenie-frontend",
   "version": "1.0.0",
-  "description": "✨ 神奇万事通 - 前端React应用",
+  "description": "✨ 万象口袋 - 前端React应用",
   "keywords": ["react", "api", "mobile-first", "responsive"],
-  "author": "神奇万事通",
+  "author": "万象口袋",
   "license": "MIT",
   "private": true,
   "homepage": "/",

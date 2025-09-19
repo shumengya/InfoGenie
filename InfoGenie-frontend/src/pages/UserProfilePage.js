@@ -7,12 +7,37 @@ import { userAPI } from '../utils/api';
 
 const ProfileContainer = styled.div`
   min-height: calc(100vh - 140px);
-  padding: 20px;
+  padding: 20px 0;
   background: linear-gradient(135deg, rgba(74, 222, 128, 0.05) 0%, rgba(34, 197, 94, 0.05) 100%);
 `;
 
 const Container = styled.div`
   max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+`;
+
+const PageHeader = styled.div`
+  text-align: center;
+  margin-bottom: 40px;
+`;
+
+const PageTitle = styled.h1`
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
+`;
+
+const PageDescription = styled.p`
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 18px;
+  max-width: 600px;
   margin: 0 auto;
 `;
 
@@ -398,9 +423,15 @@ const UserProfilePage = () => {
     return (
       <ProfileContainer>
         <Container>
+          <PageHeader>
+            <PageTitle>个人中心</PageTitle>
+            <PageDescription>
+              <strong>管理您的个人信息、查看萌芽币余额和签到记录(,,・ω・,,)</strong>
+            </PageDescription>
+          </PageHeader>
           <LoginPrompt>
             <LoginIcon>🔒</LoginIcon>
-            <LoginTitle>需要登录访问</LoginTitle>
+            <LoginTitle>需要登录才能访问Σ(°ロ°)</LoginTitle>
             <LoginText>
               个人中心需要登录后才能查看，请先登录您的账户。
               <br />
@@ -449,6 +480,10 @@ const UserProfilePage = () => {
   return (
     <ProfileContainer>
       <Container>
+        <PageHeader>
+          <PageTitle>个人中心</PageTitle>
+          <PageDescription>管理您的个人信息、查看萌芽币余额和签到记录</PageDescription>
+        </PageHeader>
         <ProfileHeader>
           <Avatar>
             {qqAvatarUrl && !avatarError ? (

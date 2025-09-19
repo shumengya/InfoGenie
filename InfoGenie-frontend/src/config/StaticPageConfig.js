@@ -8,7 +8,7 @@ export const AI_MODEL_APPS = [
     description: '智能变量命名工具，帮助开发者快速生成规范的变量名',
     link: '/aimodelapp/AI变量命名助手/index.html',
     gradient: 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)',
-    icon: '🤖',
+    icon: '💻',
     IsShow: true
   },
   {
@@ -40,7 +40,7 @@ export const AI_MODEL_APPS = [
     description: '基于AI的文章转文言文工具',
     link: '/aimodelapp/AI文章转文言文/index.html',
     gradient: 'linear-gradient(135deg,rgb(186, 248, 70) 0%,rgb(255, 208, 0) 100%)',
-    icon: '📝',
+    icon: '🖊️',
     IsShow: true
   },
       {
@@ -48,7 +48,7 @@ export const AI_MODEL_APPS = [
     description: '基于AI的生成表情包工具',
     link: '/aimodelapp/AI生成表情包/index.html',
     gradient: 'linear-gradient(135deg,rgb(186, 248, 70) 0%,rgb(34, 157, 238) 100%)',
-    icon: '📸',
+    icon: '🫡',
     IsShow: true
   },
   {
@@ -61,7 +61,7 @@ export const AI_MODEL_APPS = [
   },
 ];
 
-//玩玩小游戏
+//休闲游戏
 export const SMALL_GAMES = [
   {
     title: '2048',
@@ -105,7 +105,7 @@ export const SMALL_GAMES = [
   },
 ];
 
-//API聚合应用
+//聚合应用
 export const API_60S_CATEGORIES = [
   {
     title: '热搜榜单',
@@ -146,7 +146,7 @@ export const API_60S_CATEGORIES = [
       { title: '百度百科词条', link: '/60sapi/实用功能/百度百科词条/index.html', icon: '📚', IsShow: true },
       { title: '公网IP地址', link: '/60sapi/实用功能/公网IP地址/index.html', icon: '🌐', IsShow: true },
       { title: '哈希解压压缩', link: '/60sapi/实用功能/哈希解压压缩/index.html', icon: '🗜️', IsShow: true },
-      { title: '链接OG信息', link: '/60sapi/实用功能/链接OG信息/index.html', icon: '🔗', IsShow: true },
+      { title: '链接OG信息', link: '/60sapi/实用功能/链接OG信息/index.html', icon: '🔗', IsShow: false },
       { title: '密码强度检测', link: '/60sapi/实用功能/密码强度检测/index.html', icon: '🔐', IsShow: true },
       { title: '农历信息', link: '/60sapi/实用功能/农历信息/index.html', icon: '📅', IsShow: true },
       { title: '配色方案', link: '/60sapi/实用功能/配色方案/index.html', icon: '🎨', IsShow: true },
@@ -165,7 +165,7 @@ export const API_60S_CATEGORIES = [
     color: '#f7b731',
     apis: [
       { title: '随机唱歌音频', link: '/60sapi/娱乐消遣/随机唱歌音频/index.html', icon: '🎤', IsShow: true },
-      { title: '随机发病文学', link: '/60sapi/娱乐消遣/随机发病文学/index.html', icon: '📖', IsShow: true },
+      { title: '随机发病文学', link: '/60sapi/娱乐消遣/随机发病文学/index.html', icon: '📖', IsShow: false },
       { title: '随机搞笑段子', link: '/60sapi/娱乐消遣/随机搞笑段子/index.html', icon: '😂', IsShow: true },
       { title: '随机冷笑话', link: '/60sapi/娱乐消遣/随机冷笑话/index.html', icon: '😄', IsShow: true },
       { title: '随机一言', link: '/60sapi/娱乐消遣/随机一言/index.html', icon: '💭', IsShow: true },

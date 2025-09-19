@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { FiExternalLink, FiArrowLeft } from 'react-icons/fi';
 import { API_60S_CATEGORIES } from '../config/StaticPageConfig';
 
+
+//================css样式================
 const Api60sContainer = styled.div`
   min-height: calc(100vh - 140px);
   padding: 20px 0;
@@ -51,19 +53,29 @@ const CategoryTitle = styled.h2`
 
 const CategoryGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
   
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  
+  @media (max-width: 600px) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 12px;
   }
 `;
 
 const ApiCard = styled.div`
   background: rgba(255, 255, 255, 0.98);
   border-radius: 16px;
-  padding: 16px;
+  padding: 20px 16px;
   text-decoration: none;
   color: inherit;
   transition: all 0.2s ease;
@@ -72,9 +84,14 @@ const ApiCard = styled.div`
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  min-height: 80px;
+  min-height: 90px;
   display: flex;
   align-items: center;
+  
+  @media (max-width: 768px) {
+    padding: 16px 12px;
+    min-height: 80px;
+  }
   
   &::before {
     content: '';
@@ -197,6 +214,7 @@ const EmbeddedFrame = styled.iframe`
   position: relative;
   z-index: 1000;
 `;
+//================css样式================
 
 const Api60sPage = () => {
   const [mounted, setMounted] = useState(false);
@@ -247,8 +265,10 @@ const Api60sPage = () => {
       <Api60sContainer>
         <Container>
           <Header>
-            <Title>API聚合应用</Title>
-            <Subtitle>提供丰富的实时数据接口，涵盖热搜榜单、日更资讯、实用工具和娱乐功能</Subtitle>
+            <Title>聚合应用</Title>
+            <Subtitle>
+              提供各大社交平台最新的实时数据，让您摆脱平台大数据算法的干扰，走出信息茧房，涵盖热搜榜单、日更资讯、实用工具和娱乐消遣四大板块
+            </Subtitle>
           </Header>
         </Container>
       </Api60sContainer>
@@ -259,10 +279,10 @@ const Api60sPage = () => {
     <Api60sContainer>
       <Container>
         <Header>
-          <Title>API聚合应用</Title>
-          <Subtitle>
-            提供丰富的实时数据接口，涵盖热搜榜单、日更资讯、实用工具和娱乐功能
-          </Subtitle>
+          <Title>聚合应用</Title>
+            <Subtitle>
+              <strong>提供各大社交平台最新的实时数据，让您摆脱平台大数据算法的干扰，走出信息茧房，涵盖热搜榜单、日更资讯、实用工具和娱乐消遣四大板块(˘•ω•˘)</strong>
+            </Subtitle>
         </Header>
 
         {apiCategories.length === 0 ? (

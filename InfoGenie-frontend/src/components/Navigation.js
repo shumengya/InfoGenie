@@ -79,12 +79,12 @@ const Navigation = () => {
     {
       path: '/60sapi',
       icon: FiActivity,
-      text: 'API聚合应用'
+      text: '聚合应用'
     },
     {
       path: '/smallgame',
       icon: FiGrid,
-      text: '玩玩小游戏'
+      text: '休闲游戏'
     },
     {
       path: '/aimodel',

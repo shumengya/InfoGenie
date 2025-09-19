@@ -382,7 +382,7 @@ function showSuccessMessage(message) {
         background: rgba(255, 255, 255, 0.2);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
-        color: rgba(255, 255, 255, 0.95);
+        color: #1a1a1a;
         padding: 12px 20px;
         border-radius: 25px;
         border: 1px solid rgba(255, 255, 255, 0.3);

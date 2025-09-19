@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 InfoGenie 后端主应用入口
-Created by: 神奇万事通
+Created by: 万象口袋
 Date: 2025-09-02
 """
 
@@ -50,7 +50,7 @@ def create_app():
     def index():
         """API根路径"""
         return jsonify({
-            'message': '✨ 神奇万事通 API 服务运行中 ✨',
+            'message': '✨ 万象口袋 API 服务运行中 ✨',
             'version': '1.0.0',
             'timestamp': datetime.now().isoformat(),
             'endpoints': {

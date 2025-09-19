@@ -4,19 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#667eea" />
-    <meta name="description" content="✨ 神奇万事通 - 一个多功能的聚合软件应用，提供60s API、小游戏、AI模型等丰富功能" />
-    <meta name="keywords" content="60s API,热搜榜单,小游戏,AI模型,实时资讯,工具集合" />
-    <meta name="author" content="神奇万事通" />
+    <meta name="description" content="✨ 万象口袋 - 一个多功能的聚合软件应用，提供聚合应用、小游戏、AI模型工具等丰富功能" />
+    <meta name="keywords" content="聚合应用,热搜榜单,小游戏,AI模型,实时资讯,工具集合" />
+    <meta name="author" content="万象口袋" />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="神奇万事通" />
-    <meta property="og:description" content="🎨 一个多功能的聚合软件应用 💬" />
+    <meta property="og:title" content="万象口袋" />
+    <meta property="og:description" content="🎨一个跨平台的多功能聚合软件应用" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content="神奇万事通" />
-    <meta property="twitter:description" content="🎨 一个多功能的聚合软件应用 💬" />
+    <meta property="twitter:title" content="万象口袋" />
+    <meta property="twitter:description" content="🎨一个跨平台的多功能聚合软件应用" />
     
     <!-- Favicon -->
     <link rel="icon" href="%PUBLIC_URL%/assets/logo.png" />
@@ -31,7 +31,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <title>神奇万事通</title>
+    <title>万象口袋</title>
     
     <style>
       /* 加载动画 */
@@ -52,30 +52,30 @@
       }
       
       #loading .loading-logo {
-        width: 64px;
-        height: 64px;
+        width: 90px;
+        height: 90px;
         margin-bottom: 24px;
         animation: pulse 2s infinite;
         border-radius: 8px;
       }
       
       #loading .loading-text {
-        font-size: 24px;
+        font-size: 34px;
         font-weight: bold;
         margin-bottom: 16px;
       }
       
       #loading .loading-desc {
-        font-size: 14px;
-        opacity: 0.8;
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.8);
         margin-bottom: 32px;
       }
       
       #loading .loading-spinner {
-        width: 40px;
-        height: 40px;
-        border: 4px solid rgba(255, 255, 255, 0.3);
-        border-top: 4px solid white;
+        width: 56px;
+        height: 56px;
+        border: 6px solid rgba(255, 255, 255, 0.3);
+        border-top: 6px solid #ffffff;
         border-radius: 50%;
         animation: spin 1s linear infinite;
       }
@@ -91,8 +91,25 @@
       }
       
       @media (max-width: 768px) {
-        #loading .loading-logo { width: 48px; height: 48px; }
-        #loading .loading-text { font-size: 20px; }
+        #loading .loading-logo {
+          width: 67px;
+          height: 67px;
+        }
+        
+        #loading .loading-text {
+          font-size: 28px;
+        }
+        
+        #loading .loading-desc {
+          font-size: 17px;
+        }
+        
+        #loading .loading-spinner {
+          width: 42px;
+          height: 42px;
+          border: 4px solid rgba(255, 255, 255, 0.3);
+          border-top: 4px solid #ffffff;
+        }
       }
     </style>
   </head>
@@ -101,9 +118,9 @@
     
     <!-- 加载动画 -->
     <div id="loading">
-      <img class="loading-logo" src="%PUBLIC_URL%/assets/logo.png" alt="神奇万事通" />
-      <div class="loading-text">神奇万事通</div>
-      <div class="loading-desc">🎨 多功能聚合应用 💬</div>
+      <img class="loading-logo" src="%PUBLIC_URL%/assets/logo.png" alt="万象口袋" />
+      <div class="loading-text">万象口袋</div>
+      <div class="loading-desc">🎨 一个跨平台的多功能聚合应用(´｡• ω •｡`) 💬</div>
       <div class="loading-spinner"></div>
     </div>
     

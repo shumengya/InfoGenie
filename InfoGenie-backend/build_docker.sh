@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # InfoGenie 后端 Docker 镜像构建脚本
-# Created by: 神奇万事通
+# Created by: 万象口袋
 # Date: 2025-09-16
 
 set -e

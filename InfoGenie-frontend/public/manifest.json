@@ -1,7 +1,7 @@
 {
-  "short_name": "神奇万事通",
-  "name": "✨ 神奇万事通 - 多功能聚合应用",
-  "description": "🎨 一个多功能的聚合软件应用，提供60s API、小游戏、AI模型等丰富功能",
+  "short_name": "万象口袋",
+  "name": "✨ 万象口袋 - 多功能聚合应用",
+  "description": "🎨 一个多功能的聚合软件应用，提供聚合应用、休闲小游戏、AI模型工具等丰富功能",
   "icons": [
     {
       "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>",
@@ -29,7 +29,7 @@
   "categories": ["utilities", "productivity", "entertainment"],
   "screenshots": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 800'><rect width='400' height='800' fill='%23667eea'/><text x='200' y='400' text-anchor='middle' fill='white' font-size='32'>神奇万事通</text></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 800'><rect width='400' height='800' fill='%23667eea'/><text x='200' y='400' text-anchor='middle' fill='white' font-size='32'>万象口袋</text></svg>",
       "type": "image/svg+xml",
       "sizes": "400x800",
       "form_factor": "narrow"

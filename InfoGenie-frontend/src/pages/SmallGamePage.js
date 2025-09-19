@@ -264,10 +264,10 @@ const SmallGamePage = () => {
       <Container>
         <PageHeader>
           <PageTitle>
-            玩玩小游戏
+            休闲游戏
           </PageTitle>
           <PageDescription>
-            轻松有趣的休闲小游戏合集，即点即玩，无需下载
+            <strong>好玩的休闲小游戏合集，即点即玩，无需下载，支持离线游玩(,,・ω・,,)</strong>
           </PageDescription>
         </PageHeader>
 

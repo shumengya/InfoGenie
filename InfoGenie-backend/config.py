@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 InfoGenie 配置文件
-Created by: 神奇万事通
+Created by: 万象口袋
 Date: 2025-09-02
 """
 
@@ -38,7 +38,7 @@ class Config:
     MAIL_USE_TLS = False
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME') or 'your-email@qq.com'
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD') or 'your-app-password'
-    MAIL_DEFAULT_SENDER = ('InfoGenie 神奇万事通', os.environ.get('MAIL_USERNAME') or 'your-email@qq.com')
+    MAIL_DEFAULT_SENDER = ('InfoGenie 万象口袋', os.environ.get('MAIL_USERNAME') or 'your-email@qq.com')
     
     # API 配置
     API_RATE_LIMIT = '100 per hour'  # API调用频率限制
@@ -52,9 +52,9 @@ class Config:
     
     # 应用信息
     APP_INFO = {
-        'name': '✨ 神奇万事通 ✨',
+        'name': '✨ 万象口袋 ✨',
         'description': '🎨 一个多功能的聚合软件应用 💬',
-        'author': '👨‍💻 by-神奇万事通',
+        'author': '👨‍💻 by-万象口袋',
         'version': '1.0.0',
         'icp': '📄 蜀ICP备2025151694号'
     }

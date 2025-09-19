@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 用户认证模块
-Created by: 神奇万事通
+Created by: 万象口袋
 Date: 2025-09-02
 """
 

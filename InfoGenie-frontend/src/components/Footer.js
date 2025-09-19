@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
-  background: #1f2937;
-  color: #d1d5db;
+  background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
+  color: white;
   padding: 40px 0 80px; /* 底部留出导航栏空间 */
   margin-top: 60px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
   
   @media (min-width: 769px) {
     padding: 40px 0 20px;
@@ -34,7 +35,7 @@ const FooterDescription = styled.p`
   font-size: 14px;
   line-height: 1.6;
   margin-bottom: 16px;
-  color: #9ca3af;
+  color: rgba(255, 255, 255, 0.9);
 `;
 
 const FooterLinks = styled.div`
@@ -50,26 +51,29 @@ const FooterLinks = styled.div`
 `;
 
 const FooterLink = styled.a`
-  color: #d1d5db;
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
   font-size: 14px;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
+  padding: 8px 16px;
+  border-radius: 6px;
   
   &:hover {
-    color: #4ade80;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
   }
 `;
 
 const FooterDivider = styled.div`
   height: 1px;
-  background: #374151;
+  background: rgba(255, 255, 255, 0.2);
   margin: 24px 0;
 `;
 
 const FooterBottom = styled.div`
   text-align: center;
   font-size: 12px;
-  color: #6b7280;
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.5;
 `;
 
@@ -88,14 +92,10 @@ const Footer = () => {
     <FooterContainer>
       <FooterContent>
         <FooterInfo>
-          <FooterTitle>✨ 神奇万事通 ✨</FooterTitle>
+          <FooterTitle>✨ 万象口袋 ✨</FooterTitle>
         </FooterInfo>
 
-        <FooterLinks>
-          <FooterLink href="/60sapi">📡API聚合应用</FooterLink>
-          <FooterLink href="/smallgame">🎮玩玩小游戏</FooterLink>
-          <FooterLink href="/aimodel">🤖AI工具</FooterLink>
-        </FooterLinks>
+
 
         <FooterDivider />
 

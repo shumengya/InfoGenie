@@ -330,14 +330,14 @@ const AiModelPage = () => {
             AI工具
           </PageTitle>
           <PageDescription>
-            AI大模型工具，提供一些小功能
+            <strong>AI大模型工具，提供一些生成式大语言模型的小功能(´,,•ω•,,)♡</strong>
           </PageDescription>
         </PageHeader>
 
         {!isLoggedIn ? (
           <LoginPrompt>
             <LoginIcon>🔒</LoginIcon>
-            <LoginTitle>需要登录访问</LoginTitle>
+            <LoginTitle>需要登录访问Σ(°ロ°)</LoginTitle>
             <LoginText>
               AI模型功能需要登录后才能使用，请先登录您的账户。
               <br />
@@ -434,7 +434,7 @@ const AiModelPage = () => {
               萌芽币消费提示
             </h3>
             <p style={{ lineHeight: '1.6', color: '#374151' }}>
-              每次使用AI功能将消耗<b>100萌芽币</b>，无论成功与否。当萌芽币余额不足时，无法使用AI功能。
+              每次使用AI功能将消耗<b>100萌芽币</b>，无论成功与否。当萌芽币余额不足时，无法使用AI工具功能。
             </p>
             <p style={{ lineHeight: '1.6', color: '#374151' }}>
               您可以通过<b>每日签到</b>获得300萌芽币。详细的萌芽币余额和使用记录将显示在各AI应用的右上角。
