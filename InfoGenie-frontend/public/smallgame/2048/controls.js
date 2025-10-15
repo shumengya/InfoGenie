@@ -26,7 +26,15 @@ class GameControls {
     }
     
     initKeyboardControls() {
-        document.addEventListener('keydown', (e) => {
+        // 确保iframe能够获得焦点并接收键盘事件
+        const gameContainer = document.querySelector('.container');
+        if (gameContainer) {
+            gameContainer.setAttribute('tabindex', '0');
+            gameContainer.focus();
+        }
+        
+        // 为document和window都添加键盘事件监听器，确保在iframe中也能工作
+        const handleKeyDown = (e) => {
             if (!this.isGameActive || !window.game2048) {
                 console.log('Game not ready:', { isGameActive: this.isGameActive, game2048: !!window.game2048 });
                 return;
@@ -69,7 +77,18 @@ class GameControls {
                     this.togglePause();
                     break;
             }
-        });
+        };
+        
+        // 同时监听document和window的键盘事件
+        document.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('keydown', handleKeyDown);
+        
+        // 确保游戏容器在点击时获得焦点
+        if (gameContainer) {
+            gameContainer.addEventListener('click', () => {
+                gameContainer.focus();
+            });
+        }
     }
     
     initTouchControls() {
@@ -389,90 +408,6 @@ class GameControls {
     enable() {
         this.isGameActive = true;
     }
-    
-    // 显示控制提示
-    showControlHints() {
-        const hints = document.createElement('div');
-        hints.className = 'control-hints';
-        hints.innerHTML = `
-            <div class="hint-content">
-                <h3>操作说明</h3>
-                <div class="hint-section">
-                    <h4>📱 手机操作</h4>
-                    <p>在游戏区域滑动手指移动方块</p>
-                    <div class="gesture-demo">
-                        <span>👆 上滑</span>
-                        <span>👇 下滑</span>
-                        <span>👈 左滑</span>
-                        <span>👉 右滑</span>
-                    </div>
-                </div>
-                <div class="hint-section">
-                    <h4>⌨️ 键盘操作</h4>
-                    <div class="key-demo">
-                        <div class="key-row">
-                            <span class="key">↑</span>
-                            <span class="key">W</span>
-                            <span>上移</span>
-                        </div>
-                        <div class="key-row">
-                            <span class="key">↓</span>
-                            <span class="key">S</span>
-                            <span>下移</span>
-                        </div>
-                        <div class="key-row">
-                            <span class="key">←</span>
-                            <span class="key">A</span>
-                            <span>左移</span>
-                        </div>
-                        <div class="key-row">
-                            <span class="key">→</span>
-                            <span class="key">D</span>
-                            <span>右移</span>
-                        </div>
-                        <div class="key-row">
-                            <span class="key">R</span>
-                            <span>重新开始</span>
-                        </div>
-                        <div class="key-row">
-                            <span class="key">ESC</span>
-                            <span>暂停/继续</span>
-                        </div>
-                    </div>
-                </div>
-                <button class="close-hints">知道了</button>
-            </div>
-        `;
-        
-        // 添加样式
-        hints.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            backdrop-filter: blur(5px);
-        `;
-        
-        document.body.appendChild(hints);
-        
-        // 关闭按钮事件
-        hints.querySelector('.close-hints').addEventListener('click', () => {
-            hints.remove();
-        });
-        
-        // 点击背景关闭
-        hints.addEventListener('click', (e) => {
-            if (e.target === hints) {
-                hints.remove();
-            }
-        });
-    }
 }
 
 // 创建全局控制实例
@@ -486,8 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
             gameControls = new GameControls();
             console.log('Game controls initialized successfully');
             
-            // 创建帮助按钮
-            createHelpButton();
+
         } else {
             console.log('Waiting for game2048 to initialize...');
             setTimeout(initControls, 100);
@@ -497,41 +431,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initControls();
 });
 
-// 创建帮助按钮函数
-function createHelpButton() {
-    const helpBtn = document.createElement('button');
-    helpBtn.textContent = '❓';
-    helpBtn.title = '操作说明';
-    helpBtn.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.9);
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        z-index: 1000;
-        transition: all 0.3s ease;
-    `;
-    
-    helpBtn.addEventListener('click', () => {
-        gameControls.showControlHints();
-    });
-    
-    helpBtn.addEventListener('mouseenter', () => {
-        helpBtn.style.transform = 'scale(1.1)';
-    });
-    
-    helpBtn.addEventListener('mouseleave', () => {
-        helpBtn.style.transform = 'scale(1)';
-    });
-    
-    document.body.appendChild(helpBtn);
-}
+
 
 // 导出控制实例
 window.gameControls = gameControls;

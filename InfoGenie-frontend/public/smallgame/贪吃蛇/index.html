@@ -23,37 +23,18 @@
         
         <div class="game-controls">
             <div class="control-row">
-                <button id="upBtn" class="control-btn">↑</button>
-            </div>
-            <div class="control-row">
-                <button id="leftBtn" class="control-btn">←</button>
-                <button id="pauseBtn" class="control-btn">暂停</button>
-                <button id="rightBtn" class="control-btn">→</button>
-            </div>
-            <div class="control-row">
-                <button id="downBtn" class="control-btn">↓</button>
+                <button id="restartBtn" class="control-btn">重新开始</button>
             </div>
         </div>
         
         <div class="game-instructions">
-            <p>使用方向键或触摸按钮控制蛇的方向</p>
+            <p>使用方向键或拖动手势控制蛇的方向</p>
         </div>
     </div>
     
-    <div id="gameOverModal" class="modal">
-        <div class="modal-content">
-            <h2>游戏结束!</h2>
-            <div class="stats">
-                <p>最终分数: <span id="finalScore">0</span></p>
-                <p>蛇的长度: <span id="finalLength">0</span></p>
-                <p>达到等级: <span id="finalLevel">0</span></p>
-                <p>游戏时间: <span id="gameTime">0</span>秒</p>
-                <p>吃掉食物: <span id="foodEaten">0</span>个</p>
-            </div>
-            <button id="restartBtn" class="restart-btn">重新开始</button>
-        </div>
-    </div>
+
     
+    <script src="gamedata.js"></script>
     <script src="game-core.js"></script>
     <script src="game-controls.js"></script>
     <script src="game-stats.js"></script>

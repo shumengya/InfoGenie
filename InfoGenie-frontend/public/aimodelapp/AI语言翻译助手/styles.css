@@ -5,28 +5,28 @@
   box-sizing: border-box;
 }
 
-/* 主体样式 - iOS风格 */
+/* 主体样式 - 清新绿色风格 */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #a8e6cf 0%, #dcedc8 50%, #f1f8e9 100%);
   min-height: 100vh;
   padding: 20px;
-  color: #1D1D1F;
+  color: #2e7d32;
   line-height: 1.47;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 容器样式 - iOS毛玻璃效果 */
+/* 容器样式 - 清新绿色毛玻璃效果 */
 .container {
   max-width: 800px;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 24px;
   padding: 32px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(46, 125, 50, 0.15), 0 2px 8px rgba(46, 125, 50, 0.08);
   backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(168, 230, 207, 0.3);
 }
 
 /* 头部样式 - iOS风格 */
@@ -37,14 +37,14 @@ body {
 
 .title {
   font-size: 2.25rem;
-  color: #1D1D1F;
+  color: #1b5e20;
   margin-bottom: 8px;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
 
 .subtitle {
-  color: #86868B;
+  color: #4caf50;
   font-size: 1.0625rem;
   margin-bottom: 24px;
   font-weight: 400;
@@ -63,7 +63,7 @@ body {
   display: block;
   margin-bottom: 8px;
   font-weight: 600;
-  color: #1D1D1F;
+  color: #2e7d32;
   font-size: 1rem;
 }
 
@@ -81,9 +81,9 @@ body {
 
 .form-input:focus {
   outline: none;
-  border-color: #007AFF;
+  border-color: #4caf50;
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.15);
 }
 
 .textarea {
@@ -101,11 +101,11 @@ body {
   padding-right: 40px;
 }
 
-/* 按钮样式 - iOS风格 */
+/* 按钮样式 - 清新绿色风格 */
 .btn {
   width: 100%;
   padding: 16px;
-  background: #007AFF;
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -114,18 +114,18 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   margin-bottom: 24px;
-  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.25);
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
 }
 
 .btn:hover {
-  background: #0056CC;
+  background: linear-gradient(135deg, #388e3c 0%, #4caf50 100%);
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(0, 122, 255, 0.35);
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.4);
 }
 
 .btn:active {
   transform: translateY(0);
-  background: #004499;
+  background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
 }
 
 .btn:disabled {
@@ -142,7 +142,7 @@ body {
 
 .result-title {
   font-size: 1.25rem;
-  color: #1D1D1F;
+  color: #2e7d32;
   margin-bottom: 16px;
   text-align: center;
   font-weight: 600;
@@ -151,7 +151,7 @@ body {
 .loading {
   display: none;
   text-align: center;
-  color: #007AFF;
+  color: #4caf50;
   font-style: normal;
   padding: 24px;
   font-weight: 500;
@@ -195,12 +195,12 @@ body {
 }
 
 .detected-language .value {
-  color: #1D1D1F;
+  color: #2e7d32;
 }
 
 .main-translation {
   background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(76, 175, 80, 0.1);
   border-radius: 12px;
   padding: 20px;
   margin-bottom: 16px;
@@ -216,13 +216,13 @@ body {
 
 .translation-header .label {
   font-weight: 600;
-  color: #1D1D1F;
+  color: #2e7d32;
   font-size: 1rem;
 }
 
 .translation-text {
   font-size: 1.125rem;
-  color: #1D1D1F;
+  color: #2e7d32;
   line-height: 1.6;
   font-weight: 500;
 }
@@ -243,13 +243,13 @@ body {
 }
 
 .pronunciation .value {
-  color: #1D1D1F;
+  color: #2e7d32;
   font-family: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
 }
 
 .alternatives {
   background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(76, 175, 80, 0.1);
   border-radius: 12px;
   padding: 16px;
   margin-bottom: 16px;
@@ -257,7 +257,7 @@ body {
 
 .alternatives-title {
   font-weight: 600;
-  color: #1D1D1F;
+  color: #2e7d32;
   margin-bottom: 12px;
   font-size: 1rem;
 }
@@ -282,33 +282,33 @@ body {
 }
 
 .alternative-text {
-  color: #1D1D1F;
+  color: #2e7d32;
   font-size: 1rem;
 }
 
 .explanation {
-  background: rgba(0, 122, 255, 0.1);
-  border: 1px solid rgba(0, 122, 255, 0.2);
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.2);
   border-radius: 12px;
   padding: 16px;
 }
 
 .explanation .label {
   font-weight: 600;
-  color: #007AFF;
+  color: #4caf50;
   margin-bottom: 8px;
   display: block;
 }
 
 .explanation-text {
-  color: #1D1D1F;
+  color: #2e7d32;
   line-height: 1.6;
   font-size: 0.9375rem;
 }
 
 /* 复制按钮样式 */
 .copy-btn {
-  background: #007AFF;
+  background: #4caf50;
   color: white;
   border: none;
   border-radius: 8px;
@@ -317,16 +317,16 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 122, 255, 0.25);
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
 }
 
 .copy-btn:hover {
-  background: #0056CC;
+  background: #388e3c;
   transform: translateY(-1px);
 }
 
 .copy-btn-small {
-  background: #007AFF;
+  background: #4caf50;
   color: white;
   border: none;
   border-radius: 6px;
@@ -335,11 +335,11 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 1px 2px rgba(0, 122, 255, 0.25);
+  box-shadow: 0 1px 2px rgba(76, 175, 80, 0.3);
 }
 
 .copy-btn-small:hover {
-  background: #0056CC;
+  background: #388e3c;
   transform: translateY(-1px);
 }
 

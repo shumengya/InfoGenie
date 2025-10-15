@@ -8,10 +8,10 @@
 /* 主体样式 - iOS风格 */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
-  background: linear-gradient(135deg, #FFB6C1 0%, #FFE4E1 100%);
+  background: linear-gradient(135deg, #a8e6cf 0%, #dcedc8 50%, #f1f8e9 100%);
   min-height: 100vh;
   padding: 20px;
-  color: #1D1D1F;
+  color: #2e7d32;
   line-height: 1.47;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -24,9 +24,9 @@ body {
   background: rgba(255, 255, 255, 0.85);
   border-radius: 24px;
   padding: 32px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 32px rgba(76, 175, 80, 0.15), 0 2px 8px rgba(76, 175, 80, 0.1);
   backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(76, 175, 80, 0.2);
 }
 
 /* 头部样式 - iOS风格 */
@@ -37,14 +37,14 @@ body {
 
 .title {
   font-size: 2.25rem;
-  color: #1D1D1F;
+  color: #1b5e20;
   margin-bottom: 8px;
   font-weight: 600;
   letter-spacing: -0.02em;
 }
 
 .subtitle {
-  color: #86868B;
+  color: #4caf50;
   font-size: 1.0625rem;
   margin-bottom: 24px;
   font-weight: 400;
@@ -63,14 +63,14 @@ body {
   display: block;
   margin-bottom: 8px;
   font-weight: 600;
-  color: #1D1D1F;
+  color: #2e7d32;
   font-size: 1rem;
 }
 
 .form-input {
   width: 100%;
   padding: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.2);
   border-radius: 12px;
   font-size: 1rem;
   transition: all 0.2s ease;
@@ -81,9 +81,9 @@ body {
 
 .form-input:focus {
   outline: none;
-  border-color: #FF69B4;
+  border-color: #4caf50;
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.1);
+  box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.15);
 }
 
 .textarea {
@@ -105,7 +105,7 @@ body {
 .btn {
   width: 100%;
   padding: 16px;
-  background: #FF69B4;
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -114,18 +114,18 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
   margin-bottom: 24px;
-  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.25);
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
 }
 
 .btn:hover {
-  background: #FF1493;
+  background: linear-gradient(135deg, #388e3c 0%, #4caf50 100%);
   transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(255, 105, 180, 0.35);
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.4);
 }
 
 .btn:active {
   transform: translateY(0);
-  background: #DC143C;
+  background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
 }
 
 .btn:disabled {
@@ -142,7 +142,7 @@ body {
 
 .result-title {
   font-size: 1.25rem;
-  color: #1D1D1F;
+  color: #1b5e20;
   margin-bottom: 16px;
   text-align: center;
   font-weight: 600;
@@ -151,7 +151,7 @@ body {
 .loading {
   display: none;
   text-align: center;
-  color: #FF69B4;
+  color: #4caf50;
   font-style: normal;
   padding: 24px;
   font-weight: 500;
@@ -181,10 +181,10 @@ body {
   color: white;
   margin: 20px 0 12px 0;
   padding: 12px 16px;
-  background: #FF69B4;
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.25);
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
 }
 
 .expression-group-title:first-child {
@@ -208,8 +208,8 @@ body {
 }
 
 .expression-item:hover {
-  border-color: rgba(255, 105, 180, 0.3);
-  box-shadow: 0 4px 16px rgba(255, 105, 180, 0.1);
+  border-color: rgba(76, 175, 80, 0.3);
+  box-shadow: 0 4px 16px rgba(76, 175, 80, 0.15);
   background: rgba(255, 255, 255, 0.95);
 }
 
@@ -248,7 +248,7 @@ body {
 }
 
 .copy-btn {
-  background: #FF69B4;
+  background: #4caf50;
   color: white;
   border: none;
   border-radius: 8px;
@@ -257,13 +257,13 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(255, 105, 180, 0.25);
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
   margin-top: 8px;
   align-self: center;
 }
 
 .copy-btn:hover {
-  background: #FF1493;
+  background: #388e3c;
   transform: translateY(-1px);
 }
 

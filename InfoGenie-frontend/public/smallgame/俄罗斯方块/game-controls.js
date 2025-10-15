@@ -35,24 +35,32 @@ class GameControls {
         
         switch(key) {
             case 'ArrowLeft':
+            case 'a':
+            case 'A':
                 e.preventDefault();
                 this.game.moveLeft();
-                this.startKeyRepeat('ArrowLeft', () => this.game.moveLeft());
+                this.startKeyRepeat(key, () => this.game.moveLeft());
                 break;
                 
             case 'ArrowRight':
+            case 'd':
+            case 'D':
                 e.preventDefault();
                 this.game.moveRight();
-                this.startKeyRepeat('ArrowRight', () => this.game.moveRight());
+                this.startKeyRepeat(key, () => this.game.moveRight());
                 break;
                 
             case 'ArrowDown':
+            case 's':
+            case 'S':
                 e.preventDefault();
                 this.game.moveDown();
-                this.startKeyRepeat('ArrowDown', () => this.game.moveDown());
+                this.startKeyRepeat(key, () => this.game.moveDown());
                 break;
                 
             case 'ArrowUp':
+            case 'w':
+            case 'W':
                 e.preventDefault();
                 this.game.rotatePiece();
                 break;

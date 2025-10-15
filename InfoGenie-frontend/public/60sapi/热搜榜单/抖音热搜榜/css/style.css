@@ -18,14 +18,14 @@
     height: 200%;
     background: linear-gradient(
         135deg,
-        rgba(64, 169, 255, 0.4) 0%,
-        rgba(120, 192, 255, 0.3) 25%,
-        rgba(255, 175, 64, 0.2) 50%,
-        rgba(255, 140, 50, 0.3) 75%,
-        rgba(255, 122, 69, 0.4) 100%
+        rgba(76, 175, 80, 0.15) 0%,
+        rgba(129, 199, 132, 0.1) 25%,
+        rgba(165, 214, 167, 0.08) 50%,
+        rgba(200, 230, 201, 0.06) 75%,
+        rgba(232, 245, 233, 0.05) 100%
     );
-    animation: gradient-flow 20s ease-in-out infinite;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: gradient-flow 30s ease-in-out infinite;
+    border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
 }
 
 .modern-gradient::before {
@@ -37,15 +37,15 @@
     height: 100%;
     background: radial-gradient(
         circle at 30% 70%,
-        rgba(64, 169, 255, 0.5) 0%,
-        transparent 50%
+        rgba(76, 175, 80, 0.1) 0%,
+        transparent 40%
     ), radial-gradient(
         circle at 70% 30%,
-        rgba(255, 140, 50, 0.4) 0%,
-        transparent 50%
+        rgba(129, 199, 132, 0.08) 0%,
+        transparent 40%
     );
-    animation: pulse-effect 15s ease-in-out infinite alternate;
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: pulse-effect 25s ease-in-out infinite alternate;
+    border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
 }
 
 @keyframes gradient-flow {
@@ -103,21 +103,22 @@ body {
     padding: 24px;
     position: relative;
     z-index: 1;
-    background-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(76, 175, 80, 0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(76, 175, 80, 0.1);
 }
 
 header {
     text-align: center;
     margin-bottom: 28px;
     padding-bottom: 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(76, 175, 80, 0.15);
 }
 
 header h1 {
-    background: linear-gradient(135deg, #4096ff, #ff7a45);
+    background: linear-gradient(135deg, #2e7d32, #4caf50, #66bb6a);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -128,13 +129,56 @@ header h1 {
 }
 
 .update-time {
-    color: #666;
+    color: #4caf50;
     font-size: 0.9rem;
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: rgba(76, 175, 80, 0.08);
     padding: 8px 16px;
     border-radius: 24px;
     display: inline-block;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.15);
+}
+
+.refresh-btn {
+    background: linear-gradient(135deg, #4caf50, #66bb6a);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 24px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 12px;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.refresh-btn:hover {
+    background: linear-gradient(135deg, #388e3c, #4caf50);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(76, 175, 80, 0.35);
+}
+
+.refresh-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.btn-icon {
+    font-size: 1rem;
+    animation: rotate 2s linear infinite paused;
+}
+
+.refresh-btn:hover .btn-icon {
+    animation-play-state: running;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 /* 热搜列表 - 移动端优先设计 */
@@ -143,13 +187,13 @@ header h1 {
 }
 
 .hot-item {
-    background: white;
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 16px;
     padding: 16px;
     margin-bottom: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 12px rgba(76, 175, 80, 0.08);
     transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(76, 175, 80, 0.1);
     display: flex;
     align-items: center;
     gap: 12px;
@@ -159,8 +203,9 @@ header h1 {
 
 .hot-item:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    border-color: rgba(64, 169, 255, 0.2);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.15);
+    border-color: rgba(76, 175, 80, 0.25);
+    background: rgba(255, 255, 255, 1);
 }
 
 /* 排名容器 */
@@ -186,21 +231,21 @@ header h1 {
 }
 
 .hot-rank.rank-1 {
-    background: linear-gradient(135deg, #ff4d4f, #ff7a45);
+    background: linear-gradient(135deg, #4caf50, #66bb6a);
     color: white;
-    box-shadow: 0 4px 12px rgba(255, 77, 79, 0.3);
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
 }
 
 .hot-rank.rank-2 {
-    background: linear-gradient(135deg, #ff7a45, #ffa940);
+    background: linear-gradient(135deg, #66bb6a, #81c784);
     color: white;
-    box-shadow: 0 4px 12px rgba(255, 122, 69, 0.3);
+    box-shadow: 0 4px 12px rgba(102, 187, 106, 0.3);
 }
 
 .hot-rank.rank-3 {
-    background: linear-gradient(135deg, #ffa940, #ffec3d);
-    color: #333;
-    box-shadow: 0 4px 12px rgba(255, 169, 64, 0.3);
+    background: linear-gradient(135deg, #81c784, #a5d6a7);
+    color: #2e7d32;
+    box-shadow: 0 4px 12px rgba(129, 199, 132, 0.3);
 }
 
 .rank-number {
@@ -242,7 +287,7 @@ header h1 {
 }
 
 .hot-title:hover {
-    color: #4096ff;
+    color: #4caf50;
 }
 
 /* 底部行 */
@@ -277,13 +322,13 @@ header h1 {
     display: flex;
     align-items: center;
     gap: 4px;
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
-    color: white;
+    background: linear-gradient(135deg, #81c784, #a5d6a7);
+    color: #2e7d32;
     padding: 4px 10px;
     border-radius: 12px;
     font-size: 0.75rem;
     font-weight: 600;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 6px rgba(76, 175, 80, 0.15);
     flex-shrink: 0;
 }
 
@@ -309,7 +354,7 @@ header h1 {
     display: flex;
     align-items: center;
     gap: 4px;
-    background: linear-gradient(135deg, #4096ff, #40a9ff);
+    background: linear-gradient(135deg, #4caf50, #66bb6a);
     color: white;
     text-decoration: none;
     padding: 6px 12px;
@@ -317,15 +362,16 @@ header h1 {
     font-size: 0.75rem;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 6px rgba(64, 150, 255, 0.3);
+    box-shadow: 0 2px 6px rgba(76, 175, 80, 0.3);
     flex-shrink: 0;
 }
 
 .hot-link:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(64, 150, 255, 0.4);
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4);
     text-decoration: none;
     color: white;
+    background: linear-gradient(135deg, #388e3c, #4caf50);
 }
 
 .link-icon {
@@ -339,16 +385,31 @@ header h1 {
 .loading {
     text-align: center;
     padding: 40px;
-    color: #666;
+    color: #4caf50;
     font-size: 1.1rem;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(76, 175, 80, 0.2);
+    border-top: 4px solid #4caf50;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 footer {
     text-align: center;
     margin-top: 30px;
     padding-top: 20px;
-    border-top: 1px solid rgba(0, 0, 0, 0.06);
-    color: #666;
+    border-top: 1px solid rgba(76, 175, 80, 0.15);
+    color: #4caf50;
     font-size: 0.9rem;
 }
 

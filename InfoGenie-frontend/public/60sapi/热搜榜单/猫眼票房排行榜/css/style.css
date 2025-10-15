@@ -52,7 +52,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
     line-height: 1.6;
     color: var(--text-primary);
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 50%, #ffd3a5 100%);
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
@@ -67,11 +67,11 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+        radial-gradient(circle at 20% 80%, rgba(168, 230, 207, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 20%, rgba(220, 237, 193, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 40% 40%, rgba(255, 211, 165, 0.1) 0%, transparent 40%);
     z-index: -1;
-    animation: backgroundShift 20s ease-in-out infinite;
+    animation: backgroundShift 30s ease-in-out infinite;
 }
 
 @keyframes backgroundShift {
@@ -90,11 +90,11 @@ body::before {
     max-width: 900px;
     margin: var(--space-lg) auto;
     padding: var(--space-xl);
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(15px);
     border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-xl);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(76, 175, 80, 0.15);
+    border: 1px solid rgba(168, 230, 207, 0.3);
     position: relative;
     animation: slideUp 0.8s ease-out;
 }
@@ -127,7 +127,7 @@ body::before {
     transform: translateX(-50%);
     width: 60px;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(90deg, #4caf50, #81c784);
     border-radius: 2px;
 }
 
@@ -162,7 +162,7 @@ body::before {
 }
 
 .header h1 .title-text {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    background: linear-gradient(135deg, #2e7d32, #4caf50);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -171,12 +171,12 @@ body::before {
 
 .header h1 .update-badge {
     font-size: 0.4em;
-    background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+    background: linear-gradient(135deg, #66bb6a, #a5d6a7);
     color: white;
     padding: var(--space-xs) var(--space-md);
     border-radius: var(--radius-xl);
     font-weight: 600;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 6px rgba(76, 175, 80, 0.3);
     animation: pulse 3s infinite;
     white-space: nowrap;
 }
@@ -210,8 +210,8 @@ body::before {
     width: 40px;
     height: 40px;
     margin: 0 auto var(--space-md);
-    border: 3px solid var(--bg-tertiary);
-    border-top: 3px solid var(--primary-color);
+    border: 3px solid rgba(76, 175, 80, 0.2);
+    border-top: 3px solid #4caf50;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -274,15 +274,15 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, transparent 0%, rgba(102, 126, 234, 0.02) 100%);
+    background: linear-gradient(135deg, transparent 0%, rgba(76, 175, 80, 0.03) 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 .movie-item:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    border-color: rgba(102, 126, 234, 0.2);
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.15);
+    border-color: rgba(76, 175, 80, 0.3);
 }
 
 .movie-item:hover::before {
@@ -291,18 +291,18 @@ body::before {
 
 /* 特殊排名样式 */
 .movie-item.top-1 {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, var(--bg-primary) 100%);
-    border-color: rgba(255, 215, 0, 0.3);
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.08) 0%, var(--bg-primary) 100%);
+    border-color: rgba(76, 175, 80, 0.4);
 }
 
 .movie-item.top-2 {
-    background: linear-gradient(135deg, rgba(192, 192, 192, 0.1) 0%, var(--bg-primary) 100%);
-    border-color: rgba(192, 192, 192, 0.3);
+    background: linear-gradient(135deg, rgba(129, 199, 132, 0.06) 0%, var(--bg-primary) 100%);
+    border-color: rgba(129, 199, 132, 0.3);
 }
 
 .movie-item.top-3 {
-    background: linear-gradient(135deg, rgba(205, 127, 50, 0.1) 0%, var(--bg-primary) 100%);
-    border-color: rgba(205, 127, 50, 0.3);
+    background: linear-gradient(135deg, rgba(165, 214, 167, 0.05) 0%, var(--bg-primary) 100%);
+    border-color: rgba(165, 214, 167, 0.3);
 }
 
 /* 排名徽章 */
@@ -325,27 +325,27 @@ body::before {
 }
 
 .movie-rank.gold {
-    background: linear-gradient(135deg, #ffd700, #ffb700);
+    background: linear-gradient(135deg, #2e7d32, #4caf50);
     color: white;
-    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(46, 125, 50, 0.4);
 }
 
 .movie-rank.silver {
-    background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
+    background: linear-gradient(135deg, #388e3c, #66bb6a);
     color: white;
-    box-shadow: 0 4px 15px rgba(192, 192, 192, 0.4);
+    box-shadow: 0 4px 15px rgba(56, 142, 60, 0.4);
 }
 
 .movie-rank.bronze {
-    background: linear-gradient(135deg, #cd7f32, #b06728);
+    background: linear-gradient(135deg, #4caf50, #81c784);
     color: white;
-    box-shadow: 0 4px 15px rgba(205, 127, 50, 0.4);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
 }
 
 .movie-rank.regular {
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    background: linear-gradient(135deg, #66bb6a, #a5d6a7);
     color: white;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(102, 187, 106, 0.3);
 }
 
 /* 电影内容 */

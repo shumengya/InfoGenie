@@ -317,16 +317,36 @@
 .mb-5 { margin-bottom: 20px; }
 .mb-6 { margin-bottom: 24px; }
 
-.pt-1 { padding-top: 4px; }
-.pt-2 { padding-top: 8px; }
-.pt-3 { padding-top: 12px; }
-.pt-4 { padding-top: 16px; }
-.pt-5 { padding-top: 20px; }
-.pt-6 { padding-top: 24px; }
+/* 粒子效果样式优化 */
+.click-particle {
+  will-change: transform, opacity;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  filter: blur(0.5px);
+}
 
-.pb-1 { padding-bottom: 4px; }
-.pb-2 { padding-bottom: 8px; }
-.pb-3 { padding-bottom: 12px; }
-.pb-4 { padding-bottom: 16px; }
-.pb-5 { padding-bottom: 20px; }
-.pb-6 { padding-bottom: 24px; }
+.click-ripple {
+  will-change: transform, opacity;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 为可点击元素添加更好的视觉反馈 */
+button, .btn, a, [role="button"] {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 优化粒子效果在不同背景下的显示 */
+@media (prefers-reduced-motion: reduce) {
+  .click-particle,
+  .click-ripple {
+    animation-duration: 0.3s;
+  }
+}
+
+/* 高性能动画优化 */
+.click-particle,
+.click-ripple {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

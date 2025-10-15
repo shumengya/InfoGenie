@@ -10,6 +10,20 @@ import api from '../utils/api';
 const AiContainer = styled.div`
   min-height: calc(100vh - 140px);
   padding: 20px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: pageEnter 0.8s ease-out forwards;
+  
+  @keyframes pageEnter {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 const Container = styled.div`
@@ -25,7 +39,7 @@ const PageHeader = styled.div`
 
 const PageTitle = styled.h1`
   color: white;
-  font-size: 32px;
+  font-size: 44.8px;
   font-weight: 700;
   margin-bottom: 10px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -35,7 +49,7 @@ const PageTitle = styled.h1`
   }
   
   @media (max-width: 768px) {
-    font-size: 24px;
+    font-size: 33.6px;
   }
 `;
 
@@ -437,7 +451,7 @@ const AiModelPage = () => {
               每次使用AI功能将消耗<b>100萌芽币</b>，无论成功与否。当萌芽币余额不足时，无法使用AI工具功能。
             </p>
             <p style={{ lineHeight: '1.6', color: '#374151' }}>
-              您可以通过<b>每日签到</b>获得300萌芽币。详细的萌芽币余额和使用记录将显示在各AI应用的右上角。
+              您可以通过<b>每日签到</b>获得300萌芽币。详细的萌芽币余额显示在个人中心页面。
             </p>
           </div>
         )}

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" tabindex="0">
         <header class="header">
             <h1 class="title">2048</h1>
             <div class="score-container">
@@ -15,25 +15,14 @@
                     <div class="score-label">分数</div>
                     <div class="score" id="score">0</div>
                 </div>
-                <div class="score-box">
-                    <div class="score-label">最高分</div>
-                    <div class="score" id="best-score">0</div>
-                </div>
+
             </div>
         </header>
-        
-        <div class="game-intro">
-            <p class="game-explanation">
-                合并相同数字，达到<strong>2048</strong>！
-            </p>
-            <div class="restart-button" id="restart-btn">新游戏</div>
-        </div>
         
         <div class="game-container">
             <div class="game-message" id="game-message">
                 <p></p>
                 <div class="lower">
-                    <a class="keep-playing-button" id="keep-playing">继续游戏</a>
                     <a class="retry-button" id="retry-btn">重新开始</a>
                 </div>
             </div>
@@ -70,96 +59,12 @@
             </div>
         </div>
         
-        <div class="game-stats" id="game-stats">
-            <h3>游戏统计</h3>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">移动次数:</span>
-                    <span class="stat-value" id="moves-count">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">游戏时间:</span>
-                    <span class="stat-value" id="game-time">00:00</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">最大数字:</span>
-                    <span class="stat-value" id="max-tile">2</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">合并次数:</span>
-                    <span class="stat-value" id="merge-count">0</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="controls-hint">
-            <p><strong>操作说明:</strong></p>
-            <p>手机: 滑动屏幕移动方块</p>
-            <p>电脑: 使用方向键 ↑↓←→ 或 WASD 键</p>
-        </div>
+
     </div>
     
-    <!-- 游戏结束统计弹窗 -->
-    <div class="modal" id="stats-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>游戏结束</h2>
-                <span class="close" id="close-modal">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="final-score">
-                    <h3>最终得分: <span id="final-score">0</span></h3>
-                </div>
-                <div class="achievement-section">
-                    <h4>成就统计</h4>
-                    <div class="achievement-grid">
-                        <div class="achievement-item">
-                            <span class="achievement-icon">🎯</span>
-                            <div class="achievement-info">
-                                <div class="achievement-title">总移动次数</div>
-                                <div class="achievement-value" id="final-moves">0</div>
-                            </div>
-                        </div>
-                        <div class="achievement-item">
-                            <span class="achievement-icon">⏱️</span>
-                            <div class="achievement-info">
-                                <div class="achievement-title">游戏时长</div>
-                                <div class="achievement-value" id="final-time">00:00</div>
-                            </div>
-                        </div>
-                        <div class="achievement-item">
-                            <span class="achievement-icon">🏆</span>
-                            <div class="achievement-info">
-                                <div class="achievement-title">最大数字</div>
-                                <div class="achievement-value" id="final-max-tile">2</div>
-                            </div>
-                        </div>
-                        <div class="achievement-item">
-                            <span class="achievement-icon">🔥</span>
-                            <div class="achievement-info">
-                                <div class="achievement-title">合并次数</div>
-                                <div class="achievement-value" id="final-merges">0</div>
-                            </div>
-                        </div>
-                        <div class="achievement-item">
-                            <span class="achievement-icon">📊</span>
-                            <div class="achievement-info">
-                                <div class="achievement-title">平均每步得分</div>
-                                <div class="achievement-value" id="avg-score">0</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-actions">
-                    <button class="btn btn-primary" id="new-game-btn">开始新游戏</button>
-                    <button class="btn btn-secondary" id="share-btn">分享成绩</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
     
     <script src="game-logic.js"></script>
     <script src="controls.js"></script>
-    <script src="statistics.js"></script>
 </body>
 </html>

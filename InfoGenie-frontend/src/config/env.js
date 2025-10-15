@@ -3,7 +3,8 @@
 
 // 统一环境配置
 const config = {
-  API_URL: 'https://infogenie.api.shumengya.top',
+  //API_URL: 'https://infogenie.api.shumengya.top',
+  API_URL: 'http://127.0.0.1:5002',  // 确保本地开发环境正常工作
   DEBUG: true,
   LOG_LEVEL: 'debug'
 };

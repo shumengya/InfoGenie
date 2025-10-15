@@ -57,8 +57,21 @@ def login_required(f):
 def get_profile():
     """获取用户资料"""
     try:
-        hwt = getattr(request, 'hwt', {})
-        user_id = hwt.get('user_id')
+        # 优先从JWT token获取用户信息
+        user_id = None
+        if hasattr(request, 'current_user') and request.current_user:
+            user_id = request.current_user.get('user_id')
+        else:
+            # 回退到hwt验证
+            hwt = getattr(request, 'hwt', {})
+            user_id = hwt.get('user_id')
+        
+        if not user_id:
+            return jsonify({
+                'success': False,
+                'message': '无法获取用户信息'
+            }), 401
+            
         users_collection = current_app.mongo.db.userdata
         user = users_collection.find_one({'_id': ObjectId(user_id)})
         if not user:
@@ -68,11 +81,16 @@ def get_profile():
             }), 404
         # 返回用户信息（不包含密码）
         profile = {
-            'account': user['账号'],
+            'account': user.get('邮箱'),
+            'username': user.get('用户名'),
+            'avatar': user.get('头像'),
             'register_time': user.get('注册时间'),
             'last_login': user.get('最后登录'),
             'login_count': user.get('登录次数', 0),
-            'status': user.get('用户状态', 'active')
+            'status': user.get('用户状态', 'active'),
+            'level': user.get('等级', 1),
+            'experience': user.get('经验', 0),
+            'coins': user.get('萌芽币', 0)
         }
         return jsonify({
             'success': True,

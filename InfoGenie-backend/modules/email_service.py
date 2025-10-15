@@ -66,14 +66,14 @@ def send_verification_email(email, verification_type='register'):
         
         # 邮件模板
         if verification_type == 'register':
-            subject = '【InfoGenie】注册验证码'
+            subject = '【万象口袋】注册验证码'
             html_content = f'''
             <html>
             <body>
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
                     <div style="text-align: center; margin-bottom: 30px;">
-                        <h1 style="color: #66bb6a; margin: 0;">InfoGenie 万象口袋</h1>
-                        <p style="color: #666; font-size: 14px; margin: 5px 0;">欢迎注册InfoGenie</p>
+                        <h1 style="color: #66bb6a; margin: 0;">万象口袋</h1>
+                        <p style="color: #666; font-size: 14px; margin: 5px 0;">欢迎注册万象口袋</p>
                     </div>
                     
                     <div style="background: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%); padding: 30px; border-radius: 15px; text-align: center;">

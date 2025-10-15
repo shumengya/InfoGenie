@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫眼电影实时票房</title>
+    <link rel="stylesheet" href="./css/background.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="background-container">
+        <div class="floating-blob blob-1"></div>
+        <div class="floating-blob blob-2"></div>
+        <div class="floating-blob blob-3"></div>
+    </div>
+
+    <div class="page">
+        <header class="page-header">
+            <div class="title-block">
+                <span class="label-pill">实时票房</span>
+                <h1>猫眼电影实时票房</h1>
+            </div>
+            <div class="meta-block">
+                <span id="updateTime" class="update-time">正在获取最新更新...</span>
+                <button type="button" id="refreshButton" class="refresh-button">手动刷新</button>
+            </div>
+        </header>
+
+        <section class="summary-section" id="summarySection">
+            <div class="summary-card">
+                <p class="card-label" id="summaryTitle">实时大盘</p>
+                <p class="card-value">
+                    <span id="totalBoxOffice">--</span>
+                    <span class="unit" id="totalBoxOfficeUnit"></span>
+                </p>
+            </div>
+            <div class="summary-card">
+                <p class="card-label">综合票房</p>
+                <p class="card-value">
+                    <span id="combinedBoxOffice">--</span>
+                    <span class="unit" id="combinedBoxOfficeUnit"></span>
+                </p>
+            </div>
+            <div class="summary-card">
+                <p class="card-label">排片场次</p>
+                <p class="card-value" id="showCount">--</p>
+            </div>
+            <div class="summary-card">
+                <p class="card-label">观影人次</p>
+                <p class="card-value" id="viewCount">--</p>
+            </div>
+        </section>
+
+        <section class="list-section">
+            <div class="section-header">
+                <h2>影片实时表现</h2>
+                <span class="section-subtitle">数据每 5 秒同步一次</span>
+            </div>
+            <div id="movieList" class="movie-list">
+                <div class="loading">正在加载实时票房...</div>
+            </div>
+        </section>
+    </div>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>

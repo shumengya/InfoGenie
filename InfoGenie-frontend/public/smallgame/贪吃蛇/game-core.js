@@ -23,8 +23,7 @@ class SnakeGame {
         this.dy = 0;
         this.score = 0;
         this.level = 1;
-        this.gameSpeed = 10; // 初始速度
-        this.isPaused = false;
+        this.gameSpeed = 6.5; // 初始速度 (10 * 0.65)
         this.gameOver = false;
         this.startTime = Date.now();
         this.foodEaten = 0;
@@ -43,7 +42,7 @@ class SnakeGame {
         
         // 监听键盘事件
         document.addEventListener('keydown', (e) => {
-            if (this.isPaused || this.gameOver) return;
+            if (this.gameOver) return;
             
             switch(e.key) {
                 case 'ArrowUp':
@@ -201,7 +200,7 @@ class SnakeGame {
         const newLevel = Math.floor(this.foodEaten / 5) + 1;
         if (newLevel > this.level) {
             this.level = newLevel;
-            this.gameSpeed = Math.min(20, 10 + this.level); // 速度上限20
+            this.gameSpeed = Math.min(13, 6.5 + this.level * 0.65); // 速度上限13 (20 * 0.65)
         }
     }
     
@@ -297,17 +296,10 @@ class SnakeGame {
         }
     }
     
-    togglePause() {
-        this.isPaused = !this.isPaused;
-        document.getElementById('pauseBtn').textContent = this.isPaused ? '继续' : '暂停';
-        
-        if (!this.isPaused && !this.gameOver) {
-            this.gameLoop();
-        }
-    }
+
     
     changeDirection(dx, dy) {
-        if (this.isPaused || this.gameOver) return;
+        if (this.gameOver) return;
         
         // 防止180度转弯
         if ((this.dx !== 0 && dx !== 0) || (this.dy !== 0 && dy !== 0)) {
@@ -319,17 +311,12 @@ class SnakeGame {
     }
     
     showGameOver() {
-        const modal = document.getElementById('gameOverModal');
+        // 游戏结束时只记录最终状态，不显示弹窗
         const gameTime = Math.floor((Date.now() - this.startTime) / 1000);
-        
-        document.getElementById('finalScore').textContent = this.score;
-        document.getElementById('finalLength').textContent = this.snake.length;
-        document.getElementById('finalLevel').textContent = this.level;
-        document.getElementById('gameTime').textContent = gameTime;
-        document.getElementById('foodEaten').textContent = this.foodEaten;
-        
-        modal.style.display = 'flex';
+        console.log(`游戏结束! 分数: ${this.score}, 长度: ${this.snake.length}, 等级: ${this.level}, 时间: ${gameTime}秒`);
     }
+    
+
     
     restart() {
         this.snake = [
@@ -341,8 +328,7 @@ class SnakeGame {
         this.dy = 0;
         this.score = 0;
         this.level = 1;
-        this.gameSpeed = 10;
-        this.isPaused = false;
+        this.gameSpeed = 6.5;
         this.gameOver = false;
         this.startTime = Date.now();
         this.foodEaten = 0;
@@ -350,9 +336,6 @@ class SnakeGame {
         
         this.generateFood();
         this.updateUI();
-        
-        document.getElementById('gameOverModal').style.display = 'none';
-        document.getElementById('pauseBtn').textContent = '暂停';
         
         this.gameLoop();
     }

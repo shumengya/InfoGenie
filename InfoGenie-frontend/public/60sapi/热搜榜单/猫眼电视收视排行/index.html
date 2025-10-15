@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫眼电视收视排行</title>
+    <link rel="stylesheet" href="./css/background.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="background-layer">
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="aurora aurora-3"></div>
+    </div>
+
+    <div class="screen">
+        <header class="screen-header">
+            <div class="title-group">
+                <span class="eyebrow">实时收视</span>
+                <h1>猫眼电视收视排行</h1>
+                <p class="tagline">聚焦全国频道实时关注度，让你不错过热门节目</p>
+            </div>
+            <div class="actions">
+                <button id="refreshButton" class="refresh">手动刷新</button>
+                <span id="updateTime" class="timestamp">正在同步最新数据...</span>
+            </div>
+        </header>
+
+        <section class="insights" id="insightPanel">
+            <div class="insight-card">
+                <p class="insight-label">节目数量</p>
+                <p class="insight-value" id="programmeCount">--</p>
+            </div>
+            <div class="insight-card">
+                <p class="insight-label">最高市场份额</p>
+                <p class="insight-value"><span id="topMarketRate">--</span><span class="unit">%</span></p>
+            </div>
+            <div class="insight-card">
+                <p class="insight-label">最高关注指数</p>
+                <p class="insight-value"><span id="topAttentionRate">--</span><span class="unit">%</span></p>
+            </div>
+            <div class="insight-card">
+                <p class="insight-label">官方刷新频率</p>
+                <p class="insight-value" id="refreshGap">--</p>
+            </div>
+        </section>
+
+        <section class="ranking">
+            <div class="ranking-header">
+                <h2>频道节目排行榜</h2>
+                <span class="subtitle">实时榜单，数据持续刷新</span>
+            </div>
+            <div id="programmeList" class="programme-list">
+                <div class="loading">正在载入电视收视排行...</div>
+            </div>
+        </section>
+    </div>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>

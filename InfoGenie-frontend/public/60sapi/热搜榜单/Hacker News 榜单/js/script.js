@@ -118,35 +118,26 @@ function createNewsItem(item, rank) {
     const formattedScore = formatScore(item.score);
     const formattedTime = formatTime(item.created);
     
-    // 根据排名添加特殊标识
-    let rankEmoji = '';
-    if (rank === 1) rankEmoji = '🏆';
-    else if (rank === 2) rankEmoji = '🥈';
-    else if (rank === 3) rankEmoji = '🥉';
-    
     // 根据评分添加热度指示
     let heatLevel = '';
-    if (item.score >= 1000) heatLevel = '🔥🔥🔥';
-    else if (item.score >= 500) heatLevel = '🔥🔥';
-    else if (item.score >= 100) heatLevel = '🔥';
-    else heatLevel = '💫';
+    if (item.score >= 1000) heatLevel = 'HOT';
+    else if (item.score >= 500) heatLevel = 'WARM';
+    else if (item.score >= 100) heatLevel = 'COOL';
+    else heatLevel = 'NEW';
     
     newsItem.innerHTML = `
         <div class="news-rank-container">
             <div class="${rankClass}">
                 <span class="rank-number">${rank}</span>
-                <span class="rank-emoji">${rankEmoji}</span>
             </div>
         </div>
         <div class="news-content-wrapper">
             <h3 class="news-title">${escapeHtml(item.title)}</h3>
             <div class="news-meta-row">
                 <div class="news-author">
-                    <span class="meta-icon">👤</span>
                     <span class="meta-text">${escapeHtml(item.author)}</span>
                 </div>
                 <div class="news-time">
-                    <span class="meta-icon">🕒</span>
                     <span class="meta-text">${formattedTime}</span>
                 </div>
             </div>
@@ -156,7 +147,6 @@ function createNewsItem(item, rank) {
                     <span class="score-text">${formattedScore} 分</span>
                 </div>
                 <a href="${item.link}" target="_blank" class="news-link">
-                    <span class="link-icon">🚀</span>
                     <span class="link-text">阅读全文</span>
                 </a>
             </div>

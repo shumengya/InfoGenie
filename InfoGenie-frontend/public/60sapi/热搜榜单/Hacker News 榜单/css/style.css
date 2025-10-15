@@ -18,11 +18,11 @@
     height: 200%;
     background: linear-gradient(
         135deg,
-        rgba(64, 169, 255, 0.4) 0%,
-        rgba(120, 192, 255, 0.3) 25%,
-        rgba(255, 175, 64, 0.2) 50%,
-        rgba(255, 140, 50, 0.3) 75%,
-        rgba(255, 122, 69, 0.4) 100%
+        rgba(129, 199, 132, 0.4) 0%,
+        rgba(165, 214, 167, 0.3) 25%,
+        rgba(200, 230, 201, 0.2) 50%,
+        rgba(220, 237, 200, 0.3) 75%,
+        rgba(232, 245, 233, 0.4) 100%
     );
     animation: gradient-flow 20s ease-in-out infinite;
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
@@ -37,11 +37,11 @@
     height: 100%;
     background: radial-gradient(
         circle at 30% 70%,
-        rgba(64, 169, 255, 0.5) 0%,
+        rgba(129, 199, 132, 0.5) 0%,
         transparent 50%
     ), radial-gradient(
         circle at 70% 30%,
-        rgba(255, 140, 50, 0.4) 0%,
+        rgba(165, 214, 167, 0.4) 0%,
         transparent 50%
     );
     animation: pulse-effect 15s ease-in-out infinite alternate;
@@ -123,7 +123,7 @@ header, .header {
 }
 
 header h1, .title {
-    background: linear-gradient(135deg, #4096ff, #ff7a45);
+    background: linear-gradient(135deg, #66bb6a, #81c784);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -170,9 +170,9 @@ header h1, .title {
 }
 
 .tab-btn.active {
-    background: linear-gradient(135deg, #4096ff, #40a9ff);
+    background: linear-gradient(135deg, #66bb6a, #81c784);
     color: white;
-    box-shadow: 0 4px 16px rgba(64, 150, 255, 0.3);
+    box-shadow: 0 4px 16px rgba(102, 187, 106, 0.3);
 }
 
 .tab-icon {
@@ -180,7 +180,7 @@ header h1, .title {
 }
 
 .refresh-btn {
-    background: linear-gradient(135deg, #52c41a, #73d13d);
+    background: linear-gradient(135deg, #81c784, #a5d6a7);
     border: none;
     padding: 12px 24px;
     border-radius: 25px;
@@ -193,12 +193,12 @@ header h1, .title {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
+    box-shadow: 0 4px 12px rgba(129, 199, 132, 0.3);
 }
 
 .refresh-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(82, 196, 26, 0.4);
+    box-shadow: 0 6px 16px rgba(129, 199, 132, 0.4);
 }
 
 .btn-icon {
@@ -238,17 +238,17 @@ header h1, .title {
 .hot-item:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    border-color: rgba(64, 169, 255, 0.3);
+    border-color: rgba(129, 199, 132, 0.3);
 }
 
 .hot-rank {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #4096ff;
+    color: #66bb6a;
     margin-right: 18px;
     min-width: 38px;
     text-align: center;
-    background-color: rgba(64, 169, 255, 0.1);
+    background-color: rgba(129, 199, 132, 0.1);
     border-radius: 50%;
     width: 38px;
     height: 38px;
@@ -258,18 +258,18 @@ header h1, .title {
 }
 
 .hot-rank.top-1 {
-    background: linear-gradient(135deg, #ff4d4f, #ff7a45);
+    background: linear-gradient(135deg, #66bb6a, #81c784);
     color: white;
 }
 
 .hot-rank.top-2 {
-    background: linear-gradient(135deg, #ff7a45, #ffa940);
+    background: linear-gradient(135deg, #81c784, #a5d6a7);
     color: white;
 }
 
 .hot-rank.top-3 {
-    background: linear-gradient(135deg, #ffa940, #ffec3d);
-    color: white;
+    background: linear-gradient(135deg, #a5d6a7, #c8e6c9);
+    color: #333;
 }
 
 .hot-content {
@@ -288,7 +288,7 @@ header h1, .title {
 }
 
 .hot-title:hover {
-    color: #4096ff;
+    color: #66bb6a;
     text-decoration: none;
 }
 
@@ -310,13 +310,10 @@ header h1, .title {
 .rainbow-spinner {
     width: 50px;
     height: 50px;
-    border: 4px solid transparent;
-    border-top: 4px solid #4096ff;
+    border: 4px solid rgba(129, 199, 132, 0.2);
+    border-top: 4px solid #81c784;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3, #54a0ff, #5f27cd);
-    background-size: 400% 400%;
-    animation: spin 1s linear infinite, rainbowGradient 3s ease infinite;
 }
 
 @keyframes spin {
@@ -356,7 +353,7 @@ header h1, .title {
 .loading-dots span {
     width: 8px;
     height: 8px;
-    background: #4096ff;
+    background: #81c784;
     border-radius: 50%;
     animation: loadingDots 1.4s ease-in-out infinite both;
 }
@@ -396,7 +393,7 @@ header h1, .title {
 .news-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    border-color: rgba(64, 169, 255, 0.2);
+    border-color: rgba(129, 199, 132, 0.3);
 }
 
 /* 排名容器 */
@@ -423,21 +420,21 @@ header h1, .title {
 }
 
 .news-rank.rank-1 {
-    background: linear-gradient(135deg, #ff4d4f, #ff7a45);
+    background: linear-gradient(135deg, #66bb6a, #81c784);
     color: white;
-    box-shadow: 0 4px 12px rgba(255, 77, 79, 0.3);
+    box-shadow: 0 4px 12px rgba(102, 187, 106, 0.3);
 }
 
 .news-rank.rank-2 {
-    background: linear-gradient(135deg, #ff7a45, #ffa940);
+    background: linear-gradient(135deg, #81c784, #a5d6a7);
     color: white;
-    box-shadow: 0 4px 12px rgba(255, 122, 69, 0.3);
+    box-shadow: 0 4px 12px rgba(129, 199, 132, 0.3);
 }
 
 .news-rank.rank-3 {
-    background: linear-gradient(135deg, #ffa940, #ffec3d);
+    background: linear-gradient(135deg, #a5d6a7, #c8e6c9);
     color: #333;
-    box-shadow: 0 4px 12px rgba(255, 169, 64, 0.3);
+    box-shadow: 0 4px 12px rgba(165, 214, 167, 0.3);
 }
 
 .rank-number {
@@ -478,7 +475,7 @@ header h1, .title {
 }
 
 .news-title:hover {
-    color: #4096ff;
+    color: #66bb6a;
 }
 
 /* 元信息行 */
@@ -524,7 +521,7 @@ header h1, .title {
     display: flex;
     align-items: center;
     gap: 4px;
-    background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+    background: linear-gradient(135deg, #81c784, #a5d6a7);
     color: white;
     padding: 4px 10px;
     border-radius: 12px;
@@ -545,7 +542,7 @@ header h1, .title {
     display: flex;
     align-items: center;
     gap: 4px;
-    background: linear-gradient(135deg, #4096ff, #40a9ff);
+    background: linear-gradient(135deg, #66bb6a, #81c784);
     color: white;
     text-decoration: none;
     padding: 6px 12px;
@@ -553,13 +550,13 @@ header h1, .title {
     font-size: 0.75rem;
     font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 6px rgba(64, 150, 255, 0.3);
+    box-shadow: 0 2px 6px rgba(102, 187, 106, 0.3);
     flex-shrink: 0;
 }
 
 .news-link:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(64, 150, 255, 0.4);
+    box-shadow: 0 4px 10px rgba(102, 187, 106, 0.4);
     text-decoration: none;
     color: white;
 }
@@ -592,7 +589,7 @@ header h1, .title {
 }
 
 .error-content h3 {
-    color: #ff4d4f;
+    color: #66bb6a;
     margin: 0;
     font-size: 1.3rem;
 }
@@ -604,7 +601,7 @@ header h1, .title {
 }
 
 .retry-btn {
-    background: linear-gradient(135deg, #ff4d4f, #ff7a45);
+    background: linear-gradient(135deg, #66bb6a, #81c784);
     border: none;
     padding: 12px 24px;
     border-radius: 25px;
@@ -616,12 +613,12 @@ header h1, .title {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    box-shadow: 0 4px 12px rgba(255, 77, 79, 0.3);
+    box-shadow: 0 4px 12px rgba(102, 187, 106, 0.3);
 }
 
 .retry-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 77, 79, 0.4);
+    box-shadow: 0 6px 16px rgba(102, 187, 106, 0.4);
 }
 
 footer {
@@ -855,9 +852,9 @@ footer {
     .modern-gradient {
         background: linear-gradient(
             135deg,
-            rgba(64, 169, 255, 0.3) 0%,
-            rgba(255, 175, 64, 0.2) 50%,
-            rgba(255, 122, 69, 0.25) 100%
+            rgba(129, 199, 132, 0.3) 0%,
+            rgba(200, 230, 201, 0.2) 50%,
+            rgba(232, 245, 233, 0.25) 100%
         );
     }
 }

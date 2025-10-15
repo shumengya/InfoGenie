@@ -50,8 +50,10 @@ def create_app():
     def index():
         """API根路径"""
         return jsonify({
-            'message': '✨ 万象口袋 API 服务运行中 ✨',
-            'version': '1.0.0',
+            'message': '万象口袋 后端 API 服务运行中',
+            "description": "提供用户认证、用户管理、聚合API、小游戏接口和AI模型应用接口",
+            "email":"shumengya666@outlook.com",
+            'version': '2.2.0',
             'timestamp': datetime.now().isoformat(),
             'endpoints': {
                 'auth': '/api/auth',

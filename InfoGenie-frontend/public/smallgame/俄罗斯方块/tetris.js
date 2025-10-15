@@ -3,8 +3,6 @@ class TetrisGame {
     constructor() {
         this.canvas = document.getElementById('gameCanvas');
         this.ctx = this.canvas.getContext('2d');
-        this.nextCanvas = document.getElementById('nextCanvas');
-        this.nextCtx = this.nextCanvas.getContext('2d');
         
         // 游戏配置
         this.BOARD_WIDTH = 10;
@@ -140,7 +138,6 @@ class TetrisGame {
             return false;
         }
         
-        this.drawNextPiece();
         return true;
     }
     
@@ -348,39 +345,7 @@ class TetrisGame {
         }
     }
     
-    drawNextPiece() {
-        this.nextCtx.clearRect(0, 0, this.nextCanvas.width, this.nextCanvas.height);
-        
-        if (this.nextPiece) {
-            const size = 20;
-            const matrix = this.nextPiece.matrix;
-            const offsetX = (this.nextCanvas.width - matrix[0].length * size) / 2;
-            const offsetY = (this.nextCanvas.height - matrix.length * size) / 2;
-            
-            this.nextCtx.fillStyle = this.nextPiece.color;
-            
-            for (let row = 0; row < matrix.length; row++) {
-                for (let col = 0; col < matrix[row].length; col++) {
-                    if (matrix[row][col] !== 0) {
-                        this.nextCtx.fillRect(
-                            offsetX + col * size,
-                            offsetY + row * size,
-                            size,
-                            size
-                        );
-                        this.nextCtx.strokeStyle = '#333';
-                        this.nextCtx.lineWidth = 1;
-                        this.nextCtx.strokeRect(
-                            offsetX + col * size,
-                            offsetY + row * size,
-                            size,
-                            size
-                        );
-                    }
-                }
-            }
-        }
-    }
+
     
     updateDisplay() {
         document.getElementById('score').textContent = this.score;

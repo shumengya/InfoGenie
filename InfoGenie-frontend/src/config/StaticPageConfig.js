@@ -114,17 +114,21 @@ export const API_60S_CATEGORIES = [
     apis: [
       { title: '哔哩哔哩热搜榜', link: '/60sapi/热搜榜单/哔哩哔哩热搜榜/index.html', icon: '📺', IsShow: true },
       { title: '抖音热搜榜', link: '/60sapi/热搜榜单/抖音热搜榜/index.html', icon: '🎵', IsShow: true },
+      { title: '小红书热搜榜', link: '/60sapi/热搜榜单/小红书热点/index.html', icon: '📖', IsShow: true },
       { title: '猫眼票房排行榜', link: '/60sapi/热搜榜单/猫眼票房排行榜/index.html', icon: '🎬', IsShow: true },
-      { title: '头条热搜榜', link: '/60sapi/热搜榜单/头条热搜榜/index.html', icon: '📰', IsShow: true },
+      { title: '猫眼电视收视率排行榜', link: '/60sapi/热搜榜单/猫眼电视收视排行/index.html', icon: '📺', IsShow: true },
+      { title: '猫眼电影实时票房', link: '/60sapi/热搜榜单/猫眼电影实时票房/index.html', icon: '🎬', IsShow: true },
+      { title: '猫眼网剧实时热搜榜', link: '/60sapi/热搜榜单/猫眼网剧实时热度/index.html', icon: '💻', IsShow: true },
+      { title: '今日头条热搜榜', link: '/60sapi/热搜榜单/头条热搜榜/index.html', icon: '📰', IsShow: true },
       { title: '网易云榜单', link: '/60sapi/热搜榜单/网易云榜单/index.html', icon: '🎶', IsShow: true },
       { title: '微博热搜榜', link: '/60sapi/热搜榜单/微博热搜榜/index.html', icon: '📱', IsShow: true },
       { title: '知乎热门话题', link: '/60sapi/热搜榜单/知乎热门话题/index.html', icon: '💡', IsShow: true },
-      { title: 'Hacker News 榜单', link: '/60sapi/热搜榜单/Hacker News 榜单/index.html', icon: '💻', IsShow: true },
-      { title: '小红书热点', link: '/60sapi/热搜榜单/小红书热点/index.html', icon: '📖', IsShow: true },
-      { title: '百度实时热搜', link: '/60sapi/热搜榜单/百度实时热搜/index.html', icon: '🔍', IsShow: true },
-      { title: '百度电视剧榜', link: '/60sapi/热搜榜单/百度电视剧榜/index.html', icon: '📺', IsShow: true },
+      { title: 'HackerNews HotRanks', link: '/60sapi/热搜榜单/Hacker News 榜单/index.html', icon: '💻', IsShow: true },
+
+      { title: '百度实时热搜榜', link: '/60sapi/热搜榜单/百度实时热搜/index.html', icon: '🔍', IsShow: true },
+      { title: '百度电视剧热搜榜', link: '/60sapi/热搜榜单/百度电视剧榜/index.html', icon: '📺', IsShow: true },
       { title: '百度贴吧话题榜', link: '/60sapi/热搜榜单/百度贴吧话题榜/index.html', icon: '💬', IsShow: true },
-      { title: '懂车帝热搜', link: '/60sapi/热搜榜单/懂车帝热搜/index.html', icon: '🚗', IsShow: true },
+      { title: '懂车帝热搜榜', link: '/60sapi/热搜榜单/懂车帝热搜/index.html', icon: '🚗', IsShow: true },
     ]
   },
   {

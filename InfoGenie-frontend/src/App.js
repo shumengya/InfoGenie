@@ -10,11 +10,14 @@ import Api60sPage from './pages/Api60sPage';
 import SmallGamePage from './pages/SmallGamePage';
 import AiModelPage from './pages/AiModelPage';
 import UserProfilePage from './pages/UserProfilePage';
+import AboutPage from './pages/AboutPage';
 
 // 公共组件
 import Header from './components/Header';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import ParticleEffect from './components/ParticleEffect';
+import ScrollToTop from './components/ScrollToTop';
 
 // 上下文
 import { UserProvider } from './contexts/UserContext';
@@ -39,6 +42,7 @@ function App() {
   return (
     <UserProvider>
       <Router>
+        <ScrollToTop />
         <AppContainer>
           <Header />
           <MainContent>
@@ -49,6 +53,7 @@ function App() {
               <Route path="/60sapi" element={<Api60sPage />} />
               <Route path="/smallgame" element={<SmallGamePage />} />
               <Route path="/aimodel" element={<AiModelPage />} />
+              <Route path="/about" element={<AboutPage />} />
               <Route path="/profile" element={<UserProfilePage />} />
               {/* 通配符路由 - 所有未匹配的路径都重定向到首页 */}
               <Route path="*" element={<Navigate to="/" replace />} />
@@ -83,6 +88,9 @@ function App() {
               }
             }}
           />
+          
+          {/* 全局粒子效果 */}
+          <ParticleEffect />
         </AppContainer>
       </Router>
     </UserProvider>

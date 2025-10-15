@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { FiUser, FiMenu, FiX, FiLogOut } from 'react-icons/fi';
+import { FiUser, FiMenu, FiX, FiLogOut, FiInfo } from 'react-icons/fi';
 import { useUser } from '../contexts/UserContext';
 
 const HeaderContainer = styled.header`
@@ -59,16 +59,48 @@ const Nav = styled.nav`
   }
 `;
 
-const NavLink = styled(Link)`
-  color: rgba(255, 255, 255, 0.9);
+const NavLink = styled(Link).withConfig({
+  shouldForwardProp: (prop) => prop !== 'isActive'
+})`
+  color: ${props => props.isActive ? 'white' : 'rgba(255, 255, 255, 0.9)'};
   text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
+  padding: 10px 18px;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  font-weight: ${props => props.isActive ? '600' : '500'};
+  background: ${props => props.isActive ? 'rgba(255, 255, 255, 0.2)' : 'transparent'};
+  box-shadow: ${props => props.isActive ? '0 4px 12px rgba(0, 0, 0, 0.15)' : 'none'};
+  transform: ${props => props.isActive ? 'translateY(-1px)' : 'translateY(0)'};
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
   
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    
+    &::before {
+      opacity: 1;
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+    transition: transform 0.1s ease;
   }
 `;
 
@@ -194,20 +226,67 @@ const CloseButton = styled.button`
   cursor: pointer;
 `;
 
-const MobileNavLink = styled(Link)`
+const MobileNavLink = styled(Link).withConfig({
+  shouldForwardProp: (prop) => prop !== 'isActive'
+})`
   display: block;
-  color: #374151;
+  color: ${props => props.isActive ? '#4ade80' : '#374151'};
   text-decoration: none;
-  padding: 12px 0;
-  border-bottom: 1px solid #f3f4f6;
-  transition: color 0.2s ease;
+  padding: 16px 20px;
+  margin: 4px 0;
+  border-radius: 12px;
+  border-bottom: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  font-weight: ${props => props.isActive ? '600' : '500'};
+  background: ${props => props.isActive ? 'rgba(74, 222, 128, 0.1)' : 'transparent'};
+  transform: ${props => props.isActive ? 'translateX(8px)' : 'translateX(0)'};
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: ${props => props.isActive ? '4px' : '0'};
+    height: 60%;
+    background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+    border-radius: 0 2px 2px 0;
+    transition: width 0.3s ease;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(74, 222, 128, 0.05) 0%, rgba(34, 197, 94, 0.05) 100%);
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
   
   &:hover {
     color: #4ade80;
+    background: rgba(74, 222, 128, 0.08);
+    transform: translateX(12px);
+    box-shadow: 0 4px 12px rgba(74, 222, 128, 0.15);
+    
+    &::after {
+      opacity: 1;
+    }
+    
+    &::before {
+      width: 4px;
+    }
   }
   
-  &:last-child {
-    border-bottom: none;
+  &:active {
+    transform: translateX(6px);
+    transition: transform 0.1s ease;
   }
 `;
 
@@ -215,6 +294,11 @@ const Header = () => {
   const { user, isLoggedIn, logout, getQQAvatar } = useUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  
+  const isActive = (path) => {
+    return location.pathname.startsWith(path);
+  };
 
   const handleLogout = async () => {
     await logout();
@@ -240,10 +324,10 @@ const Header = () => {
           </Logo>
 
           <Nav>
-            <NavLink to="/60sapi">聚合应用</NavLink>
-            <NavLink to="/smallgame">休闲游戏</NavLink>
-            <NavLink to="/aimodel">AI工具</NavLink>
-            <NavLink to="/profile">个人中心</NavLink>
+            <NavLink to="/60sapi" isActive={isActive('/60sapi')}>聚合应用</NavLink>
+            <NavLink to="/smallgame" isActive={isActive('/smallgame')}>休闲游戏</NavLink>
+            <NavLink to="/aimodel" isActive={isActive('/aimodel')}>AI工具</NavLink>
+            <NavLink to="/profile" isActive={isActive('/profile')}>个人中心</NavLink>
           </Nav>
 
           <UserSection>
@@ -291,19 +375,22 @@ const Header = () => {
             </CloseButton>
           </MobileMenuHeader>
 
-          <MobileNavLink to="/" onClick={handleMenuClose}>
+          <MobileNavLink to="/" onClick={handleMenuClose} isActive={location.pathname === '/'}>
             首页
           </MobileNavLink>
-          <MobileNavLink to="/60sapi" onClick={handleMenuClose}>
+          <MobileNavLink to="/60sapi" onClick={handleMenuClose} isActive={isActive('/60sapi')}>
             聚合应用
           </MobileNavLink>
-          <MobileNavLink to="/smallgame" onClick={handleMenuClose}>
+          <MobileNavLink to="/smallgame" onClick={handleMenuClose} isActive={isActive('/smallgame')}>
             休闲游戏
           </MobileNavLink>
-          <MobileNavLink to="/aimodel" onClick={handleMenuClose}>
+          <MobileNavLink to="/aimodel" onClick={handleMenuClose} isActive={isActive('/aimodel')}>
             AI工具
           </MobileNavLink>
-          <MobileNavLink to="/profile" onClick={handleMenuClose}>
+          <MobileNavLink to="/about" onClick={handleMenuClose} isActive={isActive('/about')}>
+            关于
+          </MobileNavLink>
+          <MobileNavLink to="/profile" onClick={handleMenuClose} isActive={isActive('/profile')}>
             个人中心
           </MobileNavLink>
 

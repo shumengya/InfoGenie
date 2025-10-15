@@ -137,8 +137,8 @@ function createHotItem(item, rank) {
     
     // 根据热度值添加火焰等级
     let fireLevel = '';
-    if (item.hot_value >= 10000000) fireLevel = '🔥🔥🔥';
-    else if (item.hot_value >= 5000000) fireLevel = '🔥🔥';
+    if (item.hot_value >= 10000000) fireLevel = '🔥';
+    else if (item.hot_value >= 5000000) fireLevel = '🔥';
     else fireLevel = '🔥';
     
     hotItem.innerHTML = `
@@ -153,7 +153,6 @@ function createHotItem(item, rank) {
             <div class="hot-title">${escapeHtml(item.title)}</div>
             <div class="hot-bottom-row">
                 <div class="hot-time">
-                    <span class="meta-icon">⏰</span>
                     <span class="meta-text">${formattedTime}</span>
                 </div>
                 <div class="hot-value">
@@ -161,7 +160,6 @@ function createHotItem(item, rank) {
                     <span class="value-text">${formattedHotValue}</span>
                 </div>
                 <a href="${item.link}" target="_blank" class="hot-link">
-                    <span class="link-icon">🎬</span>
                     <span class="link-text">观看视频</span>
                 </a>
             </div>

@@ -1,0 +1,311 @@
+{
+  "code": 200,
+  "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
+  "data": {
+    "update_gap_second": 3,
+    "updated": "2025-09-26 16:36:56",
+    "updated_at": 1758875816062,
+    "list": [
+      {
+        "series_id": 1517707,
+        "series_name": "赴山海",
+        "release_info": "上线16天",
+        "platform_desc": "多平台播放",
+        "platform_txt": -1,
+        "curr_heat": 6290.29,
+        "curr_heat_desc": "6290.29",
+        "bar_value": 6290.29
+      },
+      {
+        "series_id": 1528168,
+        "series_name": "许我耀眼",
+        "release_info": "上线首日",
+        "platform_desc": "腾讯视频独播",
+        "platform_txt": -1,
+        "curr_heat": 6231.35,
+        "curr_heat_desc": "6231.35",
+        "bar_value": 5749.54721862606
+      },
+      {
+        "series_id": 1528151,
+        "series_name": "欢乐家长群2",
+        "release_info": "上线12天",
+        "platform_desc": "芒果TV独播",
+        "platform_txt": -1,
+        "curr_heat": 6012.95,
+        "curr_heat_desc": "6012.95",
+        "bar_value": 5119.06438712135
+      },
+      {
+        "series_id": 1492955,
+        "series_name": "吴邪私家笔记",
+        "release_info": "上线7天",
+        "platform_desc": "腾讯视频独播",
+        "platform_txt": -1,
+        "curr_heat": 5851.91,
+        "curr_heat_desc": "5851.91",
+        "bar_value": 4596.76326056356
+      },
+      {
+        "series_id": 1538034,
+        "series_name": "不眠日",
+        "release_info": "上线10天",
+        "platform_desc": "多平台播放",
+        "platform_txt": -1,
+        "curr_heat": 5804.09,
+        "curr_heat_desc": "5804.09",
+        "bar_value": 4206.68639815508
+      },
+      {
+        "series_id": 1501684,
+        "series_name": "灼灼韶华",
+        "release_info": "上线16天",
+        "platform_desc": "优酷独播",
+        "platform_txt": 0,
+        "curr_heat": 5799.01,
+        "curr_heat_desc": "5799.01",
+        "bar_value": 3878.03171596132
+      },
+      {
+        "series_id": 1474248,
+        "series_name": "围猎",
+        "release_info": "上线2天",
+        "platform_desc": "多平台播放",
+        "platform_txt": -1,
+        "curr_heat": 5752.05,
+        "curr_heat_desc": "5752.05",
+        "bar_value": 3549.20963005863
+      },
+      {
+        "series_id": 1501687,
+        "series_name": "守护者们",
+        "release_info": "上线4天",
+        "platform_desc": "多平台播放",
+        "platform_txt": -1,
+        "curr_heat": 5730.63,
+        "curr_heat_desc": "5730.63",
+        "bar_value": 3262.59275525736
+      },
+      {
+        "series_id": 1520710,
+        "series_name": "生万物",
+        "release_info": "上线45天",
+        "platform_desc": "爱奇艺独播",
+        "platform_txt": 1,
+        "curr_heat": 5475.27,
+        "curr_heat_desc": "5475.27",
+        "bar_value": 2876.18977832356
+      },
+      {
+        "series_id": 1520734,
+        "series_name": "芬芳喜事",
+        "release_info": "上线5天",
+        "platform_desc": "腾讯视频独播",
+        "platform_txt": -1,
+        "curr_heat": 5462.54,
+        "curr_heat_desc": "5462.54",
+        "bar_value": 2647.63508938203
+      },
+      {
+        "series_id": 1506349,
+        "series_name": "子夜归",
+        "release_info": "上线40天",
+        "platform_desc": "腾讯视频独播",
+        "platform_txt": -1,
+        "curr_heat": 5414.09,
+        "curr_heat_desc": "5414.09",
+        "bar_value": 2421.25465526037
+      },
+      {
+        "series_id": 1568466,
+        "series_name": "照镜辞",
+        "release_info": "上线8天",
+        "platform_desc": "哔哩哔哩独播",
+        "platform_txt": -1,
+        "curr_heat": 5405.94,
+        "curr_heat_desc": "5405.94",
+        "bar_value": 2230.68228745166
+      },
+      {
+        "series_id": 1501665,
+        "series_name": "足迹",
+        "release_info": "上线23天",
+        "platform_desc": "多平台播放",
+        "platform_txt": -1,
+        "curr_heat": 5345.55,
+        "curr_heat_desc": "5345.55",
+        "bar_value": 2035.21546242053
+      },
+      {
+        "series_id": 1481475,
+        "series_name": "与晋长安",
+        "release_info": "上线34天",
+        "platform_desc": "爱奇艺独播",
+        "platform_txt": 1,
+        "curr_heat": 5231.26,
+        "curr_heat_desc": "5231.26",
+        "bar_value": 1837.70502435479
+      },
+      {
+        "series_id": 1500426,
+        "series_name": "归队",
+        "release_info": "上线33天",
+        "platform_desc": "腾讯视频独播",
+        "platform_txt": -1,
+        "curr_heat": 5167.29,
+        "curr_heat_desc": "5167.29",
+        "bar_value": 1674.88052510491
+      },
+      {
+        "series_id": 1513970,
+        "series_name": "阵地",
+        "release_info": "上线11天",
+        "platform_desc": "多平台播放",
+        "platform_txt": -1,
+        "curr_heat": 5155.5,
+        "curr_heat_desc": "5155.50",
+        "bar_value": 1541.8541283172
+      },
+      {
+        "series_id": 1578416,
+        "series_name": "金式森林",
+        "release_info": "上线10天",
+        "platform_desc": "腾讯视频独播",
+        "platform_txt": -1,
+        "curr_heat": 5098.99,
+        "curr_heat_desc": "5098.99",
+        "bar_value": 1407.04554929882
+      },
+      {
+        "series_id": 1500365,
+        "series_name": "锦月如歌",
+        "release_info": "上线52天",
+        "platform_desc": "多平台播放",
+        "platform_txt": -1,
+        "curr_heat": 5082.9,
+        "curr_heat_desc": "5082.90",
+        "bar_value": 1294.15728646218
+      },
+      {
+        "series_id": 1481543,
+        "series_name": "凡人修仙传",
+        "release_info": "上线62天",
+        "platform_desc": "优酷独播",
+        "platform_txt": 0,
+        "curr_heat": 5064.74,
+        "curr_heat_desc": "5064.74",
+        "bar_value": 1189.82790916312
+      },
+      {
+        "series_id": 1521009,
+        "series_name": "十二封信",
+        "release_info": "上线29天",
+        "platform_desc": "腾讯视频独播",
+        "platform_txt": -1,
+        "curr_heat": 5029.58,
+        "curr_heat_desc": "5029.58",
+        "bar_value": 1090.21013799029
+      },
+      {
+        "series_id": 1492917,
+        "series_name": "献鱼",
+        "release_info": "上线42天",
+        "platform_desc": "优酷独播",
+        "platform_txt": 0,
+        "curr_heat": 5010.95,
+        "curr_heat_desc": "5010.95",
+        "bar_value": 1002.19
+      },
+      {
+        "series_id": 1444502,
+        "series_name": "利剑·玫瑰",
+        "release_info": "上线61天",
+        "platform_desc": "多平台播放",
+        "platform_txt": -1,
+        "curr_heat": 4972.54,
+        "curr_heat_desc": "4972.54",
+        "bar_value": 917.613471447017
+      },
+      {
+        "series_id": 1518217,
+        "series_name": "扫毒风暴",
+        "release_info": "上线77天",
+        "platform_desc": "腾讯视频独播",
+        "platform_txt": -1,
+        "curr_heat": 4896.37,
+        "curr_heat_desc": "4896.37",
+        "bar_value": 833.695051286619
+      },
+      {
+        "series_id": 1500364,
+        "series_name": "桃花映江山",
+        "release_info": "上线94天",
+        "platform_desc": "腾讯视频独播",
+        "platform_txt": -1,
+        "curr_heat": 4806.34,
+        "curr_heat_desc": "4806.34",
+        "bar_value": 755.090462080828
+      },
+      {
+        "series_id": 1505465,
+        "series_name": "定风波",
+        "release_info": "上线57天",
+        "platform_desc": "爱奇艺独播",
+        "platform_txt": 1,
+        "curr_heat": 4744.14,
+        "curr_heat_desc": "4744.14",
+        "bar_value": 687.69123872798
+      },
+      {
+        "series_id": 1531702,
+        "series_name": "书卷一梦",
+        "release_info": "上线93天",
+        "platform_desc": "爱奇艺独播",
+        "platform_txt": 1,
+        "curr_heat": 4733.39,
+        "curr_heat_desc": "4733.39",
+        "bar_value": 633.081734434469
+      },
+      {
+        "series_id": 1500328,
+        "series_name": "蓄意宠爱",
+        "release_info": "上线5天",
+        "platform_desc": "优酷独播",
+        "platform_txt": 0,
+        "curr_heat": 4730.18,
+        "curr_heat_desc": "4730.18",
+        "bar_value": 583.736247352187
+      },
+      {
+        "series_id": 1532221,
+        "series_name": "目之所及",
+        "release_info": "上线30天",
+        "platform_desc": "爱奇艺独播",
+        "platform_txt": 1,
+        "curr_heat": 4712.48,
+        "curr_heat_desc": "4712.48",
+        "bar_value": 536.586836256929
+      },
+      {
+        "series_id": 1524115,
+        "series_name": "白夜宸缘起三生",
+        "release_info": "上线13天",
+        "platform_desc": "腾讯视频独播",
+        "platform_txt": -1,
+        "curr_heat": 4653.77,
+        "curr_heat_desc": "4653.77",
+        "bar_value": 488.930252012005
+      },
+      {
+        "series_id": 1491942,
+        "series_name": "朝雪录",
+        "release_info": "上线76天",
+        "platform_desc": "爱奇艺独播",
+        "platform_txt": 1,
+        "curr_heat": 4623.3,
+        "curr_heat_desc": "4623.30",
+        "bar_value": 448.172875941959
+      }
+    ]
+  }
+}

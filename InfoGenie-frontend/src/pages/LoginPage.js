@@ -12,6 +12,20 @@ const LoginContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: pageEnter 0.8s ease-out forwards;
+  
+  @keyframes pageEnter {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 `;
 
 const LoginCard = styled.div`

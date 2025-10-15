@@ -4,7 +4,7 @@ class Game2048 {
         this.size = 4;
         this.grid = [];
         this.score = 0;
-        this.bestScore = parseInt(localStorage.getItem('2048-best-score')) || 0;
+
         this.gameWon = false;
         this.gameOver = false;
         this.moved = false;
@@ -98,7 +98,6 @@ class Game2048 {
         
         // 更新分数
         document.getElementById('score').textContent = this.score;
-        document.getElementById('best-score').textContent = this.bestScore;
         
         // 更新统计数据显示
         if (window.gameStats) {
@@ -359,9 +358,7 @@ class Game2048 {
         this.startTimer();
     }
     
-    keepPlaying() {
-        document.getElementById('game-message').style.display = 'none';
-    }
+
     
     startTimer() {
         this.stats.startTime = Date.now();
@@ -381,28 +378,13 @@ class Game2048 {
     }
     
     bindEvents() {
-        // 重新开始按钮
-        document.getElementById('restart-btn').addEventListener('click', () => {
-            this.restart();
-        });
-        
-        // 继续游戏按钮
-        document.getElementById('keep-playing').addEventListener('click', () => {
-            this.keepPlaying();
-        });
-        
         // 重试按钮
         document.getElementById('retry-btn').addEventListener('click', () => {
             this.restart();
         });
     }
     
-    updateBestScore() {
-        if (this.score > this.bestScore) {
-            this.bestScore = this.score;
-            localStorage.setItem('2048-best-score', this.bestScore.toString());
-        }
-    }
+
 }
 
 // 游戏实例
@@ -412,12 +394,7 @@ let game;
 document.addEventListener('DOMContentLoaded', () => {
     game = new Game2048();
     
-    // 监听分数变化以更新最高分
-    const originalUpdateDisplay = game.updateDisplay.bind(game);
-    game.updateDisplay = function() {
-        originalUpdateDisplay();
-        this.updateBestScore();
-    };
+
     
     // 导出游戏实例供其他模块使用
     window.game2048 = game;

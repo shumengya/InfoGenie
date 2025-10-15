@@ -1,0 +1,435 @@
+{
+  "code": 200,
+  "message": "获取成功。数据来自官方/权威源头，以确保稳定与实时。开源地址 https://github.com/vikiboss/60s，反馈群 595941841",
+  "data": {
+    "update_gap_second": 3,
+    "updated": "2025-09-26 16:22:45",
+    "updated_at": 1758874965018,
+    "list": [
+      {
+        "programme_name": "六姊妹37",
+        "channel_name": "CCTV-1",
+        "market_rate": 16.1709,
+        "market_rate_desc": "16.1709%",
+        "attention_rate": 1.2816,
+        "attention_rate_desc": "1.2816%"
+      },
+      {
+        "programme_name": "太行山上6",
+        "channel_name": "CCTV-4",
+        "market_rate": 8.2684,
+        "market_rate_desc": "8.2684%",
+        "attention_rate": 0.6553,
+        "attention_rate_desc": "0.6553%"
+      },
+      {
+        "programme_name": "星推荐",
+        "channel_name": "CCTV-8",
+        "market_rate": 7.3725,
+        "market_rate_desc": "7.3725%",
+        "attention_rate": 0.5843,
+        "attention_rate_desc": "0.5843%"
+      },
+      {
+        "programme_name": "炮兵司令朱瑞",
+        "channel_name": "CCTV-6",
+        "market_rate": 7.3315,
+        "market_rate_desc": "7.3315%",
+        "attention_rate": 0.5811,
+        "attention_rate_desc": "0.5811%"
+      },
+      {
+        "programme_name": "新闻直播间",
+        "channel_name": "CCTV-13",
+        "market_rate": 4.4396,
+        "market_rate_desc": "4.4396%",
+        "attention_rate": 0.3519,
+        "attention_rate_desc": "0.3519%"
+      },
+      {
+        "programme_name": "百姓剧场二:征服15",
+        "channel_name": "浙江卫视",
+        "market_rate": 4.3651,
+        "market_rate_desc": "4.3651%",
+        "attention_rate": 0.346,
+        "attention_rate_desc": "0.346%"
+      },
+      {
+        "programme_name": "新相亲大会精华版",
+        "channel_name": "江苏卫视",
+        "market_rate": 4.0919,
+        "market_rate_desc": "4.0919%",
+        "attention_rate": 0.3243,
+        "attention_rate_desc": "0.3243%"
+      },
+      {
+        "programme_name": "青春独播剧场:底线11",
+        "channel_name": "湖南卫视",
+        "market_rate": 3.9014,
+        "market_rate_desc": "3.9014%",
+        "attention_rate": 0.3092,
+        "attention_rate_desc": "0.3092%"
+      },
+      {
+        "programme_name": "全景自然:黄石公园-飞翔的生命",
+        "channel_name": "CCTV-9",
+        "market_rate": 2.504,
+        "market_rate_desc": "2.504%",
+        "attention_rate": 0.1985,
+        "attention_rate_desc": "0.1985%"
+      },
+      {
+        "programme_name": "运动一起赢",
+        "channel_name": "CCTV-5",
+        "market_rate": 2.0781,
+        "market_rate_desc": "2.0781%",
+        "attention_rate": 0.1647,
+        "attention_rate_desc": "0.1647%"
+      },
+      {
+        "programme_name": "小日子19",
+        "channel_name": "东方卫视",
+        "market_rate": 1.9804,
+        "market_rate_desc": "1.9804%",
+        "attention_rate": 0.157,
+        "attention_rate_desc": "0.157%"
+      },
+      {
+        "programme_name": "向幸福出发",
+        "channel_name": "CCTV-3",
+        "market_rate": 1.8832,
+        "market_rate_desc": "1.8832%",
+        "attention_rate": 0.1493,
+        "attention_rate_desc": "0.1493%"
+      },
+      {
+        "programme_name": "浴血十四年16",
+        "channel_name": "CCTV-7",
+        "market_rate": 1.8485,
+        "market_rate_desc": "1.8485%",
+        "attention_rate": 0.1465,
+        "attention_rate_desc": "0.1465%"
+      },
+      {
+        "programme_name": "正点财经",
+        "channel_name": "CCTV-2",
+        "market_rate": 1.7255,
+        "market_rate_desc": "1.7255%",
+        "attention_rate": 0.1368,
+        "attention_rate_desc": "0.1368%"
+      },
+      {
+        "programme_name": "热播剧场:太行山上6",
+        "channel_name": "深圳卫视",
+        "market_rate": 1.6132,
+        "market_rate_desc": "1.6132%",
+        "attention_rate": 0.1279,
+        "attention_rate_desc": "0.1279%"
+      },
+      {
+        "programme_name": "爱家剧场:父母爱情37",
+        "channel_name": "山东卫视",
+        "market_rate": 1.5558,
+        "market_rate_desc": "1.5558%",
+        "attention_rate": 0.1233,
+        "attention_rate_desc": "0.1233%"
+      },
+      {
+        "programme_name": "刘家媳妇4",
+        "channel_name": "CCTV-17",
+        "market_rate": 1.3905,
+        "market_rate_desc": "1.3905%",
+        "attention_rate": 0.1102,
+        "attention_rate_desc": "0.1102%"
+      },
+      {
+        "programme_name": "午茶剧场:归队8",
+        "channel_name": "北京卫视",
+        "market_rate": 1.1078,
+        "market_rate_desc": "1.1078%",
+        "attention_rate": 0.0878,
+        "attention_rate_desc": "0.0878%"
+      },
+      {
+        "programme_name": "吉视剧场:武工队传奇46",
+        "channel_name": "吉林卫视",
+        "market_rate": 0.9407,
+        "market_rate_desc": "0.9407%",
+        "attention_rate": 0.0745,
+        "attention_rate_desc": "0.0745%"
+      },
+      {
+        "programme_name": "情感剧场:朱元璋64",
+        "channel_name": "河北卫视",
+        "market_rate": 0.9211,
+        "market_rate_desc": "0.9211%",
+        "attention_rate": 0.073,
+        "attention_rate_desc": "0.073%"
+      },
+      {
+        "programme_name": "下午剧场:战火青春3",
+        "channel_name": "广东卫视",
+        "market_rate": 0.9211,
+        "market_rate_desc": "0.9211%",
+        "attention_rate": 0.073,
+        "attention_rate_desc": "0.073%"
+      },
+      {
+        "programme_name": "探索.发现-奥秘54",
+        "channel_name": "CCTV-10",
+        "market_rate": 0.822,
+        "market_rate_desc": "0.822%",
+        "attention_rate": 0.0652,
+        "attention_rate_desc": "0.0652%"
+      },
+      {
+        "programme_name": "一线",
+        "channel_name": "CCTV-12",
+        "market_rate": 0.7949,
+        "market_rate_desc": "0.7949%",
+        "attention_rate": 0.063,
+        "attention_rate_desc": "0.063%"
+      },
+      {
+        "programme_name": "海豚真情剧场:重案六组Ⅱ-45",
+        "channel_name": "安徽卫视",
+        "market_rate": 0.7684,
+        "market_rate_desc": "0.7684%",
+        "attention_rate": 0.0609,
+        "attention_rate_desc": "0.0609%"
+      },
+      {
+        "programme_name": "中国女子围棋甲级联赛-第10轮",
+        "channel_name": "CCTV-5+",
+        "market_rate": 0.7621,
+        "market_rate_desc": "0.7621%",
+        "attention_rate": 0.0604,
+        "attention_rate_desc": "0.0604%"
+      },
+      {
+        "programme_name": "休闲剧场:女子特战队2",
+        "channel_name": "天津卫视",
+        "market_rate": 0.6694,
+        "market_rate_desc": "0.6694%",
+        "attention_rate": 0.0531,
+        "attention_rate_desc": "0.0531%"
+      },
+      {
+        "programme_name": "动画大放映:猪猪侠之超星五灵侠第八季",
+        "channel_name": "CCTV-14",
+        "market_rate": 0.6637,
+        "market_rate_desc": "0.6637%",
+        "attention_rate": 0.0526,
+        "attention_rate_desc": "0.0526%"
+      },
+      {
+        "programme_name": "昆仑剧场:康熙微服私访记第三部30",
+        "channel_name": "青海卫视",
+        "market_rate": 0.6511,
+        "market_rate_desc": "0.6511%",
+        "attention_rate": 0.0516,
+        "attention_rate_desc": "0.0516%"
+      },
+      {
+        "programme_name": "京剧电影工程-大闹天宫",
+        "channel_name": "CCTV-11",
+        "market_rate": 0.6069,
+        "market_rate_desc": "0.6069%",
+        "attention_rate": 0.0481,
+        "attention_rate_desc": "0.0481%"
+      },
+      {
+        "programme_name": "温情剧场:神探狄仁杰Ⅱ-14",
+        "channel_name": "陕西卫视",
+        "market_rate": 0.571,
+        "market_rate_desc": "0.571%",
+        "attention_rate": 0.0453,
+        "attention_rate_desc": "0.0453%"
+      },
+      {
+        "programme_name": "下午剧场:狙击部队30",
+        "channel_name": "贵州卫视",
+        "market_rate": 0.5558,
+        "market_rate_desc": "0.5558%",
+        "attention_rate": 0.0441,
+        "attention_rate_desc": "0.0441%"
+      },
+      {
+        "programme_name": "白天剧场:西游记26",
+        "channel_name": "湖北卫视",
+        "market_rate": 0.5463,
+        "market_rate_desc": "0.5463%",
+        "attention_rate": 0.0433,
+        "attention_rate_desc": "0.0433%"
+      },
+      {
+        "programme_name": "中国爱大剧场:神枪21",
+        "channel_name": "四川卫视",
+        "market_rate": 0.5388,
+        "market_rate_desc": "0.5388%",
+        "attention_rate": 0.0427,
+        "attention_rate_desc": "0.0427%"
+      },
+      {
+        "programme_name": "全民开麦",
+        "channel_name": "CCTV-15",
+        "market_rate": 0.4915,
+        "market_rate_desc": "0.4915%",
+        "attention_rate": 0.039,
+        "attention_rate_desc": "0.039%"
+      },
+      {
+        "programme_name": "下午剧场:仁心俱乐部10",
+        "channel_name": "东南卫视",
+        "market_rate": 0.4858,
+        "market_rate_desc": "0.4858%",
+        "attention_rate": 0.0385,
+        "attention_rate_desc": "0.0385%"
+      },
+      {
+        "programme_name": "生活服务",
+        "channel_name": "江西卫视",
+        "market_rate": 0.4113,
+        "market_rate_desc": "0.4113%",
+        "attention_rate": 0.0326,
+        "attention_rate_desc": "0.0326%"
+      },
+      {
+        "programme_name": "白天剧场:神医喜来乐25",
+        "channel_name": "宁夏卫视",
+        "market_rate": 0.4044,
+        "market_rate_desc": "0.4044%",
+        "attention_rate": 0.032,
+        "attention_rate_desc": "0.032%"
+      },
+      {
+        "programme_name": "传奇剧场:铁血玫瑰15",
+        "channel_name": "黑龙江卫视",
+        "market_rate": 0.4031,
+        "market_rate_desc": "0.4031%",
+        "attention_rate": 0.032,
+        "attention_rate_desc": "0.032%"
+      },
+      {
+        "programme_name": "经典剧场:亮剑30",
+        "channel_name": "广西卫视",
+        "market_rate": 0.3836,
+        "market_rate_desc": "0.3836%",
+        "attention_rate": 0.0304,
+        "attention_rate_desc": "0.0304%"
+      },
+      {
+        "programme_name": "中国网球公开赛-女单-第二轮",
+        "channel_name": "CCTV-16",
+        "market_rate": 0.3539,
+        "market_rate_desc": "0.3539%",
+        "attention_rate": 0.0281,
+        "attention_rate_desc": "0.0281%"
+      },
+      {
+        "programme_name": "生活服务",
+        "channel_name": "河南卫视",
+        "market_rate": 0.3413,
+        "market_rate_desc": "0.3413%",
+        "attention_rate": 0.0271,
+        "attention_rate_desc": "0.0271%"
+      },
+      {
+        "programme_name": "生活服务",
+        "channel_name": "辽宁卫视",
+        "market_rate": 0.3318,
+        "market_rate_desc": "0.3318%",
+        "attention_rate": 0.0263,
+        "attention_rate_desc": "0.0263%"
+      },
+      {
+        "programme_name": "传奇剧场:狼烟21",
+        "channel_name": "内蒙古卫视",
+        "market_rate": 0.3262,
+        "market_rate_desc": "0.3262%",
+        "attention_rate": 0.0258,
+        "attention_rate_desc": "0.0258%"
+      },
+      {
+        "programme_name": "炫酷剧场:薛平贵与王宝钏19",
+        "channel_name": "云南卫视",
+        "market_rate": 0.3079,
+        "market_rate_desc": "0.3079%",
+        "attention_rate": 0.0244,
+        "attention_rate_desc": "0.0244%"
+      },
+      {
+        "programme_name": "休闲剧场:历史转折中的邓小平17",
+        "channel_name": "兵团卫视",
+        "market_rate": 0.3035,
+        "market_rate_desc": "0.3035%",
+        "attention_rate": 0.0241,
+        "attention_rate_desc": "0.0241%"
+      },
+      {
+        "programme_name": "亮剑12",
+        "channel_name": "重庆卫视",
+        "market_rate": 0.2656,
+        "market_rate_desc": "0.2656%",
+        "attention_rate": 0.0211,
+        "attention_rate_desc": "0.0211%"
+      },
+      {
+        "programme_name": "阳光剧场:飞哥大英雄39",
+        "channel_name": "海南卫视",
+        "market_rate": 0.2643,
+        "market_rate_desc": "0.2643%",
+        "attention_rate": 0.021,
+        "attention_rate_desc": "0.021%"
+      },
+      {
+        "programme_name": "劫中劫15-17",
+        "channel_name": "厦门卫视",
+        "market_rate": 0.246,
+        "market_rate_desc": "0.246%",
+        "attention_rate": 0.0195,
+        "attention_rate_desc": "0.0195%"
+      },
+      {
+        "programme_name": "生活服务",
+        "channel_name": "甘肃卫视",
+        "market_rate": 0.2448,
+        "market_rate_desc": "0.2448%",
+        "attention_rate": 0.0194,
+        "attention_rate_desc": "0.0194%"
+      },
+      {
+        "programme_name": "花季剧场:神枪7",
+        "channel_name": "中国教育台-1",
+        "market_rate": 0.1703,
+        "market_rate_desc": "0.1703%",
+        "attention_rate": 0.0135,
+        "attention_rate_desc": "0.0135%"
+      },
+      {
+        "programme_name": "雪莲剧场:南来北往21",
+        "channel_name": "西藏卫视",
+        "market_rate": 0.1634,
+        "market_rate_desc": "0.1634%",
+        "attention_rate": 0.013,
+        "attention_rate_desc": "0.013%"
+      },
+      {
+        "programme_name": "生活服务",
+        "channel_name": "山西卫视",
+        "market_rate": 0.1438,
+        "market_rate_desc": "0.1438%",
+        "attention_rate": 0.0114,
+        "attention_rate_desc": "0.0114%"
+      },
+      {
+        "programme_name": "生活服务",
+        "channel_name": "新疆卫视",
+        "market_rate": 0.0656,
+        "market_rate_desc": "0.0656%",
+        "attention_rate": 0.0052,
+        "attention_rate_desc": "0.0052%"
+      }
+    ]
+  }
+}
