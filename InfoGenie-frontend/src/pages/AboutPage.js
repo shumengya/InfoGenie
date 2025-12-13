@@ -34,7 +34,7 @@ const PageHeader = styled.div`
 
 const PageTitle = styled.h1`
   color: white;
-  font-size: 44.8px;
+  font-size: 40px;
   font-weight: 700;
   margin-bottom: 10px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -224,7 +224,7 @@ const AboutPage = () => {
         <PageHeader>
           <PageTitle>关于我们</PageTitle>
           <PageDescription>
-            <strong>了解万象口袋的更多信息和功能特色(,,・ω・,,)</strong>
+            <strong style={{ color: '#ffffff' }}>了解万象口袋的更多信息和功能特色(,,・ω・,,)</strong>
           </PageDescription>
         </PageHeader>
 
@@ -251,7 +251,6 @@ const AboutPage = () => {
               </LinkIcon>
               <LinkContent>
                 <LinkTitle>Web端在线体验</LinkTitle>
-                <LinkUrl>https://infogenie.shumengya.top</LinkUrl>
               </LinkContent>
             </LinkCard>
 
@@ -261,7 +260,6 @@ const AboutPage = () => {
               </LinkIcon>
               <LinkContent>
                 <LinkTitle>最新版下载地址</LinkTitle>
-                <LinkUrl>https://work.shumengya.top/#/work/InfoGenie</LinkUrl>
               </LinkContent>
             </LinkCard>
           </LinksSection>

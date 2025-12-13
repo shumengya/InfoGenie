@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>🖩网页计算器</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main id="app" class="calculator">
+    <header class="topbar">
+      <div class="brand">🖩网页计算器</div>
+    </header>
+
+    <section class="display">
+      <div class="expression" :title="expression">{{ formattedExpression }}</div>
+      <div class="result" :class="{ error: !!errorMsg }">{{ errorMsg || formattedResult }}</div>
+    </section>
+
+    <section class="keypad">
+      <button @click="press('(')">(</button>
+      <button @click="press(')')">)</button>
+      <button @click="func('sqrt')">√</button>
+      <button @click="clear()">AC</button>
+
+      <button @click="func('sin')">sin</button>
+      <button @click="func('cos')">cos</button>
+      <button @click="func('tan')">tan</button>
+      <button @click="backspace()">⌫</button>
+
+      <button @click="press('7')">7</button>
+      <button @click="press('8')">8</button>
+      <button @click="press('9')">9</button>
+      <button @click="op('÷')">÷</button>
+
+      <button @click="press('4')">4</button>
+      <button @click="press('5')">5</button>
+      <button @click="press('6')">6</button>
+      <button @click="op('×')">×</button>
+
+      <button @click="press('1')">1</button>
+      <button @click="press('2')">2</button>
+      <button @click="press('3')">3</button>
+      <button @click="op('-')">-</button>
+
+      <button @click="press('0')">0</button>
+      <button @click="press('.')">.</button>
+      <button @click="square()">x²</button>
+      <button @click="op('+')">+</button>
+
+      <button class="span-2" @click="ans()">ANS</button>
+      <button class="span-2 action" @click="equals()">=</button>
+    </section>
+
+  </main>
+
+  <!-- Frameworks -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjs@11/dist/math.min.js"></script>
+  <!-- App -->
+  <script src="./app.js"></script>
+</body>
+</html>

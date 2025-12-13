@@ -70,6 +70,8 @@ def validate_password(password):
     """验证密码格式（6-20位）"""
     return 6 <= len(password) <= 20
 
+
+#==========================对外暴露的HTTP接口==========================
 #发送验证码邮件
 @auth_bp.route('/send-verification', methods=['POST'])
 def send_verification():
@@ -450,3 +452,4 @@ def check_login():
             'success': False,
             'message': f'服务器错误: {str(e)}'
         }), 500
+#==========================对外暴露的HTTP接口==========================

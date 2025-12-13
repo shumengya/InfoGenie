@@ -1,0 +1,176 @@
+/* 全局与主题 */
+:root {
+  --bg-1: #eaf9e8;      /* 淡绿色 */
+  --bg-2: #f4ffd9;      /* 淡黄绿色 */
+  --panel: rgba(255, 255, 255, 0.78);
+  --text: #1d2a1d;
+  --muted: #486a48;
+  --accent: #5bb271;
+  --accent-2: #93d18f;
+  --border: rgba(93, 160, 93, 0.25);
+  --code-bg: rgba(255, 255, 255, 0.88);
+  --error: #b00020;
+  --warn: #8a6d3b;
+  --info: #2f6f3a;
+}
+
+/* 隐藏滚动条但保留滚动 */
+html, body {
+  height: 100%;
+  overflow: auto;
+  -ms-overflow-style: none;  /* IE 10+ */
+  scrollbar-width: none;     /* Firefox */
+}
+html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; }
+
+/* 背景与排版 */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, var(--bg-1), var(--bg-2));
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.page {
+  box-sizing: border-box;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top, 12px) + 8px) 14px calc(env(safe-area-inset-bottom, 12px) + 14px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.title {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+}
+.subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.editor-section, .output-section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 10px 20px rgba(64, 129, 64, 0.06);
+  backdrop-filter: saturate(1.2) blur(8px);
+  padding: 12px;
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.editor {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 36vh;
+  max-height: 48vh;
+  resize: vertical;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  outline: none;
+  background: var(--code-bg);
+  color: #192519;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.editor::-webkit-scrollbar { width: 0; height: 0; }
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.btn {
+  -webkit-tap-highlight-color: transparent;
+  appearance: none;
+  border: 1px solid var(--border);
+  background: #ffffffd6;
+  color: #204220;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.02) saturate(1.02); }
+.btn:active { transform: translateY(1px); }
+.btn.primary {
+  background: linear-gradient(180deg, var(--accent-2), var(--accent));
+  color: #fff;
+  border-color: rgba(0,0,0,0.06);
+}
+.btn.ghost {
+  background: transparent;
+}
+
+.output-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.output {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 28vh;
+  max-height: 40vh;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--code-bg);
+  color: #192519;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.output::-webkit-scrollbar { width: 0; height: 0; }
+
+.sandbox { display: none; width: 0; height: 0; border: 0; }
+
+/* 控制不同日志级别颜色 */
+.line.log { color: #1f2a1f; }
+.line.info { color: var(--info); }
+.line.warn { color: var(--warn); }
+.line.error { color: var(--error); }
+.line.tip { color: #507a58; font-style: italic; }
+
+/* 竖屏优化 */
+@media (orientation: portrait) {
+  .page { max-width: 640px; }
+  .editor { min-height: 40vh; }
+  .output { min-height: 30vh; }
+}
+
+/* 小屏进一步优化 */
+@media (max-width: 380px) {
+  .btn { padding: 9px 12px; font-size: 13px; }
+  .title { font-size: 20px; }
+}

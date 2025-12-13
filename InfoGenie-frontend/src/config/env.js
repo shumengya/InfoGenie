@@ -1,11 +1,26 @@
 // 环境配置文件
 // 统一管理所有环境变量配置
 
+// 获取环境变量中的 API URL，如果为空则使用当前域名
+const getApiUrl = () => {
+  // 优先使用环境变量
+  const envApiUrl = process.env.REACT_APP_API_URL;
+  
+  // 如果环境变量存在且不为空，使用环境变量
+  if (envApiUrl && envApiUrl.trim() !== '') {
+    return envApiUrl;
+  }
+  
+  // 否则使用当前域名（Docker 环境）
+  return window.location.origin;
+};
+
 // 统一环境配置
 const config = {
-  //API_URL: 'https://infogenie.api.shumengya.top',
-  API_URL: 'http://127.0.0.1:5002',  // 确保本地开发环境正常工作
-  DEBUG: true,
+  API_URL: getApiUrl(), // Docker 环境: 使用当前域名，开发环境可通过 .env 配置
+  //API_URL: 'http://127.0.0.1:5002',  // 本地开发环境（在 .env.development 中配置）
+  //API_URL: 'https://infogenie.api.shumengya.top',  // 原生产环境（在 .env.production 中配置）
+  DEBUG: process.env.REACT_APP_DEBUG === 'true',
   LOG_LEVEL: 'debug'
 };
 

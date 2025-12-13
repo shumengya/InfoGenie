@@ -22,6 +22,8 @@
         <div class="game-container">
             <div class="game-message" id="game-message">
                 <p></p>
+                <!-- 排行榜容器：游戏结束后动态填充 -->
+                <div id="leaderboard" class="leaderboard" aria-live="polite"></div>
                 <div class="lower">
                     <a class="retry-button" id="retry-btn">重新开始</a>
                 </div>
@@ -64,6 +66,7 @@
     
 
     
+    <script src="gamedata.js"></script>
     <script src="game-logic.js"></script>
     <script src="controls.js"></script>
 </body>

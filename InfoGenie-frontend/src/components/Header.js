@@ -197,7 +197,13 @@ const MobileMenuContent = styled.div.withConfig({
   right: 0;
   width: 280px;
   height: 100vh;
-  background: white;
+  background: linear-gradient(135deg, 
+    rgba(255, 240, 245, 0.95) 0%,   /* 淡粉红色 */
+    rgba(255, 253, 240, 0.95) 35%,  /* 淡黄色 */
+    rgba(240, 255, 240, 0.95) 70%,  /* 淡绿色 */
+    rgba(248, 250, 252, 0.95) 100%  /* 接近白色 */
+  );
+  backdrop-filter: blur(10px);
   transform: translateX(${props => props.isOpen ? '0' : '100%'});
   transition: transform 0.3s ease;
   padding: 20px;

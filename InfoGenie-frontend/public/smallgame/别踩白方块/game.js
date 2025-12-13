@@ -84,6 +84,8 @@ function gameOver(){
     // 显示最终得分和达到的最高速度
     document.getElementById('final-score-value').innerHTML = myScore;
     document.getElementById('final-speed-value').innerHTML = gameSpeed.toFixed(1);
+    // 渲染排行榜
+    renderLeaderboard();
     
     // 显示游戏结束弹窗
     document.getElementById('game-over-modal').style.display = 'flex';
@@ -249,6 +251,78 @@ function handleClick(e) {
     var y = e.clientY - rect.top;
     
     checkHit(x, y);
+}
+ 
+// ===== 排行榜逻辑 =====
+function formatDateYYYYMMDD() {
+    var d = new Date();
+    var y = d.getFullYear();
+    var m = String(d.getMonth() + 1).padStart(2, '0');
+    var day = String(d.getDate()).padStart(2, '0');
+    return y + '-' + m + '-' + day;
+}
+
+function escapeHtml(str) {
+    if (typeof str !== 'string') return str;
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function renderLeaderboard(){
+    var nowStr = formatDateYYYYMMDD();
+    // 当前玩家数据（模拟）
+    var me = {
+        "名称": "我",
+        "账号": "guest",
+        "分数": myScore,
+        "时间": nowStr,
+        "__isMe": true
+    };
+
+    // 合并现有数据与当前玩家
+    var data = (typeof playerdata !== 'undefined' && Array.isArray(playerdata))
+        ? playerdata.slice() : [];
+    data.push(me);
+
+    // 按分数降序排序
+    data.sort(function(a, b){
+        return (b["分数"] || 0) - (a["分数"] || 0);
+    });
+
+    var tbody = document.getElementById('leaderboard-body');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    var myRank = -1;
+    for (var i = 0; i < data.length; i++){
+        var row = data[i];
+        var tr = document.createElement('tr');
+        if (row.__isMe){
+            myRank = i + 1;
+            tr.className = 'leaderboard-row-me';
+        }
+
+        tr.innerHTML =
+            '<td>' + (i + 1) + '</td>' +
+            '<td>' + escapeHtml(row["名称"] || '') + '</td>' +
+            '<td>' + (row["分数"] || 0) + '</td>' +
+            '<td>' + escapeHtml(row["时间"] || '') + '</td>';
+
+        // 只展示前10名
+        if (i < 10) tbody.appendChild(tr);
+    }
+
+    // 更新我的数据摘要
+    var rankEl = document.getElementById('my-rank');
+    var scoreEl = document.getElementById('my-score');
+    var timeEl = document.getElementById('my-time');
+    if (rankEl) rankEl.textContent = myRank > 0 ? myRank : '-';
+    if (scoreEl) scoreEl.textContent = myScore;
+    if (timeEl) timeEl.textContent = nowStr;
 }
 
 // 处理触摸事件

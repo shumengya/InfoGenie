@@ -1,0 +1,262 @@
+<!DOCTYPE html><html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>做决定转盘</title>
+  <style>
+    :root{
+      --bg1:#e9f7e9; /* 淡绿 */
+      --bg2:#f7f9e3; /* 淡黄绿 */
+      --card:#ffffffcc;
+      --text:#1b3a2a;
+      --muted:#3a6b4a;
+      --accent:#6ccf6e;
+      --accent-2:#f1f7cf;
+      --shadow:0 10px 30px rgba(43,96,73,.12);
+      --radius:18px;
+    }
+    html,body{height:100%;}
+    body{
+      margin:0; font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Inter, 'Helvetica Neue', Arial, 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', "Microsoft YaHei", sans-serif;
+      color:var(--text);
+      background: linear-gradient(160deg, var(--bg1), var(--bg2));
+      display:flex; align-items:center; justify-content:center;
+    }
+    .app{ width:min(720px,100%); padding:14px; }
+    .title{ text-align:center; margin:6px 0 12px; font-weight:800; letter-spacing:.5px; }
+    .badge{ font-size:12px; background: var(--accent-2); padding: 4px 8px; border-radius:999px; }/* 单列移动端优先 */
+.grid{ display:grid; gap:12px; grid-template-columns: 1fr; }
+
+.card{ background:var(--card); backdrop-filter: blur(6px); border-radius:var(--radius); box-shadow:var(--shadow); padding:14px; }
+
+/* 轮盘区域 */
+.wheel-wrap{ display:grid; place-items:center; padding:8px 0 2px; }
+.wheel{ width:min(92vw, 440px); height:min(92vw, 440px); max-width:480px; max-height:480px; position:relative; }
+canvas{ width:100%; height:100%; display:block; }
+.pointer{ position:absolute; left:50%; top:-8px; transform:translateX(-50%); width:0; height:0; border-left:12px solid transparent; border-right:12px solid transparent; border-bottom:18px solid var(--accent); filter: drop-shadow(0 2px 3px rgba(0,0,0,.15)); }
+
+/* 行为区：大按钮，便于拇指操作 */
+.actions{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
+button{ width:100%; box-sizing:border-box; border-radius:14px; border:1px solid #d8ebd8; padding: 12px 14px; min-height:48px; font-size:16px; outline:none; background:#ffffffdd; }
+button:active{ transform: translateY(1px); }
+button.primary{ background: linear-gradient(180deg, #bff0c4, #98e09d); border:none; color:#0f3b23; font-weight:800; letter-spacing:.3px; box-shadow:0 8px 18px rgba(88,167,110,.25); }
+
+.result{ text-align:center; font-weight:800; font-size:20px; margin:10px 0 4px; }
+.hint{ text-align:center; font-size:12px; color:#2f6a45; opacity:.85; }
+
+/* 选项编辑：折叠，默认收起，减少滚动 */
+details.options{ margin-top:8px; }
+details.options[open]{ background:#ffffffb8; border-radius:14px; padding:8px; }
+details.options > summary{ list-style:none; cursor:pointer; padding:10px 12px; border-radius:12px; background:#ffffff; border:1px solid #d8ebd8; font-weight:700; }
+details.options > summary::-webkit-details-marker { display:none; }
+
+.mini{ font-size:12px; opacity:.9; margin:6px 2px; }
+.controls{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; align-items:end; margin-top:6px; }
+label{ font-size:13px; opacity:.9; }
+input[type="number"], input[type="text"]{ width:100%; box-sizing:border-box; border-radius:12px; border:1px solid #d8ebd8; padding:12px 12px; font-size:16px; background:#ffffffdd; }
+.opt-row{ display:grid; grid-template-columns: 1fr 44px; gap:8px; }
+.opt-list{ display:grid; gap:8px; max-height: 38vh; overflow:auto; padding-right:4px; }
+
+.row{ display:flex; gap:8px; align-items:center; }
+
+@media (min-width: 900px){
+  /* 桌面端给一点并排，但默认单列 */
+  .grid{ grid-template-columns: 1fr 1fr; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h2 class="title">做决定转盘 </h2><div class="grid">
+  <!-- 先展示转盘，便于手机端操作 -->
+  <div class="card">
+    <div class="wheel-wrap">
+      <div class="wheel">
+        <div class="pointer" aria-hidden="true"></div>
+        <canvas id="wheel" width="600" height="600" aria-label="做决定转盘画布"></canvas>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="decide" class="primary" type="button">🎲 做决定</button>
+      <button id="saveImg" type="button">🖼️ 保存为图片</button>
+    </div>
+    <div class="result" id="result"></div>
+    <div class="hint">提示：点击“做决定”抽取后，可“保存结果为图片”分享到聊天/相册。</div>
+  </div>
+
+  <!-- 配置/编辑选项（折叠） -->
+  <div class="card" aria-label="配置面板">
+    <details class="options">
+      <summary>✏️ 编辑选项（点我展开/收起）</summary>
+      <div class="controls">
+        <div>
+          <label for="count">选项数量</label>
+          <input id="count" type="number" min="2" max="24" value="4" />
+        </div>
+        <div>
+          <label>&nbsp;</label>
+          <button id="fillDemo" type="button">填入示例</button>
+        </div>
+      </div>
+      <div class="mini">每行一个选项（会自动同步到转盘）</div>
+      <div id="optList" class="opt-list" role="list"></div>
+    </details>
+  </div>
+</div>
+
+  </div>  <script>
+    // --------- 元素引用 ---------
+    const optListEl = document.getElementById('optList');
+    const countEl = document.getElementById('count');
+    const canvas = document.getElementById('wheel');
+    const ctx = canvas.getContext('2d');
+    const decideBtn = document.getElementById('decide');
+    const resultEl = document.getElementById('result');
+    const saveBtn = document.getElementById('saveImg');
+
+    // --------- 配色（固定柔和绿黄，无“柔和配色”按钮） ---------
+    function softPalette(n){
+      const bases = ['#dff6d7','#e8fad6','#f3fed5','#e6f7c9','#d8f3c9','#ccf1c6','#f2f9dd','#e0f7e7','#e8f9e4','#f6ffe1','#e9f7e9','#f7f9e3'];
+      const colors=[]; for(let i=0;i<n;i++){ if(i<bases.length) colors.push(bases[i]); else { const h = 90 + (i*11)%40; const s = 50 + (i*3)%16; const l = 80 - (i*2)%12; colors.push(`hsl(${h} ${s}% ${l}%)`);} }
+      return colors;
+    }
+    let colors = softPalette(24);
+
+    // --------- 选项编辑 ---------
+    function createInputRow(idx, value=''){
+      const wrap = document.createElement('div'); wrap.className='opt-row'; wrap.setAttribute('role','listitem');
+      const input = document.createElement('input'); input.type='text'; input.placeholder=`选项 ${idx+1}`; input.value=value; input.addEventListener('input', drawWheel);
+      const del = document.createElement('button'); del.type='button'; del.textContent='✕'; del.addEventListener('click', ()=>{ wrap.remove(); countEl.value = Math.max(2, optListEl.querySelectorAll('input').length); drawWheel(); });
+      wrap.appendChild(input); wrap.appendChild(del); return wrap;
+    }
+
+    function syncCount(){
+      let target = parseInt(countEl.value||'2',10); target = Math.min(24, Math.max(2, target)); countEl.value = target;
+      const current = optListEl.querySelectorAll('input').length;
+      if(target>current){ for(let i=current;i<target;i++) optListEl.appendChild(createInputRow(i)); }
+      else if(target<current){ for(let i=current;i>target;i--) optListEl.lastElementChild?.remove(); }
+      drawWheel();
+    }
+    countEl.addEventListener('change', syncCount);
+
+    document.getElementById('fillDemo').addEventListener('click', ()=>{
+      const demo=['吃饭','睡觉','学习','打游戏','看电影','散步'];
+      countEl.value = demo.length; syncCount();
+      [...optListEl.querySelectorAll('input')].forEach((el,i)=> el.value = demo[i]||'');
+      drawWheel();
+    });
+
+    function getOptions(){
+      return [...optListEl.querySelectorAll('input')].map(i=>i.value.trim()).filter(Boolean);
+    }
+
+    // --------- 绘制与渲染 ---------
+    let rotation = 0; // 当前弧度
+    let lastChoice = null; // 上次结果
+
+    function renderWheel(drawCtx, w, h, opts, rot, palette){
+      const n = Math.max(2, opts.length);
+      const cx = w/2, cy = h/2; const r = Math.min(w,h)/2 - 8;
+      drawCtx.clearRect(0,0,w,h);
+      const slice = Math.PI*2 / n;
+      for(let i=0;i<n;i++){
+        const start = rot + i*slice - Math.PI/2; const end = start + slice;
+        drawCtx.beginPath(); drawCtx.moveTo(cx,cy); drawCtx.arc(cx,cy,r,start,end); drawCtx.closePath();
+        drawCtx.fillStyle = palette[i%palette.length]; drawCtx.fill();
+        drawCtx.strokeStyle = '#cfead5'; drawCtx.lineWidth=2; drawCtx.stroke();
+        // 文本
+        const mid=(start+end)/2; drawCtx.save();
+        drawCtx.translate(cx + Math.cos(mid)*(r*0.7), cy + Math.sin(mid)*(r*0.7));
+        drawCtx.rotate(mid + Math.PI/2); drawCtx.fillStyle = '#1b3a2a';
+        drawCtx.font='600 22px system-ui, -apple-system, Segoe UI, Roboto';
+        drawCtx.textAlign='center'; drawCtx.textBaseline='middle';
+        const label = opts[i % opts.length] || `选项${i+1}`;
+        shrinkTextToWidth(drawCtx,label,r*0.95);
+        drawCtx.fillText(label,0,0); drawCtx.restore();
+      }
+      // 中心圆
+      drawCtx.beginPath(); drawCtx.arc(cx,cy, r*0.14, 0, Math.PI*2); drawCtx.fillStyle='#ffffffee'; drawCtx.fill();
+      drawCtx.strokeStyle='#bfe7c8'; drawCtx.lineWidth=3; drawCtx.stroke();
+    }
+
+    function drawWheel(){
+      const opts = getOptions();
+      renderWheel(ctx, canvas.width, canvas.height, opts, rotation, colors);
+    }
+
+    function shrinkTextToWidth(c, text, maxWidth){
+      let size=22; while(size>12){ c.font=`600 ${size}px system-ui, -apple-system, Segoe UI, Roboto`; if(c.measureText(text).width<=maxWidth) return; size--; }
+    }
+
+    // --------- 动画与随机选择 ---------
+    let spinning=false;
+    function spinToIndex(index){
+      const opts = getOptions();
+      const n = Math.max(2, opts.length);
+      const slice = Math.PI*2 / n;
+      const desired = - (index*slice + slice/2);
+      let delta = desired - rotation; delta = ((delta % (Math.PI*2)) + Math.PI*2) % (Math.PI*2);
+      const extraTurns = 5 + Math.floor(Math.random()*3); // 5~7 圈
+      const finalRotation = rotation + delta + extraTurns*Math.PI*2;
+
+      animateRotation(rotation, finalRotation, 1600 + Math.random()*700, ()=>{
+        rotation = ((finalRotation % (Math.PI*2)) + Math.PI*2) % (Math.PI*2); // 归一
+        drawWheel();
+        lastChoice = opts[index];
+        resultEl.textContent = `结果：${lastChoice}`;
+        spinning=false;
+      });
+    }
+
+    function easeOutCubic(t){ return 1 - Math.pow(1-t,3); }
+    function animateRotation(from, to, duration, done){
+      const start = performance.now(); spinning=true; resultEl.textContent='';
+      function frame(now){ const t=Math.min(1,(now-start)/duration); const eased=easeOutCubic(t); rotation=from+(to-from)*eased; drawWheel(); if(t<1) requestAnimationFrame(frame); else done(); }
+      requestAnimationFrame(frame);
+    }
+
+    decideBtn.addEventListener('click', ()=>{
+      if(spinning) return;
+      const opts = getOptions(); if(opts.length<2){ alert('请至少输入两个选项'); return; }
+      const index = Math.floor(Math.random()*opts.length); spinToIndex(index);
+    });
+
+    // --------- 保存结果为图片 ---------
+    function roundRect(c, x,y,w,h,r){
+      const rr=Math.min(r, w/2, h/2); c.beginPath();
+      c.moveTo(x+rr,y); c.arcTo(x+w,y,x+w,y+h,rr); c.arcTo(x+w,y+h,x,y+h,rr); c.arcTo(x,y+h,x,y,rr); c.arcTo(x,y,x+w,y,rr); c.closePath();
+    }
+
+    function saveImage(){
+      const opts = getOptions();
+      if(!lastChoice){ alert('请先点击“做决定”抽取结果'); return; }
+      const size = 1024; const off=document.createElement('canvas'); off.width=size; off.height=size; const octx=off.getContext('2d');
+      // 背景
+      const g=octx.createLinearGradient(0,0,size,size); g.addColorStop(0,'#e9f7e9'); g.addColorStop(1,'#f7f9e3'); octx.fillStyle=g; octx.fillRect(0,0,size,size);
+      // 轮盘
+      renderWheel(octx, size, size, opts, rotation, colors);
+      // 指针
+      const triH=size*0.05, triW=size*0.09; octx.fillStyle='#6ccf6e'; octx.beginPath(); octx.moveTo(size/2, size*0.02); octx.lineTo(size/2 - triW/2, size*0.02 + triH); octx.lineTo(size/2 + triW/2, size*0.02 + triH); octx.closePath(); octx.fill();
+      // 结果胶囊
+      const text=`结果：${lastChoice}`; octx.font='800 52px system-ui, -apple-system, Segoe UI, Roboto'; octx.textBaseline='middle'; octx.textAlign='center';
+      const padX=34, padY=22; const tw=octx.measureText(text).width; const boxW=tw+padX*2; const boxH=92;
+      const bx=(size-boxW)/2, by=size*0.82; octx.fillStyle='#ffffffee'; roundRect(octx,bx,by,boxW,boxH,24); octx.fill();
+      octx.lineWidth=3; octx.strokeStyle='#cfead5'; octx.stroke();
+      octx.fillStyle='#1b3a2a'; octx.fillText(text, size/2, by+boxH/2);
+      // 下载
+      const a=document.createElement('a'); a.href=off.toDataURL('image/png'); a.download=`转盘结果_${Date.now()}.png`; document.body.appendChild(a); a.click(); a.remove();
+    }
+
+    saveBtn.addEventListener('click', saveImage);
+
+    // --------- 初始化 ---------
+    (function init(){
+      const demo=['吃饭','睡觉','学习','打游戏','敲代码'];
+      countEl.value=demo.length; syncCount();
+      [...optListEl.querySelectorAll('input')].forEach((el,i)=> el.value=demo[i]||'');
+      drawWheel();
+      window.addEventListener('resize', drawWheel);
+    })();
+  </script></body>
+</html>

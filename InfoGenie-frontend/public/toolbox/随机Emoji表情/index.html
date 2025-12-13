@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>随机Emoji表情</title>
+  <meta name="description" content="清新风格随机Emoji表情包展示，支持复制与刷新，移动端与电脑端自适应。" />
+  <style>
+    :root {
+      --bg-start: #eaf9e9;
+      --bg-end: #f4ffe5;
+      --panel-bg: rgba(255,255,255,0.60);
+      --panel-bd: rgba(255,255,255,0.85);
+      --accent: #79c86b;
+      --text: #253525;
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      background-attachment: fixed;
+      /* 隐藏滚动条但保留滚动功能 */
+      overflow-x: hidden;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+    }
+    /* 隐藏 Webkit 浏览器的滚动条 */
+    body::-webkit-scrollbar {
+      display: none;
+    }
+    html {
+      /* 隐藏滚动条但保留滚动功能 */
+      overflow-x: hidden;
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+    }
+    html::-webkit-scrollbar {
+      display: none;
+    }
+    .wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+    .panel {
+      width: min(92vw, 1100px);
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-bd);
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      backdrop-filter: saturate(1.1) blur(2px);
+      padding: 1rem 1rem 1.25rem;
+    }
+    .header { display:flex; justify-content:space-between; align-items:baseline; gap:.75rem; margin-bottom:.75rem; }
+    .title { font-weight:600; font-size: clamp(1.1rem, 2.6vw, 1.6rem); letter-spacing:.3px; }
+    .hint { font-size: clamp(.85rem, 2vw, 1rem); color:#4a6f4a; opacity:.9; }
+
+    table { width: 100%; table-layout: fixed; border-collapse: collapse; border-spacing: 0; overflow: hidden; border-radius: 12px; background: rgba(255,255,255,0.38); }
+    tbody { width: 100%; }
+    td {
+      border: 1px solid rgba(255,255,255,0.75);
+      text-align: center; vertical-align: middle; user-select: none; cursor: pointer;
+      background: rgba(255,255,255,0.50);
+      transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+      font-size: var(--cell-font);
+      height: var(--cell-size);
+      line-height: 1;
+    }
+    td:hover { background: rgba(255,255,255,0.80); transform: scale(1.06); box-shadow: inset 0 0 0 2px rgba(121,200,107,0.18); }
+
+    .controls { display:flex; justify-content:center; align-items:center; gap:.8rem; margin-top:1rem; }
+    .refresh { border:none; padding:.6rem 1.15rem; border-radius:999px; font-weight:600; letter-spacing:.3px; color:#1f351f; background: linear-gradient(180deg, #c9f6c9, #c9f2a8); box-shadow: 0 6px 14px rgba(121,200,107,0.28), inset 0 1px 0 rgba(255,255,255,0.85); transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease; }
+    .refresh:hover { transform: translateY(-1px); filter: saturate(1.06); }
+    .refresh:active { transform: translateY(0); box-shadow: 0 4px 12px rgba(121,200,107,0.28); }
+
+    .toast {
+      position: fixed; left:50%; bottom: 24px; transform: translateX(-50%) translateY(80px);
+      background: rgba(255,255,255,0.95); color:#1f351f; border:1px solid rgba(255,255,255,0.95);
+      border-radius: 10px; box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+      padding: .5rem .85rem; font-weight:600; opacity:0; pointer-events:none; transition: opacity 160ms ease, transform 160ms ease;
+    }
+    .toast.show { opacity:1; transform: translateX(-50%) translateY(0); }
+
+    /* 基础尺寸，JS 会根据 10×10 或 20×20 自动适配 */
+    :root { --cell-size: 48px; --cell-font: 28px; }
+    @media (max-width: 768px) and (orientation: portrait) {
+      :root { --cell-size: clamp(40px, 7.2vw, 58px); --cell-font: clamp(22px, 5.8vw, 32px); }
+    }
+    @media (min-width: 769px) {
+      :root { --cell-size: clamp(44px, 3.6vw, 58px); --cell-font: clamp(22px, 2.2vw, 32px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="panel">
+      <div class="header">
+        <div class="title">随机 Emoji 表情</div>
+        <div class="hint">点击任意 Emoji 复制</div>
+      </div>
+      <table id="emoji-table" aria-label="随机 Emoji 表格"><tbody id="emoji-body"></tbody></table>
+      <div class="controls"><button class="refresh" id="refresh-btn">刷新</button></div>
+    </div>
+  </div>
+  <div class="toast" id="toast">已复制！</div>
+
+<script>
+  // 随机生成 Emoji（从常用的 Unicode 区间中抽取）
+  function randomEmoji() {
+    const ranges = [
+      [0x1F600, 0x1F64F], // Emoticons
+      [0x1F300, 0x1F5FF], // Misc Symbols and Pictographs
+      [0x1F680, 0x1F6FF], // Transport & Map
+      [0x2600, 0x26FF],   // Misc symbols
+      [0x2700, 0x27BF],   // Dingbats
+      [0x1F900, 0x1F9FF], // Supplemental Symbols and Pictographs
+      [0x1FA70, 0x1FAFF]  // Symbols & Pictographs Extended-A
+    ];
+    const [start, end] = ranges[Math.floor(Math.random() * ranges.length)];
+    const code = start + Math.floor(Math.random() * (end - start + 1));
+    return String.fromCodePoint(code);
+  }
+
+  const tableBody = document.getElementById('emoji-body');
+  const refreshBtn = document.getElementById('refresh-btn');
+  const toastEl = document.getElementById('toast');
+
+  function isPortraitMobile() {
+    return window.matchMedia('(max-width: 768px) and (orientation: portrait)').matches;
+  }
+  function getGridSize() { return isPortraitMobile() ? 10 : 20; }
+
+  function showToast(text) {
+    toastEl.textContent = text;
+    toastEl.classList.add('show');
+    clearTimeout(showToast._timer);
+    showToast._timer = setTimeout(() => toastEl.classList.remove('show'), 1200);
+  }
+
+  async function copyToClipboard(text) {
+    try { await navigator.clipboard.writeText(text); }
+    catch (e) {
+      const t = document.createElement('textarea'); t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove();
+    }
+    showToast(`已复制: ${text}`);
+  }
+
+  function generateTable() {
+    const size = getGridSize();
+    tableBody.innerHTML = '';
+    for (let r = 0; r < size; r++) {
+      const tr = document.createElement('tr');
+      for (let c = 0; c < size; c++) {
+        const td = document.createElement('td');
+        const e = randomEmoji();
+        td.textContent = e; td.title = '点击复制';
+        td.addEventListener('click', () => copyToClipboard(e));
+        tr.appendChild(td);
+      }
+      tableBody.appendChild(tr);
+    }
+  }
+
+  refreshBtn.addEventListener('click', generateTable);
+  window.addEventListener('resize', () => {
+    const newSize = getGridSize();
+    if (tableBody.children.length !== newSize) generateTable();
+  });
+
+  generateTable();
+</script>
+</body>
+</html>

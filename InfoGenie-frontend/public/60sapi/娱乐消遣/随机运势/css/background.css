@@ -1,8 +1,8 @@
 body {
-    background: linear-gradient(-45deg, #0a021a, #2a0d3f, #4a1a6c, #7b2f8f);
+    background: linear-gradient(-45deg, #f1f8e9, #e8f5e8, #c8e6c9, #dcedc8);
     background-size: 400% 400%;
     animation: gradientBG 20s ease infinite;
-    color: #ffffff;
+    color: #2e7d32;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;

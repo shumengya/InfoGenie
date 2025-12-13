@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
-import { FiExternalLink, FiArrowLeft } from 'react-icons/fi';
+
 import { API_60S_CATEGORIES } from '../config/StaticPageConfig';
 
 
@@ -37,7 +38,7 @@ const Header = styled.div`
 
 const Title = styled.h1`
   color: white;
-  font-size: 32px;
+  font-size: 40px;
   font-weight: 700;
   margin-bottom: 10px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -104,7 +105,7 @@ const CategoryDescription = styled.p`
   font-size: 17px;
   margin: 0 0 20px 0;
   line-height: 1.4;
-  font-weight: 400;
+  font-weight: 700;
   text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 `;
 
@@ -257,17 +258,23 @@ const CardIcon = styled.div`
 `;
 
 const CardTitle = styled.h3`
-  font-size: 15px;
+  font-size: calc(15px * 1.05);
   font-weight: 600;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
   color: #2e7d32;
   margin: 0;
   flex: 1;
   line-height: 1.3;
   text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
   transition: all 0.2s ease;
+
+  /* 强化加粗在中文上的可见度 */
+  strong {
+    font-weight: 800;
+  }
   
   @media (max-width: 768px) {
-    font-size: 14px;
+    font-size: calc(14px * 1.05);
   }
   
   ${ApiCard}:hover & {
@@ -297,68 +304,220 @@ const ExternalIcon = styled.div`
 
 
 
-const EmbeddedContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-`;
+// 独立全屏嵌套网页组件
+const FullscreenEmbeddedPage = ({ api, onClose }) => {
+  useEffect(() => {
+    // 禁用页面滚动
+    document.body.style.overflow = 'hidden';
+    
+    // 键盘事件监听
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    
+    document.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      // 恢复页面滚动
+      document.body.style.overflow = 'auto';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
 
-const EmbeddedContent = styled.div`
-  background: white;
-  border-radius: 0;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  box-shadow: none;
-`;
+  const fullscreenStyles = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: '#ffffff',
+    zIndex: 999999,
+    display: 'flex',
+    flexDirection: 'column',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    margin: 0,
+    padding: 0,
+    boxSizing: 'border-box',
+    // 重置所有可能的继承样式
+    fontSize: '16px',
+    lineHeight: '1.5',
+    color: '#333',
+    textAlign: 'left',
+    textDecoration: 'none',
+    textTransform: 'none',
+    letterSpacing: 'normal',
+    wordSpacing: 'normal',
+    textShadow: 'none',
+    boxShadow: 'none',
+    border: 'none',
+    borderRadius: 0,
+    outline: 'none',
+    transform: 'none',
+    transition: 'none',
+    animation: 'none',
+    filter: 'none',
+    backdropFilter: 'none',
+    opacity: 1,
+    visibility: 'visible',
+    overflow: 'hidden'
+  };
 
-const EmbeddedHeader = styled.div`
-  background: linear-gradient(135deg, #4caf50, #66bb6a);
-  color: white;
-  padding: 15px 20px;
-  padding-top: max(15px, env(safe-area-inset-top));
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  z-index: 1001;
-`;
+  const headerStyles = {
+     backgroundColor: '#81C784',
+     color: '#ffffff',
+    padding: '12px 20px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+    flexShrink: 0,
+    minHeight: '56px',
+    boxSizing: 'border-box',
+    margin: 0,
+    border: 'none',
+    borderRadius: 0,
+    fontSize: '16px',
+    fontWeight: 'normal',
+    textAlign: 'left',
+    textDecoration: 'none',
+    textTransform: 'none',
+    letterSpacing: 'normal',
+    wordSpacing: 'normal',
+    textShadow: 'none',
+    transform: 'none',
+    transition: 'none',
+    animation: 'none',
+    filter: 'none',
+    backdropFilter: 'none',
+    opacity: 1,
+    visibility: 'visible',
+    overflow: 'visible'
+  };
 
-const BackButton = styled.button`
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.3);
-  }
-`;
+  const titleStyles = {
+    fontSize: '18px',
+    fontWeight: '500',
+    margin: 0,
+    padding: 0,
+    color: '#ffffff',
+    textAlign: 'left',
+    textDecoration: 'none',
+    textTransform: 'none',
+    letterSpacing: 'normal',
+    wordSpacing: 'normal',
+    textShadow: 'none',
+    boxShadow: 'none',
+    border: 'none',
+    borderRadius: 0,
+    outline: 'none',
+    transform: 'none',
+    transition: 'none',
+    animation: 'none',
+    filter: 'none',
+    backdropFilter: 'none',
+    opacity: 1,
+    visibility: 'visible',
+    overflow: 'visible',
+    boxSizing: 'border-box'
+  };
 
-const EmbeddedFrame = styled.iframe`
-  width: 100%;
-  height: calc(100% - 60px);
-  border: none;
-  background: white;
-  position: relative;
-  z-index: 1000;
-`;
+  const backButtonStyles = {
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    color: '#ffffff',
+    border: 'none',
+    padding: '8px 16px',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+    fontSize: '14px',
+    fontWeight: '500',
+    transition: 'background-color 0.2s ease',
+    margin: 0,
+    textAlign: 'center',
+    textDecoration: 'none',
+    textTransform: 'none',
+    letterSpacing: 'normal',
+    wordSpacing: 'normal',
+    textShadow: 'none',
+    boxShadow: 'none',
+    outline: 'none',
+    transform: 'none',
+    animation: 'none',
+    filter: 'none',
+    backdropFilter: 'none',
+    opacity: 1,
+    visibility: 'visible',
+    overflow: 'visible',
+    boxSizing: 'border-box'
+  };
+
+  const iframeStyles = {
+    width: '100%',
+    height: 'calc(100vh - 56px)',
+    border: 'none',
+    backgroundColor: '#ffffff',
+    flexGrow: 1,
+    margin: 0,
+    padding: 0,
+    boxSizing: 'border-box',
+    fontSize: '16px',
+    lineHeight: '1.5',
+    color: '#333',
+    textAlign: 'left',
+    textDecoration: 'none',
+    textTransform: 'none',
+    letterSpacing: 'normal',
+    wordSpacing: 'normal',
+    textShadow: 'none',
+    boxShadow: 'none',
+    borderRadius: 0,
+    outline: 'none',
+    transform: 'none',
+    transition: 'none',
+    animation: 'none',
+    filter: 'none',
+    backdropFilter: 'none',
+    opacity: 1,
+    visibility: 'visible',
+    overflow: 'hidden'
+  };
+
+  const handleBackButtonHover = (e) => {
+    e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.25)';
+  };
+
+  const handleBackButtonLeave = (e) => {
+    e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+  };
+
+  return (
+    <div style={fullscreenStyles}>
+      <div style={headerStyles}>
+        <h1 style={titleStyles}>{api.title}</h1>
+        <button
+          style={backButtonStyles}
+          onClick={onClose}
+          onMouseEnter={handleBackButtonHover}
+          onMouseLeave={handleBackButtonLeave}
+        >
+          返回
+        </button>
+      </div>
+      <iframe
+        src={api.link}
+        title={api.title}
+        style={iframeStyles}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        loading="lazy"
+      />
+    </div>
+  );
+};
 //================css样式================
 
 const Api60sPage = () => {
@@ -367,16 +526,7 @@ const Api60sPage = () => {
   const [loading, setLoading] = useState(true);
   const [embeddedApi, setEmbeddedApi] = useState(null);
 
-  // 获取分类描述文字
-  const getCategoryDescription = (categoryTitle) => {
-    const descriptions = {
-      '热搜榜单': '实时追踪各大平台热门话题，掌握最新网络动态和流行趋势',
-      '日更资讯': '每日精选优质内容，提供最新资讯和实用信息',
-      '实用功能': '集成多种便民工具，让生活和工作更加便捷高效',
-      '娱乐消遣': '轻松有趣的娱乐内容，为您的闲暇时光增添乐趣'
-    };
-    return descriptions[categoryTitle] || '';
-  };
+
 
   // 从配置文件获取60s API数据
   const scanApiModules = async () => {
@@ -437,7 +587,7 @@ const Api60sPage = () => {
         <Header>
           <Title>聚合应用</Title>
             <Subtitle>
-              <strong>提供各大社交平台最新的实时数据，让您摆脱平台大数据算法的干扰，走出信息茧房，涵盖热搜榜单、日更资讯、实用工具和娱乐消遣四大板块(˘•ω•˘)</strong>
+              <strong style={{ color: '#ffffff' }}>提供各大社交平台最新的实时数据，让您摆脱平台大数据算法的干扰，走出信息茧房，涵盖热搜榜单、日更资讯、实用工具和娱乐消遣四大板块(˘•ω•˘)</strong>
             </Subtitle>
         </Header>
 
@@ -456,7 +606,7 @@ const Api60sPage = () => {
                 {category.title}
               </CategoryTitle>
               <CategoryDescription>
-                {getCategoryDescription(category.title)}
+                {category.description}
               </CategoryDescription>
               <CategoryGrid>
                 {category.apis.map((api, apiIndex) => (
@@ -469,10 +619,8 @@ const Api60sPage = () => {
                       <CardIcon color={category.color}>
                         {api.icon || category.icon}
                       </CardIcon>
-                      <CardTitle>{api.title}</CardTitle>
-                      <ExternalIcon>
-                        <FiExternalLink />
-                      </ExternalIcon>
+                      <CardTitle><strong>{api.title}</strong></CardTitle>
+
                     </CardHeader>
                   </ApiCard>
                 ))}
@@ -482,23 +630,13 @@ const Api60sPage = () => {
         )}
       </Container>
       
-      {/* 内嵌显示组件 */}
-      {embeddedApi && (
-        <EmbeddedContainer onClick={closeEmbedded}>
-          <EmbeddedContent onClick={(e) => e.stopPropagation()}>
-            <EmbeddedHeader>
-              <h3>{embeddedApi.title}</h3>
-              <BackButton onClick={closeEmbedded}>
-                <FiArrowLeft />
-                返回
-              </BackButton>
-            </EmbeddedHeader>
-            <EmbeddedFrame
-              src={embeddedApi.link}
-              title={embeddedApi.title}
-            />
-          </EmbeddedContent>
-        </EmbeddedContainer>
+      {/* 使用Portal渲染独立的全屏嵌套网页 */}
+      {embeddedApi && createPortal(
+        <FullscreenEmbeddedPage 
+          api={embeddedApi} 
+          onClose={closeEmbedded} 
+        />,
+        document.body
       )}
     </Api60sContainer>
   );

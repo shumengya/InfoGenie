@@ -12,6 +12,7 @@ const ProfileContainer = styled.div`
   opacity: 0;
   transform: translateY(20px);
   animation: pageEnter 0.8s ease-out forwards;
+  position: relative;
   
   @keyframes pageEnter {
     0% {
@@ -38,7 +39,7 @@ const PageHeader = styled.div`
 
 const PageTitle = styled.h1`
   color: white;
-  font-size: 44.8px;
+  font-size: 40px;
   font-weight: 700;
   margin-bottom: 10px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -283,14 +284,22 @@ const SuccessMessage = styled.div`
 `;
 
 const LoginPrompt = styled.div`
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
+  background: white;
+  border-radius: 0;
   padding: 60px 40px;
   text-align: center;
-  box-shadow: 0 8px 32px rgba(168, 230, 207, 0.3);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(168, 230, 207, 0.2);
-  margin-bottom: 40px;
+  box-shadow: none;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const LoginIcon = styled.div`
@@ -436,14 +445,8 @@ const UserProfilePage = () => {
   if (!isLoggedIn) {
     return (
       <ProfileContainer>
-        <Container>
-          <PageHeader>
-            <PageTitle>个人中心</PageTitle>
-            <PageDescription>
-              <strong>管理您的个人信息、查看萌芽币余额和签到记录(,,・ω・,,)</strong>
-            </PageDescription>
-          </PageHeader>
-          <LoginPrompt>
+        <LoginPrompt>
+          <div>
             <LoginIcon>🔒</LoginIcon>
             <LoginTitle>需要登录才能访问Σ(°ロ°)</LoginTitle>
             <LoginText>
@@ -455,8 +458,8 @@ const UserProfilePage = () => {
               <FiUser />
               立即登录
             </LoginButton>
-          </LoginPrompt>
-        </Container>
+          </div>
+        </LoginPrompt>
       </ProfileContainer>
     );
   }
@@ -494,10 +497,12 @@ const UserProfilePage = () => {
   return (
     <ProfileContainer>
       <Container>
-        <PageHeader>
-          <PageTitle>个人中心</PageTitle>
-          <PageDescription>管理您的个人信息、查看萌芽币余额和签到记录</PageDescription>
-        </PageHeader>
+          <PageHeader>
+            <PageTitle>个人中心</PageTitle>
+            <PageDescription>
+              <strong style={{ color: '#ffffff' }}>管理您的个人信息、查看萌芽币余额和签到记录(,,・ω・,,)</strong>
+            </PageDescription>
+          </PageHeader>
         <ProfileHeader>
           <Avatar>
             {qqAvatarUrl && !avatarError ? (
@@ -528,7 +533,7 @@ const UserProfilePage = () => {
               <FiTrendingUp />
             </StatIcon>
             <StatValue>{gameData?.experience || 0}</StatValue>
-            <StatLabel>经验值 ({expProgress}%)</StatLabel>
+            <StatLabel>经验值</StatLabel>
           </StatCard>
 
           <StatCard>
@@ -544,7 +549,7 @@ const UserProfilePage = () => {
               <FiCalendar />
             </StatIcon>
             <StatValue>{consecutiveDays}</StatValue>
-            <StatLabel>连续签到天数</StatLabel>
+            <StatLabel>签到天数</StatLabel>
           </StatCard>
         </StatsGrid>
 
@@ -560,20 +565,6 @@ const UserProfilePage = () => {
           >
             {checkinLoading ? '签到中...' : isCheckedInToday ? '今日已签到' : '立即签到'}
           </CheckinButton>
-
-          <CheckinInfo>
-            <CheckinText>
-              签到奖励：300 萌芽币 + 200 经验
-            </CheckinText>
-            <CheckinText>
-              升级公式：100 × 1.2^(等级)
-            </CheckinText>
-            {consecutiveDays > 0 && (
-              <CheckinText>
-                当前连续签到：{consecutiveDays} 天
-              </CheckinText>
-            )}
-          </CheckinInfo>
 
           {checkinMessage && (
             checkinSuccess ? (

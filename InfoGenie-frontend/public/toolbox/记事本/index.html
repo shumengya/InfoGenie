@@ -1,0 +1,260 @@
+<!doctype html>
+
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>记事本</title>
+  <style>
+    :root{
+      /* 柔和淡绿—黄绿色系 */
+      --g1:#effae6;  /* very light green */
+      --g2:#e7f7dc;  /* pale spring green */
+      --g3:#f3f9e1;  /* pale yellow-green */
+      --ink:#1b3a2a; /* 深绿色文字 */
+      --muted:#2e5a43a8;
+      --accent:#bfe7b8; /* 轻微按钮底色 */
+      --accent-press:#a9d7a2;
+      --ring:#9fd79a88;
+    }html,body{
+  height:100%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "PingFang SC", "Noto Sans CJK SC", "Hiragino Sans GB", "Microsoft YaHei", Helvetica, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 800px at 10% -10%, var(--g1), transparent 70%),
+    radial-gradient(1000px 700px at 100% 20%, var(--g2), transparent 60%),
+    linear-gradient(135deg, var(--g2), var(--g3));
+  min-height: 100svh;
+  min-height: 100dvh;
+  display:flex; flex-direction:column;
+}
+
+.app{ display:flex; flex-direction:column; min-height:100vh; min-height:100svh; min-height:100dvh; }
+
+.toolbar{
+  position:sticky; top:0; z-index:10;
+  display:flex; gap:.5rem; align-items:center; justify-content:flex-end;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 12px max(12px, env(safe-area-inset-left));
+  background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.25));
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #00000010;
+}
+
+.btn{
+  -webkit-tap-highlight-color: transparent;
+  appearance:none; border:none; cursor:pointer;
+  padding: .6rem .9rem; border-radius: 14px;
+  background: var(--accent);
+  color: var(--ink); font-weight: 600; letter-spacing:.2px;
+  box-shadow: 0 1px 0 #00000010, inset 0 0 0 1px #00000010;
+  transition: transform .05s ease, background-color .15s ease, box-shadow .15s ease;
+}
+.btn:active{ transform: translateY(1px); background: var(--accent-press); }
+.btn:focus-visible{ outline: none; box-shadow: 0 0 0 3px var(--ring); }
+
+.main{
+  /* 使编辑区纵向充满可视区 */
+  flex: 1 1 auto;
+  display:grid;
+  grid-template-rows: 1fr;
+  padding: 0 max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+}
+
+/* 编辑器外壳 */
+.editor{
+  align-self: stretch; justify-self: stretch;
+  width: 100%;
+  background: rgba(255,255,255,.55);
+  border-radius: 18px;
+  box-shadow: 0 10px 30px #00000010, inset 0 0 0 1px #00000010;
+  display:grid;
+  grid-template-columns: 1fr;
+  overflow: visible; /* 因为 textarea 自适应高度，整体由页面滚动 */
+}
+
+/* 行号栏 */
+.gutter{
+  --digits: 2; /* 通过 JS 动态更新 */
+  padding: 14px 10px 14px 14px;
+  min-width: calc(var(--digits) * 0.75ch + 22px);
+  text-align: right;
+  user-select: none;
+  color: var(--muted);
+  background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.35));
+  border-top-left-radius: 18px; border-bottom-left-radius: 18px;
+  border-right: 1px dashed #0000001a;
+  font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  white-space: pre-wrap;
+}
+
+/* 记事本文本域 */
+.pad{
+  display:block; resize:none;
+  padding: 14px 14px 14px 12px; /* 左侧稍小以贴近行号 */
+  margin:0; border:none; outline:none; background: transparent;
+  width: 100%; height: auto; min-height: 40vh; /* 初始高度，随后由 JS 自适应 */
+  font: 15px/1.6 ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  color: var(--ink);
+  caret-color: #2c7a4b;
+  tab-size: 2; /* 在移动端保持更短缩进 */
+}
+.pad::placeholder{ color:#2e5a4377; }
+.pad:focus-visible{ outline:none; }
+
+/* 复制成功提示 */
+.toast{
+  position: fixed; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom)); transform: translateX(-50%) translateY(20px);
+  background: rgba(46, 90, 67, .95);
+  color: white; padding: 10px 14px; border-radius: 12px; font-size: 14px;
+  box-shadow: 0 8px 24px #00000030;
+  opacity: 0; pointer-events:none;
+  transition: opacity .25s ease, transform .25s ease;
+}
+.toast.show{ opacity: 1; transform: translateX(-50%) translateY(0); }
+
+html::-webkit-scrollbar, body::-webkit-scrollbar{ width: 0; height: 0; }
+/* 小屏优化 */
+@media (max-width: 700px){
+  .toolbar{ justify-content: space-between; }
+  .btn{ padding:.55rem .8rem; border-radius:12px; }
+  .gutter{ font-size: 13px; }
+  .pad{ font-size: 15px; line-height: 1.7; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="app" role="application" aria-label="淡绿记事本">
+    <div class="toolbar" aria-label="工具栏">
+      <div style="margin-right:auto;font-weight:700;letter-spacing:.3px;opacity:.8">📝记事本</div>
+      <button id="copyBtn" class="btn" type="button" aria-label="一键复制">复制</button>
+      <button id="clearBtn" class="btn" type="button" aria-label="一键清空">清空</button>
+      <button id="exportBtn" class="btn" type="button" aria-label="导出为TXT">下载</button>
+    </div><main class="main">
+  <section class="editor" aria-label="编辑器">
+
+    <textarea id="pad" class="pad" spellcheck="false" placeholder="在这里开始记笔记"></textarea>
+  </section>
+</main>
+
+  </div>  <div id="toast" class="toast" role="status" aria-live="polite">已复制到剪贴板</div>  <script>
+    (function(){
+      const pad = document.getElementById('pad');
+      const clearBtn = document.getElementById('clearBtn');
+      const copyBtn = document.getElementById('copyBtn');
+      const exportBtn = document.getElementById('exportBtn');
+      const toast = document.getElementById('toast');
+
+      // 自动增高：根据内容调整 textarea 高度
+      function autoResize(){
+        pad.style.height = 'auto';
+        // 在移动端加上一点冗余，避免光标被遮挡
+        const extra = 8; 
+        pad.style.height = (pad.scrollHeight + extra) + 'px';
+      }
+
+      // 更新行号（以换行符为准，不计算软换行）
+      function updateLineNumbers(){
+        const lines = pad.value.split('\n').length || 1;
+        // 生成 "1\n2\n3..." 的字符串
+        let nums = '';
+        // 使用较快的构造方式避免频繁拼接开销
+        const arr = new Array(lines);
+        for (let i=0;i<lines;i++){ arr[i] = String(i+1); }
+        nums = arr.join('\n');
+        gutter.textContent = nums;
+        // 动态调整行号栏宽度（按位数估算）
+        const digits = String(lines).length;
+        gutter.style.setProperty('--digits', Math.max(2, digits));
+      }
+
+      function refresh(){
+        autoResize();
+      }
+
+      // 一键清空（确认）
+      clearBtn.addEventListener('click', () => {
+        const ok = confirm('确认要清空全部内容吗？');
+        if(!ok) return;
+        pad.value = '';
+        refresh();
+        pad.focus();
+      });
+
+      // 一键复制
+      copyBtn.addEventListener('click', async () => {
+        try{
+          await navigator.clipboard.writeText(pad.value);
+          showToast('已复制到剪贴板');
+        }catch(err){
+          // 兼容旧环境的回退方案
+          const sel = document.getSelection();
+          const range = document.createRange();
+          range.selectNodeContents(pad);
+          sel.removeAllRanges(); sel.addRange(range);
+          const ok = document.execCommand('copy');
+          sel.removeAllRanges();
+          showToast(ok ? '已复制到剪贴板' : '复制失败');
+        }
+      });
+
+      // 导出为TXT
+      function exportText(){
+        try{
+          const text = pad.value || '';
+          const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          const now = new Date();
+          const two = n => String(n).padStart(2, '0');
+          const filename = `笔记_${now.getFullYear()}${two(now.getMonth()+1)}${two(now.getDate())}_${two(now.getHours())}${two(now.getMinutes())}${two(now.getSeconds())}.txt`;
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          showToast('已导出 TXT 文件');
+        }catch(err){
+          showToast('导出失败');
+          console.error(err);
+        }
+      }
+      exportBtn.addEventListener('click', exportText);
+
+      // 提示小气泡
+      let toastTimer;
+      function showToast(text){
+        toast.textContent = text;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(()=> toast.classList.remove('show'), 1600);
+      }
+
+      // 输入时联动
+      pad.addEventListener('input', refresh);
+      // 初次渲染
+      window.addEventListener('DOMContentLoaded', ()=>{
+        refresh();
+        // 让首次点击更丝滑
+        pad.focus({preventScroll:true});
+        // iOS 软键盘适配：避免工具栏挡住
+        window.scrollTo(0,0);
+      });
+
+      // 处理粘贴等突变
+      pad.addEventListener('paste', ()=> setTimeout(refresh, 0));
+
+      // 可选：窗口尺寸变化时保持高度合理
+      window.addEventListener('resize', () => {
+        // 仅在可见时更新，避免布局抖动
+        requestAnimationFrame(refresh);
+      });
+    })();
+  </script></body>
+</html>

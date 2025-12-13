@@ -855,6 +855,56 @@ def linux_command_generator():
     except Exception as e:
         return jsonify({'error': f'Linux命令生成失败: {str(e)}'}), 500
 
+#AI文章排版（Markdown格式化）接口
+@aimodelapp_bp.route('/markdown_formatting', methods=['POST'])
+@verify_user_coins
+def markdown_formatting():
+    """AI文章排版（Markdown格式化）接口"""
+    try:
+        data = request.get_json()
+        article_text = data.get('article_text', '').strip()
+        emoji_style = data.get('emoji_style', 'balanced').strip()
+        markdown_option = data.get('markdown_option', 'standard').strip()
+        
+        if not article_text:
+            return jsonify({'error': '文章内容不能为空'}), 400
+        
+        # 构建Markdown排版的提示词
+        prompt = f"""你是一位专业的文档排版助手。请将用户提供的全文按“标准Markdown格式”进行排版，并在不改变任何原文内容的前提下进行结构化呈现。严格遵守以下规则：
+
+1) 保留所有原始内容，严禁改写、删减或添加新内容。
+2) 使用合理的Markdown结构（标题、分节、段落、列表、引用、表格如有必要、代码块仅当原文包含）。
+3) 智能添加适量Emoji以增强可读性（{emoji_style}），在标题、关键句、列表项等处点缀；避免过度使用，保持专业。
+4) 保持语言与语气不变，只优化排版和表现形式。
+5) 输出“纯Markdown文本”，不要包含任何JSON、HTML、XML、解释文字、或代码块围栏标记（例如不要在最外层使用```）。
+
+如果原文本较长，可在开头自动生成简洁的“目录”以便阅读。
+
+原文如下：
+{article_text}
+"""
+        
+        messages = [{"role": "user", "content": prompt}]
+        
+        # 使用DeepSeek进行排版生成
+        content, error = call_deepseek_api(messages)
+        
+        if error:
+            return jsonify({'error': error}), 500
+        
+        # 返回AI生成的Markdown文本
+        return jsonify({
+            'success': True,
+            'formatted_markdown': content,
+            'source_text': article_text,
+            'emoji_style': emoji_style,
+            'markdown_option': markdown_option,
+            'timestamp': datetime.now().isoformat()
+        })
+        
+    except Exception as e:
+        return jsonify({'error': f'文章排版失败: {str(e)}'}), 500
+
 #获取用户萌芽币余额
 @aimodelapp_bp.route('/coins', methods=['GET'])
 def get_user_coins():
@@ -952,3 +1002,86 @@ def get_available_models():
         
     except Exception as e:
         return jsonify({'error': f'获取模型列表失败: {str(e)}'}), 500
+
+#中国亲戚称呼计算器接口（普通话版 + 方言）
+@aimodelapp_bp.route('/kinship-calculator', methods=['POST'])
+@verify_user_coins
+def kinship_calculator():
+    """中国亲戚称呼计算器接口"""
+    try:
+        data = request.get_json() or {}
+        relation_chain = (data.get('relation_chain') or '').strip()
+        dialects = data.get('dialects')  # 可选，指定方言列表
+
+        if not relation_chain:
+            return jsonify({'error': '亲属关系链不能为空'}), 400
+
+        # 组装提示词：要求严格JSON输出
+        requested_dialects = dialects if isinstance(dialects, list) and dialects else [
+            '粤语', '闽南语', '上海话', '四川话', '东北话', '客家话'
+        ]
+
+        prompt = f"""你是一位中国亲属称呼专家。请解析下面的亲属关系链，给出最终的亲属称呼。
+输入的关系链会用“的”连接，如“妈妈的爸爸”“爸爸的姐姐的儿子”。
+
+请遵循：
+1) 以中国大陆通行的标准普通话称呼为准，给出最常用、规范的最终称呼。
+2) 同时给出若干方言的对应称呼：{', '.join(requested_dialects)}。
+3) 如存在地区差异或性别歧义，请在notes中说明，但最终给出一个最常用称呼。
+4) 不要展示推理过程；只输出JSON。
+
+严格按以下JSON结构输出：
+{{
+  "mandarin_title": "标准普通话称呼",
+  "dialect_titles": {{
+    "粤语": {{"title": "称呼", "romanization": "粤拼或发音", "notes": "可选说明"}},
+    "闽南语": {{"title": "称呼", "romanization": "白话字或发音", "notes": "可选说明"}},
+    "上海话": {{"title": "称呼", "romanization": "拟音或IPA", "notes": "可选说明"}},
+    "四川话": {{"title": "称呼", "romanization": "拟音或IPA", "notes": "可选说明"}},
+    "东北话": {{"title": "称呼", "romanization": "拟音或IPA", "notes": "可选说明"}},
+    "客家话": {{"title": "称呼", "romanization": "客家话拟音", "notes": "可选说明"}}
+  }},
+  "notes": "总体说明（如地区差异、辈分方向、父系/母系等提示）"
+}}
+
+关系链：
+{relation_chain}
+"""
+
+        messages = [{"role": "user", "content": prompt}]
+        content, error = call_deepseek_api(messages)
+
+        if error:
+            return jsonify({'error': error}), 500
+
+        # 解析AI返回的JSON
+        try:
+            result = json.loads(content)
+        except json.JSONDecodeError:
+            import re
+            m = re.search(r'\{[\s\S]*\}', content)
+            if not m:
+                return jsonify({'error': 'AI返回的数据中未找到有效JSON'}), 500
+            try:
+                result = json.loads(m.group())
+            except Exception:
+                return jsonify({'error': 'AI返回的JSON格式无法解析'}), 500
+
+        mandarin_title = result.get('mandarin_title')
+        dialect_titles = result.get('dialect_titles', {})
+        notes = result.get('notes', '')
+
+        if not mandarin_title:
+            return jsonify({'error': '未获得标准普通话称呼'}), 500
+
+        return jsonify({
+            'success': True,
+            'relation_chain': relation_chain,
+            'mandarin_title': mandarin_title,
+            'dialect_titles': dialect_titles,
+            'notes': notes,
+            'timestamp': datetime.now().isoformat()
+        })
+
+    except Exception as e:
+        return jsonify({'error': f'亲戚称呼计算失败: {str(e)}'}), 500

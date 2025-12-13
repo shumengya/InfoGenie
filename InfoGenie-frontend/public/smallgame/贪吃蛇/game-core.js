@@ -35,6 +35,114 @@ class SnakeGame {
         
         this.init();
     }
+
+    // 根据分数计算权重（权重越高，越容易触发且数量偏大）
+    calculateWeightByScore(score) {
+        const w = score / 100; // 1000分趋近高权重
+        return Math.max(0.1, Math.min(0.95, w));
+    }
+
+    // 权重偏向的随机整数，weight越大越偏向更大值
+    biasedRandomInt(maxInclusive, weight) {
+        const r = Math.random();
+        const biased = Math.pow(r, 1 - weight);
+        const val = Math.floor(biased * (maxInclusive + 1));
+        return Math.max(0, Math.min(maxInclusive, val));
+    }
+
+    // 在排行榜弹层追加结束信息
+    appendEndInfo(text, type = 'info') {
+        const summary = document.getElementById('leaderboardSummary');
+        if (!summary) return;
+        const info = document.createElement('div');
+        info.style.marginTop = '8px';
+        info.style.fontSize = '14px';
+        info.style.color = type === 'error' ? '#d9534f' : (type === 'success' ? '#28a745' : '#333');
+        info.textContent = text;
+        summary.appendChild(info);
+    }
+
+    // 游戏结束后尝试加“萌芽币”
+    async tryAwardCoinsOnGameOver() {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                this.appendEndInfo('未登录，无法获得萌芽币');
+                return;
+            }
+
+            let email = null;
+            try {
+                const userStr = localStorage.getItem('user');
+                if (userStr) {
+                    const userObj = JSON.parse(userStr);
+                    email = userObj && (userObj.email || userObj['邮箱']);
+                }
+            } catch (_) {}
+
+            if (!email) {
+                this.appendEndInfo('未找到账户信息（email），无法加币', 'error');
+                return;
+            }
+
+            const weight = this.calculateWeightByScore(this.score);
+            let coins = 0;
+            let guaranteed = false;
+
+            // 得分大于400必定触发获得1-5个萌芽币
+            if (this.score > 5) {
+                guaranteed = true;
+                coins = Math.floor(Math.random() * 5) + 1; // 1~5
+            } else {
+                // 使用权重作为概率
+                const roll = Math.random();
+                if (roll > weight) {
+                    this.appendEndInfo('本局未获得萌芽币');
+                    return;
+                }
+                // 生成0~10随机数量（权重越高越偏向更大）
+                coins = this.biasedRandomInt(10, weight);
+                coins = Math.max(0, Math.min(10, coins));
+                if (coins <= 0) {
+                    this.appendEndInfo('本局未获得萌芽币');
+                    return;
+                }
+            }
+
+            // 后端 API base（优先父窗口ENV_CONFIG）
+            const apiBase = (window.parent && window.parent.ENV_CONFIG && window.parent.ENV_CONFIG.API_URL)
+                ? window.parent.ENV_CONFIG.API_URL
+                : ((window.ENV_CONFIG && window.ENV_CONFIG.API_URL) ? window.ENV_CONFIG.API_URL : 'http://127.0.0.1:5002');
+
+            const resp = await fetch(`${apiBase}/api/user/add-coins`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ email, amount: coins })
+            });
+
+            if (!resp.ok) {
+                const err = await resp.json().catch(() => ({}));
+                const msg = err && (err.message || err.error) ? (err.message || err.error) : `请求失败(${resp.status})`;
+                this.appendEndInfo(`加币失败：${msg}`, 'error');
+                return;
+            }
+
+            const data = await resp.json();
+            if (data && data.success) {
+                const newCoins = data.data && data.data.new_coins;
+                this.appendEndInfo(`恭喜获得 ${coins} 个萌芽币！当前余额：${newCoins}`, 'success');
+            } else {
+                const msg = (data && (data.message || data.error)) || '未知错误';
+                this.appendEndInfo(`加币失败：${msg}`, 'error');
+            }
+        } catch (e) {
+            console.error('加币流程发生错误:', e);
+            this.appendEndInfo('加币失败：网络或系统错误', 'error');
+        }
+    }
     
     init() {
         this.generateFood();
@@ -310,10 +418,94 @@ class SnakeGame {
         this.dy = dy;
     }
     
+    // 工具：格式化日期为 YYYY-MM-DD
+    formatDate(date = new Date()) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
+    
     showGameOver() {
-        // 游戏结束时只记录最终状态，不显示弹窗
+        // 构建并展示排行榜弹层
         const gameTime = Math.floor((Date.now() - this.startTime) / 1000);
-        console.log(`游戏结束! 分数: ${this.score}, 长度: ${this.snake.length}, 等级: ${this.level}, 时间: ${gameTime}秒`);
+        const overlay = document.getElementById('leaderboardOverlay');
+        const listEl = document.getElementById('leaderboardList');
+        const lbScore = document.getElementById('lbScore');
+        const lbLength = document.getElementById('lbLength');
+        const lbLevel = document.getElementById('lbLevel');
+        const lbGameTime = document.getElementById('lbGameTime');
+        const lbRank = document.getElementById('lbRank');
+        
+        if (!overlay || !listEl) {
+            console.warn('排行榜容器不存在');
+            return;
+        }
+        
+        // 汇总当前玩家数据
+        lbScore.textContent = this.score;
+        lbLength.textContent = this.snake.length;
+        lbLevel.textContent = this.level;
+        lbGameTime.textContent = `${gameTime}秒`;
+        
+        const currentEntry = {
+            "名称": localStorage.getItem('snakePlayerName') || '我',
+            "账号": localStorage.getItem('snakePlayerAccount') || 'guest@local',
+            "分数": this.score,
+            "时间": this.formatDate(new Date()),
+            __isCurrent: true,
+            __duration: gameTime
+        };
+        
+        // 合并并排序数据（使用 gamedata.js 中的 playerdata）
+        const baseData = (typeof playerdata !== 'undefined' && Array.isArray(playerdata)) ? playerdata : [];
+        const merged = [...baseData, currentEntry];
+        merged.sort((a, b) => (b["分数"] || 0) - (a["分数"] || 0));
+        const playerIndex = merged.findIndex(e => e.__isCurrent);
+        lbRank.textContent = playerIndex >= 0 ? `#${playerIndex + 1}` : '—';
+        
+        // 生成排行榜（TOP 10）
+        const topList = merged.slice(0, 10).map((entry, idx) => {
+            const isCurrent = !!entry.__isCurrent;
+            const name = entry["名称"] ?? '未知玩家';
+            const score = entry["分数"] ?? 0;
+            const dateStr = entry["时间"] ?? '';
+            const timeStr = isCurrent ? `时长:${entry.__duration}秒` : `时间:${dateStr}`;
+            return `
+                <div class="leaderboard-item ${isCurrent ? 'current-player' : ''}">
+                    <span class="rank">#${idx + 1}</span>
+                    <span class="player-name">${name}</span>
+                    <span class="player-score">${score}分</span>
+                    <span class="player-time">${timeStr}</span>
+                </div>
+            `;
+        }).join('');
+        listEl.innerHTML = topList;
+        
+        overlay.style.display = 'flex';
+        // 结束时尝试加币（异步，不阻塞UI）
+        this.tryAwardCoinsOnGameOver();
+        
+        // 触发游戏结束事件（供统计模块使用）
+        const gameOverEvent = new CustomEvent('gameOver', {
+            detail: {
+                score: this.score,
+                length: this.snake.length,
+                level: this.level,
+                gameTime: gameTime,
+                foodEaten: this.foodEaten
+            }
+        });
+        document.dispatchEvent(gameOverEvent);
+        
+        // 绑定重新开始按钮
+        const restartBtn = document.getElementById('leaderboardRestartBtn');
+        if (restartBtn) {
+            restartBtn.onclick = () => {
+                overlay.style.display = 'none';
+                this.restart();
+            };
+        }
     }
     
 
@@ -333,6 +525,10 @@ class SnakeGame {
         this.startTime = Date.now();
         this.foodEaten = 0;
         this.specialFood = null;
+        
+        // 隐藏排行榜弹层（若可见）
+        const overlay = document.getElementById('leaderboardOverlay');
+        if (overlay) overlay.style.display = 'none';
         
         this.generateFood();
         this.updateUI();

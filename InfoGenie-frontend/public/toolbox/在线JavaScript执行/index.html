@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#e8f8e4" />
+  <meta name="color-scheme" content="light" />
+  <title>JavaScript在线执行器</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="page" role="main">
+    <header class="header">
+      <h1 class="title">JavaScript在线执行器</h1>
+    </header>
+
+    <section class="editor-section">
+      <label class="label" for="code">代码编辑区</label>
+      <textarea id="code" class="editor" placeholder="在此编写或粘贴 JavaScript 代码… \n 例如：\n console.log('Hello, InfoGenie!');" spellcheck="false" autocomplete="off" autocapitalize="off" autocorrect="off"></textarea>
+      <div class="toolbar" role="group" aria-label="编辑操作">
+        <button id="pasteBtn" class="btn" type="button" title="从剪贴板粘贴">粘贴代码</button>
+        <button id="copyBtn" class="btn" type="button" title="复制到剪贴板">复制代码</button>
+        <button id="runBtn" class="btn primary" type="button" title="执行当前代码">执行代码</button>
+      </div>
+    </section>
+
+    <section class="output-section">
+      <div class="output-header">
+        <span class="label">结果显示区</span>
+        <button id="clearBtn" class="btn ghost" type="button" title="清空结果">清空结果</button>
+      </div>
+      <pre id="output" class="output" aria-live="polite" aria-atomic="false"></pre>
+    </section>
+
+    <!-- 隐藏的沙箱 iframe，用于安全执行 JS 代码 -->
+    <iframe id="sandbox" class="sandbox" sandbox="allow-scripts" title="执行沙箱" aria-hidden="true"></iframe>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>📘真理之道</title>
+  <meta name="description" content="当你踌躇不定，犹豫不决时，不妨来这里看看吧。" />
+
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>📘真理之道</h1>
+      <p>当你踌躇不定，犹豫不决时，不妨来这里看看吧</p>
+    </header>
+
+    <!-- 加载与错误状态 -->
+    <section id="loading" class="loading">
+      <div class="spinner"></div>
+      <p>正在加载中，请稍候…</p>
+    </section>
+
+    <section id="error" class="error" style="display: none;">
+      <p>获取数据失败，请稍后重试</p>
+    </section>
+
+    <!-- 内容区域 -->
+    <main id="content" style="display: none;" class="fade-in">
+      <div class="answer-card">
+        <div class="answer-text" id="answer">-</div>
+        <div class="answer-en" id="answer-en" style="display: none;">-</div>
+        <div class="meta">编号：<span id="index">-</span></div>
+        <div class="actions">
+          <button class="btn" id="refresh-btn">换一个</button>
+          <button class="btn" id="copy-btn">复制</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="./js/script.js"></script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import { FiCpu, FiUser, FiExternalLink, FiArrowLeft } from 'react-icons/fi';
 import { useUser } from '../contexts/UserContext';
@@ -13,6 +14,7 @@ const AiContainer = styled.div`
   opacity: 0;
   transform: translateY(20px);
   animation: pageEnter 0.8s ease-out forwards;
+  position: relative;
   
   @keyframes pageEnter {
     0% {
@@ -39,7 +41,7 @@ const PageHeader = styled.div`
 
 const PageTitle = styled.h1`
   color: white;
-  font-size: 44.8px;
+  font-size: 40px;
   font-weight: 700;
   margin-bottom: 10px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
@@ -62,11 +64,20 @@ const PageDescription = styled.p`
 
 const LoginPrompt = styled.div`
   background: white;
-  border-radius: 16px;
+  border-radius: 0;
   padding: 60px 40px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
+  box-shadow: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const AppGrid = styled.div`
@@ -74,6 +85,18 @@ const AppGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 24px;
   margin-bottom: 40px;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
 `;
 
 const AppCard = styled.div`
@@ -91,6 +114,16 @@ const AppCard = styled.div`
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     border-color: #4ade80;
   }
+  
+  @media (max-width: 768px) {
+    padding: 18px;
+    border-radius: 12px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 16px;
+    border-radius: 10px;
+  }
 `;
 
 const AppHeader = styled.div`
@@ -105,11 +138,27 @@ const AppTitle = styled.h3`
   font-weight: bold;
   color: #1f2937;
   margin: 0;
+  
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
 `;
 
 const AppIcon = styled.div`
   font-size: 24px;
   color: #4ade80;
+  
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 20px;
+  }
 `;
 
 const AppDescription = styled.p`
@@ -117,6 +166,18 @@ const AppDescription = styled.p`
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 16px;
+  
+  @media (max-width: 768px) {
+    font-size: 13px;
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 12px;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
 `;
 
 const AppFooter = styled.div`
@@ -135,6 +196,20 @@ const AppTheme = styled.div`
   font-size: 24px;
   background: rgba(74, 222, 128, 0.1);
   border: 1px solid rgba(74, 222, 128, 0.3);
+  
+  @media (max-width: 768px) {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    border-radius: 6px;
+  }
+  
+  @media (max-width: 480px) {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    border-radius: 5px;
+  }
 `;
 
 const LaunchButton = styled.button`
@@ -154,6 +229,20 @@ const LaunchButton = styled.button`
   &:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(74, 222, 128, 0.3);
+  }
+  
+  @media (max-width: 768px) {
+    padding: 7px 14px;
+    font-size: 13px;
+    border-radius: 6px;
+    gap: 5px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 5px;
+    gap: 4px;
   }
 `;
 
@@ -196,68 +285,237 @@ const LoginButton = styled.button`
   }
 `;
 
-const EmbeddedContainer = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-`;
+// 独立全屏嵌套网页组件
+const FullscreenEmbeddedPage = ({ app, onClose }) => {
+  useEffect(() => {
+    // 禁用页面滚动
+    document.body.style.overflow = 'hidden';
+    
+    // 键盘事件监听
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    
+    document.addEventListener('keydown', handleKeyDown);
+    
+    return () => {
+      // 恢复页面滚动
+      document.body.style.overflow = 'auto';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onClose]);
 
-const EmbeddedContent = styled.div`
-  background: white;
-  border-radius: 0;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  box-shadow: none;
-`;
+  const fullscreenStyles = {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: '#ffffff',
+    zIndex: 999999,
+    display: 'flex',
+    flexDirection: 'column',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+    margin: 0,
+    padding: 0,
+    boxSizing: 'border-box',
+    // 重置所有可能的继承样式
+    fontSize: '16px',
+    lineHeight: '1.5',
+    color: '#333',
+    textAlign: 'left',
+    textDecoration: 'none',
+    textTransform: 'none',
+    letterSpacing: 'normal',
+    wordSpacing: 'normal',
+    textShadow: 'none',
+    boxShadow: 'none',
+    border: 'none',
+    borderRadius: 0,
+    outline: 'none',
+    transform: 'none',
+    transition: 'none',
+    animation: 'none',
+    filter: 'none',
+    backdropFilter: 'none',
+    opacity: 1,
+    visibility: 'visible',
+    overflow: 'hidden'
+  };
 
-const EmbeddedHeader = styled.div`
-  background: linear-gradient(135deg, #4ade80, #22c55e);
-  color: white;
-  padding: 15px 20px;
-  padding-top: max(15px, env(safe-area-inset-top));
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  z-index: 1001;
-`;
+  const headerStyles = {
+    backgroundColor: '#4ade80',
+    color: '#ffffff',
+    padding: '12px 20px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+    flexShrink: 0,
+    minHeight: '56px',
+    boxSizing: 'border-box',
+    margin: 0,
+    border: 'none',
+    borderRadius: 0,
+    fontSize: '16px',
+    fontWeight: 'normal',
+    textAlign: 'left',
+    textDecoration: 'none',
+    textTransform: 'none',
+    letterSpacing: 'normal',
+    wordSpacing: 'normal',
+    textShadow: 'none',
+    transform: 'none',
+    transition: 'none',
+    animation: 'none',
+    filter: 'none',
+    backdropFilter: 'none',
+    opacity: 1,
+    visibility: 'visible',
+    overflow: 'visible'
+  };
 
-const BackButton = styled.button`
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  
-  &:hover {
-    background: rgba(255, 255, 255, 0.3);
-  }
-`;
+  const titleStyles = {
+    fontSize: '18px',
+    fontWeight: '500',
+    margin: 0,
+    padding: 0,
+    color: '#ffffff',
+    textAlign: 'left',
+    textDecoration: 'none',
+    textTransform: 'none',
+    letterSpacing: 'normal',
+    wordSpacing: 'normal',
+    textShadow: 'none',
+    boxShadow: 'none',
+    border: 'none',
+    borderRadius: 0,
+    outline: 'none',
+    transform: 'none',
+    transition: 'none',
+    animation: 'none',
+    filter: 'none',
+    backdropFilter: 'none',
+    opacity: 1,
+    visibility: 'visible',
+    overflow: 'visible',
+    boxSizing: 'border-box'
+  };
 
-const EmbeddedFrame = styled.iframe`
-  width: 100%;
-  height: calc(100% - 60px);
-  border: none;
-  background: white;
-  position: relative;
-  z-index: 1000;
-`;
+  const backButtonStyles = {
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    color: '#ffffff',
+    border: 'none',
+    padding: '8px 16px',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+    fontSize: '14px',
+    fontWeight: '500',
+    transition: 'background-color 0.2s ease',
+    margin: 0,
+    textAlign: 'center',
+    textDecoration: 'none',
+    textTransform: 'none',
+    letterSpacing: 'normal',
+    wordSpacing: 'normal',
+    textShadow: 'none',
+    boxShadow: 'none',
+    outline: 'none',
+    transform: 'none',
+    animation: 'none',
+    filter: 'none',
+    backdropFilter: 'none',
+    opacity: 1,
+    visibility: 'visible',
+    overflow: 'visible',
+    boxSizing: 'border-box'
+  };
+
+  const iframeStyles = {
+    width: '100%',
+    height: 'calc(100vh - 56px)',
+    border: 'none',
+    backgroundColor: '#ffffff',
+    flexGrow: 1,
+    margin: 0,
+    padding: 0,
+    boxSizing: 'border-box',
+    fontSize: '16px',
+    lineHeight: '1.5',
+    color: '#333',
+    textAlign: 'left',
+    textDecoration: 'none',
+    textTransform: 'none',
+    letterSpacing: 'normal',
+    wordSpacing: 'normal',
+    textShadow: 'none',
+    boxShadow: 'none',
+    borderRadius: 0,
+    outline: 'none',
+    transform: 'none',
+    transition: 'none',
+    animation: 'none',
+    filter: 'none',
+    backdropFilter: 'none',
+    opacity: 1,
+    visibility: 'visible',
+    overflow: 'hidden'
+  };
+
+  const handleBackButtonHover = (e) => {
+    e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.25)';
+  };
+
+  const handleBackButtonLeave = (e) => {
+    e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.15)';
+  };
+
+  // 在iframe加载时注入token
+  const handleIframeLoad = (e) => {
+    try {
+      const iframe = e.target;
+      const token = localStorage.getItem('token');
+      
+      if (iframe && iframe.contentWindow && token) {
+        // 将token传递给iframe
+        iframe.contentWindow.localStorage.setItem('token', token);
+      }
+    } catch (error) {
+      console.error('iframe通信错误:', error);
+    }
+  };
+
+  return (
+    <div style={fullscreenStyles}>
+      <div style={headerStyles}>
+        <h1 style={titleStyles}>{app.title}</h1>
+        <button
+          style={backButtonStyles}
+          onClick={onClose}
+          onMouseEnter={handleBackButtonHover}
+          onMouseLeave={handleBackButtonLeave}
+        >
+          <FiArrowLeft size={16} />
+          返回
+        </button>
+      </div>
+      <iframe
+        src={app.link}
+        title={app.title}
+        style={iframeStyles}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        loading="lazy"
+        onLoad={handleIframeLoad}
+      />
+    </div>
+  );
+};
 
 
 
@@ -303,23 +561,6 @@ const AiModelPage = () => {
   const closeEmbedded = () => {
     setEmbeddedApp(null);
   };
-  
-  // 在iframe加载时注入token
-  const handleIframeLoad = (e) => {
-    try {
-      const iframe = e.target;
-      const token = localStorage.getItem('token');
-      
-      if (iframe && iframe.contentWindow && token) {
-        // 将token传递给iframe
-        iframe.contentWindow.localStorage.setItem('token', token);
-        
-        // Token已传递给iframe
-      }
-    } catch (error) {
-      console.error('iframe通信错误:', error);
-    }
-  };
 
 
 
@@ -336,20 +577,11 @@ const AiModelPage = () => {
     );
   }
 
-  return (
-    <AiContainer>
-      <Container>
-        <PageHeader>
-          <PageTitle>
-            AI工具
-          </PageTitle>
-          <PageDescription>
-            <strong>AI大模型工具，提供一些生成式大语言模型的小功能(´,,•ω•,,)♡</strong>
-          </PageDescription>
-        </PageHeader>
-
-        {!isLoggedIn ? (
-          <LoginPrompt>
+  if (!isLoggedIn) {
+    return (
+      <AiContainer>
+        <LoginPrompt>
+          <div>
             <LoginIcon>🔒</LoginIcon>
             <LoginTitle>需要登录访问Σ(°ロ°)</LoginTitle>
             <LoginText>
@@ -361,37 +593,58 @@ const AiModelPage = () => {
               <FiUser />
               立即登录
             </LoginButton>
-          </LoginPrompt>
-        ) : loadingApps ? (
+          </div>
+        </LoginPrompt>
+      </AiContainer>
+    );
+  }
+
+  return (
+    <AiContainer>
+      <Container>
+        <PageHeader>
+          <PageTitle>
+            AI工具
+          </PageTitle>
+          <PageDescription>
+            <strong style={{ color: '#ffffff' }}>AI大模型工具，提供一些生成式大语言模型的小功能(´,,•ω•,,)♡</strong>
+          </PageDescription>
+        </PageHeader>
+
+        {loadingApps ? (
           <LoginPrompt>
-            <LoginIcon>🤖</LoginIcon>
-            <LoginTitle>加载AI应用中...</LoginTitle>
-            <LoginText>
-              正在为您准备强大的AI工具，请稍候...
-            </LoginText>
+            <div>
+              <LoginIcon>🤖</LoginIcon>
+              <LoginTitle>加载AI应用中...</LoginTitle>
+              <LoginText>
+                正在为您准备强大的AI工具，请稍候...
+              </LoginText>
+            </div>
           </LoginPrompt>
         ) : error ? (
           <LoginPrompt>
-            <LoginIcon>😅</LoginIcon>
-            <LoginTitle>加载失败</LoginTitle>
-            <LoginText>
-              {error}
-              <br />
-              <button 
-                onClick={fetchApps}
-                style={{
-                  background: 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)',
-                  color: 'white',
-                  border: 'none',
-                  padding: '8px 16px',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  marginTop: '16px'
-                }}
-              >
-                重新加载
-              </button>
-            </LoginText>
+            <div>
+              <LoginIcon>😅</LoginIcon>
+              <LoginTitle>加载失败</LoginTitle>
+              <LoginText>
+                {error}
+                <br />
+                <button 
+                  onClick={fetchApps}
+                  style={{
+                    background: 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)',
+                    color: 'white',
+                    border: 'none',
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    marginTop: '16px'
+                  }}
+                >
+                  重新加载
+                </button>
+              </LoginText>
+            </div>
           </LoginPrompt>
         ) : apps.length > 0 ? (
           <AppGrid>
@@ -419,11 +672,13 @@ const AiModelPage = () => {
           </AppGrid>
         ) : (
           <LoginPrompt>
-            <LoginIcon>🎯</LoginIcon>
-            <LoginTitle>暂无AI应用</LoginTitle>
-            <LoginText>
-              目前还没有可用的AI应用，请稍后再来查看。
-            </LoginText>
+            <div>
+              <LoginIcon>🎯</LoginIcon>
+              <LoginTitle>暂无AI应用</LoginTitle>
+              <LoginText>
+                目前还没有可用的AI应用，请稍后再来查看。
+              </LoginText>
+            </div>
           </LoginPrompt>
         )}
 
@@ -445,36 +700,25 @@ const AiModelPage = () => {
               marginTop: 0
             }}>
               <span style={{ fontSize: '24px' }}>💰</span>
-              萌芽币消费提示
+              AI工具使用提示
             </h3>
             <p style={{ lineHeight: '1.6', color: '#374151' }}>
-              每次使用AI功能将消耗<b>100萌芽币</b>，无论成功与否。当萌芽币余额不足时，无法使用AI工具功能。
+              每次使用AI功能将消耗<b>100萌芽币</b>，无论成功与否。当萌芽币余额不足时，将无法使用AI工具功能。
             </p>
             <p style={{ lineHeight: '1.6', color: '#374151' }}>
-              您可以通过<b>每日签到</b>获得300萌芽币。详细的萌芽币余额显示在个人中心页面。
+              您可以通过<b>每日签到</b>和游玩<b>休闲小游戏</b>来获得萌芽币，查看详细的萌芽币余额请前往个人中心页面。
             </p>
           </div>
         )}
 
-      {/* 内嵌显示组件 */}
-        {embeddedApp && (
-          <EmbeddedContainer onClick={closeEmbedded}>
-            <EmbeddedContent onClick={(e) => e.stopPropagation()}>
-              <EmbeddedHeader>
-                <h3>{embeddedApp.title}</h3>
-                <BackButton onClick={closeEmbedded}>
-                  <FiArrowLeft />
-                  返回
-                </BackButton>
-              </EmbeddedHeader>
-              <EmbeddedFrame
-                src={embeddedApp.link}
-                title={embeddedApp.title}
-                onLoad={handleIframeLoad}
-              />
-            </EmbeddedContent>
-          </EmbeddedContainer>
-        )}
+      {/* 使用Portal渲染独立的全屏嵌套网页 */}
+      {embeddedApp && createPortal(
+        <FullscreenEmbeddedPage 
+          app={embeddedApp} 
+          onClose={closeEmbedded} 
+        />,
+        document.body
+      )}
 
 
       </Container>

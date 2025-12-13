@@ -1,0 +1,202 @@
+<!DOCTYPE html><html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>人生倒计时</title>
+<style>
+:root{
+  --bg-start:#e8f8e4; /* 淡绿 */
+  --bg-end:#f5fbdc;   /* 淡黄绿 */
+  --text:#1f3830;
+  --muted:#5c7a68;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; min-height:100svh; color:var(--text);
+  font-family: system-ui,-apple-system,"PingFang SC","Microsoft YaHei",Segoe UI,Roboto,Helvetica,Arial,"Noto Sans CJK SC","Noto Sans",sans-serif;
+  background: linear-gradient(135deg,var(--bg-start),var(--bg-end));
+  background-size:200% 200%;
+  animation: flow 12s ease-in-out infinite;
+}
+@keyframes flow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}.container{max-width:680px;margin:0 auto;padding:24px 16px 80px} .header{text-align:center;margin-bottom:16px} .title{font-size:clamp(28px,7vw,40px);font-weight:900;letter-spacing:2px; background:linear-gradient(90deg,#4caf50,#8bc34a,#aed581);-webkit-background-clip:text;color:transparent; filter:drop-shadow(0 2px 6px rgba(76,175,80,.18));} .subtitle{color:var(--muted);font-size:clamp(13px,3.5vw,15px)} .grid{display:grid;gap:14px;grid-template-columns:1fr} .card{position:relative;padding:16px 14px;border-radius:20px;background:rgba(255,255,255,.55); box-shadow:0 10px 25px rgba(93,125,106,.18), inset 0 1px 0 rgba(255,255,255,.6); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.6); } .card::after{content:""; position:absolute; inset:-2px; border-radius:22px; pointer-events:none; background:linear-gradient(120deg, rgba(124,179,66,.35), rgba(255,255,255,0) 40%, rgba(85,204,170,.3)); mask: linear-gradient(#000,#000) exclude, linear-gradient(#000 0 0); } .section-title{display:flex;align-items:center;gap:8px;font-weight:800;font-size:16px;letter-spacing:.2px} .kbd{font-size:11px;color:var(--muted);border:1px solid rgba(0,0,0,.05);padding:2px 6px;border-radius:8px;background:rgba(255,255,255,.7)} .row{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:10px;flex-wrap:wrap} .metric{font-size:14px;color:var(--muted)} .value{font-feature-settings:"tnum" 1,"lnum" 1;font-variant-numeric:tabular-nums;font-weight:800;font-size:clamp(18px,5.5vw,24px)} .progress{width:100%;height:14px;background:rgba(0,0,0,.06);border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,.12)} .bar{height:100%;width:0%;border-radius:inherit;transition:width .8s cubic-bezier(.22,.61,.36,1);position:relative} .bar::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,.35) 30%,rgba(255,255,255,0) 60%);transform:translateX(-100%);animation:shimmer 2.4s infinite} @keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}} .bar.c1{background:linear-gradient(90deg,#7bc67b,#cde77f)} .bar.c2{background:linear-gradient(90deg,#77d0b5,#b5e48c)} .bar.c3{background:linear-gradient(90deg,#bade6d,#e6f39a)} .bar.c4{background:linear-gradient(90deg,#6ac26a,#a3e07a)} .badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:8px 10px;border-radius:999px;background:rgba(255,255,255,.6);border:1px solid rgba(0,0,0,.06);box-shadow:0 4px 12px rgba(0,0,0,.06)} .badge b{font-feature-settings:"tnum" 1,"lnum" 1;font-variant-numeric:tabular-nums} .holidays{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:12px} .holiday{padding:12px;border-radius:18px;background:linear-gradient(135deg,rgba(139,195,74,.25),rgba(205,220,57,.2));border:1px dashed rgba(139,195,74,.35);box-shadow:inset 0 1px 0 rgba(255,255,255,.5)} .holiday h4{margin:0 0 8px;font-size:14px} .holiday .days{font-weight:900;font-size:24px} .footer{text-align:center;margin-top:22px;color:var(--muted);font-size:12px} .small{font-size:12px;color:var(--muted)}
+
+/* 轻微装饰粒子效果 */ .particles{position:fixed;inset:0;overflow:hidden;pointer-events:none} .particles span{position:absolute;width:clamp(6px,1.8vw,10px);height:clamp(6px,1.8vw,10px); background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.9),rgba(255,255,255,.2));border-radius:50%;filter:blur(.2px); animation:float 14s linear infinite;opacity:.6} @keyframes float{0%{transform:translateY(110vh) translateX(0) scale(1) rotate(0)}100%{transform:translateY(-10vh) translateX(40px) scale(1.4) rotate(180deg)}} .particles span:nth-child(odd){animation-duration:18s} .particles span:nth-child(3n){animation-direction:reverse} .particles span:nth-child(4n){animation-duration:22s}
+
+@media (min-width:760px){.grid{grid-template-columns:1fr 1fr}.card{padding:18px 16px}} </style>
+
+</head>
+<body>
+<div class="particles" aria-hidden="true"></div>
+<div class="container">
+  <header class="header">
+    <h1 class="title">人生倒计时</h1>
+  </header>  <main class="grid">
+    <section class="card" id="today">
+      <div class="section-title">今天 · <span class="kbd">剩余小时</span></div>
+      <div class="row">
+        <div class="metric">距离今天结束还有</div>
+        <div class="value"><span id="todayHours">--</span> 小时 <span class="small" id="todayHMS"></span></div>
+      </div>
+      <div class="progress" aria-label="今日剩余百分比">
+        <div class="bar c1" id="barToday"></div>
+      </div>
+    </section><section class="card" id="week">
+  <div class="section-title">本周 · <span class="kbd">剩余天数</span></div>
+  <div class="row">
+    <div class="metric">（周一为一周起点）</div>
+    <div class="value"><span id="weekDays">--</span> 天</div>
+  </div>
+  <div class="progress" aria-label="本周剩余百分比">
+    <div class="bar c2" id="barWeek"></div>
+  </div>
+</section>
+
+<section class="card" id="month">
+  <div class="section-title">本月 · <span class="kbd">剩余天数</span></div>
+  <div class="row">
+    <div class="metric">当前月份还剩</div>
+    <div class="value"><span id="monthDays">--</span> 天</div>
+  </div>
+  <div class="progress" aria-label="本月剩余百分比">
+    <div class="bar c3" id="barMonth"></div>
+  </div>
+</section>
+
+<section class="card" id="year">
+  <div class="section-title">2025 · <span class="kbd">剩余天数</span></div>
+  <div class="row">
+    <div class="metric">距离今年结束还有</div>
+    <div class="value"><span id="yearDays">--</span> 天</div>
+  </div>
+  <div class="progress" aria-label="本年剩余百分比">
+    <div class="bar c4" id="barYear"></div>
+  </div>
+</section>
+
+<section class="card" id="holidays">
+  <div class="section-title">重要节日倒计时</div>
+  <div class="holidays">
+    <div class="holiday">
+      <h4>五一劳动节</h4>
+      <div class="days"><span id="d51">--</span> 天</div>
+      <div class="small" id="d51Date"></div>
+    </div>
+    <div class="holiday">
+      <h4>国庆节</h4>
+      <div class="days"><span id="dGQ">--</span> 天</div>
+      <div class="small" id="dGQDate"></div>
+    </div>
+    <div class="holiday">
+      <h4>圣诞节</h4>
+      <div class="days"><span id="dXmas">--</span> 天</div>
+      <div class="small" id="dXmasDate"></div>
+    </div>
+  </div>
+</section>
+
+  </main>  
+</div><script>
+(function(){
+  // ===== 常用工具函数 =====
+  const pad = n => String(n).padStart(2,'0');
+  const isLeapYear = y => (y%4===0 && y%100!==0) || (y%400===0);
+  const daysInYear = y => isLeapYear(y) ? 366 : 365;
+  const daysInMonth = (y,m)=> new Date(y, m+1, 0).getDate(); // m:0-11
+
+  // 结束时间（以下一单位0点为界，方便计算剩余比例）
+  const endOfToday = now => new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
+  // 周一为一周的起点，周末结束到下周一0点
+  function endOfWeek(now){
+    const day = (now.getDay()+6)%7; // 0..6 (Mon..Sun)
+    const daysToNextMon = 7 - day;
+    return new Date(now.getFullYear(), now.getMonth(), now.getDate()+daysToNextMon);
+  }
+  const endOfMonth = now => new Date(now.getFullYear(), now.getMonth()+1, 1);
+  const endOfYear = now => new Date(now.getFullYear()+1, 0, 1);
+
+  const msToHMS = ms => {
+    const sec = Math.max(0, Math.floor(ms/1000));
+    const s = sec % 60; const m = Math.floor(sec/60)%60; const h = Math.floor(sec/3600);
+    return h+":"+pad(m)+":"+pad(s);
+  }
+  const niceDays = ms => Math.max(0, (ms/86400000));
+  const setBar = (id, percent) => { document.getElementById(id).style.width = Math.max(0,Math.min(100,percent)).toFixed(2)+"%"; };
+
+  function update(){
+    const now = new Date();
+
+    // 今天剩余小时
+    const eToday = endOfToday(now);
+    const msLeftToday = eToday - now;
+    const hoursLeft = msLeftToday / 3600000;
+    document.getElementById("todayHours").textContent = hoursLeft.toFixed(2);
+    document.getElementById("todayHMS").textContent = "（约 "+ msToHMS(msLeftToday) +"）";
+    setBar("barToday", (hoursLeft/24)*100);
+
+    // 本周剩余天数（周一为起点）
+    const eWeek = endOfWeek(now);
+    const msLeftWeek = eWeek - now;
+    const daysLeftWeek = niceDays(msLeftWeek);
+    document.getElementById("weekDays").textContent = daysLeftWeek.toFixed(2);
+    setBar("barWeek", (daysLeftWeek/7)*100);
+
+    // 本月剩余天数
+    const eMonth = endOfMonth(now);
+    const msLeftMonth = eMonth - now;
+    const dInMonth = daysInMonth(now.getFullYear(), now.getMonth());
+    const daysLeftMonth = niceDays(msLeftMonth);
+    document.getElementById("monthDays").textContent = daysLeftMonth.toFixed(2);
+    setBar("barMonth", (daysLeftMonth/dInMonth)*100);
+
+    // 今年剩余天数（以 2025 年为展示基准）
+    const eYear = endOfYear(now);
+    const msLeftYear = eYear - now;
+    const dInYear = daysInYear(now.getFullYear());
+    const daysLeftYear = niceDays(msLeftYear);
+    document.getElementById("yearDays").textContent = daysLeftYear.toFixed(2);
+    setBar("barYear", (daysLeftYear/dInYear)*100);
+
+    // 重要节日
+    const thisYear = now.getFullYear();
+    function nextDate(mm, dd){
+      let d = new Date(thisYear, mm-1, dd);
+      if (now >= endOfToday(d)) d.setFullYear(thisYear+1);
+      return d;
+    }
+    function daysUntil(target){
+      // 以当天0点为日界，向上取整到“天”
+      const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      return Math.ceil((target - start)/86400000);
+    }
+    const d51 = nextDate(5,1);
+    const dGQ = nextDate(10,1);
+    const dXmas = nextDate(12,25);
+    document.getElementById("d51").textContent = daysUntil(d51);
+    document.getElementById("dGQ").textContent = daysUntil(dGQ);
+    document.getElementById("dXmas").textContent = daysUntil(dXmas);
+    document.getElementById("d51Date").textContent = d51.toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric',weekday:'short'});
+    document.getElementById("dGQDate").textContent = dGQ.toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric',weekday:'short'});
+    document.getElementById("dXmasDate").textContent = dXmas.toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric',weekday:'short'});
+
+    // 底部时间
+    const tn = now.toLocaleString(undefined,{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
+  }
+
+  // 装饰粒子生成
+  (function spawnParticles(){
+    const wrap = document.querySelector('.particles');
+    for(let i=0;i<28;i++){
+      const s = document.createElement('span');
+      s.style.left = Math.random()*100 + 'vw';
+      s.style.animationDelay = (-Math.random()*20) + 's';
+      s.style.opacity = (0.35 + Math.random()*0.4).toFixed(2);
+      wrap.appendChild(s);
+    }
+  })();
+
+  update();
+  setInterval(update, 1000);
+})();
+</script></body>
+</html>

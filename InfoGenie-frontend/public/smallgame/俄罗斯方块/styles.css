@@ -319,6 +319,84 @@ body {
     box-shadow: 0 4px 8px rgba(46, 125, 50, 0.3);
 }
 
+/* 排行榜样式 */
+.leaderboard {
+    background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%);
+    color: #2e7d32;
+    border: 1px solid rgba(46, 125, 50, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(46, 125, 50, 0.25);
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.leaderboard-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #4caf50 0%, #8bc34a 50%, #cddc39 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.leaderboard-wrap {
+    max-height: 260px;
+    overflow: auto;
+    border-radius: 12px;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.leaderboard-table thead tr {
+    background: linear-gradient(135deg, #66bb6a 0%, #8bc34a 100%);
+    color: #fff;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(46, 125, 50, 0.15);
+    font-size: 0.95rem;
+}
+
+.leaderboard-table tbody tr {
+    background: linear-gradient(135deg, rgba(46,125,50,0.08) 0%, rgba(46,125,50,0.03) 100%);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.leaderboard-table tbody tr:hover {
+    background: linear-gradient(135deg, rgba(46,125,50,0.12) 0%, rgba(46,125,50,0.06) 100%);
+    transform: translateY(-1px);
+}
+
+.rank-badge {
+    display: inline-block;
+    min-width: 32px;
+    text-align: center;
+    padding: 4px 8px;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #66bb6a, #8bc34a);
+    color: #fff;
+    font-weight: 700;
+}
+
+.current-row {
+    outline: 2px solid rgba(76, 175, 80, 0.7);
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.15) inset;
+}
+
+.leaderboard-tip {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #388e3c;
+    opacity: 0.85;
+}
+
 /* 响应式设计 */
 @media (max-width: 768px) {
     .game-container {
@@ -377,6 +455,15 @@ body {
     .stats-content {
         padding: 20px;
         width: 95%;
+    }
+
+    .leaderboard-wrap {
+        max-height: 200px;
+    }
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 8px 10px;
+        font-size: 0.9rem;
     }
 }
 
@@ -448,4 +535,40 @@ body {
 
 .pulse {
     animation: pulse 2s infinite;
+}
+/* 摘要卡片 */
+.leaderboard-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.summary-item {
+    background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+    color: #fff;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(46, 125, 50, 0.3);
+    box-shadow: 0 4px 8px rgba(46, 125, 50, 0.2);
+}
+
+.summary-label {
+    display: block;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.summary-value {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+    .leaderboard-summary {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
 }

@@ -41,16 +41,19 @@ const HeroTitle = styled.h1`
   font-weight: bold;
   color: #1f2937;
   margin-bottom: 16px;
-  text-shadow: 
+  /* 添加柔和的金色光晕效果（不强烈） */
+  text-shadow:
     0 2px 4px rgba(0, 0, 0, 0.1),
-    0 4px 8px rgba(129, 199, 132, 0.2);
+    0 0 8px rgba(255, 215, 0, 0.18),
+    0 0 14px rgba(255, 215, 0, 0.12);
   position: relative;
   
   .title-emoji {
     margin: 0 8px;
     display: inline-block;
     animation: float 3s ease-in-out infinite;
-    filter: drop-shadow(0 2px 4px rgba(129, 199, 132, 0.3));
+    /* 与标题保持一致的金色氛围 */
+    filter: drop-shadow(0 2px 4px rgba(255, 215, 0, 0.3));
   }
   
   &::after {
@@ -78,13 +81,35 @@ const HeroTitle = styled.h1`
 
 const HeroSubtitle = styled.p`
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   margin-bottom: 32px;
-  line-height: 1.6;
+  line-height: 1.7;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px 20px 16px 24px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 
+    0 8px 24px rgba(129, 199, 132, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 12px 0 0 12px;
+    background: linear-gradient(180deg, #81c784, #a5d6a7);
+    box-shadow: 0 0 0 1px rgba(129, 199, 132, 0.2);
+  }
   
   @media (max-width: 768px) {
     font-size: 16px;
+    padding: 12px 16px 12px 20px;
   }
 `;
 
@@ -387,42 +412,72 @@ const ModuleDescription = styled.p`
   }
 `;
 
-const ModuleFeatures = styled.ul`
-  list-style: none;
-  padding: 0;
+const ModuleFeatures = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 16px;
   margin: 0;
+  padding: 0;
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
 `;
 
-const ModuleFeature = styled.li`
+const ModuleFeature = styled.div`
   color: #374151;
   font-size: 14px;
-  margin-bottom: 8px;
-  padding-left: 20px;
-  position: relative;
+  padding: 8px 12px;
+  background: rgba(129, 199, 132, 0.08);
+  border-radius: 8px;
+  border: 1px solid rgba(129, 199, 132, 0.15);
   transition: all 0.3s ease;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
   
-  &:before {
-    content: '✓';
+  &::before {
+    content: '';
     position: absolute;
+    top: 0;
     left: 0;
-    color: #10b981;
-    font-weight: bold;
-    text-shadow: 0 1px 2px rgba(16, 185, 129, 0.3);
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, #81c784, #a5d6a7);
     transition: all 0.3s ease;
   }
   
-  &:last-child {
-    margin-bottom: 0;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    border-radius: 50%;
+    opacity: 0.6;
+    transition: all 0.3s ease;
   }
   
   ${ModuleCard}:hover & {
     color: #1f2937;
-    transform: translateX(2px);
+    background: rgba(129, 199, 132, 0.12);
+    border-color: rgba(129, 199, 132, 0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(129, 199, 132, 0.15);
     
-    &:before {
-      color: #059669;
-      transform: scale(1.1);
+    &::before {
+      width: 4px;
+      background: linear-gradient(180deg, #66bb6a, #81c784);
+    }
+    
+    &::after {
+      background: #059669;
+      opacity: 1;
+      transform: translateY(-50%) scale(1.2);
     }
   }
 `;
@@ -460,7 +515,7 @@ const HomePage = () => {
       path: '/aimodel',
       icon: FiCpu,
       title: 'AI工具',
-      description: '智能AI工具和模型应用',
+      description: '智能AI工具和大模型应用',
       features: [
         '🌍翻译助手',
         '📝写诗达人',
@@ -482,13 +537,13 @@ const HomePage = () => {
           <HeroSubtitle>
 <strong>💡一个跨平台的聚合式应用</strong>
             <br />
-集成了热搜榜单，日更资讯、休闲游戏、AI大模型工具等丰富功能。
-像微信小程序一样，把分散的功能汇聚在一个应用中，让你无需下载一个又一个app。
+把热搜榜单、每日资讯、轻松小游戏以及 AI 大模型工具等常用功能，全部装进一个 App。
+告别满屏 App 的零碎与冗余，释放存储空间，让你的时间与注意力回归真正重要的事。
             <br />
-<strong>🎯功能繁多却不显得臃肿</strong>
+<strong>🎯丰富不臃肿，强大而精巧</strong>
             <br />
-「Windows」端仅约18MB；「Android」端仅约15MB；平均内存占用仅48MB
-相比市面上的软件更小巧、更轻便，却能承载更多可能。
+每项功能都小而美、精而全，像一把随身携带的瑞士军刀——
+应对从信息、娱乐到效率的各种场景需求，无需来回切换、一切尽在掌控之中。
           </HeroSubtitle>
           <HeroButton to="/60sapi">
             <FiTrendingUp />

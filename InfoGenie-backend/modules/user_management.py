@@ -51,6 +51,8 @@ def login_required(f):
     return decorated_function
     return decorated_function
 
+
+#==========================对外暴露的HTTP接口==========================
 # 获取用户资料
 @user_bp.route('/profile', methods=['GET'])
 @login_required
@@ -95,6 +97,127 @@ def get_profile():
         return jsonify({
             'success': True,
             'data': profile
+        }), 200
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'服务器错误: {str(e)}'
+        }), 500
+
+# 为指定账号增加萌芽币
+@user_bp.route('/add-coins', methods=['POST'])
+@login_required
+def add_coins():
+    """为指定账号增加萌芽币（支持email或username指定账号，amount为正整数）"""
+    try:
+        data = request.get_json() or {}
+        email = (data.get('email') or '').strip()
+        username = (data.get('username') or '').strip()
+        amount = data.get('amount')
+
+        # 参数校验
+        if not email and not username:
+            return jsonify({
+                'success': False,
+                'message': '请提供email或username其中之一'
+            }), 400
+
+        if amount is None:
+            return jsonify({
+                'success': False,
+                'message': 'amount不能为空'
+            }), 400
+
+        try:
+            amount_int = int(amount)
+        except Exception:
+            return jsonify({
+                'success': False,
+                'message': 'amount必须为整数'
+            }), 400
+
+        if amount_int <= 0:
+            return jsonify({
+                'success': False,
+                'message': 'amount必须为正整数'
+            }), 400
+
+        users_collection = current_app.mongo.db.userdata
+        query = {'邮箱': email} if email else {'用户名': username}
+        user = users_collection.find_one(query)
+        if not user:
+            return jsonify({
+                'success': False,
+                'message': '用户不存在'
+            }), 404
+
+        before_coins = user.get('萌芽币', 0)
+        update_result = users_collection.update_one(query, {'$inc': {'萌芽币': amount_int}})
+
+        if update_result.modified_count == 0:
+            return jsonify({
+                'success': False,
+                'message': '更新失败，请稍后重试'
+            }), 500
+
+        updated = users_collection.find_one({'_id': user['_id']})
+        new_coins = updated.get('萌芽币', before_coins)
+
+        return jsonify({
+            'success': True,
+            'message': f"已为账户{email or username}增加{amount_int}萌芽币",
+            'data': {
+                'before_coins': before_coins,
+                'added': amount_int,
+                'new_coins': new_coins,
+                'user': {
+                    'id': str(updated.get('_id')),
+                    'email': updated.get('邮箱'),
+                    'username': updated.get('用户名'),
+                    'avatar': updated.get('头像'),
+                    'register_time': updated.get('注册时间'),
+                    'last_login': updated.get('最后登录'),
+                    'login_count': updated.get('登录次数', 0),
+                    'status': updated.get('用户状态', 'active'),
+                    'level': updated.get('等级', 0),
+                    'experience': updated.get('经验', 0),
+                    'coins': new_coins
+                }
+            }
+        }), 200
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': f'服务器错误: {str(e)}'
+        }), 500
+
+# 列出所有用户
+@user_bp.route('/list', methods=['GET'])
+@login_required
+def list_users():
+    """列出所有用户（不返回密码）"""
+    try:
+        users_collection = current_app.mongo.db.userdata
+        cursor = users_collection.find({}, {'密码': 0})
+        users = []
+        for u in cursor:
+            users.append({
+                'id': str(u.get('_id')),
+                'email': u.get('邮箱'),
+                'username': u.get('用户名'),
+                'avatar': u.get('头像'),
+                'register_time': u.get('注册时间'),
+                'last_login': u.get('最后登录'),
+                'login_count': u.get('登录次数', 0),
+                'status': u.get('用户状态', 'active'),
+                'level': u.get('等级', 0),
+                'experience': u.get('经验', 0),
+                'coins': u.get('萌芽币', 0)
+            })
+        return jsonify({
+            'success': True,
+            'count': len(users),
+            'data': users
         }), 200
     except Exception as e:
         return jsonify({
@@ -424,3 +547,4 @@ def delete_account():
             'success': False,
             'message': f'服务器错误: {str(e)}'
         }), 500
+#==========================对外暴露的HTTP接口==========================

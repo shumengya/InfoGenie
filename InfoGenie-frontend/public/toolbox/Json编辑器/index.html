@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>📒JSON编辑器</title>
+  
+  <!-- CodeMirror 样式与 Lint 样式 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5/lib/codemirror.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5/theme/neo.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5/addon/lint/lint.css" />
+  
+  <style>
+    :root {
+      --toolbar-h: 64px;
+      --radius: 14px;
+      --bg-start: #dff7e0; /* 淡绿色 */
+      --bg-end: #f2ffd2;   /* 淡黄绿色 */
+      --brand: #4caf50;    /* 绿色主题色 */
+      --brand-weak: #7bd07f;
+      --text: #103510;
+      --muted: #366b36;
+      --danger: #e53935;
+      --shadow: 0 10px 25px rgba(16, 53, 16, 0.08);
+    }
+
+    html, body {
+      height: 100%;
+      background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, PingFang SC, Microsoft YaHei, "Noto Sans", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow: auto; /* 保留滚动 */
+    }
+    /* 隐藏滚动条同时保留滚动效果 */
+    html, body { scrollbar-width: none; }
+    html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; }
+
+    .page {
+      min-height: calc(var(--vh, 1vh) * 100);
+      display: flex;
+      flex-direction: column;
+      padding: 14px;
+      gap: 12px;
+    }
+
+    .toolbar {
+      height: var(--toolbar-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--muted);
+      letter-spacing: .2px;
+    }
+    .title .dot {
+      width: 8px; height: 8px; border-radius: 99px; background: var(--brand);
+      box-shadow: 0 0 0 3px rgba(76, 175, 80, .18);
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      outline: none;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #0f3210;
+      background: linear-gradient(180deg, #e6ffe6, #d8ffd8);
+      box-shadow: var(--shadow);
+      transition: transform .06s ease, box-shadow .2s ease;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn.primary { background: linear-gradient(180deg, #d7ffda, #caffcf); color: #0c2b0d; }
+    .btn.danger { background: linear-gradient(180deg, #ffe6e6, #ffdcdc); color: #5f1b1b; }
+
+    .editor-wrap {
+      position: relative;
+      flex: 1;
+      background: rgba(255,255,255,.55);
+      backdrop-filter: saturate(150%) blur(6px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    /* CodeMirror 基本样式与滚动条隐藏 */
+    .CodeMirror {
+      height: calc(var(--vh, 1vh) * 100 - var(--toolbar-h) - 40px);
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 12px 0;
+      background: transparent;
+    }
+    .CodeMirror-scroll { scrollbar-width: none; }
+    .CodeMirror-scroll::-webkit-scrollbar { width: 0; height: 0; }
+    .CodeMirror-gutters { background: transparent; border-right: none; }
+
+    .cm-error-line { background: rgba(229, 57, 53, .08); }
+
+    .statusbar {
+      position: absolute; right: 12px; bottom: 12px;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.75);
+      border-radius: 999px; padding: 8px 12px; box-shadow: var(--shadow);
+      font-size: 13px; color: var(--muted);
+    }
+    .status-dot { width: 8px; height: 8px; border-radius: 99px; background: #a0a0a0; box-shadow: 0 0 0 3px rgba(0,0,0,.08); }
+    .statusbar.good .status-dot { background: #27ae60; box-shadow: 0 0 0 3px rgba(39,174,96,.18); }
+    .statusbar.bad .status-dot { background: var(--danger); box-shadow: 0 0 0 3px rgba(229,57,53,.18); }
+
+    @media (max-width: 640px) {
+      :root { --toolbar-h: 76px; }
+      .title { font-size: 16px; }
+      .btn { padding: 11px 14px; font-size: 15px; }
+      .actions { gap: 6px; }
+    }
+  </style>
+
+  <!-- CodeMirror 与 JSONLint 脚本 -->
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5/lib/codemirror.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5/mode/javascript/javascript.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5/addon/lint/lint.js"></script>
+  <!-- JSONLint 提供更完善的错误定位（行/列） -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonlint/1.6.0/jsonlint.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5/addon/lint/json-lint.js"></script>
+</head>
+<body>
+  <div class="page">
+    <header class="toolbar">
+      <div class="title">
+        <span class="dot"></span>
+        <span>📒JSON 编辑器</span>
+      </div>
+      <div class="actions">
+        <button class="btn" id="pasteBtn" title="从剪贴板粘贴">粘贴</button>
+        <button class="btn" id="copyBtn" title="复制到剪贴板">复制</button>
+        <button class="btn primary" id="formatBtn" title="格式化为缩进">格式化</button>
+        <button class="btn" id="minifyBtn" title="压缩为单行">压缩</button>
+        <button class="btn danger" id="clearBtn" title="清空内容">清空</button>
+      </div>
+    </header>
+
+    <section class="editor-wrap">
+      <textarea id="jsonInput" spellcheck="false">{
+  "hello": "world",
+  "list": [1, 2, 3],
+  "nested": { "a": true, "b": null }
+}</textarea>
+      <div id="statusbar" class="statusbar" aria-live="polite">
+        <span class="status-dot"></span>
+        <span id="statusText">就绪</span>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // 解决移动端 100vh 问题，保证竖屏高度正确
+    function setVH() {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', setVH);
+
+    // 初始化 CodeMirror
+    const cm = CodeMirror.fromTextArea(document.getElementById('jsonInput'), {
+      mode: { name: 'javascript', json: true },
+      theme: 'neo',
+      lineNumbers: true,
+      lint: true,
+      gutters: ['CodeMirror-lint-markers', 'CodeMirror-linenumbers'],
+      tabSize: 2,
+      indentUnit: 2,
+      lineWrapping: false,
+      autofocus: true,
+    });
+
+    const statusbar = document.getElementById('statusbar');
+    const statusText = document.getElementById('statusText');
+    let lastErrorLine = null;
+
+    function updateStatusOK() {
+      statusbar.classList.add('good');
+      statusbar.classList.remove('bad');
+      statusText.textContent = 'JSON 有效';
+    }
+    function updateStatusError(msg, line, col) {
+      statusbar.classList.remove('good');
+      statusbar.classList.add('bad');
+      statusText.textContent = msg;
+      if (typeof line === 'number') {
+        if (lastErrorLine != null) {
+          cm.removeLineClass(lastErrorLine - 1, 'background', 'cm-error-line');
+        }
+        lastErrorLine = line;
+        cm.addLineClass(line - 1, 'background', 'cm-error-line');
+      }
+    }
+
+    function clearErrorHighlight() {
+      if (lastErrorLine != null) {
+        cm.removeLineClass(lastErrorLine - 1, 'background', 'cm-error-line');
+        lastErrorLine = null;
+      }
+    }
+
+    const debounce = (fn, wait = 300) => {
+      let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); };
+    };
+
+    const validate = () => {
+      const txt = cm.getValue();
+      if (!txt.trim()) {
+        clearErrorHighlight();
+        statusbar.classList.remove('good','bad');
+        statusText.textContent = '空内容';
+        return;
+      }
+      try {
+        // 使用 jsonlint 以获得行列信息
+        window.jsonlint.parse(txt);
+        clearErrorHighlight();
+        updateStatusOK();
+      } catch (e) {
+        // e.message 形如："Parse error on line 3:\n...\nExpected 'STRING', got 'undefined'"
+        let line, col;
+        const lineMatch = /line\s+(\d+)/i.exec(e.message || '');
+        if (lineMatch) line = parseInt(lineMatch[1], 10);
+        const colMatch = /column\s+(\d+)/i.exec(e.message || '');
+        if (colMatch) col = parseInt(colMatch[1], 10);
+        const msg = (e.message || 'JSON 解析错误').split('\n')[0];
+        updateStatusError(msg, line, col);
+      }
+    };
+
+    cm.on('change', debounce(validate, 250));
+    // 首次校验
+    validate();
+
+    // 按钮逻辑
+    const copyBtn = document.getElementById('copyBtn');
+    const pasteBtn = document.getElementById('pasteBtn');
+    const formatBtn = document.getElementById('formatBtn');
+    const minifyBtn = document.getElementById('minifyBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    async function copyToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        statusText.textContent = '已复制到剪贴板';
+        statusbar.classList.add('good'); statusbar.classList.remove('bad');
+      } catch (err) {
+        // 作为回退方案
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta);
+        ta.select(); document.execCommand('copy');
+        document.body.removeChild(ta);
+        statusText.textContent = '复制完成（回退方案）';
+        statusbar.classList.add('good'); statusbar.classList.remove('bad');
+      }
+    }
+
+    async function readFromClipboard() {
+      try {
+        const text = await navigator.clipboard.readText();
+        return text;
+      } catch (err) {
+        const text = window.prompt('浏览器限制了读取剪贴板，请粘贴到此：');
+        return text || '';
+      }
+    }
+
+    copyBtn.addEventListener('click', () => copyToClipboard(cm.getValue()));
+
+    pasteBtn.addEventListener('click', async () => {
+      const text = await readFromClipboard();
+      if (text) {
+        cm.setValue(text);
+        cm.focus();
+      }
+    });
+
+    formatBtn.addEventListener('click', () => {
+      const txt = cm.getValue();
+      try {
+        const obj = JSON.parse(txt);
+        cm.setValue(JSON.stringify(obj, null, 2));
+        cm.focus();
+        updateStatusOK();
+      } catch (e) {
+        updateStatusError('格式化失败：内容不是有效 JSON');
+      }
+    });
+
+    minifyBtn.addEventListener('click', () => {
+      const txt = cm.getValue();
+      try {
+        const obj = JSON.parse(txt);
+        cm.setValue(JSON.stringify(obj));
+        cm.focus();
+        updateStatusOK();
+      } catch (e) {
+        updateStatusError('压缩失败：内容不是有效 JSON');
+      }
+    });
+
+    clearBtn.addEventListener('click', () => {
+      cm.setValue('');
+      statusbar.classList.remove('good','bad');
+      statusText.textContent = '已清空';
+      clearErrorHighlight();
+      cm.focus();
+    });
+
+    // 触控体验优化：增大点击区域与取消按钮文本选择
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.style.touchAction = 'manipulation';
+    });
+  </script>
+</body>
+</html>

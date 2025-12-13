@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover" />
+  <title>清新跑酷 - InfoGenie</title>
+  <meta name="theme-color" content="#bde8c7" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="game-shell">
+    <header class="hud">
+      <div class="score">分数 <span id="score">0</span></div>
+      <button id="restartBtn" class="restart" aria-label="重新开始">重新开始</button>
+    </header>
+
+    <main class="stage">
+      <canvas id="gameCanvas" aria-label="跑酷游戏画布"></canvas>
+      <div class="hint">轻触屏幕或按空格跳跃</div>
+
+      <div id="overlay" class="overlay" hidden>
+        <div class="overlay-card">
+          <div class="gameover-title">游戏结束</div>
+          <div class="summary">分数 <span id="finalScore">0</span></div>
+          <button class="overlay-restart" id="overlayRestart">重新开始</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="./game.js" defer></script>
+</body>
+</html>

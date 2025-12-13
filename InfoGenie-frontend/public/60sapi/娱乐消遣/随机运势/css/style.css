@@ -8,14 +8,14 @@
 
 header h1 {
     font-size: 2.8em;
-    color: #f0e6ff;
-    text-shadow: 0 0 10px #d1a9ff, 0 0 20px #d1a9ff;
+    color: #2e7d32;
+    text-shadow: 0 0 10px #81c784, 0 0 20px #a5d6a7;
     margin-bottom: 0.2em;
 }
 
 header p {
     font-size: 1.2em;
-    color: #e0c8ff;
+    color: #388e3c;
     margin-bottom: 40px;
 }
 
@@ -27,11 +27,11 @@ header p {
 .crystal-ball {
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), rgba(200, 180, 255, 0.1));
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), rgba(200, 230, 201, 0.3));
     border-radius: 50%;
     margin: 0 auto;
     position: relative;
-    box-shadow: 0 0 30px #c390ff, 0 0 60px #a060e0, inset 0 0 20px rgba(255, 220, 255, 0.3);
+    box-shadow: 0 0 30px #81c784, 0 0 60px #66bb6a, inset 0 0 20px rgba(220, 255, 220, 0.3);
     animation: float 6s ease-in-out infinite;
     transform-style: preserve-3d;
 }
@@ -54,7 +54,7 @@ header p {
     left: 50%;
     width: 120%;
     height: 120%;
-    background: linear-gradient(45deg, rgba(255, 192, 203, 0.1), rgba(128, 0, 128, 0.2));
+    background: linear-gradient(45deg, rgba(200, 230, 201, 0.2), rgba(129, 199, 132, 0.3));
     border-radius: 50%;
     animation: swirl 10s linear infinite;
     transform: translate(-50%, -50%);
@@ -71,7 +71,7 @@ header p {
 }
 
 .fortune-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(248, 255, 248, 0.8);
     border-radius: 15px;
     padding: 30px;
     margin-bottom: 30px;
@@ -80,8 +80,8 @@ header p {
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(129, 199, 132, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(102, 187, 106, 0.2);
     transition: opacity 0.5s ease-in-out;
 }
 
@@ -96,13 +96,13 @@ header p {
 
 #luck-desc {
     font-size: 2em;
-    color: #ffc0cb;
+    color: #2e7d32;
     margin: 0 0 10px;
 }
 
 #luck-tip {
     font-size: 1.1em;
-    color: #e0e0e0;
+    color: #388e3c;
     margin: 0;
     padding-bottom: 20px; /* Add some space before the new details */
 }
@@ -121,7 +121,7 @@ header p {
 
 .detail-item h3 {
     font-size: 0.9em;
-    color: #ffc0cb;
+    color: #66bb6a;
     margin: 0 0 5px;
     font-weight: normal;
 }
@@ -151,8 +151,8 @@ header p {
 
 .tarot-container h2 {
     font-size: 1.5em;
-    color: #f0e6ff;
-    text-shadow: 0 0 8px #d1a9ff;
+    color: #2e7d32;
+    text-shadow: 0 0 8px #81c784;
     margin-bottom: 20px;
 }
 
@@ -188,23 +188,23 @@ header p {
 }
 
 .tarot-card-back {
-    background: linear-gradient(135deg, #4a1a6c, #2a0d3f);
-    border: 2px solid #d1a9ff;
+    background: linear-gradient(135deg, #66bb6a, #388e3c);
+    border: 2px solid #81c784;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 3em;
-    color: #d1a9ff;
+    color: #c8e6c9;
 }
 
 .tarot-card-back::after {
     content: '✧'; /* A simple star symbol */
-    text-shadow: 0 0 10px #f0e6ff;
+    text-shadow: 0 0 10px #e8f5e8;
 }
 
 .tarot-card-front {
-    background: linear-gradient(135deg, #3e165b, #592883);
-    border: 2px solid #d1a9ff;
+    background: linear-gradient(135deg, #4caf50, #66bb6a);
+    border: 2px solid #81c784;
     color: white;
     transform: rotateY(180deg);
     padding: 20px;
@@ -217,7 +217,7 @@ header p {
 
 #tarot-name {
     font-size: 1.4em;
-    color: #ffc0cb;
+    color: #e8f5e8;
     margin: 0 0 10px;
 }
 
@@ -248,8 +248,8 @@ header p {
 
 .decor-symbol {
     position: absolute;
-    color: rgba(209, 169, 255, 0.5);
-    text-shadow: 0 0 10px rgba(240, 230, 255, 0.7);
+    color: rgba(129, 199, 132, 0.5);
+    text-shadow: 0 0 10px rgba(200, 230, 201, 0.7);
     animation: floatSymbol 20s infinite ease-in-out;
 }
 
@@ -268,7 +268,7 @@ header p {
 }
 
 #get-fortune-btn {
-    background: linear-gradient(45deg, #da70d6, #8a2be2);
+    background: linear-gradient(45deg, #66bb6a, #4caf50);
     color: white;
     border: none;
     border-radius: 50px;
@@ -276,12 +276,12 @@ header p {
     font-size: 1.1em;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 0 15px #c390ff;
+    box-shadow: 0 0 15px #81c784;
 }
 
 #get-fortune-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 25px #d1a9ff;
+    box-shadow: 0 0 25px #a5d6a7;
 }
 
 #get-fortune-btn:active {
@@ -289,8 +289,8 @@ header p {
 }
 
 .loading-spinner {
-    border: 4px solid rgba(255, 255, 255, 0.2);
-    border-left-color: #ffc0cb;
+    border: 4px solid rgba(129, 199, 132, 0.3);
+    border-left-color: #66bb6a;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -308,7 +308,7 @@ header p {
 
 footer {
     margin-top: 40px;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(46, 125, 50, 0.7);
 }
 
 /* Responsive Design */

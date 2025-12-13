@@ -1,0 +1,380 @@
+<!DOCTYPE html><html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>图片圆角处理</title>
+  <style>
+    :root{
+      --bg-from:#eaf8e4;  /* 淡绿色 */
+      --bg-to:#f5ffd8;    /* 淡黄绿色 */
+      --card:#ffffffcc;   /* 卡片半透明 */
+      --accent:#78c67e;   /* 绿色主色 */
+      --accent-2:#99d78c; /* 次要 */
+      --text:#234;        /* 深色文字 */
+      --muted:#5b6b63;    /* 次级文字 */
+      --shadow:0 8px 28px rgba(34, 102, 60, 0.15);
+      --radius:18px;
+    }html, body {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft Yahei", sans-serif;
+  color: var(--text);
+  background: linear-gradient(160deg, var(--bg-from), var(--bg-to));
+}
+
+.wrap {
+  min-height: 100%;
+  display: grid;
+  place-items: start center;
+  padding: 18px 14px 28px;
+}
+
+.card {
+  width: 100%;
+  max-width: 520px; /* 适配手机竖屏 */
+  background: var(--card);
+  backdrop-filter: blur(8px);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+header .dot {
+  width: 10px; height: 10px; border-radius: 999px; background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(120,198,126,0.15);
+}
+
+h1 { font-size: 18px; margin: 0; font-weight: 700; }
+p.sub { margin: 4px 0 10px; color: var(--muted); font-size: 13px; }
+
+.uploader {
+  border: 1.5px dashed #a9d6ab;
+  border-radius: var(--radius);
+  background: #ffffffb3;
+  padding: 12px;
+  display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center;
+}
+
+.uploader input[type=file] {
+  width: 100%;
+  border: none; outline: none; background: transparent;
+}
+
+.controls { margin-top: 12px; display: grid; gap: 12px; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.slider {
+  background: #ffffff;
+  border: 1px solid #e3f2e1;
+  border-radius: var(--radius);
+  padding: 10px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+}
+
+.slider label { display:flex; align-items:center; justify-content:space-between; gap:6px; font-size: 14px; font-weight:600; }
+.slider output { font-variant-numeric: tabular-nums; color: var(--accent); min-width: 3ch; text-align: right; }
+
+input[type=range] {
+  -webkit-appearance: none; appearance: none; width: 100%; height: 32px; background: transparent;
+}
+input[type=range]::-webkit-slider-runnable-track { height: 8px; background: linear-gradient(90deg, #cfeecf, #e9ffd4); border-radius: 999px; }
+input[type=range]::-moz-range-track { height: 8px; background: linear-gradient(90deg, #cfeecf, #e9ffd4); border-radius: 999px; }
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--accent);
+  border: 2px solid #fff; margin-top: -7px; box-shadow: 0 2px 8px rgba(37,106,63,.3);
+}
+input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; box-shadow: 0 2px 8px rgba(37,106,63,.3); }
+
+.row { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.row .chk { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--muted); }
+
+.preview {
+  margin-top: 12px;
+  background: #ffffff;
+  border: 1px solid #e3f2e1;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+canvas { width: 100%; height: auto; display: block; background: repeating-conic-gradient(from 45deg, #f8fff1 0 10px, #f1ffe4 10px 20px); }
+
+.actions { display:flex; gap:10px; margin-top: 12px; }
+button, .btn {
+  appearance: none; border: none; cursor: pointer; font-weight: 700; letter-spacing: .2px; transition: transform .05s ease, box-shadow .2s ease, background .2s ease;
+  border-radius: 14px; padding: 12px 14px; box-shadow: 0 6px 18px rgba(120,198,126,.25);
+}
+.btn-primary { background: linear-gradient(180deg, var(--accent), var(--accent-2)); color: #fff; }
+.btn-ghost { background: #ffffffb5; color: #2c4432; border: 1px solid #d9efda; }
+button:active { transform: translateY(1px); }
+
+footer { text-align:center; color: #6a7; font-size: 12px; margin-top: 10px; }
+
+.hidden { display:none; }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="region" aria-label="图片圆角处理工具">
+      <header>
+        <div class="dot" aria-hidden="true"></div>
+        <h1>图片圆角处理（四角独立，最高至圆形）</h1>
+      </header>
+      <p class="sub">上传图片 → 调节四个角的圆角强度（0–100%）→ 预览并下载透明圆角 PNG。已针对手机竖屏优化。</p><div class="uploader" aria-label="上传图片">
+    <input id="file" type="file" accept="image/*" />
+    <small style="color:var(--muted);">支持 JPG / PNG / WebP 等常见格式</small>
+  </div>
+
+  <div class="controls">
+    <div class="row">
+      <label class="chk"><input type="checkbox" id="linkAll" checked /> 联动四角</label>
+      <button id="resetBtn" class="btn btn-ghost" type="button">重置</button>
+    </div>
+
+    <div class="grid-2">
+      <div class="slider">
+        <label>左上角 <output id="o_tl">20%</output></label>
+        <input id="r_tl" type="range" min="0" max="100" step="1" value="20" />
+      </div>
+      <div class="slider">
+        <label>右上角 <output id="o_tr">20%</output></label>
+        <input id="r_tr" type="range" min="0" max="100" step="1" value="20" />
+      </div>
+      <div class="slider">
+        <label>右下角 <output id="o_br">20%</output></label>
+        <input id="r_br" type="range" min="0" max="100" step="1" value="20" />
+      </div>
+      <div class="slider">
+        <label>左下角 <output id="o_bl">20%</output></label>
+        <input id="r_bl" type="range" min="0" max="100" step="1" value="20" />
+      </div>
+    </div>
+  </div>
+
+  <div class="preview" aria-live="polite">
+    <canvas id="previewCanvas" aria-label="预览画布"></canvas>
+  </div>
+
+  <div class="actions">
+    <button id="downloadBtn" class="btn btn-primary" type="button" disabled>下载处理后的 PNG</button>
+    <button id="fitBtn" class="btn btn-ghost" type="button" disabled>适配预览尺寸</button>
+  </div>
+
+  <footer>小贴士：将四个角都拉到 <b>100%</b>，在方形图片上会得到完全圆形效果。</footer>
+</div>
+
+  </div>  <!-- 脚本：处理圆角、预览与下载 -->  <script>
+    const fileInput = document.getElementById('file');
+    const linkAll = document.getElementById('linkAll');
+    const previewCanvas = document.getElementById('previewCanvas');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const fitBtn = document.getElementById('fitBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    const sliders = {
+      tl: document.getElementById('r_tl'),
+      tr: document.getElementById('r_tr'),
+      br: document.getElementById('r_br'),
+      bl: document.getElementById('r_bl'),
+    };
+    const outputs = {
+      tl: document.getElementById('o_tl'),
+      tr: document.getElementById('o_tr'),
+      br: document.getElementById('o_br'),
+      bl: document.getElementById('o_bl'),
+    };
+
+    // 工作画布（按原图尺寸绘制，导出用）
+    const workCanvas = document.createElement('canvas');
+    const workCtx = workCanvas.getContext('2d');
+    const prevCtx = previewCanvas.getContext('2d');
+
+    let img = new Image();
+    let imageLoaded = false;
+
+    const state = {
+      percent: { tl: 20, tr: 20, br: 20, bl: 20 },
+      fitToPreview: false,
+    };
+
+    function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+
+    function updateOutputs(){
+      for(const k of ['tl','tr','br','bl']) outputs[k].textContent = state.percent[k] + '%';
+    }
+
+    function setAllPercents(v){ for(const k of ['tl','tr','br','bl']) state.percent[k] = v; updateSliders(); }
+    function updateSliders(){ for(const k in sliders) sliders[k].value = state.percent[k]; updateOutputs(); render(); }
+
+    // 根据百分比换算到像素半径（以较短边的一半为 100%）
+    function percentToRadiusPx(p){
+      const base = Math.min(img.naturalWidth, img.naturalHeight) / 2; // 100% 对应的像素半径
+      return (clamp(p,0,100) / 100) * base;
+    }
+
+    // 绘制带四角独立圆角的路径
+    function roundedRectPath(ctx, x, y, w, h, r){
+      // 约束：每个角半径不能超过对应边长度的一半
+      const rTL = clamp(r.tl, 0, Math.min(w, h) / 2);
+      const rTR = clamp(r.tr, 0, Math.min(w, h) / 2);
+      const rBR = clamp(r.br, 0, Math.min(w, h) / 2);
+      const rBL = clamp(r.bl, 0, Math.min(w, h) / 2);
+
+      ctx.beginPath();
+      ctx.moveTo(x + rTL, y);
+      ctx.lineTo(x + w - rTR, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + rTR);
+      ctx.lineTo(x + w, y + h - rBR);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - rBR, y + h);
+      ctx.lineTo(x + rBL, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - rBL);
+      ctx.lineTo(x, y + rTL);
+      ctx.quadraticCurveTo(x, y, x + rTL, y);
+      ctx.closePath();
+    }
+
+    // 渲染到工作画布（原尺寸）
+    function renderWork(){
+      if(!imageLoaded) return;
+      workCanvas.width = img.naturalWidth;
+      workCanvas.height = img.naturalHeight;
+
+      workCtx.clearRect(0,0,workCanvas.width, workCanvas.height);
+      workCtx.save();
+      const r = {
+        tl: percentToRadiusPx(state.percent.tl),
+        tr: percentToRadiusPx(state.percent.tr),
+        br: percentToRadiusPx(state.percent.br),
+        bl: percentToRadiusPx(state.percent.bl),
+      };
+      roundedRectPath(workCtx, 0, 0, workCanvas.width, workCanvas.height, r);
+      workCtx.clip();
+      workCtx.drawImage(img, 0, 0, workCanvas.width, workCanvas.height);
+      workCtx.restore();
+    }
+
+    // 渲染到预览画布（自适应容器宽度，保持清晰度）
+    function renderPreview(){
+      const container = previewCanvas.parentElement.getBoundingClientRect();
+      const targetW = Math.min(container.width, 1000);
+      const scale = targetW / workCanvas.width;
+      const dpr = window.devicePixelRatio || 1;
+      const canvasW = Math.round(targetW * dpr);
+      const canvasH = Math.round(workCanvas.height * scale * dpr);
+
+      previewCanvas.width = canvasW;
+      previewCanvas.height = canvasH;
+      previewCanvas.style.height = Math.round(canvasH / dpr) + 'px';
+      previewCanvas.style.width = Math.round(canvasW / dpr) + 'px';
+
+      prevCtx.clearRect(0,0,canvasW,canvasH);
+      prevCtx.imageSmoothingEnabled = true;
+      prevCtx.drawImage(workCanvas, 0, 0, canvasW, canvasH);
+    }
+
+    function render(){
+      if(!imageLoaded) return;
+      renderWork();
+      renderPreview();
+    }
+
+    // 事件：上传图片
+    fileInput.addEventListener('change', (e)=>{
+      const file = e.target.files && e.target.files[0];
+      if(!file) return;
+      const url = URL.createObjectURL(file);
+      const temp = new Image();
+      temp.onload = ()=>{
+        img = temp;
+        imageLoaded = true;
+        render();
+        downloadBtn.disabled = false;
+        fitBtn.disabled = false;
+      };
+      temp.onerror = ()=>{
+        alert('图片加载失败，请更换文件重试');
+        imageLoaded = false;
+        downloadBtn.disabled = true;
+        fitBtn.disabled = true;
+      };
+      temp.src = url;
+    });
+
+    // 事件：滑块变更
+    for(const key of Object.keys(sliders)){
+      sliders[key].addEventListener('input', (e)=>{
+        const val = parseInt(e.target.value, 10) || 0;
+        if(linkAll.checked){
+          setAllPercents(val);
+        }else{
+          state.percent[key] = val;
+          updateOutputs();
+          render();
+        }
+      });
+    }
+
+    // 重置
+    resetBtn.addEventListener('click', ()=>{
+      linkAll.checked = true;
+      setAllPercents(20);
+    });
+
+    // 适配预览尺寸（导出较小尺寸，便于快速分享）
+    fitBtn.addEventListener('click', ()=>{
+      if(!imageLoaded) return;
+      const container = previewCanvas.parentElement.getBoundingClientRect();
+      const targetW = Math.min(container.width, 1080); // 限制到 1080 宽
+      const scale = targetW / img.naturalWidth;
+      const targetH = Math.round(img.naturalHeight * scale);
+
+      // 临时缩放导出画布
+      const temp = document.createElement('canvas');
+      temp.width = Math.round(targetW);
+      temp.height = Math.round(targetH);
+      const tctx = temp.getContext('2d');
+
+      // 先把当前工作画布绘好
+      renderWork();
+      tctx.drawImage(workCanvas, 0, 0, temp.width, temp.height);
+
+      const a = document.createElement('a');
+      a.href = temp.toDataURL('image/png');
+      a.download = 'rounded-image-fit.png';
+      a.click();
+    });
+
+    // 下载原始尺寸 PNG
+    downloadBtn.addEventListener('click', ()=>{
+      if(!imageLoaded) return;
+      renderWork();
+      const a = document.createElement('a');
+      a.href = workCanvas.toDataURL('image/png');
+      a.download = 'rounded-image.png';
+      a.click();
+    });
+
+    // 初始输出数字
+    updateOutputs();
+
+    // 自适应：窗口尺寸变动时重绘预览
+    window.addEventListener('resize', ()=>{ if(imageLoaded) renderPreview(); });
+
+    // 支持 PWA 风：阻止 iOS 双击缩放（改善滑块体验）
+    let lastTouch = 0;
+    document.addEventListener('touchend', (e)=>{
+      const now = Date.now();
+      if(now - lastTouch <= 300){ e.preventDefault(); }
+      lastTouch = now;
+    }, {passive:false});
+  </script></body>
+</html>

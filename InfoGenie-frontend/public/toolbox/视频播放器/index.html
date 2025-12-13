@@ -1,0 +1,412 @@
+<!DOCTYPE html><html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>▶️视频播放器</title>
+  <style>
+    :root{
+      --bg-from:#e9fbb6;      /* 淡黄绿色 */
+      --bg-to:#bff2cf;        /* 淡绿色 */
+      --accent:#6bbf7a;       /* 主色 */
+      --accent-2:#4aa36b;     /* 主色深 */
+      --text:#18412a;         /* 文本深色 */
+      --muted:#2a6b47;        /* 次要文本 */
+      --card:#ffffffcc;       /* 半透明卡片 */
+      --edge:#e3f0e6;         /* 边框 */
+      --shadow: 0 12px 24px rgba(40,120,80,.15);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+      color:var(--text);
+      background: linear-gradient(160deg,var(--bg-from),var(--bg-to));
+      -webkit-tap-highlight-color: transparent;
+    }
+    .wrap{
+      min-height:100dvh;
+      display:flex;flex-direction:column;gap:16px;
+      padding:16px; padding-bottom:24px;
+      max-width: 960px; margin: 0 auto;
+    }
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+    }
+    .title{
+      font-weight:700; letter-spacing:.2px; font-size:18px;
+    }
+    .uploader{
+      display:grid; grid-template-columns:1fr; gap:10px;
+      background:var(--card);
+      border:1px solid var(--edge);
+      box-shadow:var(--shadow);
+      border-radius:18px; padding:12px;
+    }
+    .row{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
+    input[type="url"], .btn, input[type="file"], .speed-select, .range{ 
+      border:1px solid var(--edge); border-radius:14px;
+      background:#fff; color:var(--text);
+      padding:10px 12px; font-size:14px; 
+    }
+    input[type="url"]{ flex:1; min-width:0; }
+    .btn{ background:linear-gradient(180deg,#ffffff,#f7fff5); cursor:pointer; user-select:none; }
+    .btn.primary{ background:linear-gradient(180deg,#d9fbd8,#bcf2c9); border-color:#b4e6be; }
+    .btn:hover{ filter:saturate(1.02); }
+    .btn:active{ transform:translateY(1px); }
+    .btn[disabled]{ opacity:.5; cursor:not-allowed; }.player-card{
+  background:var(--card); border:1px solid var(--edge); box-shadow:var(--shadow);
+  border-radius:22px; overflow:hidden;
+}
+.video-box{ position:relative; background:#000; aspect-ratio:16/9; }
+video{ width:100%; height:auto; display:block; background:#000; }
+.overlay-center{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none;
+}
+.big-btn{ 
+  width:64px; height:64px; border-radius:50%; 
+  background:radial-gradient(circle at 30% 30%, #ffffff, #eaffea);
+  display:grid; place-items:center; box-shadow:0 8px 24px rgba(0,0,0,.25);
+  opacity:0; transform:scale(.9); transition:.25s; 
+}
+.overlay-center.show .big-btn{ opacity:1; transform:scale(1); }
+
+.controls{
+  display:flex; flex-direction:column; gap:8px; padding:12px; background:linear-gradient(180deg,#f3fff3cc,#eafff2cc);
+  border-top:1px solid var(--edge);
+}
+.progress-row{ display:flex; align-items:center; gap:10px; }
+.range{ -webkit-appearance:none; appearance:none; width:100%; height:14px; padding:0 0; background:transparent; }
+.range::-webkit-slider-runnable-track{ height:6px; background:linear-gradient(90deg,#c9efcf,#aee7bb); border-radius:999px; }
+.range::-moz-range-track{ height:6px; background:linear-gradient(90deg,#c9efcf,#aee7bb); border-radius:999px; }
+.range::-webkit-slider-thumb{ -webkit-appearance:none; margin-top:-6px; width:18px; height:18px; border-radius:50%; background:#fff; border:1px solid #cde6d5; box-shadow:0 2px 8px rgba(51,117,84,.3); }
+.range::-moz-range-thumb{ width:18px; height:18px; border:none; border-radius:50%; background:#fff; box-shadow:0 2px 8px rgba(51,117,84,.3); }
+.time{ font-variant-tabular-nums:tabular-nums; font-size:12px; color:var(--muted); min-width:96px; text-align:center; }
+
+.bar{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.icon-btn{ border:none; background:#fff; border:1px solid var(--edge); border-radius:12px; width:40px; height:40px; display:grid; place-items:center; cursor:pointer; }
+.icon-btn:active{ transform:translateY(1px); }
+
+.speed-select{ padding-right:28px; }
+.vol{ display:flex; align-items:center; gap:6px; }
+.vol input{ width:110px; }
+
+.name{ font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
+/* 手机竖屏优先 */
+@media (min-width:720px){
+  .controls{ padding:14px 16px; }
+  .icon-btn{ width:42px; height:42px; }
+  .vol input{ width:140px; }
+}
+@media (max-width:420px){
+  .vol input{ width:96px; }
+  .time{ min-width:70px; }
+  .uploader .row > .btn,
+  .uploader .row > input[type="url"] { flex: 1 1 100%; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">▶️视频播放器</div>
+      <button class="btn" id="resetBtn" title="重置播放器">重置</button>
+    </header><section class="uploader" aria-label="选择视频源">
+  <div class="row">
+    <input aria-label="视频链接" type="url" id="urlInput" placeholder="粘贴视频直链（.mp4 / .webm / .ogg / .m3u8）后回车…" />
+    <button class="btn primary" id="loadUrlBtn">加载链接</button>
+  </div>
+  <div class="row">
+    <input aria-label="选择本地视频文件" type="file" id="fileInput" class="file-input" accept="video/*" />
+    <label for="fileInput" class="btn" id="fileInputLabel">选择本地文件</label>
+    <span class="name" id="fileName">未选择文件</span>
+  </div>
+</section>
+
+<section class="player-card" aria-label="视频播放器">
+  <div class="video-box" id="videoBox">
+    <video id="video" playsinline preload="metadata"></video>
+    <div class="overlay-center" id="overlay">
+      <div class="big-btn" aria-hidden="true">▶︎</div>
+    </div>
+  </div>
+
+  <div class="controls" role="group" aria-label="播放控制">
+    <div class="progress-row">
+      <span class="time" id="timeNow">00:00</span>
+      <input type="range" class="range" id="progress" min="0" max="1000" value="0" step="1" aria-label="进度条" />
+      <span class="time" id="timeTotal">--:--</span>
+    </div>
+    <div class="bar">
+      <button class="icon-btn" id="playBtn" title="播放/暂停 (空格)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5v14l11-7-11-7z" fill="currentColor"/></svg>
+      </button>
+      <button class="icon-btn" id="backwardBtn" title="后退10秒 (←)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M11 5V2L6 7l5 5V9c3.86 0 7 3.14 7 7 0 1.05-.22 2.05-.62 2.95l1.48 1.48A8.96 8.96 0 0020 16c0-4.97-4.03-9-9-9z" fill="currentColor"/><text x="3" y="21" font-size="8" fill="currentColor">10</text></svg>
+      </button>
+      <button class="icon-btn" id="forwardBtn" title="快进10秒 (→)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M13 5V2l5 5-5 5V9c-3.86 0-7 3.14-7 7 0 1.05.22 2.05.62 2.95L5.14 20.4A8.96 8.96 0 014 16c0-4.97 4.03-9 9-9z" fill="currentColor"/><text x="14" y="21" font-size="8" fill="currentColor">10</text></svg>
+      </button>
+
+      <label class="vol" title="音量 (↑/↓)">
+        <button class="icon-btn" id="muteBtn" aria-label="静音切换">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 9v6h4l5 5V4L8 9H4z" fill="currentColor"/></svg>
+        </button>
+        <input type="range" class="range" id="volume" min="0" max="1" step="0.01" value="1" aria-label="音量" />
+      </label>
+
+      <select id="speed" class="speed-select" title="倍速 ( , / . )" aria-label="倍速">
+        <option value="0.5">0.5×</option>
+        <option value="0.75">0.75×</option>
+        <option value="1" selected>1.0×</option>
+        <option value="1.25">1.25×</option>
+        <option value="1.5">1.5×</option>
+        <option value="2">2.0×</option>
+      </select>
+
+      <button class="icon-btn" id="pipBtn" title="画中画">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor"/><rect x="12.5" y="10" width="7" height="5" rx="1" fill="currentColor"/></svg>
+      </button>
+      <button class="icon-btn" id="fsBtn" title="全屏 (F)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 3H3v5h2V5h3V3zm10 0h-5v2h3v3h2V3zM5 14H3v7h7v-2H5v-5zm16 0h-2v5h-5v2h7v-7z" fill="currentColor"/></svg>
+      </button>
+      <div class="name" id="sourceName" title="当前来源">未加载视频</div>
+    </div>
+  </div>
+</section>
+  </div>  <!-- 可选：HLS 支持（仅当加载 .m3u8 时使用）。静态网页可直接引用 CDN。-->  <script src="hls.min.js" integrity="sha384-N7Pzv6j4n0O3+zJVwCyO0n2A7bgb1z47Z4+Z1fH2E0KXpKj9c3n2U6xJQ8P9yq3s" crossorigin="anonymous"></script>  <script>
+    const $ = sel => document.querySelector(sel);
+    const video = $('#video');
+    const progress = $('#progress');
+    const timeNow = $('#timeNow');
+    const timeTotal = $('#timeTotal');
+    const playBtn = $('#playBtn');
+    const backwardBtn = $('#backwardBtn');
+    const forwardBtn = $('#forwardBtn');
+    const muteBtn = $('#muteBtn');
+    const volume = $('#volume');
+    const speed = $('#speed');
+    const fsBtn = $('#fsBtn');
+    const pipBtn = $('#pipBtn');
+    const overlay = $('#overlay');
+    const fileInput = $('#fileInput');
+    const urlInput = $('#urlInput');
+    const loadUrlBtn = $('#loadUrlBtn');
+    const sourceName = $('#sourceName');
+    const fileName = $('#fileName');
+    const fileInputLabel = $('#fileInputLabel');
+    const resetBtn = $('#resetBtn');
+    const videoBox = $('#videoBox');
+
+    const fmt = s => {
+      if (!isFinite(s)) return '--:--';
+      const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), sec = Math.floor(s%60);
+      return h>0 ? `${h}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}` : `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;
+    };
+
+    // 恢复偏好
+    try{
+      const vol = localStorage.getItem('vp_volume');
+      if (vol !== null) video.volume = Number(vol);
+      volume.value = video.volume;
+      const spd = localStorage.getItem('vp_speed');
+      if (spd) { video.playbackRate = Number(spd); speed.value = spd; }
+    }catch{}
+
+    // 事件绑定
+    const togglePlay = () => {
+      if (video.paused || video.ended) { video.play(); showOverlay(); } else { video.pause(); showOverlay(); }
+      updatePlayIcon();
+    };
+    const updatePlayIcon = () => {
+      playBtn.innerHTML = video.paused ?
+        '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5v14l11-7-11-7z" fill="currentColor"/></svg>' :
+        '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 5h4v14H6zM14 5h4v14h-4z" fill="currentColor"/></svg>';
+    };
+
+    const showOverlay = () => {
+      overlay.classList.add('show');
+      clearTimeout(showOverlay._t);
+      showOverlay._t = setTimeout(()=>overlay.classList.remove('show'), 350);
+    };
+
+    const step = (sec) => { video.currentTime = Math.max(0, Math.min(video.duration || 0, video.currentTime + sec)); showOverlay(); };
+
+    const loadFile = (file) => {
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      attachSource(url, {name: file.name});
+      sourceName.textContent = file.name;
+      fileName.textContent = file.name;
+      if (fileInputLabel) fileInputLabel.textContent = '已选择：' + file.name;
+    };
+
+    const isHls = (url) => /\.m3u8(\?.*)?$/i.test(url);
+    const isDirect = (url) => /(\.mp4|\.webm|\.ogg)(\?.*)?$/i.test(url) || url.startsWith('blob:') || url.startsWith('data:');
+
+    let hls; // hls.js 实例
+
+    const destroyHls = () => { if (hls) { hls.destroy(); hls = null; } };
+
+    function attachSource(url, {name='外部链接'}={}){
+      destroyHls();
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+
+      if (isHls(url)){
+        if (video.canPlayType('application/vnd.apple.mpegURL')){
+          video.src = url; // Safari 原生
+        } else if (window.Hls && window.Hls.isSupported()){
+          hls = new Hls({ maxBufferLength: 30, enableWorker: true });
+          hls.loadSource(url);
+          hls.attachMedia(video);
+        } else {
+          alert('该浏览器不支持 HLS 播放（.m3u8）。请使用 Safari 或现代 Chromium 浏览器。');
+          return;
+        }
+      } else if (isDirect(url)) {
+        video.src = url;
+      } else {
+        alert('请提供视频“直链”地址（.mp4 / .webm / .ogg / .m3u8）。普通网页链接无法直接播放。');
+        return;
+      }
+
+      sourceName.textContent = name || url;
+      video.playbackRate = Number(speed.value || 1);
+      video.volume = Number(volume.value);
+      updatePlayIcon();
+      video.addEventListener('loadedmetadata', ()=>{
+        timeTotal.textContent = fmt(video.duration);
+        progress.value = 0; timeNow.textContent = '00:00';
+      }, { once: true });
+    }
+
+    // 选择文件
+    fileInput.addEventListener('change', e=>{
+      const file = e.target.files && e.target.files[0];
+      loadFile(file);
+    });
+
+    // 通过 URL 加载
+    const loadFromInput = () => {
+      const url = (urlInput.value || '').trim();
+      if (!url) return;
+      attachSource(url, {name: url});
+    };
+    loadUrlBtn.addEventListener('click', loadFromInput);
+    urlInput.addEventListener('keydown', e=>{ if (e.key === 'Enter') loadFromInput(); });
+
+    // 播放控制
+    playBtn.addEventListener('click', togglePlay);
+    backwardBtn.addEventListener('click', ()=>step(-10));
+    forwardBtn.addEventListener('click', ()=>step(10));
+
+    // 音量与静音
+    volume.addEventListener('input', ()=>{ video.volume = Number(volume.value); try{localStorage.setItem('vp_volume', volume.value);}catch{} });
+    muteBtn.addEventListener('click', ()=>{ video.muted = !video.muted; muteBtn.style.opacity = video.muted? .6:1; });
+
+    // 倍速
+    speed.addEventListener('change', ()=>{ video.playbackRate = Number(speed.value); try{localStorage.setItem('vp_speed', speed.value);}catch{} });
+
+    // 画中画
+    pipBtn.addEventListener('click', async ()=>{
+      try{
+        if (document.pictureInPictureElement) { await document.exitPictureInPicture(); }
+        else if (document.pictureInPictureEnabled && !video.disablePictureInPicture) { await video.requestPictureInPicture(); }
+      }catch(err){ console.warn(err); }
+    });
+
+    // 全屏
+    const isFullscreen = () => document.fullscreenElement || document.webkitFullscreenElement;
+    fsBtn.addEventListener('click', ()=>{
+      if (!isFullscreen()) {
+        (videoBox.requestFullscreen || videoBox.webkitRequestFullscreen || videoBox.requestFullScreen)?.call(videoBox);
+      } else {
+        (document.exitFullscreen || document.webkitExitFullscreen)?.call(document);
+      }
+    });
+
+    // 进度显示 & 拖动
+    const syncProgress = () => {
+      if (!video.duration) return;
+      const fraction = video.currentTime / video.duration;
+      progress.value = Math.round(fraction * 1000);
+      timeNow.textContent = fmt(video.currentTime);
+      timeTotal.textContent = fmt(video.duration);
+    };
+
+    let rafId;
+    const loop = () => { syncProgress(); rafId = requestAnimationFrame(loop); };
+    video.addEventListener('play', ()=>{ updatePlayIcon(); cancelAnimationFrame(rafId); loop(); });
+    video.addEventListener('pause', ()=>{ updatePlayIcon(); cancelAnimationFrame(rafId); syncProgress(); });
+    video.addEventListener('ended', ()=>{ updatePlayIcon(); showOverlay(); });
+
+    let seeking = false;
+    const seekTo = (val)=>{
+      if (!video.duration) return;
+      const target = (val/1000) * video.duration;
+      video.currentTime = target;
+      syncProgress();
+    };
+    ['input','change'].forEach(evt=>progress.addEventListener(evt, e=>{ seeking = evt==='input'; seekTo(Number(progress.value)); }));
+
+    // 键盘快捷键
+    document.addEventListener('keydown', (e)=>{
+      if (/input|textarea|select/i.test(document.activeElement.tagName)) return;
+      switch(e.key){
+        case ' ': e.preventDefault(); togglePlay(); break;
+        case 'ArrowLeft': step(-5); break;
+        case 'ArrowRight': step(5); break;
+        case 'ArrowUp': video.volume = Math.min(1, video.volume + .05); volume.value = video.volume; break;
+        case 'ArrowDown': video.volume = Math.max(0, video.volume - .05); volume.value = video.volume; break;
+        case 'f': case 'F': fsBtn.click(); break;
+        case 'm': case 'M': video.muted = !video.muted; muteBtn.style.opacity = video.muted? .6:1; break;
+        case ',': video.playbackRate = Math.max(.25, Math.round((video.playbackRate - .25)*4)/4); speed.value = String(video.playbackRate); break;
+        case '.': video.playbackRate = Math.min(2, Math.round((video.playbackRate + .25)*4)/4); speed.value = String(video.playbackRate); break;
+        default:
+          if (/^[0-9]$/.test(e.key) && video.duration){
+            const pct = Number(e.key) / 10; video.currentTime = pct * video.duration;
+          }
+      }
+    });
+
+    // 双击左右快进/后退（移动端友好）
+    let lastTap = 0;
+    videoBox.addEventListener('touchend', (e)=>{
+      const now = Date.now();
+      const dt = now - lastTap; lastTap = now;
+      if (dt>300) return; // 双击窗口
+      const x = e.changedTouches[0].clientX;
+      const rect = videoBox.getBoundingClientRect();
+      if (x - rect.left < rect.width/2) step(-10); else step(10);
+    });
+
+    // 点击视频区域也可播放/暂停
+    videoBox.addEventListener('click', (e)=>{
+      // 避免点击控制条触发
+      if (e.target.closest('.controls')) return;
+      togglePlay();
+    });
+
+    // 重置
+    resetBtn.addEventListener('click', ()=>{
+      try{ localStorage.removeItem('vp_volume'); localStorage.removeItem('vp_speed'); }catch{}
+      destroyHls();
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+      sourceName.textContent = '未加载视频';
+      fileName.textContent = '未选择文件';
+      urlInput.value = '';
+      progress.value = 0; timeNow.textContent = '00:00'; timeTotal.textContent = '--:--';
+      volume.value = 1; video.volume = 1; speed.value = '1'; video.playbackRate = 1;
+      updatePlayIcon();
+    });
+
+    // 初始图标
+    updatePlayIcon();
+  </script></body>
+</html>

@@ -1,0 +1,106 @@
+/* 主题色：淡绿色到淡黄绿色的清新渐变 */
+:root {
+  --bg-start: #dff9d3;
+  --bg-mid: #eaffd1;
+  --bg-end:  #e9fbb5;
+  --accent: #4fb66d;
+  --accent-dark: #3a9e5a;
+  --text: #2f4f3f;
+  --hud-bg: rgba(255, 255, 255, 0.65);
+  --overlay-bg: rgba(255, 255, 255, 0.55);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, PingFang SC, Microsoft YaHei, sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, var(--bg-start), var(--bg-mid), var(--bg-end));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: none;
+}
+
+/* 顶部HUD */
+#hud {
+  position: fixed;
+  top: env(safe-area-inset-top, 12px);
+  left: env(safe-area-inset-left, 12px);
+  right: env(safe-area-inset-right, 12px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  margin: 8px;
+  border-radius: 14px;
+  background: var(--hud-bg);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+#hud .score { font-weight: 600; letter-spacing: 0.5px; }
+
+/* 画布填充屏幕，适配竖屏 */
+#game {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 通用按钮样式 */
+.btn {
+  appearance: none;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+  box-shadow: 0 6px 14px rgba(79,182,109,0.35);
+  cursor: pointer;
+}
+.btn:active { transform: translateY(1px); }
+.btn.primary { font-weight: 600; }
+
+/* 覆盖层样式 */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.overlay.show { display: flex; }
+
+.card {
+  width: min(520px, 92vw);
+  padding: 20px 18px;
+  border-radius: 16px;
+  background: var(--overlay-bg);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+  text-align: center;
+}
+.card h1, .card h2 { margin: 8px 0 12px; }
+.card p { margin: 6px 0 12px; }
+
+/* 横屏提示覆盖层 */
+#rotateOverlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(6px);
+}

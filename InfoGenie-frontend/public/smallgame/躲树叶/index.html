@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <title>清新躲避 · 无尽模式</title>
+  <meta name="theme-color" content="#d8f7c2" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div id="hud">
+    <div class="score">分数 <span id="score">0</span></div>
+    <button id="pauseBtn" class="btn" aria-label="暂停">Ⅱ</button>
+  </div>
+
+  <canvas id="game" aria-label="清新躲避游戏画布"></canvas>
+
+  <div id="startOverlay" class="overlay show" role="dialog" aria-modal="true">
+    <div class="card">
+      <h1>清新躲避</h1>
+      <p>按住并左右拖动，躲避下落的叶片。</p>
+      <p>无尽模式，难度会随时间提升。</p>
+      <button id="startBtn" class="btn primary">开始游戏</button>
+    </div>
+  </div>
+
+  <div id="gameOverOverlay" class="overlay" role="dialog" aria-modal="true">
+    <div class="card">
+      <h2>游戏结束</h2>
+      <p>本局分数：<strong id="finalScore">0</strong></p>
+      <button id="restartBtn" class="btn primary">再来一次</button>
+    </div>
+  </div>
+
+  <div id="rotateOverlay">请将手机竖屏以获得最佳体验</div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

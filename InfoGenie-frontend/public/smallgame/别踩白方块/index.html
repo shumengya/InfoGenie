@@ -182,6 +182,56 @@
         background: linear-gradient(45deg, #4caf50, #388e3c);
         box-shadow: 0 6px 16px rgba(76,175,80,0.4);
     }
+    /* 排行榜样式 */
+    .leaderboard {
+        margin-top: 15px;
+        background: rgba(255,255,255,0.6);
+        border: 1px solid rgba(129,199,132,0.3);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .leaderboard-title {
+        background: linear-gradient(45deg, #66bb6a, #4caf50);
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+        padding: 8px 12px;
+        text-align: left;
+        box-shadow: inset 0 -1px 0 rgba(255,255,255,0.2);
+    }
+    .leaderboard-meta {
+        color: #2e7d32;
+        font-size: 13px;
+        padding: 8px 12px;
+        border-bottom: 1px solid rgba(129,199,132,0.2);
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    .leaderboard-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .leaderboard-table th, .leaderboard-table td {
+        padding: 8px 6px;
+        font-size: 13px;
+        border-bottom: 1px solid rgba(129,199,132,0.2);
+        color: #1b5e20;
+        text-align: center;
+    }
+    .leaderboard-table th {
+        background: rgba(129,199,132,0.2);
+        font-weight: bold;
+        color: #1b5e20;
+    }
+    .leaderboard-row-me {
+        background: rgba(198,40,40,0.08);
+        border-left: 3px solid #c62828;
+    }
+    .leaderboard-table tr:nth-child(even) {
+        background: rgba(129,199,132,0.1);
+    }
     
     /* 移动端适配 */
     @media (max-width: 768px) {
@@ -253,11 +303,32 @@
             <h2 class="modal-title">游戏结束</h2>
             <div class="final-score">最终得分: <span id="final-score-value">0</span></div>
             <div class="final-speed">最高速度: <span id="final-speed-value">1.0</span>x</div>
+            <!-- 排行榜区域 -->
+            <div class="leaderboard">
+                <div class="leaderboard-title">排行榜</div>
+                <div class="leaderboard-meta">
+                    <span>我的排名：第 <span id="my-rank">-</span> 名</span>
+                    <span>我的分数：<span id="my-score">0</span></span>
+                    <span>时间：<span id="my-time">--</span></span>
+                </div>
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>排名</th>
+                            <th>名称</th>
+                            <th>分数</th>
+                            <th>时间</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body"></tbody>
+                </table>
+            </div>
             <button id="restart-btn" class="modal-btn restart-btn">重新开始</button>
         </div>
     </div>
     
     <audio id="music" src="MUSIC.mp3" loop></audio>
+    <script src="gamedata.js"></script>
     <script src="game.js"></script>
 </body>
 </html>

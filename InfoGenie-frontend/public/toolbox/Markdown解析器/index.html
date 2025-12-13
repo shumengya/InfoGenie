@@ -1,0 +1,337 @@
+<!doctype html>
+
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#dff5d0" />
+  <title>Markdown解析器</title>
+  <!-- Markdown 解析与安全清洗 -->
+  <script src="./marked.min.js"></script>
+  <script src="./purify.min.js"></script>
+  <style>
+    :root {
+      --bg-start: #e9f9e4;        /* 淡绿色 */
+      --bg-end:   #f3ffdf;        /* 淡黄绿色 */
+      --card: rgba(255, 255, 255, 0.66);
+      --card-border: rgba(108, 170, 92, 0.25);
+      --text: #2b3a2e;
+      --muted: #5c745a;
+      --accent: #69b36d;
+      --accent-2: #9adf76;
+      --shadow: 0 10px 30px rgba(67, 125, 67, 0.15);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --maxw: min(96vw, 1600px);
+    }* { box-sizing: border-box; }
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+  color: var(--text);
+  background: linear-gradient(160deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  background-attachment: fixed;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  backdrop-filter: saturate(120%) blur(8px);
+  background: linear-gradient(160deg, rgba(233,249,228,0.75) 0%, rgba(243,255,223,0.75) 100%);
+  border-bottom: 1px solid var(--card-border);
+}
+
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--accent-2), var(--accent));
+  box-shadow: var(--shadow);
+  border: 1px solid var(--card-border);
+  flex: 0 0 auto;
+}
+
+h1 { font-size: 18px; margin: 0; font-weight: 700; letter-spacing: .4px; }
+.sub { color: var(--muted); font-size: 12px; }
+
+main { max-width: var(--maxw); margin: 20px auto; padding: 0 16px 36px; }
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.editor, .preview-box { padding: 14px; }
+
+.label {
+  font-size: 13px; font-weight: 600; color: var(--muted);
+  display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 38vh; /* 适配手机竖屏 */
+  resize: vertical;
+  padding: 14px 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  font: 14px/1.55 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  color: #1f3024;
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(105, 179, 109, 0.2);
+  background: #fff;
+}
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  appearance: none; border: none; cursor: pointer;
+  padding: 10px 14px; font-weight: 600; font-size: 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  color: #083610; box-shadow: var(--shadow);
+  transition: transform .04s ease, filter .2s ease;
+}
+
+button:active { transform: translateY(1px) scale(0.99); }
+button.secondary { background: #ffffffb3; color: #2b3a2e; border: 1px solid var(--card-border); }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.markdown-body {
+  padding: 12px 10px;
+  background: rgba(255,255,255,0.6);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 基础 Markdown 样式（简化版） */
+.markdown-body h1, .markdown-body h2, .markdown-body h3,
+.markdown-body h4, .markdown-body h5, .markdown-body h6 {
+  margin: 14px 0 8px; font-weight: 700; line-height: 1.25; color: #17361f;
+}
+.markdown-body h1 { font-size: 22px; }
+.markdown-body h2 { font-size: 20px; }
+.markdown-body h3 { font-size: 18px; }
+.markdown-body p, .markdown-body ul, .markdown-body ol { margin: 10px 0; }
+.markdown-body a { color: #0d6f3a; text-decoration: underline; }
+.markdown-body blockquote { border-left: 4px solid var(--accent); padding: 8px 10px; margin: 10px 0; background: #f6fff0; }
+.markdown-body code { background: #f1f7ea; padding: 2px 6px; border-radius: 6px; }
+.markdown-body pre { background: #f1f7ea; padding: 10px; border-radius: 10px; overflow: auto; }
+.markdown-body table { border-collapse: collapse; width: 100%; }
+.markdown-body th, .markdown-body td { border: 1px solid #cfe6c8; padding: 8px; }
+.markdown-body th { background: #e8f6df; }
+
+/* 全屏预览覆盖层 */
+.overlay {
+  position: fixed; inset: 0; z-index: 50;
+  background: linear-gradient(160deg, rgba(233,249,228,0.96), rgba(243,255,223,0.96));
+  display: none; flex-direction: column;
+}
+.overlay[aria-hidden="false"] { display: flex; }
+
+.overlay-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 12px; gap: 10px;
+  border-bottom: 1px solid var(--card-border);
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(8px) saturate(120%);
+}
+
+.overlay-title { font-weight: 700; color: #164926; font-size: 15px; }
+
+.overlay-content {
+  padding: 14px; overflow: auto; height: 100%;
+}
+
+.tip { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+/* 适配更大屏幕时的布局 */
+@media (min-width: 840px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+  textarea { min-height: 55vh; }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        <h1>Markdown解析器</h1>
+      </div>
+    </div>
+  </header>  <main>
+    <div class="grid">
+      <section class="panel editor" aria-label="编辑器">
+        <div class="label">Markdown 输入</div>
+        <textarea id="md-input" placeholder="在此输入 Markdown 文本"></textarea>
+        <div class="toolbar">
+          <button id="btn-preview">预览</button>
+          <button class="secondary" id="btn-clear" title="清空输入">清空</button>
+        </div>
+      </section><section class="panel preview-box" aria-label="预览">
+    <div class="label">实时预览</div>
+    <article id="preview" class="markdown-body" aria-live="polite"></article>
+  </section>
+</div>
+
+  </main>  <!-- 全屏预览覆盖层 -->  <div id="overlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="overlay-toolbar">
+      <div class="overlay-title">预览</div>
+      <div style="display:flex; gap:10px;">
+        <button class="secondary" id="btn-exit">退出预览</button>
+      </div>
+    </div>
+    <div class="overlay-content">
+      <article id="overlay-preview" class="markdown-body"></article>
+    </div>
+  </div>  <script>
+    // Marked 基础配置
+    marked.setOptions({
+      gfm: true,
+      breaks: true,
+      headerIds: true,
+      mangle: false
+    });
+
+    const $ = (sel) => document.querySelector(sel);
+    const input = $('#md-input');
+    const preview = $('#preview');
+    const overlay = $('#overlay');
+    const overlayPreview = $('#overlay-preview');
+    const btnPreview = $('#btn-preview');
+    const btnExit = $('#btn-exit');
+    const btnClear = $('#btn-clear');
+
+    const STORAGE_KEY = 'md-editor-content-v1';
+
+    // 桌面端自动扩展输入框高度
+    const MQ_DESKTOP = window.matchMedia('(min-width: 840px)');
+    function autoResizeTextarea(el) {
+      el.style.height = 'auto';
+      el.style.height = el.scrollHeight + 'px';
+    }
+    function applyTextareaMode() {
+      if (MQ_DESKTOP.matches) {
+        input.style.overflowY = 'hidden';
+        input.style.resize = 'none';
+        autoResizeTextarea(input);
+      } else {
+        input.style.overflowY = '';
+        input.style.resize = '';
+        input.style.height = '';
+      }
+    }
+    MQ_DESKTOP.addEventListener('change', applyTextareaMode);
+
+    function renderMarkdown(targetEl, srcText) {
+      try {
+        const html = marked.parse(srcText ?? '');
+        // 使用 DOMPurify 进行安全清洗
+        targetEl.innerHTML = DOMPurify.sanitize(html, { USE_PROFILES: { html: true } });
+      } catch (e) {
+        targetEl.textContent = '解析出错：' + e.message;
+      }
+    }
+
+    function syncRender() {
+      const text = input.value;
+      // 保存到本地
+      try { localStorage.setItem(STORAGE_KEY, text); } catch (e) {}
+      renderMarkdown(preview, text);
+      if (MQ_DESKTOP.matches) { autoResizeTextarea(input); }
+    }
+
+    // 初始载入：从本地存储恢复
+    (function init() {
+      let initial = '';
+      try { initial = localStorage.getItem(STORAGE_KEY) || ''; } catch (e) {}
+      if (!initial) {
+        initial = `# 🌿 欢迎使用Markdown解析器\n\n在左侧/上方输入 Markdown，右侧/下方会 **实时预览**。\n\n- 支持 GFM、自动换行、代码块\n- 点击右上方的 **全屏预览** 按钮\n- 内容会保存在本地浏览器中\n\n> 小提示：支持表格、引用、链接等常见语法~\n\n| 功能 | 状态 |\n| ---- | ---- |\n| 实时预览 | ✅ |\n| 全屏预览 | ✅ |\n| 本地保存 | ✅ |\n`;
+      }
+      input.value = initial;
+      syncRender();
+      applyTextareaMode();
+    })();
+
+    // 输入实时渲染
+    input.addEventListener('input', syncRender);
+
+    // 清空
+    btnClear.addEventListener('click', () => {
+      input.value = '';
+      syncRender();
+      input.focus();
+    });
+
+    // 打开全屏预览
+    btnPreview.addEventListener('click', async () => {
+      overlay.setAttribute('aria-hidden', 'false');
+      overlayPreview.innerHTML = preview.innerHTML;
+      // 尝试调用原生全屏 API（兼容性降级到覆盖层）
+      try {
+        if (!document.fullscreenElement && overlay.requestFullscreen) {
+          await overlay.requestFullscreen();
+        }
+      } catch (e) {
+        // 忽略错误，覆盖层已显示
+      }
+    });
+
+    // 退出全屏预览
+    function exitOverlay() {
+      overlay.setAttribute('aria-hidden', 'true');
+      if (document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    btnExit.addEventListener('click', exitOverlay);
+
+    // Esc 键退出
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.getAttribute('aria-hidden') === 'false') {
+        exitOverlay();
+      }
+    });
+
+    // 当内容变化时，若处于全屏预览，则同步内容
+    const obs = new MutationObserver(() => {
+      if (overlay.getAttribute('aria-hidden') === 'false') {
+        overlayPreview.innerHTML = preview.innerHTML;
+      }
+    });
+    obs.observe(preview, { childList: true, subtree: true });
+  </script></body>
+</html>

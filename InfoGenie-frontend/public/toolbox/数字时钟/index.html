@@ -1,0 +1,92 @@
+<!doctype html>
+
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#000000" />
+  <title>数字时钟</title>
+  <style>
+    /* 基础：黑底白字、全屏居中 */
+    html, body {
+      height: 100%;
+      margin: 0;
+      background: #000;
+      color: #fff;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      overscroll-behavior: none;
+      touch-action: manipulation;
+    }
+    .stage {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: env(safe-area-inset);
+    }
+    /* 大号等宽数字，保证各位宽度一致，避免跳动 */
+    .clock {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+      font-variant-numeric: tabular-nums lining-nums;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      user-select: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      /* 自适应字号：在不同屏幕上都足够大 */
+      font-size: clamp(12vmin, 18vmin, 22vmin);
+      /* 防止 iOS 浏览器工具栏出现时的轻微抖动 */
+      max-width: 100vw;
+    }
+    /* 横屏：按宽度再放大一些（更横向铺满） */
+    @media (orientation: landscape) {
+      .clock { font-size: min(20vmin, 22vw); }
+    }
+    /* 竖屏：把数字整体顺时针旋转 90°，看起来依旧是“横屏”的排布 */
+    @media (orientation: portrait) {
+      .clock { transform: rotate(90deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div id="clock" class="clock" aria-live="polite" aria-label="当前时间">00:00:00</div>
+  </div>  <script>
+    (function() {
+      const el = document.getElementById('clock');
+
+      function two(n) { return (n < 10 ? '0' : '') + n; }
+
+      function renderNow() {
+        const d = new Date();
+        el.textContent = `${two(d.getHours())}:${two(d.getMinutes())}:${two(d.getSeconds())}`;
+      }
+
+      // 与下一整秒对齐，尽量避免定时器漂移
+      function startAlignedClock() {
+        renderNow();
+        const drift = 1000 - (Date.now() % 1000);
+        setTimeout(function tick() {
+          renderNow();
+          setTimeout(tick, 1000);
+        }, drift);
+      }
+
+      // 处理移动端 100vh 问题：设置 CSS 变量供需要时使用（当前样式未直接用到，但保留以便扩展）
+      function setViewportVars() {
+        document.documentElement.style.setProperty('--dvw', window.innerWidth + 'px');
+        document.documentElement.style.setProperty('--dvh', window.innerHeight + 'px');
+      }
+
+      setViewportVars();
+      window.addEventListener('resize', setViewportVars);
+      window.addEventListener('orientationchange', setViewportVars);
+
+      startAlignedClock();
+    })();
+  </script></body>
+</html>

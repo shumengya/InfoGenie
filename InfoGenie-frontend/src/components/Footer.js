@@ -101,7 +101,7 @@ const Footer = () => {
 
         <FooterBottom>
           <Copyright>
-            蜀ICP备2025151694号  | Copyright © 2025-{currentYear}
+    <strong>蜀ICP备2025151694号 | Copyright © 2025-{currentYear}</strong>
           </Copyright>
         </FooterBottom>
       </FooterContent>

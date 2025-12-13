@@ -1,18 +1,33 @@
-/* 农历主题背景样式 - 柔和版本 */
+/* 全局滚动条隐藏样式 */
+html, body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    display: none; /* Webkit浏览器 */
+}
+
+/* 农历主题背景样式 - 淡黄绿色到淡绿色清新渐变 */
 body {
     background: linear-gradient(135deg, 
-        #f8f9fa 0%,     /* 浅灰白 */
-        #fff3e0 20%,    /* 淡橙色 */
-        #fef7e0 40%,    /* 极淡黄 */
-        #f3e5ab 60%,    /* 柔和金色 */
-        #e8dcc6 80%,    /* 米色 */
-        #f8f9fa 100%    /* 浅灰白 */
+        #f0f8e8 0%,     /* 淡黄绿色 */
+        #e8f5e8 20%,    /* 浅绿色 */
+        #d4f4dd 40%,    /* 淡绿色 */
+        #c8f2d4 60%,    /* 清新绿色 */
+        #b8f0c8 80%,    /* 柔和绿色 */
+        #e8f5e8 100%    /* 浅绿色 */
     );
     background-size: 400% 400%;
     animation: gentleShift 30s ease infinite;
     background-attachment: fixed;
     min-height: 100vh;
     position: relative;
+    /* 隐藏滚动条但保留滚动功能 */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
 }
 
 @keyframes gentleShift {
@@ -23,7 +38,7 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-/* 动态颜色调节系统 - 柔和版本 */
+/* 动态颜色调节系统 - 绿色主题版本 */
 .adaptive-overlay {
     position: fixed;
     top: 0;
@@ -31,9 +46,9 @@ body {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.25) 0%, transparent 50%),
-        linear-gradient(45deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.3) 100%);
+        radial-gradient(circle at 20% 30%, rgba(200, 242, 212, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(184, 240, 200, 0.25) 0%, transparent 50%),
+        linear-gradient(45deg, rgba(232, 245, 232, 0.2) 0%, rgba(212, 244, 221, 0.3) 100%);
     pointer-events: none;
     z-index: 1;
     animation: adaptiveShift 60s ease infinite;
@@ -42,33 +57,33 @@ body {
 @keyframes adaptiveShift {
     0% { 
         background: 
-            radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-            linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+            radial-gradient(circle at 20% 30%, rgba(232, 245, 232, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(212, 244, 221, 0.15) 0%, transparent 50%),
+            linear-gradient(45deg, rgba(240, 248, 232, 0.1) 0%, rgba(232, 245, 232, 0.2) 100%);
     }
     25% { 
         background: 
-            radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
-            radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-            linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.25) 100%);
+            radial-gradient(circle at 70% 20%, rgba(200, 242, 212, 0.2) 0%, transparent 50%),
+            radial-gradient(circle at 30% 80%, rgba(184, 240, 200, 0.1) 0%, transparent 50%),
+            linear-gradient(135deg, rgba(212, 244, 221, 0.15) 0%, rgba(200, 242, 212, 0.25) 100%);
     }
     50% { 
         background: 
-            radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 10% 90%, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
-            linear-gradient(225deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.22) 100%);
+            radial-gradient(circle at 50% 50%, rgba(220, 246, 228, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 10% 90%, rgba(232, 245, 232, 0.12) 0%, transparent 50%),
+            linear-gradient(225deg, rgba(240, 248, 232, 0.12) 0%, rgba(212, 244, 221, 0.22) 100%);
     }
     75% { 
         background: 
-            radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.18) 0%, transparent 50%),
-            radial-gradient(circle at 40% 10%, rgba(255, 255, 255, 0.08) 0%, transparent 50%),
-            linear-gradient(315deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+            radial-gradient(circle at 90% 60%, rgba(184, 240, 200, 0.18) 0%, transparent 50%),
+            radial-gradient(circle at 40% 10%, rgba(240, 248, 232, 0.08) 0%, transparent 50%),
+            linear-gradient(315deg, rgba(232, 245, 232, 0.1) 0%, rgba(200, 242, 212, 0.2) 100%);
     }
     100% { 
         background: 
-            radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-            linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+            radial-gradient(circle at 20% 30%, rgba(232, 245, 232, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(212, 244, 221, 0.15) 0%, transparent 50%),
+            linear-gradient(45deg, rgba(240, 248, 232, 0.1) 0%, rgba(232, 245, 232, 0.2) 100%);
     }
 }
 

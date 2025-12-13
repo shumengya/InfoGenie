@@ -61,40 +61,32 @@
     <!-- 游戏结束统计界面 -->
     <div class="game-stats" id="gameStats">
         <div class="stats-content">
-            <h2>游戏结束</h2>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-label">最终分数</span>
-                    <span class="stat-value" id="finalScore">0</span>
+            <h2>游戏结束排行榜</h2>
+            <!-- 排行榜 -->
+            <div class="leaderboard" id="leaderboard">
+                <div class="leaderboard-title">本局排行榜</div>
+                <div class="leaderboard-wrap">
+                    <table class="leaderboard-table">
+                        <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>名称</th>
+                                <th>分数</th>
+                                <th>游戏时长</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardBody"></tbody>
+                    </table>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-label">达到等级</span>
-                    <span class="stat-value" id="finalLevel">1</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">消除行数</span>
-                    <span class="stat-value" id="finalLines">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">游戏时长</span>
-                    <span class="stat-value" id="playTime">00:00</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">单次消除最大行数</span>
-                    <span class="stat-value" id="maxCombo">0</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-label">平均每分钟分数</span>
-                    <span class="stat-value" id="avgScore">0</span>
-                </div>
+                <div class="leaderboard-tip">仅显示前10名；“游戏时长”为模拟数据，已与您的成绩合并</div>
             </div>
-            <div class="achievement" id="achievement"></div>
             <button class="game-btn" id="playAgainBtn">再玩一次</button>
         </div>
     </div>
     
     <script src="tetris.js"></script>
     <script src="game-controls.js"></script>
+    <script src="gamedata.js"></script>
     <script src="game-stats.js"></script>
 </body>
 </html>

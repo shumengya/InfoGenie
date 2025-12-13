@@ -27,12 +27,32 @@
             </div>
         </div>
         
-        <div class="game-instructions">
-            <p>使用方向键或拖动手势控制蛇的方向</p>
+    
+    </div>
+    
+    <!-- 游戏结束排行榜弹层（替换旧的游戏结束界面） -->
+    <div id="leaderboardOverlay" class="modal">
+        <div class="modal-content">
+            <h2>游戏结束排行榜</h2>
+            <div class="leaderboard-summary" id="leaderboardSummary">
+                <p>
+                    分数: <span id="lbScore">0</span>
+                    ｜长度: <span id="lbLength">3</span>
+                    ｜等级: <span id="lbLevel">1</span>
+                </p>
+                <p>
+                    游戏时长: <span id="lbGameTime">0秒</span>
+                    ｜你的排名: <span id="lbRank">—</span>
+                </p>
+            </div>
+            <div class="leaderboard">
+                <h3>TOP 10</h3>
+                <div id="leaderboardList" class="leaderboard-list"></div>
+            </div>
+            <button id="leaderboardRestartBtn" class="restart-btn">重新开始</button>
         </div>
     </div>
     
-
     
     <script src="gamedata.js"></script>
     <script src="game-core.js"></script>

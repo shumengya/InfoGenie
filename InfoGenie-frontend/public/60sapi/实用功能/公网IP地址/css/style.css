@@ -11,6 +11,22 @@ body {
     color: #333;
     min-height: 100vh;
     overflow-x: hidden;
+    /* 隐藏滚动条但保留滚动功能 */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* 隐藏 Webkit 浏览器的滚动条 */
+body::-webkit-scrollbar,
+html::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    display: none;
+}
+
+/* 全局隐藏滚动条但保留滚动功能 */
+html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
 }
 
 /* 容器样式 */
@@ -26,7 +42,7 @@ body {
 .header {
     text-align: center;
     padding: 3rem 2rem 2rem;
-    background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(80, 200, 120, 0.1));
+    background: linear-gradient(135deg, rgba(144, 238, 144, 0.15), rgba(152, 251, 152, 0.15));
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -34,7 +50,7 @@ body {
 .header h1 {
     font-size: 2.5rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #4a90e2, #50c878);
+    background: linear-gradient(135deg, #228B22, #32CD32);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -44,7 +60,7 @@ body {
 
 .header h1 i {
     margin-right: 0.5rem;
-    background: linear-gradient(135deg, #4a90e2, #50c878);
+    background: linear-gradient(135deg, #228B22, #32CD32);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -72,7 +88,7 @@ body {
 }
 
 .query-btn {
-    background: linear-gradient(135deg, #4a90e2, #50c878);
+    background: linear-gradient(135deg, #228B22, #32CD32);
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -81,7 +97,7 @@ body {
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    box-shadow: 0 4px 15px rgba(34, 139, 34, 0.3);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -91,8 +107,8 @@ body {
 
 .query-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
-    background: linear-gradient(135deg, #3a7bc8, #40a868);
+    box-shadow: 0 6px 20px rgba(34, 139, 34, 0.4);
+    background: linear-gradient(135deg, #1e7e1e, #2eb82e);
 }
 
 .query-btn:active {

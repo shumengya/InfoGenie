@@ -237,6 +237,91 @@ body {
     transition: all 0.3s ease;
 }
 
+/* 排行榜样式（与 2048 主题一致） */
+.leaderboard {
+    width: 100%;
+    max-width: 440px;
+    background: rgba(250, 248, 239, 0.95); /* #faf8ef */
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    color: #776e65;
+}
+
+.leaderboard-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #8f7a66;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.leaderboard-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 14px;
+    color: #8f7a66;
+    margin-bottom: 10px;
+}
+.leaderboard-summary strong {
+    color: #8f7a66;
+}
+
+.leaderboard-table {
+    border: 1px solid rgba(187, 173, 160, 0.3); /* #bbada0 */
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(238, 228, 218, 0.4); /* #eee4da */
+}
+
+.leaderboard-header,
+.leaderboard-row {
+    display: grid;
+    grid-template-columns: 64px 1fr 90px 120px; /* 排名/名称/分数/日期 */
+    align-items: center;
+}
+
+.leaderboard-header {
+    background: #eee4da;
+    color: #776e65;
+    font-weight: 700;
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(187, 173, 160, 0.3);
+}
+
+.leaderboard-body {
+    max-height: 220px;
+    overflow-y: auto;
+    background: rgba(238, 228, 218, 0.25);
+}
+
+.leaderboard-row {
+    padding: 8px 10px;
+    border-top: 1px solid rgba(187, 173, 160, 0.15);
+}
+.leaderboard-row:nth-child(odd) {
+    background: rgba(238, 228, 218, 0.22);
+}
+.leaderboard-row.current {
+    background: #f3e9d4;
+    box-shadow: inset 0 0 0 2px rgba(143, 122, 102, 0.35);
+}
+
+.leaderboard-col.rank {
+    text-align: center;
+    font-weight: 700;
+    color: #8f7a66;
+}
+.leaderboard-col.score {
+    text-align: right;
+    font-weight: 700;
+}
+.leaderboard-col.time {
+    text-align: right;
+    color: #776e65;
+}
+
 .retry-button:hover {
     background: #9f8a76;
     transform: translateY(-2px);

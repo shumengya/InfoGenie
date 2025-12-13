@@ -287,15 +287,9 @@ function displayLunarInfo(lunarData) {
                     <div class="item-label">本月进度</div>
                     <div class="item-value">${lunarData.stats.percents_formatted.month}</div>
                 </div>
-                <div class="info-item">
-                    <div class="item-icon">🗓️</div>
-                    <div class="item-label">本周第几天</div>
-                    <div class="item-value">第${lunarData.stats.week_of_month}周</div>
+
                 </div>
-                <div class="info-item">
-                    <div class="item-icon">⏰</div>
-                    <div class="item-label">今日进度</div>
-                    <div class="item-value">${lunarData.stats.percents_formatted.day}</div>
+
                 </div>
             </div>
         </div>

@@ -86,9 +86,6 @@ class GameStatistics {
         
         // 保存到本地存储
         localStorage.setItem('snakeHighScores', JSON.stringify(this.highScores));
-        
-        // 显示高分榜
-        this.displayHighScores();
     }
     
     displaySessionStats() {
@@ -175,31 +172,7 @@ class GameStatistics {
     }
 }
 
-// 扩展游戏核心类，添加统计事件触发
-SnakeGame.prototype.showGameOver = function() {
-    const modal = document.getElementById('gameOverModal');
-    const gameTime = Math.floor((Date.now() - this.startTime) / 1000);
-    
-    document.getElementById('finalScore').textContent = this.score;
-    document.getElementById('finalLength').textContent = this.snake.length;
-    document.getElementById('finalLevel').textContent = this.level;
-    document.getElementById('gameTime').textContent = gameTime;
-    document.getElementById('foodEaten').textContent = this.foodEaten;
-    
-    // 触发游戏结束事件
-    const gameOverEvent = new CustomEvent('gameOver', {
-        detail: {
-            score: this.score,
-            length: this.snake.length,
-            level: this.level,
-            gameTime: gameTime,
-            foodEaten: this.foodEaten
-        }
-    });
-    document.dispatchEvent(gameOverEvent);
-    
-    modal.style.display = 'flex';
-};
+// 原游戏结束界面已移除，保留统计模块以便响应 'gameOver' 事件
 
 // 初始化统计模块
 let gameStats;

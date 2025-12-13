@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI文章排版助手</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1 class="title">AI文章排版助手</h1>
+      <p class="subtitle">保持原文不变 · 智能转为Markdown并点缀Emoji</p>
+    </div>
+
+    <div class="form-section">
+      <div class="form-group">
+        <label class="form-label" for="articleText">请输入文章内容：</label>
+        <textarea 
+          id="articleText" 
+          class="form-input textarea" 
+          placeholder="粘贴或输入原文内容，点击开始排版即可生成Markdown，并通过Emoji增强可读性..."
+        ></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group half-width">
+          <label class="form-label" for="emojiStyle">Emoji风格：</label>
+          <select id="emojiStyle" class="form-input select">
+            <option value="balanced">适中（推荐）</option>
+            <option value="light">清爽（少量Emoji）</option>
+            <option value="rich">丰富（较多Emoji）</option>
+          </select>
+        </div>
+        <div class="form-group half-width">
+          <label class="form-label" for="markdownOption">排版偏好：</label>
+          <select id="markdownOption" class="form-input select">
+            <option value="standard">标准Markdown</option>
+            <option value="compact">紧凑排版</option>
+            <option value="readable">易读增强</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="formatBtn" class="btn">开始排版</button>
+    </div>
+
+    <div class="result-section">
+      <h3 class="result-title">排版结果</h3>
+      <div id="loading" class="loading">正在排版中，请稍候...</div>
+      <div id="resultContainer" class="conversion-container">
+        <div class="placeholder">输入文章后点击“开始排版”，AI将把原文转换为规范的Markdown，并智能添加合适的Emoji</div>
+      </div>
+
+      <div id="previewSection" class="preview-section" style="display:none;">
+        <div class="preview-header">
+          <span class="label">Markdown预览：</span>
+          <button class="copy-btn" id="copyHtmlBtn">复制HTML</button>
+        </div>
+        <div id="markdownPreview" class="markdown-preview"></div>
+      </div>
+
+      <div id="rawSection" class="raw-section" style="display:none;">
+        <div class="raw-header">
+          <span class="label">Markdown源文本：</span>
+          <button class="copy-btn" id="copyMdBtn">复制Markdown</button>
+        </div>
+        <pre id="markdownRaw" class="markdown-raw"></pre>
+      </div>
+    </div>
+  </div>
+
+  <!-- 环境配置与功能脚本 -->
+  <script src="env.js"></script>
+  <!-- Markdown 渲染与安全过滤（CDN） -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.9/dist/purify.min.js"></script>
+  <script>
+    // 检查库是否正确加载
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof marked === 'undefined') {
+        console.error('marked库加载失败');
+        document.getElementById('resultContainer').innerHTML = '<div class="placeholder error">Markdown渲染库加载失败，请检查网络连接</div>';
+      }
+      if (typeof DOMPurify === 'undefined') {
+        console.warn('DOMPurify库加载失败，将使用不安全的HTML渲染');
+      }
+    });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>白板</title>
+  <style>
+    :root {
+      --grad-start: #dff5e7; /* 淡绿色 */
+      --grad-end:   #e8f7d4; /* 淡黄绿色 */
+      --accent:     #78c6a3; /* 清新绿 */
+      --accent-2:   #a9dba8; /* 柔和绿 */
+      --text:       #2c3e3b;
+      --soft:       rgba(120, 198, 163, 0.15);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    #app { height: 100vh; display: flex; flex-direction: column; }
+
+    .toolbar {
+      flex: 0 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      padding: 10px;
+      background: linear-gradient(135deg, rgba(223,245,231,0.8), rgba(232,247,212,0.8));
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(120,198,163,0.25);
+      box-shadow: 0 6px 16px var(--soft);
+    }
+
+    .group { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .label { font-size: 14px; opacity: 0.9; }
+    .value { min-width: 36px; text-align: center; font-size: 13px; opacity: 0.85; }
+
+    input[type="color"] {
+      width: 36px; height: 36px; padding: 0; border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 8px; background: white; box-shadow: 0 2px 6px var(--soft);
+    }
+
+    input[type="range"] { width: 140px; }
+
+    .segmented {
+      display: inline-flex; border: 1px solid rgba(120,198,163,0.35); border-radius: 10px; overflow: hidden;
+      box-shadow: 0 2px 6px var(--soft);
+    }
+    .segmented button {
+      padding: 8px 12px; font-size: 14px; border: none; background: rgba(255,255,255,0.8); color: var(--text); cursor: pointer;
+    }
+    .segmented button + button { border-left: 1px solid rgba(120,198,163,0.25); }
+    .segmented button.active { background: var(--accent-2); color: #0f3b2f; }
+
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .btn {
+      padding: 8px 14px; font-size: 14px; border-radius: 10px; border: 1px solid rgba(120,198,163,0.35);
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(240,255,245,0.9));
+      color: var(--text); cursor: pointer; box-shadow: 0 2px 6px var(--soft);
+    }
+    .btn.primary { background: linear-gradient(180deg, var(--accent-2), #d9f4d5); border-color: rgba(120,198,163,0.5); }
+
+    .canvas-wrap { flex: 1 1 auto; position: relative; }
+    canvas#board {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      background: #ffffff; /* 全屏白色背景 */
+      touch-action: none; display: block;
+    }
+
+    /* 手机竖屏优化 */
+    @media (max-width: 480px) {
+      .toolbar { grid-template-columns: 1fr; }
+      input[type="range"] { width: 100%; }
+      .actions { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="toolbar">
+      <div class="group">
+        <span class="label">颜色</span>
+        <input id="color" type="color" value="#2c3e3b" />
+        <span class="label">画笔粗细</span>
+        <input id="brushSize" type="range" min="1" max="64" value="8" />
+        <span id="brushVal" class="value">8px</span>
+      </div>
+      <div class="group">
+        <div class="segmented" role="tablist" aria-label="绘制模式">
+          <button id="modeBrush" class="active" role="tab" aria-selected="true">画笔</button>
+          <button id="modeEraser" role="tab" aria-selected="false">橡皮擦</button>
+        </div>
+        <span class="label">橡皮粗细</span>
+        <input id="eraserSize" type="range" min="4" max="128" value="20" />
+        <span id="eraserVal" class="value">20px</span>
+      </div>
+      <div class="actions">
+        <button id="saveBtn" class="btn primary">保存为图片</button>
+        <button id="clearBtn" class="btn">清空画布</button>
+      </div>
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="board"></canvas>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('board');
+    const ctx = canvas.getContext('2d');
+
+    const colorInput = document.getElementById('color');
+    const brushSizeInput = document.getElementById('brushSize');
+    const brushVal = document.getElementById('brushVal');
+    const eraserSizeInput = document.getElementById('eraserSize');
+    const eraserVal = document.getElementById('eraserVal');
+    const modeBrushBtn = document.getElementById('modeBrush');
+    const modeEraserBtn = document.getElementById('modeEraser');
+    const saveBtn = document.getElementById('saveBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    let dpr = Math.max(1, window.devicePixelRatio || 1);
+    let drawing = false;
+    let last = { x: 0, y: 0 };
+    let mode = 'brush'; // 'brush' | 'eraser'
+
+    function setActiveMode(newMode) {
+      mode = newMode;
+      modeBrushBtn.classList.toggle('active', mode === 'brush');
+      modeEraserBtn.classList.toggle('active', mode === 'eraser');
+      modeBrushBtn.setAttribute('aria-selected', mode === 'brush');
+      modeEraserBtn.setAttribute('aria-selected', mode === 'eraser');
+    }
+
+    function cssSize() {
+      const r = canvas.getBoundingClientRect();
+      return { w: Math.round(r.width), h: Math.round(r.height) };
+    }
+
+    function resizeCanvas(preserve = true) {
+      const { w, h } = cssSize();
+      const snapshot = preserve ? canvas.toDataURL('image/png') : null;
+      dpr = Math.max(1, window.devicePixelRatio || 1);
+      canvas.width  = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (snapshot) {
+        const img = new Image();
+        img.onload = () => {
+          // 先铺白底，保证保存图片有白色背景
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, w, h);
+          ctx.drawImage(img, 0, 0, w, h);
+        };
+        img.src = snapshot;
+      } else {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, w, h);
+      }
+    }
+
+    function pos(e) {
+      const r = canvas.getBoundingClientRect();
+      return { x: e.clientX - r.left, y: e.clientY - r.top };
+    }
+
+    function stroke(from, to) {
+      ctx.beginPath();
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      if (mode === 'eraser') {
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = parseInt(eraserSizeInput.value, 10);
+      } else {
+        ctx.strokeStyle = colorInput.value;
+        ctx.lineWidth = parseInt(brushSizeInput.value, 10);
+      }
+      ctx.stroke();
+    }
+
+    canvas.addEventListener('pointerdown', (e) => {
+      canvas.setPointerCapture(e.pointerId);
+      drawing = true;
+      last = pos(e);
+      e.preventDefault();
+    }, { passive: false });
+
+    canvas.addEventListener('pointermove', (e) => {
+      if (!drawing) return;
+      const p = pos(e);
+      stroke(last, p);
+      last = p;
+      e.preventDefault();
+    }, { passive: false });
+
+    function endDraw(e) {
+      drawing = false;
+      e && e.preventDefault();
+    }
+    canvas.addEventListener('pointerup', endDraw);
+    canvas.addEventListener('pointercancel', endDraw);
+    canvas.addEventListener('pointerleave', endDraw);
+
+    // UI 交互
+    modeBrushBtn.addEventListener('click', () => setActiveMode('brush'));
+    modeEraserBtn.addEventListener('click', () => setActiveMode('eraser'));
+
+    brushSizeInput.addEventListener('input', () => {
+      brushVal.textContent = brushSizeInput.value + 'px';
+    });
+    eraserSizeInput.addEventListener('input', () => {
+      eraserVal.textContent = eraserSizeInput.value + 'px';
+    });
+
+    clearBtn.addEventListener('click', () => {
+      const { w, h } = cssSize();
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, w, h);
+    });
+
+    saveBtn.addEventListener('click', () => {
+      // 确保白底
+      const { w, h } = cssSize();
+      const altCanvas = document.createElement('canvas');
+      const altCtx = altCanvas.getContext('2d');
+      altCanvas.width = w * dpr;
+      altCanvas.height = h * dpr;
+      altCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      altCtx.fillStyle = '#ffffff';
+      altCtx.fillRect(0, 0, w, h);
+      altCtx.drawImage(canvas, 0, 0, w, h);
+
+      const now = new Date();
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, '0');
+      const d = String(now.getDate()).padStart(2, '0');
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      const filename = `白板_${y}${m}${d}_${hh}${mm}.png`;
+
+      altCanvas.toBlob((blob) => {
+        if (!blob) return;
+        const a = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        URL.revokeObjectURL(url);
+        a.remove();
+      }, 'image/png');
+    });
+
+    // 初始化与自适应
+    function init() {
+      resizeCanvas(false);
+      brushVal.textContent = brushSizeInput.value + 'px';
+      eraserVal.textContent = eraserSizeInput.value + 'px';
+    }
+    window.addEventListener('resize', () => resizeCanvas(true));
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) resizeCanvas(true);
+    });
+
+    // 禁用默认触控滚动/双击缩放
+    canvas.style.touchAction = 'none';
+
+    init();
+  </script>
+</body>
+</html>

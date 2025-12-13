@@ -184,6 +184,20 @@ body {
     border: 1px solid rgba(46, 125, 50, 0.2);
 }
 
+.leaderboard-summary {
+    margin: 10px 0 15px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    color: #1b5e20;
+    text-align: center;
+    border: 1px solid rgba(46, 125, 50, 0.2);
+}
+
+.leaderboard-summary p {
+    margin: 6px 0;
+}
+
 .leaderboard h3 {
     color: #1b5e20;
     margin-bottom: 15px;
@@ -231,6 +245,13 @@ body {
     font-weight: bold;
     color: #1b5e20;
     min-width: 50px;
+    text-align: right;
+}
+
+.leaderboard-item .player-time {
+    color: #4a5568;
+    font-size: 0.8rem;
+    min-width: 80px;
     text-align: right;
 }
 

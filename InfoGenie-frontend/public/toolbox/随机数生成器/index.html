@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>随机数生成器</title>
+  <style>
+    :root{
+      --bg-start:#e8f8e3; /* 淡绿 */
+      --bg-end:#f3fbe6;   /* 淡黄绿 */
+      --primary:#2f9e44;  /* 主题绿 */
+      --primary-weak:#94d3a2;
+      --text:#204030;
+      --muted:#5d7a67;
+      --card:#ffffffa6; /* 半透明卡片 */
+      --shadow:0 8px 20px rgba(34, 139, 34, 0.08);
+      --radius:18px;
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, PingFang SC, Noto Sans CJK SC, "Helvetica Neue", Arial, "Noto Sans", "Hiragino Sans GB", sans-serif;
+      color:var(--text);
+      background: linear-gradient(160deg, var(--bg-start), var(--bg-end));
+    }
+    .app{
+      max-width: 540px; /* 适配手机竖屏 */
+      margin: 0 auto;
+      padding: 20px 16px 36px;
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:14px;
+    }
+    h1{
+      font-size: clamp(20px, 4.8vw, 26px);
+      margin:12px 0 6px;
+      letter-spacing: 0.5px;
+    }
+    .subtitle{
+      font-size: 13px;
+      color:var(--muted);
+    }.card{
+  background: var(--card);
+  backdrop-filter: blur(6px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px;
+  margin-top: 10px;
+}
+.grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.field{ display:flex; flex-direction:column; gap:6px; }
+label{ font-size: 13px; color: var(--muted);} 
+input[type="number"]{
+  -webkit-appearance: none; appearance:none;
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid #d7ead9;
+  background:#ffffff;
+  outline:none;
+  font-size:16px;
+}
+input[type="number"]:focus{ border-color: var(--primary-weak); box-shadow: 0 0 0 3px #2f9e4415; }
+
+.count-row{ display:flex; align-items:center; gap:10px; }
+.count-row input[type="range"]{ flex:1; }
+input[type="range"]{
+  width:100%; height: 34px; background:transparent;
+}
+/* 自定义滑块 */
+input[type="range"]::-webkit-slider-runnable-track{ height: 6px; border-radius: 6px; background: linear-gradient(90deg, var(--primary-weak), #d5efcf); }
+input[type="range"]::-webkit-slider-thumb{ -webkit-appearance:none; appearance:none; width:22px; height:22px; border-radius:50%; background: #fff; border:2px solid var(--primary); margin-top:-8px; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+input[type="range"]::-moz-range-track{ height: 6px; border-radius:6px; background: linear-gradient(90deg, var(--primary-weak), #d5efcf);} 
+input[type="range"]::-moz-range-thumb{ width:22px; height:22px; border-radius:50%; background:#fff; border:2px solid var(--primary); }
+
+.btns{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top:8px; }
+button{
+  -webkit-tap-highlight-color: transparent;
+  padding: 14px 16px;
+  border-radius: 15px;
+  border:none; outline:none;
+  font-size:16px; font-weight: 600; letter-spacing:.4px;
+  box-shadow: var(--shadow);
+}
+.btn-primary{ background: linear-gradient(180deg, #9fe3b0, #62c27b); color:#0b3318; }
+.btn-ghost{ background:#ffffff; color:#2f6f3f; border:1px solid #dcefe0; }
+
+.hint{font-size:12px; color:var(--muted); margin-top:6px;}
+
+.results{ margin-top: 14px; display:grid; grid-template-columns: repeat(2, 1fr); gap:10px; }
+@media (min-width:380px){ .results{ grid-template-columns: repeat(3, 1fr);} }
+@media (min-width:480px){ .results{ grid-template-columns: repeat(4, 1fr);} }
+
+.pill{
+  background:#ffffff;
+  border:1px solid #e3f3e6;
+  border-radius: 14px;
+  padding: 14px 0;
+  text-align:center;
+  font-size:18px;
+  font-variant-numeric: tabular-nums;
+  transition: transform .08s ease;
+  user-select: text;
+}
+.pill:active{ transform: scale(.98); }
+
+.toolbar{ display:flex; gap:10px; margin-top:10px; }
+.toolbar button{ flex:1; }
+.small{ font-size:13px; }
+
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div>
+        <h1>随机数生成器</h1>
+        <div class="subtitle">设置范围与数量，一键生成（整数，包含最小值与最大值）。</div>
+      </div>
+    </header><section class="card">
+  <div class="grid">
+    <div class="field">
+      <label for="min">最小值</label>
+      <input type="number" id="min" inputmode="numeric" value="0" />
+    </div>
+    <div class="field">
+      <label for="max">最大值</label>
+      <input type="number" id="max" inputmode="numeric" value="100" />
+    </div>
+  </div>
+
+  <div class="field" style="margin-top:10px;">
+    <label for="countRange">生成个数</label>
+    <div class="count-row">
+      <input id="countRange" type="range" min="1" max="100" value="10" />
+      <input id="countNum" type="number" min="1" max="100" value="10" style="width:94px"/>
+    </div>
+    <div class="hint">最多一次生成 100 个。若最小值大于最大值，将自动互换。</div>
+  </div>
+
+  <div class="btns">
+    <button class="btn-ghost" id="clearBtn">清空</button>
+    <button class="btn-primary" id="genBtn">生成</button>
+  </div>
+  <div class="toolbar">
+    <button class="btn-ghost small" id="copyBtn">复制结果</button>
+    <button class="btn-ghost small" id="downloadBtn">下载为TXT</button>
+  </div>
+</section>
+
+<section class="card" id="resultCard" style="display:none;">
+  <div class="results" id="results"></div>
+</section>
+
+  </div>  <script>
+    const minEl = document.getElementById('min');
+    const maxEl = document.getElementById('max');
+    const rangeEl = document.getElementById('countRange');
+    const countEl = document.getElementById('countNum');
+    const resultsEl = document.getElementById('results');
+    const resultCard = document.getElementById('resultCard');
+
+    // 双向同步 个数 输入
+    const sync = (fromRange) => {
+      if (fromRange) countEl.value = rangeEl.value; else rangeEl.value = Math.min(Math.max(1, Number(countEl.value||1)), Number(countEl.max));
+    };
+    rangeEl.addEventListener('input', () => sync(true));
+    countEl.addEventListener('input', () => sync(false));
+
+    const clampInt = (v, def=0) => Number.isFinite(Number(v)) ? Math.trunc(Number(v)) : def;
+
+    const randInt = (min, max) => {
+      return Math.floor(Math.random() * (max - min + 1)) + min; // 含两端
+    };
+
+    function generate(){
+      let min = clampInt(minEl.value, 0);
+      let max = clampInt(maxEl.value, 100);
+      if (min > max) [min, max] = [max, min];
+      minEl.value = min; maxEl.value = max;
+
+      let n = clampInt(countEl.value, 10);
+      n = Math.max(1, Math.min(100, n));
+      countEl.value = n; rangeEl.value = n;
+
+      const out = Array.from({length:n}, () => randInt(min, max));
+      // 渲染
+      resultsEl.innerHTML = '';
+      out.forEach((num, i) => {
+        const d = document.createElement('div');
+        d.className = 'pill';
+        d.textContent = num;
+        d.style.opacity = 0;
+        resultsEl.appendChild(d);
+        // 简单入场动画
+        requestAnimationFrame(() => {
+          d.style.transition = 'opacity .18s ease';
+          d.style.opacity = 1;
+        });
+      });
+      resultCard.style.display = 'block';
+      // 保存到剪贴板友好字符串
+      resultCard.dataset.text = out.join(', ');
+    }
+
+    function clearAll(){
+      resultsEl.innerHTML = '';
+      resultCard.style.display = 'none';
+    }
+
+    async function copyResults(){
+      const text = resultCard.dataset.text || '';
+      if (!text) return;
+      try{ await navigator.clipboard.writeText(text); alert('已复制到剪贴板'); }catch(e){
+        // 兼容不支持的环境
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+        alert('已复制');
+      }
+    }
+
+    function downloadTxt(){
+      const text = resultCard.dataset.text || '';
+      if (!text) return;
+      const blob = new Blob([text + '\n'], {type:'text/plain;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = '随机数.txt'; a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    document.getElementById('genBtn').addEventListener('click', generate);
+    document.getElementById('clearBtn').addEventListener('click', clearAll);
+    document.getElementById('copyBtn').addEventListener('click', copyResults);
+    document.getElementById('downloadBtn').addEventListener('click', downloadTxt);
+
+    // 方便初次预览
+    generate();
+  </script></body>
+</html>

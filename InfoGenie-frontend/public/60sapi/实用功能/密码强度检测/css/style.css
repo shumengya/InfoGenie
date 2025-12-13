@@ -5,12 +5,27 @@
     box-sizing: border-box;
 }
 
+/* 隐藏滚动条但保留滚动功能 */
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar,
+html::-webkit-scrollbar,
+*::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
     line-height: 1.6;
     color: #2c3e50;
     min-height: 100vh;
     overflow-x: hidden;
+    background: linear-gradient(135deg, #f0f8e8 0%, #e8f5e8 50%, #d4f4dd 100%);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 /* 容器布局 */
@@ -28,9 +43,9 @@ body {
     text-align: center;
     margin-bottom: 40px;
     padding: 40px 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 10px 30px rgba(34, 139, 34, 0.3);
     color: white;
 }
 
@@ -95,9 +110,9 @@ body {
 
 .password-input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #228B22;
     background: #ffffff;
-    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 4px rgba(34, 139, 34, 0.1);
 }
 
 .password-input::placeholder {
@@ -140,7 +155,7 @@ body {
 /* 检测按钮 */
 .check-btn {
     width: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #228B22 0%, #32CD32 100%);
     color: white;
     border: none;
     padding: 18px 32px;
@@ -149,7 +164,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 20px rgba(34, 139, 34, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -160,7 +175,7 @@ body {
 
 .check-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 6px 25px rgba(34, 139, 34, 0.4);
 }
 
 .check-btn:active {
@@ -284,7 +299,7 @@ body {
 
 .bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, #ef4444, #f97316, #eab308, #22c55e);
+    background: linear-gradient(90deg, #90EE90, #98FB98, #32CD32, #228B22);
     border-radius: 6px;
     width: 0%;
     transition: width 0.8s ease;
@@ -383,13 +398,13 @@ body {
 }
 
 .char-type.has-type {
-    background: #dcfce7;
-    border-color: #bbf7d0;
-    color: #166534;
+    background: #f0f8e8;
+    border-color: #d4f4dd;
+    color: #1e7e1e;
 }
 
 .char-type.has-type .type-icon {
-    color: #22c55e;
+    color: #228B22;
 }
 
 .type-icon {
@@ -555,11 +570,11 @@ body {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: #22c55e;
+    background: #228B22;
     color: white;
     padding: 16px 24px;
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(34, 197, 94, 0.3);
+    box-shadow: 0 4px 20px rgba(34, 139, 34, 0.3);
     z-index: 1000;
     animation: toastSlide 0.3s ease-out;
     font-weight: 500;
@@ -586,11 +601,11 @@ body {
 }
 
 .strength-strong {
-    color: #059669 !important;
+    color: #228B22 !important;
 }
 
 .strength-very-strong {
-    color: #047857 !important;
+    color: #1e7e1e !important;
 }
 
 /* 分数圆圈颜色 */
@@ -603,11 +618,11 @@ body {
 }
 
 .score-strong {
-    background: conic-gradient(from 0deg, #059669 0deg, #059669 var(--score-deg), #e2e8f0 var(--score-deg), #e2e8f0 360deg) !important;
+    background: conic-gradient(from 0deg, #228B22 0deg, #228B22 var(--score-deg), #e2e8f0 var(--score-deg), #e2e8f0 360deg) !important;
 }
 
 .score-very-strong {
-    background: conic-gradient(from 0deg, #047857 0deg, #047857 var(--score-deg), #e2e8f0 var(--score-deg), #e2e8f0 360deg) !important;
+    background: conic-gradient(from 0deg, #1e7e1e 0deg, #1e7e1e var(--score-deg), #e2e8f0 var(--score-deg), #e2e8f0 360deg) !important;
 }
 
 /* 平板端适配 (768px - 1024px) */

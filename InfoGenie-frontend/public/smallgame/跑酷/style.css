@@ -1,0 +1,130 @@
+/* 清新淡绿色渐变风格与移动端适配 */
+:root {
+  --green-1: #a8e6cf; /* 淡绿色 */
+  --green-2: #dcedc1; /* 淡黄绿色 */
+  --accent: #58c48b;  /* 按钮主色 */
+  --accent-dark: #3ca16c;
+  --text: #2f4f3f;    /* 深绿文字 */
+  --card: #ffffffd9; /* 半透明卡片 */
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "PingFang SC", "Microsoft Yahei", sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, var(--green-1) 0%, var(--green-2) 100%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.game-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hud {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: color-mix(in oklab, var(--green-2) 65%, white 35%);
+  backdrop-filter: saturate(1.4) blur(6px);
+  box-shadow: 0 2px 10px rgb(0 0 0 / 6%);
+}
+.score {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+}
+
+.restart {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgb(88 196 139 / 30%);
+  transition: transform .05s ease, background .2s ease;
+}
+.restart:active { transform: scale(0.98); }
+.restart:hover { background: var(--accent-dark); }
+
+.stage {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hint {
+  position: absolute;
+  bottom: max(10px, env(safe-area-inset-bottom));
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: color-mix(in oklab, var(--text), white 35%);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0 0 0 / 10%);
+}
+.overlay[hidden] { display: none; }
+
+.overlay-card {
+  width: min(88vw, 420px);
+  background: var(--card);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 15%);
+  padding: 18px 18px 16px;
+  text-align: center;
+}
+.gameover-title {
+  font-size: 20px;
+  font-weight: 800;
+}
+.summary {
+  margin: 12px 0 16px;
+  font-size: 16px;
+}
+.overlay-restart {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgb(88 196 139 / 38%);
+}
+.overlay-restart:active { transform: scale(0.98); }
+.overlay-restart:hover { background: var(--accent-dark); }
+
+@media (prefers-reduced-motion: reduce) {
+  .restart, .overlay-restart { transition: none; }
+}

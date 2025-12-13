@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>中国亲戚称呼计算器</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>中国亲戚称呼计算器</h1>
+      <p class="subtitle">输入亲属关系链（如“妈妈的爸爸”、“爸爸的姐姐的儿子”），快速得到标准普通话称呼与各地方言称呼</p>
+    </header>
+
+    <main class="card">
+      <section class="input-section">
+        <label for="relationInput" class="label">亲属关系链</label>
+        <textarea id="relationInput" class="textarea" rows="2" placeholder="例如：妈妈的爸爸"></textarea>
+
+        <div class="hint">
+          · 使用“的”连接每一层关系，例如：
+          <span class="chip" onclick="setExample('妈妈的爸爸')">妈妈的爸爸</span>
+          <span class="chip" onclick="setExample('爸爸的姐姐的儿子')">爸爸的姐姐的儿子</span>
+          <span class="chip" onclick="setExample('妈妈的弟弟的女儿')">妈妈的弟弟的女儿</span>
+        </div>
+
+        <button id="calcBtn" class="button primary">计算称呼</button>
+        <div id="loading" class="loading" style="display:none">正在计算，请稍候…</div>
+        <div id="error" class="error" style="display:none"></div>
+      </section>
+
+      <section id="resultSection" class="result-section" style="display:none">
+        <h2>计算结果</h2>
+        <div class="result-block">
+          <div class="result-title">标准普通话称呼</div>
+          <div id="mandarinTitle" class="result-value"></div>
+          <div class="actions">
+            <button id="copyMandarinBtn" class="button">复制称呼</button>
+          </div>
+        </div>
+
+        <div class="result-block">
+          <div class="result-title">各地方言称呼</div>
+          <div id="dialectList" class="dialect-list"></div>
+        </div>
+
+        <div id="notesBlock" class="result-block" style="display:none">
+          <div class="result-title">说明</div>
+          <div id="notes" class="notes"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="env.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

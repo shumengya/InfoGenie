@@ -6,9 +6,9 @@ body {
     transition: background 0.5s ease;
 }
 
-/* Hand-drawn Comic Theme Background - NEW VIBRANT VERSION */
+/* Hand-drawn Comic Theme Background - FRESH GREEN VERSION */
 body.theme-comic {
-    background: linear-gradient(-45deg, #ff7e5f, #feb47b, #ffcc80, #ffecb3);
+    background: linear-gradient(-45deg, #c8e6c9, #dcedc8, #f1f8e9, #e8f5e8);
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
 }

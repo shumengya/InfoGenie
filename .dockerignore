@@ -1,0 +1,36 @@
+# Node modules
+InfoGenie-frontend/node_modules
+InfoGenie-frontend/build
+
+# Python cache
+InfoGenie-backend/__pycache__
+InfoGenie-backend/**/__pycache__
+InfoGenie-backend/*.pyc
+InfoGenie-backend/**/*.pyc
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test files
+InfoGenie-backend/test
+
+# Documentation
+*.md
+
+# Backup files
+*.backup
+*.bak

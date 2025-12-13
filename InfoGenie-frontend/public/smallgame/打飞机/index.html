@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#d8f5c3">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>打飞机 · 清新休闲</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">打飞机</div>
+    <div class="score">得分：<span id="scoreVal">0</span></div>
+    <div class="actions">
+      <button id="pauseBtn" aria-label="暂停">暂停</button>
+      <button id="restartBtn" aria-label="重来">重来</button>
+    </div>
+  </header>
+
+  <main class="game-wrap">
+    <canvas id="game" aria-label="打飞机游戏画布"></canvas>
+
+    <div id="startOverlay" class="overlay">
+      <div class="panel">
+        <h1>打飞机</h1>
+        <p>轻触屏幕开始，无尽模式。</p>
+        <p>操作：手指拖动战机移动。</p>
+        <button id="startBtn">开始游戏</button>
+      </div>
+    </div>
+
+    <div id="overOverlay" class="overlay hide">
+      <div class="panel">
+        <h2>游戏结束</h2>
+        <p>本次得分：<span id="finalScore">0</span></p>
+        <button id="againBtn">再来一局</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="./game.js"></script>
+</body>
+</html>
