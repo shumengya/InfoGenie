@@ -2,7 +2,7 @@
 // 注意：将 token 暴露在前端存在安全风险，仅用于本地演示
 
 const endpoint = "https://models.github.ai/inference";
-let apiKey = "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"; // 注意：已硬编码，仅用于本地演示
+let apiKey = ""; // 注意：已硬编码，仅用于本地演示
 
 const chatBox = document.getElementById("chat-box");
 const userInput = document.getElementById("user-input");
